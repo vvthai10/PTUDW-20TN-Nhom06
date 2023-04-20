@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="search.css">
+
+  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+    integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <header>
+    <!-- place navbar here -->
+  </header>
+  <main>
+    <h1>Tìm kiếm</h1>
+    <div class="time-type">
+      <div class="time">
+        <h4>Thời gian</h4>
+        <select>
+          <option>Tất cả</option>
+          <option>1 ngày qua</option>
+          <option>1 tuần qua</option>
+          <option>1 tháng qua</option>
+          <option>1 năm qua</option>
+        </select>
+      </div>
+      <div class="type">
+        <h4>Dạng bài</h4>
+        <select>
+          <option>Tất cả</option>
+          <option>Bài viết</option>
+          <option>Ảnh</option>
+          <option>Video</option>
+          <option>Chủ đề</option>
+          <option>Infographic</option>
+        </select>
+      </div>
+    </div>
+    <div type="new-related">
+      <button id="new" style="background-color: #646464; border-width: 0px;">Mới nhất</button>
+      <button id="related" style="border-width: 0px; background-color: white;">Liên quan</button>
+    </div>
+
+    <div class="container my-3">
+      <div class="container my-3">
+        <div class="card-body">
+          <div class="column" id="list_product">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="container">
+
+        <div class="content__paging">
+          <div class="page">
+            <ul>
+              <button onclick="btnPrevClick()" class="btn-prev btn-active fas fa-angle-left fa-2x" id="btn-prev"></button>
+              <div class="number-page" id="number-page">
+                <!-- <li class="active">
+                  <a>1</a>
+                </li>
+                <li>
+                  <a>2</a>
+                </li>
+                <li>
+                  <a>3</a>
+                </li> -->
+              </div>
+              <button onclick = "btnNextClick()" class="btn-next fas fa-angle-right fa-2x" id="btn-next"></button>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <h3 style="text-align: center;">Footer ở đấy</h3>
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
+  <script src="search.js"></script>
+</body>
+
+</html>
