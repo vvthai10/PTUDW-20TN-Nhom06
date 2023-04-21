@@ -1,0 +1,101 @@
+html {
+    font-size: 15px;
+}
+
+.header__logo {
+    width: 20rem;
+}
+
+.header__note {
+    margin-top: -20px;
+    margin-bottom: -15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: 'Inria Serif', serif;
+}
+
+.header__user__avatar {
+    width: 3rem;
+}
+
+.header__user__name {
+    font-size: 1rem;
+    text-decoration: none;
+    margin-right:5px;
+}
+
+hr {
+    position: relative;
+    left: -15px;
+    width: calc(100% + 30px);
+}
+
+main {
+    margin-top: -15px;
+    min-height: 620px;
+    height: 100%;
+}
+
+
+.sidenav {
+    /* bottom: 0;
+    left: 0;
+    position: absolute;
+    top: 0; */
+    margin-left: -10px;
+    width: 225px; 
+    background-color: lightgray; 
+    min-height: 620px;
+  }
+  
+  /* The navigation menu links */
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 1.05rem;
+    /* font-family: Roboto; */
+    font-weight: 600;
+    color: black;
+    display: block;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: blue;
+  }
+
+  ul {
+    padding: 0;
+    list-style-type: none
+  }
+
+  li.selected {
+    background-color: cornflowerblue;
+  }
+  
+  .btn_compose {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    padding: 5px 10px;
+  }
+
+  .main {
+    padding: 10px 5px 0 10px;
+  }
+
+  .search-container {
+    margin-top: 5px;
+  }
+
+ 
+  
+  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) 
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }*/
