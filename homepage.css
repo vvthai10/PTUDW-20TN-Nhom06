@@ -6,3 +6,51 @@
   display: inline-block;
   background-color: orange;
 }
+
+/* thanh xu huong */
+
+.trend {
+  display: flex;
+  flex-direction: row;
+}
+
+/* tag */
+
+.tag {
+  display: flex;
+  flex-direction: row;
+}
+
+.tag__item {
+  border-radius: 50px;
+  background-color: red;
+  margin-top: 5px;
+  margin-right: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* location, temperature, weather */
+.local__temp__weather {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+}
+
+.location {
+  margin-right: 10px;
+}
+
+.temperature {
+  margin-right: 10px;
+}
+
+.weather {
+  margin-right: 10px
+}
+
+/* card-item property */
+.carousel-item--extend {
+  display: flex;
+  flex-direction: column;
+}
