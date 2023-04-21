@@ -49,8 +49,96 @@
   margin-right: 10px
 }
 
+/* content property */
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-basis: auto;
+  flex-grow: 1;
+  max-height: 600px;
+}
+
+/* set width for card of news__left and news__right */
+.content__news__right, .content__news__left {
+  overflow-y: scroll;
+}
+
+.content__news__right {
+  margin-right: 80px;
+  max-width: 400px;
+}
+
+.content__news__left {
+  margin-left: 80px;
+  padding-right: 0px;
+}
+
+/* customize the scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 /* card-item property */
-.carousel-item--extend {
+.card__news__left--extend {
   display: flex;
   flex-direction: column;
+}
+
+.card__news__right--extend {
+  display: flex;
+  flex-direction: row;
+}
+
+.category-time {
+  display: flex;
+  flex-direction: row;
+}
+
+div.category-time p:nth-child(1) {
+  margin-right: 10px;
+}
+
+/* customize the object in news__left and news__right */
+div.card.card__news__left--extend {
+  margin-bottom: 10px;
+}
+
+div.card.card__news__right--extend {
+  margin-bottom: 10px;
+}
+
+div.card.card__news__right--extend img {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+div.card.card__news__left--extend img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+/* popular__week__news */
+.popular__week__news {
+  margin-top: 50px;
+}
+
+/* lastest__news */
+.lastest__news {
+  margin-top: 50px;
 }
