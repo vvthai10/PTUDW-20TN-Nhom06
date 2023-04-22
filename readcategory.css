@@ -1,10 +1,56 @@
-/* content */
-.content {
+/* title */
+.sub-title {
     display: flex;
     flex-direction: row;
 }
 
-/* div.card.card__main__new img {
-    max-height: 100px;
-    max-width: 100px;
-} */
+div.sub-title h4:nth-child(1) {
+    margin-right: 20px;
+}
+
+/* content */
+.content {
+    display: flex;
+    flex-direction: row;
+    flex-basis: auto;
+}
+
+/* list__news */
+.list__news {
+    overflow-y: scroll;
+    flex-grow: 1;
+}
+
+
+/* main__new */
+.content, .main__new {
+    max-height: 700px;
+}
+
+.main__new {
+    flex-grow: 3;
+    margin-right: 5rem;
+}
+
+/* customize the scrollbar */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* customize related news */
