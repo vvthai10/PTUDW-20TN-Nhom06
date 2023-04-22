@@ -36,13 +36,12 @@
          <div class="container-fluid">
             <div class="row g-0">
                 <div class="col-sm-3 col-md-2 sidenav">
-                    <ul>
-                        <li class="selected"><a href="#">Tất cả bài viết</a></li>
-                        <li><a href="#">Đã duyệt & chờ xuất bản</a></li>
-                        <li><a href="#">Đã đăng</a></li>
-                        <li><a href="#">Chờ duyệt</a></li>
-                        <li><a href="#">Đã từ chối</a></li>
-                        
+                    <ul class="sidenav__list">
+                        <li class="sidenav__link is-selected"><a href="#">Tất cả bài viết</a></li>
+                        <li class="sidenav__link"><a href="#">Đã duyệt & chờ xuất bản</a></li>
+                        <li class="sidenav__link"><a href="#">Đã đăng</a></li>
+                        <li class="sidenav__link"><a href="#">Chờ duyệt</a></li>
+                        <li class="sidenav__link"><a href="#">Đã từ chối</a></li>                        
                     </ul>    
                 </div>
 
@@ -53,7 +52,7 @@
                         </div>
                         <div class="col d-flex justify-content-end">
                             <div class="search-container">
-                                <form action="/action_page.php">
+                                <form action="">
                                   <input type="text" placeholder="Search.." name="search">
                                   <button type="submit"><i class="bi bi-search"></i></button>
                                 </form>
@@ -66,36 +65,32 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                               <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="world-topic-tab" data-bs-toggle="tab" data-bs-target="#world-topic-content" type="button" role="tab" aria-controls="world" aria-selected="true">Tất cả</button>
+                                <button class="nav-link active" id="all-topic-tab" data-bs-toggle="tab" data-bs-target="#all-topic-content" type="button" role="tab" aria-controls="all" aria-selected="true">Tất cả</button>
                               </li>
                               <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="world-topic-tab" data-bs-toggle="tab" data-bs-target="#world-topic-content" type="button" role="tab" aria-controls="world" aria-selected="true">Thế giới</button>
+                                <button class="nav-link" id="agriculture-topic-tab" data-bs-toggle="tab" data-bs-target="#agriculture-topic-content" type="button" role="tab" aria-controls="agriculture" aria-selected="true">Nông sản</button>
                               </li>
                               <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="world-topic-tab" data-bs-toggle="tab" data-bs-target="#world-topic-content" type="button" role="tab" aria-controls="world" aria-selected="true">Đời sống</button>
-                              </li>
-                              <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="economy-topic-tab" data-bs-toggle="tab" data-bs-target="#economy-topic-content" type="button" role="tab" aria-controls="economy" aria-selected="false">Kinh tế</button>
-                              </li>
-                              <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="sports-topic-tab" data-bs-toggle="tab" data-bs-target="#sports-topic-content" type="button" role="tab" aria-controls="sports" aria-selected="false">Thể thao</button>
+                                <button class="nav-link" id="seafood-topic-tab" data-bs-toggle="tab" data-bs-target="#seafood-topic-content" type="button" role="tab" aria-controls="seafood" aria-selected="true">Hải sản</button>
                               </li>
                             </ul>
                             
                             <!-- Tab panes -->
                             <div class="tab-content">
-                              <div class="tab-pane active" id="world-topic-content" role="tabpanel" aria-labelledby="world-topic-tab"> 
+                              <div class="tab-pane active" id="world-topic-content" role="tabpanel" aria-labelledby="agriculture"> 
                                 <table table-striped border-success data-toggle="table" data-url="data1.json">
                                   <thead>
                                     <tr>
-                                      <th data-field="id">Item ID</th>
-                                      <th data-field="name">Item Name</th>
-                                      <th data-field="price">Item Price</th>
+                                      <th data-field="title">Tiêu đề</th>
+                                      <th data-field="date">Ngày viết</th>
+                                      <th data-field="status">Tình trạng</th>
+                                      <th data-field="reviewer">Người duyệt</th>
+                                      <th data-field="comment">Nhận xét</th>
                                     </tr>
                                   </thead>
                                 </table>                              
                               </div>
-                              <div class="tab-pane" id="economy-topic-content" role="tabpanel" aria-labelledby="economy-topic-tab"> Economy </div>
+                              <div class="tab-pane" id="economy-topic-content" role="tabpanel" aria-labelledby="seafood"> Economy </div>
                               <div class="tab-pane" id="sports-topic-content" role="tabpanel" aria-labelledby="sports-topic-tab"> Sports </div>
                             </div>
                             <!-- <ul class="nav nav-tabs">
@@ -136,7 +131,7 @@
        
     </footer>
 
-    <script src="./js/writer.js"></script>
+    <script src="./js/editor.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

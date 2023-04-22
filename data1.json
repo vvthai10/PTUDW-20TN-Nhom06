@@ -1,25 +1,15 @@
 [{
-    "id": "24323",
-    "name": "Mark Smith",
-    "price": "25/5/2020"
+    "title": "Thủ tướng đề nghị Mỹ mở cửa hơn nữa cho nông sản Việt Nam",
+    "date": "10/4/2023",
+    "status": "Chưa duyệt",
+    "reviewer": "",
+    "comment": "" 
   },
   {
-    "id": "24564",
-    "name": "Caitlin MacDonald",
-    "price": "17/5/2020"
-  },
-  {
-    "id": "24345",
-    "name": "Jessie Johnson ",
-    "price": "1/5/2020"
-  },
-  {
-    "id": "24874",
-    "name": "Alen Williams",
-    "price": "14/5/2020"
-  },
-  {
-    "id": "24323",
-    "name": "Maria Garcia ",
-    "price": "13/5/2020"
-  }]
+    "title": "Nguy cơ bị dừng xuất khẩu khi mã số nông sản không gắn với chất lượng",
+    "date": "1/4/2023",
+    "status": "Đã đăng",
+    "reviewer": "Nguyễn Tùng",
+    "comment": "Vấn đề và nội dung tốt. Cần gắn link trích dẫn tại các cụm từ ..." 
+  }
+]

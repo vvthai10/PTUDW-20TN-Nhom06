@@ -41,7 +41,7 @@
         <div class="container-fluid main">
             <div class="row">
                 <div class="col-9 maincol">
-                    <button class="button_back"><i class="bi bi-arrow-left" style="font-size: 25px;"></i></button>
+                    <button class="button_back" onclick="history.back()"><i class="bi bi-arrow-left" style="font-size: 25px;"></i></button>
                     <h3> Soạn thảo bài viết</h3><br/>
 
                     <label for="title">Tiêu đề</label><br/>
@@ -58,19 +58,18 @@
                 <div class="col-3 sidecol">
                     <form id="form1">
                         <label for="post_avatar">Ảnh đại diện bài viết</label>
-                        <input id="post_avatar" type="file" />
+                        <input id="post_avatar" type="file" accept="image/*"/>
                         <!-- <img id="blah" src="#" alt="your image" /> -->
 
                         <label for="cat1">Chuyên mục cấp 1</label><br/>
                         <select class="category_l1" id="cat1">
-                            <option value="">Select a category... </option>                            
+                            <option value="">Kinh doanh </option>                            
                         </select><br/>
 
                         <label for="cat2">Chuyên mục cấp 2</label><br/>
                         <select class="category_l2" id="cat2">
-                            <option value="">Select a category... </option>
-                            <option value="">Select a category... </option>
-                            <option value="">Select a category... </option>                            
+                            <option value="">Nông sản </option>
+                            <option value="">Hải sản </option>                           
                         </select><br/>
 
                         <label for="tags">Danh sách nhãn</label>                        
@@ -79,14 +78,12 @@
                             <input mbsc-input id="demo-multiple-select-input" placeholder="Please select..." data-dropdown="true" data-input-style="outline" data-label-style="stacked" data-tags="true" />
                         </label>
                         <select id="demo-multiple-select" multiple>
-                            <option value="1">Books</option>
-                            <option value="2">Movies, Music & Games</option>
-                            <option value="3">Electronics & Computers</option>
-                            <option value="4">Home, Garden & Tools</option>
-                            <option value="5">Health & Beauty</option>
-                            <option value="6">Toys, Kids & Baby</option>
-                            <option value="7">Clothing & Jewelry</option>
-                            <option value="8">Sports & Outdoors</option>
+                            <option value="1">Hạn hán 2023</option>
+                            <option value="2">Nhiễm mặn đất trồng</option>
+                            <option value="3">Ô nhiễm nguồn nước</option>
+                            <option value="4">Vụ lúa hè-thu</option>
+                            <option value="5">Xuất khẩu nông sản</option>
+                            <option value="6">Xuất khẩu hải sản</option>
                         </select>
                     </form>
 

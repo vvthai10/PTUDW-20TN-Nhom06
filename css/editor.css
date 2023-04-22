@@ -68,12 +68,12 @@ main {
     list-style-type: none
   }
 
-  li.selected {
+  li.is-selected {
     background-color: cornflowerblue;
   }
 
   .main {
-    padding: 10px 5px 0 10px;
+    padding: 5px 5px 0 10px;
   }
   
   .search-container {
