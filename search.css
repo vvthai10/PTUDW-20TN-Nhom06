@@ -72,6 +72,12 @@
 }
 
 /* list page */
+div.content__paging {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
 .content{
     width: 100%;
 }
