@@ -1,0 +1,10 @@
+/* content */
+.content {
+    display: flex;
+    flex-direction: row;
+}
+
+/* div.card.card__main__new img {
+    max-height: 100px;
+    max-width: 100px;
+} */

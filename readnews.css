@@ -1,0 +1,38 @@
+/* author, time, like, comment */
+.author__time {
+    display: flex;
+    flex-direction: row;
+}
+
+.like__comment {
+    display: flex;
+    flex-direction: row;
+}
+
+.like {
+    display: flex;
+    flex-direction: row;
+    margin-right: 20px;
+}
+
+.comment {
+    display: flex;
+    flex-direction: row;
+}
+
+/* customize the button, p, border */
+.like button, .comment button{
+    border-color: white;
+    border-width: 0px;
+    background-color: white;
+    height: 10px;
+    margin-right: 5px;
+}
+
+.author {
+    margin-right: 15px;
+}
+
+.time {
+    margin-right: 15px;
+}
