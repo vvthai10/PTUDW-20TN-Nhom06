@@ -34,9 +34,41 @@ header hr {
     margin-bottom: 0;
 }
 
-footer hr {
+/* footer hr {
     margin-top: 0;
     margin-bottom: 5px;
+} */
+
+main {
+    padding: auto 10px;
+}
+
+.article {
+    padding: 10px 40px;
+}
+
+.article__category {
+    font-size: 1.1rem;
+    font-weight: 300;
+} 
+
+.article__title {
+    margin-top: 10px;
+    font-family: 'Roboto Serif', serif;
+}
+
+.article__info__author {
+    width: 2rem;
+}
+
+.article__info__time {
+    align-content: end;
+    padding-top: 2px;
+}
+
+.article__summary {
+    font-weight:500;
+    margin-bottom: 10px;
 }
 
 h3 {
@@ -48,11 +80,6 @@ h3 {
     padding: 0;
     border: none;
     background: none;
-}
-
-main {
-    padding-left: 10px;
-    padding-right: 10px;
 }
 
 .maincol label {
@@ -68,15 +95,6 @@ main {
 #summary {
     width: 100%;
     padding: 5px;
-}
-
-.maincol > input:last-of-type {
-    height: 50px;
-}
-
-.ck-content {   
-    min-height: 330px;
-    height: 100%;
 }
 
 .sidecol {
@@ -95,7 +113,12 @@ main {
     font-size: 1rem;    
 }
 
-select {
+#comment {
+    width: 100%;
+    padding: 5px 10px;
+}
+
+select, input {
     border: 1px solid lightgray;
     border-radius: 7px;
     padding: 9px;

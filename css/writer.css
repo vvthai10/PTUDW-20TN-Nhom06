@@ -32,7 +32,7 @@ hr {
 
 main {
     margin-top: -15px;
-    min-height: 620px;
+    min-height: calc(100vh - 125px);
     height: 100%;
 }
 
@@ -45,7 +45,7 @@ main {
     margin-left: -10px;
     width: 225px; 
     background-color: lightgray; 
-    min-height: 620px;
+    min-height: calc(100vh - 125px);
   }
   
   /* The navigation menu links */
