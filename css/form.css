@@ -4,7 +4,7 @@ body {
 
 .form__sign-in-up {
   background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url("./../images/background-sign.jpg"); /* The image used */
+    url("./../assets/images/background-sign.jpg"); /* The image used */
   background-color: #cccccc; /* Used if the image is unavailable */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
@@ -25,7 +25,7 @@ body {
   width: 50%;
   height: auto;
   background: white;
-  padding: 0 0 10px 0;
+  padding: 0 0 0 0;
 }
 
 .form__container-left {
@@ -92,7 +92,7 @@ body {
   border: none;
   border-radius: 10px;
   font-weight: 500;
-  color: white;
+  /* color: white; */
   background: var(--primary-color);
   margin: 10px 0;
 }
