@@ -15,6 +15,7 @@
   <script src="https://kit.fontawesome.com/aff46f9455.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css"
     integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@650&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/index.css" />
 </head>
 
@@ -118,7 +119,7 @@
                   </ul>
                 </div>
               </div>
-              <div class="header__user" style="display: none">
+              <div class="header__user" >
                 <img src="./assets/images/user-default.jpg" alt="user default" class="header__user-icon" />
                 <div class="header__user-box">
                   <div class="header__user-info">
@@ -140,8 +141,8 @@
                 </div>
               </div>
             </div>
-            <div class="header__login">
-              <a href="./signin.html" class="header__login-btn">Đăng nhập</a>
+            <div class="header__login" >
+              <a href="./signin.html" class="header__login-btn" style="display: none">Đăng nhập</a>
             </div>
           </div>
         </div>
@@ -406,394 +407,223 @@
           </div>
           <!--SIDE BAR-->
         </div>
-        <div class="col-lg-11 col-md-12 col-sm-12" style="padding: 10px 0 20px 10px;">
-          <h2 style="font-size: 26px;
-          line-height: 26px;
-          margin-bottom: 20px;">Nông nghiệp</h2>
-          <ul>
-            <li>
-              <a href="./readnews.html" style="display: flex; margin: 10px 0;">
-                <img style="border-radius: 5px; width: 300px;"
-                  src="https://static-images.vnncdn.net/files/publish/2023/4/20/ngu-coc-ukraine-562.jpg?width=600"
-                  alt="">
-                <div style="    display: flex;
-                flex-direction: column; margin-left: 10px;">
-                  <span style="font-size: 24px;
-                  font-weight: 500;">Thêm quốc gia châu Âu áp lệnh cấm nhập khẩu nông sản Ukraine</span>
-                  <div style="display: flex;
-                  justify-content: space-between;">
-                    <span style="    padding: 5px;
-                    width: 70px;
-                    text-align: center;
-                    border-radius: 20px;
-                    background: var(--primary-color);
-                    border: none;
-                    font-size: 13px;
-                    font-weight: 400;
-                    color: white;
-                    line-height: 100%;
-                    margin-left: 10px;">Nông sản</span>
-                    <div>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;"># Thế giới</span>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;">#Châu âu</span>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;">#Ukraine</span>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;">#Nhập khẩu</span>
-                    </div>
-                  </div>
-                  <span style="font-size: 12px;
-                  padding: 5px 0 0 10px;      color: black;">10:15 16/4/2023</span>
-                  <span style="padding-left: 10px;
-                  font-size: 14px;     color: black;">Chính phủ Bulgaria thông báo sẽ tạm thời cấm nhập khẩu một số
-                    nông sản của Ukraine từ ngày 24/4
-                    đến ngày 30/6.</span>
+        <div class="col-lg-11 col-md-12 col-sm-12" style="margin-top: 10px;">
+          <div class="trend">
+            <span class="dot" style="margin-right: 20px;"> <i class="fa-solid fa-arrow-trend-up fa-lg icon--trend" style="margin-left: 7px;margin-top: 7px;"></i>
+            </span>
+            <div class="tag" style="font-family: serif">
+              <p class="tag__item">#Hạn hán 2023</p>
+              <p class="tag__item">#Vụ lúa hè-thu</p>
+              <p class="tag__item">#Xuất khẩu hải sản</p>
+            </div>
+            <div class="local__temp__weather" id="local__temp__weather">
+            </div>
+          </div>
+
+          <div class="content">
+            <div class="content__news__right" id="content__news__right" style="cursor: pointer;">
+
+            </div>
+
+            <div class="content__new__main">
+              <a class="card" style="cursor: pointer; display: block;" href="./readnews.html">
+                <img src="assets/images/news/news_search/new_4.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
+                  <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a
+                    natural lead-in to additional content. This content is a little bit longer.
+                  </p>
                 </div>
               </a>
-            </li>
-            <li>
-              <a href="./readnews.html" style="display: flex; margin: 10px 0;">
-                <img style="border-radius: 5px; width: 300px;"
-                  src="https://static-images.vnncdn.net/files/publish/2023/4/6/thumb-z4241887100575-aa9478efa117cab494dc15a0755fada9-1613.jpg?width=600"
-                  alt="">
-                <div style="    display: flex;
-                flex-direction: column; margin-left: 10px;">
-                  <span style="font-size: 24px;
-                  font-weight: 500;">3 ví dụ từ 'phù thủy' marketing Trần Bảo Minh, ngẫm về nỗi buồn nông sản
-                    Việt</span>
-                  <div style="display: flex;
-                  justify-content: space-between;">
-                    <span style="    padding: 5px;
-                    width: 70px;
-                    text-align: center;
-                    border-radius: 20px;
-                    background: var(--primary-color);
-                    border: none;
-                    font-size: 13px;
-                    font-weight: 400;
-                    color: white;
-                    line-height: 100%;
-                    margin-left: 10px;">Nông sản</span>
-                    <div>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;"># Việt Nam</span>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;">#Đầu tư</span>
-                    </div>
+            </div>
+
+            <div class="content__news__left" id="content__news__left" style="cursor: pointer;">
+
+            </div>
+          </div>
+
+          <div class="popular__week__news">
+            <h4>Bài viết được xem nhiều nhất trong tuần</h4>
+            <hr>
+            <div id="carousel__popular__week__news" class="carousel carousel-dark slide" data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="card-group">
+                    <a class="card card__popular__news--extend" style="cursor: pointer; display: block;" href="./readnews.html">
+                      <img src="assets/images/news/news_search/new_2.png" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;">
+                      <div class="card-body">
+                        <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
+                        <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
+                      </div>
+                    </a>
+                    <a class="card card__popular__news--extend" style="cursor: pointer; display: block;" href="./readnews.html">
+                      <img src="assets/images/news/news_search/new_3.png" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;">
+                      <div class="card-body">
+                        <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
+                        <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
+                      </div>
+                    </a>
+                    <a class="card card__popular__news--extend" style="cursor: pointer; display: block;" href="./readnews.html">
+                      <img src="assets/images/news/news_search/new_4.png" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;">
+                      <div class="card-body">
+                        <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
+                        <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
+                      </div>
+                    </a>
                   </div>
-                  <span style="font-size: 12px;
-                  padding: 5px 0 0 10px;      color: black;">9:15 16/4/2023</span>
-                  <span style="padding-left: 10px;
-                  font-size: 14px;     color: black;">Trong khi các quốc gia đã xây dựng hệ sinh thái thương hiệu hàng
-                    chục tỷ USD thì nông sản Việt vẫn chủ yếu xuất khẩu thô.</span>
                 </div>
-              </a>
-            </li>
-            <li>
-              <a href="./readnews.html" style="display: flex; margin: 10px 0;">
-                <img style="border-radius: 5px; width: 300px;"
-                  src="https://static-images.vnncdn.net/files/publish/2023/3/21/image00a-305.jpg?width=600" alt="">
-                <div style="    display: flex;
-                flex-direction: column; margin-left: 10px;">
-                  <span style="font-size: 24px;
-                  font-weight: 500;">Nữ tiktoker 8x khát khao thay đổi quê hương qua ẩm thực sạch</span>
-                  <div style="display: flex;
-                  justify-content: space-between;">
-                    <span style="    padding: 5px;
-                    width: 70px;
-                    text-align: center;
-                    border-radius: 20px;
-                    background: var(--primary-color);
-                    border: none;
-                    font-size: 13px;
-                    font-weight: 400;
-                    color: white;
-                    line-height: 100%;
-                    margin-left: 10px;">Nông sản</span>
-                    <div>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;"># Việt Nam</span>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;"># Người trẻ</span>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;"># Nông sản sạch</span>
-                    </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carousel__popular__week__news"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carousel__popular__week__news"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Phần này làm tạm, sau này sửa -->
+          <div class="popular__week__news">
+            <h4>Bài viết mới nhất</h4>
+            <hr>
+            <div id="carousel__popular__week__news" class="carousel carousel-dark slide" data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="card-group">
+                    <a class="card card__popular__news--extend" style="cursor: pointer; display: block;" href="./readnews.html">
+                      <img src="assets/images/news/news_search/new_2.png" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;">
+                      <div class="card-body">
+                        <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
+                        <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
+                      </div>
+                    </a>
+                    <a class="card card__popular__news--extend" style="cursor: pointer; display: block;" href="./readnews.html">
+                      <img src="assets/images/news/news_search/new_3.png" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;">
+                      <div class="card-body">
+                        <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
+                        <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
+                      </div>
+                    </a>
+                    <a class="card card__popular__news--extend" style="cursor: pointer; display: block;" href="./readnews.html">
+                      <img src="assets/images/news/news_search/new_4.png" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;">
+                      <div class="card-body">
+                        <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
+                        <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
+                      </div>
+                    </a>
                   </div>
-                  <span style="font-size: 12px;
-                  padding: 5px 0 0 10px;      color: black;">20:06 15/4/2023</span>
-                  <span style="padding-left: 10px;
-                  font-size: 14px;     color: black;">Nghiên cứu và xây dựng lại quy trình sản xuất, đảm bảo đầu ra cho
-                    người nông dân bằng hình thức quảng bá mới, Huyền Huho (Nguyễn Thị Ngọc Huyền) mong muốn dùng cách
-                    riêng góp phần nâng tầm giá trị nông sản Việt.</span>
                 </div>
-              </a>
-            </li>
-            <li>
-              <a href="./readnews.html" style="display: flex; margin: 10px 0;">
-                <img style="border-radius: 5px; width: 300px;"
-                  src="https://static-images.vnncdn.net/files/publish/2023/2/23/image00a-565.jpg?width=600" alt="">
-                <div style="    display: flex;
-                flex-direction: column; margin-left: 10px;">
-                  <span style="font-size: 24px;
-                  font-weight: 500;">Giải bài toán nâng cao chất lượng nguồn nhân lực ngành nông nghiệp Việt Nam</span>
-                  <div style="display: flex;
-                  justify-content: space-between;">
-                    <span style="    padding: 5px;
-                    width: 70px;
-                    text-align: center;
-                    border-radius: 20px;
-                    background: var(--primary-color);
-                    border: none;
-                    font-size: 13px;
-                    font-weight: 400;
-                    color: white;
-                    line-height: 100%;
-                    margin-left: 10px;">Nông sản</span>
-                    <div>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;"># Việt Nam</span>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;"># Thị trường</span>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;"># Lúa gạo</span>
-                    </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carousel__popular__week__news"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carousel__popular__week__news"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="latest__news__container">
+            <h4>Top chuyên mục</h4>
+            <hr>
+            <div class="latest__news">
+              <div class="latest__news__algriculture" style="cursor: pointer;">
+                <h5 style="font-weight: bold;"><i class="fa-solid fa-marker"></i>Nông sản</h5>
+                <a href="./readnews.html" class="card card__latest__main">
+                  <img src="assets/images/news/news_search/new_1.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                  <span style="font-size: 12px;
-                  padding: 5px 0 0 10px;      color: black;">14:15 15/4/2023</span>
-                  <span style="padding-left: 10px;
-                  font-size: 14px;     color: black;">Phát triển nông nghiệp công nghệ cao là điều tất yếu trong bối
-                    cảnh hội nhập quốc tế. Nhiệm vụ này đòi hỏi nguồn nhân lực có năng lực chuyên môn vững mạnh, khả
-                    năng tiếp thu mạnh mẽ và tư duy mới mẻ.</span>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="./readnews.html" style="display: flex; margin: 10px 0;">
-                <img style="border-radius: 5px; width: 300px;"
-                  src="https://static2-images.vnncdn.net/files/publish/2022/12/31/gettyimages-1082376570original-1232.jpg?width=600"
-                  alt="">
-                <div style="    display: flex;
-                flex-direction: column; margin-left: 10px;">
-                  <span style="font-size: 24px;
-                  font-weight: 500;">Công nghệ giải bài toán dự báo thị trường nông sản cho người nông dân</span>
-                  <div style="display: flex;
-                  justify-content: space-between;">
-                    <span style="    padding: 5px;
-                    width: 70px;
-                    text-align: center;
-                    border-radius: 20px;
-                    background: var(--primary-color);
-                    border: none;
-                    font-size: 13px;
-                    font-weight: 400;
-                    color: white;
-                    line-height: 100%;
-                    margin-left: 10px;">Nông sản</span>
-                    <div>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;"># Việt Nam</span>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;"># Kinh tế số</span>
-                    </div>
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_2.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                  <span style="font-size: 12px;
-                  padding: 5px 0 0 10px;      color: black;">19:27 14/4/2023</span>
-                  <span style="padding-left: 10px;
-                  font-size: 14px;     color: black;">Khoảng 80% hoạt động thu thập thông tin, xử lý dữ liệu, dự báo
-                    thị trường nông sản vẫn đang được tiến hành thủ công. Công nghệ được kỳ vọng là lời giải cho bài
-                    toán này.</span>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="./readnews.html" style="display: flex; margin: 10px 0;">
-                <img style="border-radius: 5px; width: 300px;"
-                  src="https://static2-images.vnncdn.net/files/publish/2023/1/10/avannvp1111111-408.jpg?width=600"
-                  alt="">
-                <div style="    display: flex;
-                flex-direction: column; margin-left: 10px;">
-                  <span style="font-size: 24px;
-                  font-weight: 500;">Vĩnh Long ứng dụng công nghệ thu thập thông tin, dự báo tình hình thị trường nông
-                    sản</span>
-                  <div style="display: flex;
-                  justify-content: space-between;">
-                    <span style="    padding: 5px;
-                    width: 70px;
-                    text-align: center;
-                    border-radius: 20px;
-                    background: var(--primary-color);
-                    border: none;
-                    font-size: 13px;
-                    font-weight: 400;
-                    color: white;
-                    line-height: 100%;
-                    margin-left: 10px;">Nông sản</span>
-                    <div>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;"># Việt Nam</span>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;"># Chuyển đổi số</span>
-                      <span style="float: left;
-                      margin-left: 10px;
-                      font-family: Arial;
-                      font-size: 13px;
-                      color: #000;
-                      border-radius: 100px;
-                      background-color: #f0f0f0;
-                      padding: 0 8px 0 12px;
-                      height: 24px;
-                      line-height: 24px;"># Vĩnh Long</span>
-                    </div>
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_4.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                  <span style="font-size: 12px;
-                  padding: 5px 0 0 10px;      color: black;">10:15 13/4/2023</span>
-                  <span style="padding-left: 10px;
-                  font-size: 14px;     color: black;">Chủ tịch UBND tỉnh Vĩnh Long đã chỉ đạo các ngành chức năng trên
-                    địa bàn tỉnh triển khai ứng dụng công nghệ thông tin trong việc thu thập thông tin, dự báo tình hình
-                    thị trường nông sản.</span>
-                </div>
-              </a>
-            </li>
-          </ul>
-          <div class="pagination" style="display: flex;">
-            <a href="#">&laquo;</a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">&raquo;</a>
+                </a>
+              </div>
+
+              <div class="latest__news__sea" style="cursor: pointer;">
+                <h5 style="font-weight: bold;"><i class="fa-solid fa-marker"></i>Hải sản</h5>
+                <a href="./readnews.html" class="card card__latest__main">
+                  <img src="assets/images/news/news_search/new_1.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_2.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_4.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </a>
+              </div>
+
+              <div class="latest__news__algriculture" style="cursor: pointer;">
+                <h5 style="font-weight: bold;"><i class="fa-solid fa-marker"></i>Nông sản</h5>
+                <a href="./readnews.html" class="card card__latest__main">
+                  <img src="assets/images/news/news_search/new_1.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_2.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_4.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </a>
+              </div>
+
+              <div class="latest__news__sea" style="cursor: pointer;">
+                <h5 style="font-weight: bold;"><i class="fa-solid fa-marker"></i>Hải sản</h5>
+                <a href="./readnews.html" class="card card__latest__main">
+                  <img src="assets/images/news/news_search/new_1.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_2.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_4.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -806,10 +636,10 @@
     <div class="container-fluid">
       <hr>
       <div class="row">
-        <div class="col"><img class="footer__logo" src="./assets/images/logo.png" alt="Logo"
-            style="width: 15rem;margin-top: -10px;"></div>
+        <div class="col"><img class="footer__logo" src="./assets/images/logo2.png" alt="Logo"
+            style="width: 230px;margin-top: -10px;"></div>
         <div class="col d-flex justify-content-end">
-          <h5 style="display: inline; padding: 5px 5px 0 0;">Theo dõi báo trên </h5>
+          <h5 style="display: inline; padding: 5px 5px 0 0; font-size: 15px;">Theo dõi báo trên </h5>
           <a href="#" class="item" rel="nofollow" target="_blank" title="Facebook" style="padding-right: 5px;">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="0.5" y="0.5" width="31" height="31" rx="15.5" stroke="#8B8B8B"></rect>
@@ -853,18 +683,18 @@
       <hr style="margin-top: 0px;">
       <div class="row">
         <div class="col-2">
-          <h6>Hotline</h6>
-          <h6 style="color:#3399cc">0965823577</h6>
-          <h6>Liên hệ</h6>
-          <h6 style="color:#3399cc">0965823577</h6>
+          <h6 style="font-size: 15px;">Hotline</h6>
+          <h6 style="color:#3399cc; font-size: 15px;">0965823577</h6>
+          <h6 style="font-size: 15px;">Liên hệ</h6>
+          <h6 style="color:#3399cc; font-size: 15px;">0965823577</h6>
         </div>
-        <div class="col-4" style="color:lightslategray;font-weight: 600;">
+        <div class="col-4" style="color:lightslategray;font-weight: 600; font-size: 15px;">
           Email: toasoan@news&world.com.vn<br />
           Địa chỉ: 227 Nguyễn Văn Cừ, phường 4, quận 5, TP.HCM<br />
           Chịu trách nhiệm nội dung: Nguyễn Văn A<br />
         </div>
         <div class="col d-flex justify-content-end text-right"
-          style="color:lightslategray;font-weight: 600;text-align: right;">
+          style="color:lightslategray;font-weight: 600;text-align: right; font-size: 15px;">
           © 1999 - 2023 Báo Điện Tử News & World<br />
           All rights reserved.<br />
           Giấy phép số XXX/GP-BTTTT do Bộ TTTT cấp ngày 08.07.2022<br />

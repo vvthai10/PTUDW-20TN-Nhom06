@@ -40,7 +40,7 @@ updateLocalTempWeather();
 function updateLocalHotNews() {
     html = '';
     const content_left = hot_news_left.map((item, index) => {
-        html += '<div class="card card__news__right--extend">';
+        html += '<a class="card card__news__right--extend" style="display: block; margin: 5px 0;" href="./readnews.html">';
         html += '<img src="' + item.image + '" class="card-img-top" alt="...">';
         html += '<div class="card-body">';
         html += '<h5 class="card-title">' + item.title + '</h5>';
@@ -49,14 +49,14 @@ function updateLocalHotNews() {
         html += '<p class="card-text"><small class="text-muted">'+ item.time + '</small></p>';
         html += '</div>';      
         html += '</div>';      
-        html += '</div>';     
+        html += '</a>';     
         return html;
     })
     document.getElementById('content__news__right').innerHTML = html;
 
     html = '';
     const content_right = hot_news_right.map((item, index) => {
-        html += '<div class="card card__news__left--extend">';
+        html += '<a class="card card__news__left--extend"  style="display: block; margin: 5px 0;" href="./readnews.html">';
         html += '<img src="' + item.image + '" class="card-img-top" alt="...">';
         html += '<div class="card-body">';
         html += '<h5 class="card-title">' + item.title + '</h5>';
@@ -65,7 +65,7 @@ function updateLocalHotNews() {
         html += '<p class="card-text"><small class="text-muted">'+ item.time + '</small></p>';
         html += '</div>';      
         html += '</div>';      
-        html += '</div>';     
+        html += '</a>';     
         return html;
     })
 

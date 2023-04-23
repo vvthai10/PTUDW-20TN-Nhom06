@@ -134,7 +134,8 @@
                       <li class="header__user-item">
                         <a href="./user_page_info.html">Trang cá nhân</a>
                       </li>
-                      <li class="header__user-item">Đăng xuất</li>
+                      <li class="header__user-item">
+                          <a href="./index.html">Đăng xuất</a></li>
                     </ul>
                   </div>
                 </div>
@@ -170,7 +171,7 @@
           </div>
           <div class="header__navbar">
             <div class="header__navbar-box">
-              <div class="header__navbar-login" style="display: none">
+              <div class="header__navbar-login">
                 <ul class="header__navbar-list" id="action-user">
                   <li>
                     <a aria-current="page" class="header__navbar-item" href="./signin.html"><svg aria-hidden="true"
@@ -186,7 +187,7 @@
                   </li>
                 </ul>
               </div>
-              <div class="header__navbar-user">
+              <div class="header__navbar-user"  style="display: none">
                 <div class="header__navbar-user-info">
                   <div style="position: inherit">
                     <img src="./assets/images/user-default.jpg" alt="avatar user" class="header__navbar-user-img" />
@@ -391,7 +392,7 @@
                       </a>
                     </li>
                     <li>
-                      <a aria-current="page" class="sidebar__item-child" href="/"><svg
+                      <a aria-current="page" class="sidebar__item-child" href="./category_news _sea.html"><svg
                           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                           <path
                             d="M192 32c0-17.7 14.3-32 32-32H352c17.7 0 32 14.3 32 32V64h48c26.5 0 48 21.5 48 48V240l44.4 14.8c23.1 7.7 29.5 37.5 11.5 53.9l-101 92.6c-16.2 9.4-34.7 15.1-50.9 15.1c-19.6 0-40.8-7.7-59.2-20.3c-22.1-15.5-51.6-15.5-73.7 0c-17.1 11.8-38 20.3-59.2 20.3c-16.2 0-34.7-5.7-50.9-15.1l-101-92.6c-18-16.5-11.6-46.2 11.5-53.9L96 240V112c0-26.5 21.5-48 48-48h48V32zM160 218.7l107.8-35.9c13.1-4.4 27.3-4.4 40.5 0L416 218.7V128H160v90.7zM306.5 421.9C329 437.4 356.5 448 384 448c26.9 0 55.4-10.8 77.4-26.1l0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 501.7 417 512 384 512c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4c18.1-4.2 36.2-13.3 50.6-25.2c11.1-9.4 27.3-10.1 39.2-1.7l0 0C136.7 437.2 165.1 448 192 448c27.5 0 55-10.6 77.5-26.1c11.1-7.9 25.9-7.9 37 0z" />
@@ -406,7 +407,7 @@
           </div>
           <!--SIDE BAR-->
         </div>
-        <div class="col-lg-11 col-md-12 col-sm-12" style="    margin-top: 10px;">
+        <div class="col-lg-11 col-md-12 col-sm-12" style="margin-top: 10px;">
           <div class="trend">
             <span class="dot" style="margin-right: 20px;"> <i class="fa-solid fa-arrow-trend-up fa-lg icon--trend" style="margin-left: 7px;margin-top: 7px;"></i>
             </span>
@@ -420,12 +421,12 @@
           </div>
 
           <div class="content">
-            <div class="content__news__right" id="content__news__right">
+            <div class="content__news__right" id="content__news__right" style="cursor: pointer;">
 
             </div>
 
             <div class="content__new__main">
-              <div class="card">
+              <a class="card" style="cursor: pointer; display: block;" href="./readnews.html">
                 <img src="assets/images/news/news_search/new_4.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
@@ -434,10 +435,10 @@
                     natural lead-in to additional content. This content is a little bit longer.
                   </p>
                 </div>
-              </div>
+              </a>
             </div>
 
-            <div class="content__news__left" id="content__news__left">
+            <div class="content__news__left" id="content__news__left" style="cursor: pointer;">
 
             </div>
           </div>
@@ -449,27 +450,27 @@
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <div class="card-group">
-                    <div class="card card__popular__news--extend">
-                      <img src="assets/images/news/news_search/new_2.png" class="card-img-top" alt="...">
+                    <a class="card card__popular__news--extend" style="cursor: pointer; display: block;" href="./readnews.html">
+                      <img src="assets/images/news/news_search/new_2.png" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;">
                       <div class="card-body">
                         <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
                         <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
                       </div>
-                    </div>
-                    <div class="card card__popular__news--extend">
-                      <img src="assets/images/news/news_search/new_3.png" class="card-img-top" alt="...">
+                    </a>
+                    <a class="card card__popular__news--extend" style="cursor: pointer; display: block;" href="./readnews.html">
+                      <img src="assets/images/news/news_search/new_3.png" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;">
                       <div class="card-body">
                         <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
                         <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
                       </div>
-                    </div>
-                    <div class="card card__popular__news--extend">
-                      <img src="assets/images/news/news_search/new_4.png" class="card-img-top" alt="...">
+                    </a>
+                    <a class="card card__popular__news--extend" style="cursor: pointer; display: block;" href="./readnews.html">
+                      <img src="assets/images/news/news_search/new_4.png" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;">
                       <div class="card-body">
                         <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
                         <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
                       </div>
-                    </div>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -494,27 +495,27 @@
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <div class="card-group">
-                    <div class="card card__popular__news--extend">
-                      <img src="assets/images/news/news_search/new_2.png" class="card-img-top" alt="...">
+                    <a class="card card__popular__news--extend" style="cursor: pointer; display: block;" href="./readnews.html">
+                      <img src="assets/images/news/news_search/new_2.png" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;">
                       <div class="card-body">
                         <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
                         <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
                       </div>
-                    </div>
-                    <div class="card card__popular__news--extend">
-                      <img src="assets/images/news/news_search/new_3.png" class="card-img-top" alt="...">
+                    </a>
+                    <a class="card card__popular__news--extend" style="cursor: pointer; display: block;" href="./readnews.html">
+                      <img src="assets/images/news/news_search/new_3.png" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;">
                       <div class="card-body">
                         <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
                         <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
                       </div>
-                    </div>
-                    <div class="card card__popular__news--extend">
-                      <img src="assets/images/news/news_search/new_4.png" class="card-img-top" alt="...">
+                    </a>
+                    <a class="card card__popular__news--extend" style="cursor: pointer; display: block;" href="./readnews.html">
+                      <img src="assets/images/news/news_search/new_4.png" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;">
                       <div class="card-body">
                         <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
                         <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
                       </div>
-                    </div>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -535,92 +536,92 @@
             <h4>Top chuyên mục</h4>
             <hr>
             <div class="latest__news">
-              <div class="latest__news__algriculture">
+              <div class="latest__news__algriculture" style="cursor: pointer;">
                 <h5 style="font-weight: bold;"><i class="fa-solid fa-marker"></i>Nông sản</h5>
-                <div class="card card__latest__main">
+                <a href="./readnews.html" class="card card__latest__main">
                   <img src="assets/images/news/news_search/new_1.png" class="img__latest__news" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                </div>
-                <div class="card card__latest__item" style="margin-top: 20px;">
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
                   <img src="assets/images/news/news_search/new_2.png" class="img__latest__news" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                </div>
-                <div class="card card__latest__item" style="margin-top: 20px;">
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
                   <img src="assets/images/news/news_search/new_4.png" class="img__latest__news" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                </div>
+                </a>
               </div>
 
-              <div class="latest__news__sea">
+              <div class="latest__news__sea" style="cursor: pointer;">
                 <h5 style="font-weight: bold;"><i class="fa-solid fa-marker"></i>Hải sản</h5>
-                <div class="card card__latest__main">
+                <a href="./readnews.html" class="card card__latest__main">
                   <img src="assets/images/news/news_search/new_1.png" class="img__latest__news" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                </div>
-                <div class="card card__latest__item" style="margin-top: 20px;">
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
                   <img src="assets/images/news/news_search/new_2.png" class="img__latest__news" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                </div>
-                <div class="card card__latest__item" style="margin-top: 20px;">
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
                   <img src="assets/images/news/news_search/new_4.png" class="img__latest__news" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                </div>
+                </a>
               </div>
 
-              <div class="latest__news__algriculture">
+              <div class="latest__news__algriculture" style="cursor: pointer;">
                 <h5 style="font-weight: bold;"><i class="fa-solid fa-marker"></i>Nông sản</h5>
-                <div class="card card__latest__main">
+                <a href="./readnews.html" class="card card__latest__main">
                   <img src="assets/images/news/news_search/new_1.png" class="img__latest__news" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                </div>
-                <div class="card card__latest__item" style="margin-top: 20px;">
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
                   <img src="assets/images/news/news_search/new_2.png" class="img__latest__news" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                </div>
-                <div class="card card__latest__item" style="margin-top: 20px;">
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
                   <img src="assets/images/news/news_search/new_4.png" class="img__latest__news" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                </div>
+                </a>
               </div>
 
-              <div class="latest__news__sea">
+              <div class="latest__news__sea" style="cursor: pointer;">
                 <h5 style="font-weight: bold;"><i class="fa-solid fa-marker"></i>Hải sản</h5>
-                <div class="card card__latest__main">
+                <a href="./readnews.html" class="card card__latest__main">
                   <img src="assets/images/news/news_search/new_1.png" class="img__latest__news" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                </div>
-                <div class="card card__latest__item" style="margin-top: 20px;">
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
                   <img src="assets/images/news/news_search/new_2.png" class="img__latest__news" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                </div>
-                <div class="card card__latest__item" style="margin-top: 20px;">
+                </a>
+                <a href="./readnews.html" class="card card__latest__item" style="margin-top: 20px;">
                   <img src="assets/images/news/news_search/new_4.png" class="img__latest__news" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>

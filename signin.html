@@ -95,6 +95,7 @@
               <li>Admin: admin@gmail.com <span>| 123456</span></li>
               <li>Editor: editor@gmail.com <span style="padding-left: 5px;">| 123456</span></li>
               <li>Writer: writer@gmail.com <span style="padding-left: 5px;">| 123456</span></li>
+              <li>Subscriber: subscriber@gmail.com <span style="padding-left: 5px;">| 123456</span></li>
             </ul>
           </div>
         </div>
@@ -166,6 +167,9 @@
             }
             else if(user.userType === "writer"){
               window.location.href = './writer.html';
+            }
+            else if(user.userType === "subscriber"){
+              window.location.href = './index_login.html';
             }
           }
         })
