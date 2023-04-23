@@ -1,2 +1,4 @@
 /*Import các file css*/
 @import "base.css";
+@import "form.css";
+@import "user_pages.css";
