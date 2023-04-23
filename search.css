@@ -120,8 +120,8 @@ div.content__paging {
 }
 
 .content .content__paging .active{
-    background: #ff6e06;
-    border: 1px solid #ff6e06;
+    background: #3399cc;
+    border: 1px solid #3399cc;
 }
 
 .content .content__paging .active a{
