@@ -1,0 +1,126 @@
+html {
+    font-size: 15px;
+}
+
+.header__logo {
+    width: 20rem;
+}
+
+.header__note {
+    margin-top: -20px;
+    margin-bottom: -15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: 'Inria Serif', serif;
+}
+
+.header__user__avatar {
+    width: 3rem;
+}
+
+.header__user__name {
+    font-size: 1rem;
+    text-decoration: none;
+    margin-right:5px;
+}
+
+hr {
+    position: relative;
+    left: -15px;
+    width: calc(100% + 30px);
+}
+
+header hr {
+    margin-bottom: 0;
+}
+
+footer hr {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+h3 {
+    display:inline;
+    margin-left: 10px;
+}
+
+.button_back {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+main {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.maincol label {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#title {
+    width: 100%;
+    padding: 5px;
+}
+
+#summary {
+    width: 100%;
+    padding: 5px;
+}
+
+.maincol > input:last-of-type {
+    height: 50px;
+}
+
+.ck-content {   
+    min-height: 330px;
+    height: 100%;
+}
+
+.sidecol {
+    border-left: 1px solid gray;
+    min-height: calc(100vh - 125px);
+}
+
+.sidecol label:not(#tags)  {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+#tags {
+    margin: 0;
+    font-size: 1rem;    
+}
+
+select {
+    border: 1px solid lightgray;
+    border-radius: 7px;
+    padding: 9px;
+    width: 100%;
+}
+
+.submit-buttons {
+    margin: 20px 0 0 5px;
+}
+
+.submit-buttons > * {
+    padding: 5px 10px;
+    border-radius: 7px;
+    font-weight: 500;
+}
+
+#post-button {
+    background-color: #3399cc;
+    color: white;
+}
+
+#save-button {
+    background-color: transparent;
+    border-color:#ff5c5c;
+    color:#ff5c5c;
+    border-width: 2px;
+    float: right;
+}
