@@ -28,7 +28,7 @@ div.sub-title h4:nth-child(1) {
 }
 
 /* list__news */
-.list__news {
+.list__news__category {
     overflow-y: scroll;
     flex-grow: 4;
     margin-right: 0px;
