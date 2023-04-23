@@ -43,7 +43,7 @@ function updateLocalHotNews() {
         html += '<div class="card card__news__right--extend">';
         html += '<img src="' + item.image + '" class="card-img-top" alt="...">';
         html += '<div class="card-body">';
-        html += '<h5 class="card-title">' + item.title + '</h5>';
+        html += '<a href="readnews.html"><h5 class="card-title">' + item.title + '</h5></a>';
         html += '<div class="category-time">';
         html += '<p class="card-text"><small class="text-muted">'+ item.category + '</small></p>';
         html += '<p class="card-text"><small class="text-muted">'+ item.time + '</small></p>';
@@ -59,7 +59,7 @@ function updateLocalHotNews() {
         html += '<div class="card card__news__left--extend">';
         html += '<img src="' + item.image + '" class="card-img-top" alt="...">';
         html += '<div class="card-body">';
-        html += '<h5 class="card-title">' + item.title + '</h5>';
+        html += '<a href="readnews.html"><h5 class="card-title">' + item.title + '</h5></a>';
         html += '<div class="category-time">';
         html += '<p class="card-text"><small class="text-muted">'+ item.category + '</small></p>';
         html += '<p class="card-text"><small class="text-muted">'+ item.time + '</small></p>';
