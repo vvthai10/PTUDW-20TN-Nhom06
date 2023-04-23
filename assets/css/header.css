@@ -274,6 +274,7 @@
   position: absolute;
   top: 35px;
   right: 5px;
+  z-index: 100;
 }
 .header__user:hover .header__user-box {
   display: block;
