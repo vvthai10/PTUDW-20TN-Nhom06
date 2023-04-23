@@ -15,6 +15,7 @@
   <script src="https://kit.fontawesome.com/aff46f9455.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css"
     integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@650&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/index.css" />
 </head>
 
@@ -407,12 +408,12 @@
         </div>
         <div class="col-lg-11 col-md-12 col-sm-12">
           <div class="trend">
-            <span class="dot" style="margin-right: 20px;"> <i class="fa-solid fa-arrow-trend-up fa-lg icon--trend"></i>
+            <span class="dot" style="margin-right: 20px;"> <i class="fa-solid fa-arrow-trend-up fa-lg icon--trend" style="margin-left: 7px;margin-top: 7px;"></i>
             </span>
             <div class="tag" style="font-family: serif">
-              <p class="tag__item">#U20 Châu Á 2023</p>
-              <p class="tag__item">#Khủng hoảng kinh tế</p>
-              <p class="tag__item">#U20 Châu Á 2023</p>
+              <p class="tag__item">#Hạn hán 2023</p>
+              <p class="tag__item">#Vụ lúa hè-thu</p>
+              <p class="tag__item">#Xuất khẩu hải sản</p>
             </div>
             <div class="local__temp__weather" id="local__temp__weather">
             </div>
@@ -425,7 +426,7 @@
 
             <div class="content__new__main">
               <div class="card">
-                <img src="assets/images/news/news_search/new_1.png" class="card-img-top" alt="...">
+                <img src="assets/images/news/news_search/new_4.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
                   <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
@@ -485,46 +486,140 @@
             </div>
           </div>
 
-          <div class="latest__news">
-            <div class="latest__news__algriculture">
-              <h5 style="font-weight: bold;"><i class="fa-solid fa-marker"></i>Nông sản</h5>
-              <div class="card card__latest__main">
-                <img src="assets/images/news/news_search/new_1.png" class="img__latest__news" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+          <!-- Phần này làm tạm, sau này sửa -->
+          <div class="popular__week__news">
+            <h4>Bài viết mới nhất</h4>
+            <hr>
+            <div id="carousel__popular__week__news" class="carousel carousel-dark slide" data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="card-group">
+                    <div class="card card__popular__news--extend">
+                      <img src="assets/images/news/news_search/new_2.png" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
+                        <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
+                      </div>
+                    </div>
+                    <div class="card card__popular__news--extend">
+                      <img src="assets/images/news/news_search/new_3.png" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
+                        <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
+                      </div>
+                    </div>
+                    <div class="card card__popular__news--extend">
+                      <img src="assets/images/news/news_search/new_4.png" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'</h5>
+                        <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="card card__latest__item" style="margin-top: 50px;">
-                <img src="assets/images/news/news_search/new_2.png" class="img__latest__news" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
-                </div>
-              </div>
-              <div class="card card__latest__item" style="margin-top: 20px;">
-                <img src="assets/images/news/news_search/new_3.png" class="img__latest__news" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
-                </div>
-              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carousel__popular__week__news"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carousel__popular__week__news"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-            <div class="latest__news__sea">
-              <h5 style="font-weight: bold;"><i class="fa-solid fa-marker"></i>Hải sản</h5>
-              <div class="card card__latest__main">
-                <img src="assets/images/news/news_search/new_1.png" class="img__latest__news" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+          </div>
+
+          <div class="latest__news__container">
+            <h4>Top chuyên mục</h4>
+            <hr>
+            <div class="latest__news">
+              <div class="latest__news__algriculture">
+                <h5 style="font-weight: bold;"><i class="fa-solid fa-marker"></i>Nông sản</h5>
+                <div class="card card__latest__main">
+                  <img src="assets/images/news/news_search/new_1.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </div>
+                <div class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_2.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </div>
+                <div class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_4.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
                 </div>
               </div>
-              <div class="card card__latest__item" style="margin-top: 50px;">
-                <img src="assets/images/news/news_search/new_2.png" class="img__latest__news" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+
+              <div class="latest__news__sea">
+                <h5 style="font-weight: bold;"><i class="fa-solid fa-marker"></i>Hải sản</h5>
+                <div class="card card__latest__main">
+                  <img src="assets/images/news/news_search/new_1.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </div>
+                <div class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_2.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </div>
+                <div class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_4.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
                 </div>
               </div>
-              <div class="card card__latest__item" style="margin-top: 20px;">
-                <img src="assets/images/news/news_search/new_3.png" class="img__latest__news" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+
+              <div class="latest__news__algriculture">
+                <h5 style="font-weight: bold;"><i class="fa-solid fa-marker"></i>Nông sản</h5>
+                <div class="card card__latest__main">
+                  <img src="assets/images/news/news_search/new_1.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </div>
+                <div class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_2.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </div>
+                <div class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_4.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </div>
+              </div>
+
+              <div class="latest__news__sea">
+                <h5 style="font-weight: bold;"><i class="fa-solid fa-marker"></i>Hải sản</h5>
+                <div class="card card__latest__main">
+                  <img src="assets/images/news/news_search/new_1.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </div>
+                <div class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_2.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
+                </div>
+                <div class="card card__latest__item" style="margin-top: 20px;">
+                  <img src="assets/images/news/news_search/new_4.png" class="img__latest__news" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Sách là nền tảng tinh thần, khơi dậy khát vọng phát triển đất nước</h5>
+                  </div>
                 </div>
               </div>
             </div>
@@ -540,10 +635,10 @@
     <div class="container-fluid">
       <hr>
       <div class="row">
-        <div class="col"><img class="footer__logo" src="./assets/images/logo.png" alt="Logo"
-            style="width: 15rem;margin-top: -10px;"></div>
+        <div class="col"><img class="footer__logo" src="./assets/images/logo2.png" alt="Logo"
+            style="width: 230px;margin-top: -10px;"></div>
         <div class="col d-flex justify-content-end">
-          <h5 style="display: inline; padding: 5px 5px 0 0;">Theo dõi báo trên </h5>
+          <h5 style="display: inline; padding: 5px 5px 0 0; font-size: 15px;">Theo dõi báo trên </h5>
           <a href="#" class="item" rel="nofollow" target="_blank" title="Facebook" style="padding-right: 5px;">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="0.5" y="0.5" width="31" height="31" rx="15.5" stroke="#8B8B8B"></rect>
@@ -587,18 +682,18 @@
       <hr style="margin-top: 0px;">
       <div class="row">
         <div class="col-2">
-          <h6>Hotline</h6>
-          <h6 style="color:#3399cc">0965823577</h6>
-          <h6>Liên hệ</h6>
-          <h6 style="color:#3399cc">0965823577</h6>
+          <h6 style="font-size: 15px;">Hotline</h6>
+          <h6 style="color:#3399cc; font-size: 15px;">0965823577</h6>
+          <h6 style="font-size: 15px;">Liên hệ</h6>
+          <h6 style="color:#3399cc; font-size: 15px;">0965823577</h6>
         </div>
-        <div class="col-4" style="color:lightslategray;font-weight: 600;">
+        <div class="col-4" style="color:lightslategray;font-weight: 600; font-size: 15px;">
           Email: toasoan@news&world.com.vn<br />
           Địa chỉ: 227 Nguyễn Văn Cừ, phường 4, quận 5, TP.HCM<br />
           Chịu trách nhiệm nội dung: Nguyễn Văn A<br />
         </div>
         <div class="col d-flex justify-content-end text-right"
-          style="color:lightslategray;font-weight: 600;text-align: right;">
+          style="color:lightslategray;font-weight: 600;text-align: right; font-size: 15px;">
           © 1999 - 2023 Báo Điện Tử News & World<br />
           All rights reserved.<br />
           Giấy phép số XXX/GP-BTTTT do Bộ TTTT cấp ngày 08.07.2022<br />

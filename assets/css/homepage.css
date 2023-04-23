@@ -1,3 +1,7 @@
+html {
+  font-size: 10px;
+}
+
 .dot {
   height: 30px;
   width: 30px;
@@ -8,12 +12,16 @@
 }
 
 .card-title, h3, h4 {
-  font-family: serif;
-  font-weight: bold;
+  font-family: 'Roboto Serif', serif !important;
+  font-weight: 650;
 }
 
 .card-text {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.content__new__main .card-body {
+  padding-bottom: 10px;
 }
 
 /* thanh xu huong */
@@ -21,6 +29,7 @@
 .trend {
   display: flex;
   flex-direction: row;
+  font-size: 13px;
 }
 
 /* tag */
@@ -71,15 +80,25 @@
 .content__news__right, .content__news__left {
   overflow-y: scroll;
 }
+/* .content__news__right::-webkit-scrollbar, .content__news__left::-webkit-scrollbar {
+  display: none;
+} */
 
 .content__news__right {
-  margin-right: 80px;
-  max-width: 400px;
+  margin-right: 2%;
+  max-width: 25%;
+  max-height: 535px;
 }
 
 .content__news__left {
-  margin-left: 80px;
+  margin-left: 2%;
   padding-right: 0px;
+  max-width: 23%;
+  max-height: 535px;
+}
+
+.content__news__left .card-body {
+  padding-bottom: 0;
 }
 
 /* customize the scrollbar */
@@ -101,6 +120,10 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.card-img-top {
+  max-height: 375px;
 }
 
 /* card-item property */
@@ -143,13 +166,17 @@ div.card.card__news__left--extend img {
 }
 
 /* popular__week__news */
+#carousel__popular__week__news {
+  width: 93%;
+}
+
 .popular__week__news {
   margin-top: 50px;
 }
 
 div.card__popular__news--extend img {
-  height: 200px;
-  width: 100%;
+  height: 250px;
+  width: 950%;
 }
 
 div.popular__week__news h4 {
@@ -158,20 +185,24 @@ div.popular__week__news h4 {
 
 /* lastest__news */
 
-.latest__news {
+.latest__news__container {
   margin-top: 50px;
+}
+
+.latest__news {
   display: flex;
   flex-direction: row;
   flex-basis: auto;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 95%;
 }
 
 .latest__news__algriculture {
-  flex-basis: 400px;
+  flex-basis: 300px;
 }
 
 .latest__news__sea {
-  flex-basis: 400px;
+  flex-basis: 300px;
 }
 
 /* algriculture and sea*/
@@ -188,13 +219,19 @@ div.card.card__latest__main img{
 .card__latest__item {
   display: flex;
   flex-direction: row;
+  height: 150px;
+  overflow: hidden;
 }
 
-.card__latest__item img{
-  max-height: 200px;
-  max-width: 200px;
+.card__latest__item img{  
+  width: 200px !important;
+  height: auto !important;
 }
 
 .img__latest__news {
   align-items: center;
+}
+
+footer {
+  margin-top: 50px;
 }
