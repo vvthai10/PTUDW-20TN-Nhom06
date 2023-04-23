@@ -1,0 +1,145 @@
+.form__sign-in-up {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("./../images/background-sign.jpg"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form__container {
+  width: 50%;
+  height: auto;
+  background: white;
+  padding: 0 0 10px 0;
+}
+
+.form__container-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__name {
+  flex: 0 1;
+  font-size: 2.4rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  line-height: 3rem;
+  margin: 0 auto;
+  padding-top: 90px;
+  margin-bottom: 20px;
+}
+
+.form__input-box {
+  width: 100%;
+  padding: 20px 60px 10px 10px;
+}
+
+.form__input {
+  border: none;
+  border-bottom: 1px solid var(--primary-color);
+  width: 100%;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+}
+
+.form__input:focus {
+  outline: none;
+}
+
+.form__action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form__save-sign-in {
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+.form__save-sign-in span {
+  margin-left: 10px;
+}
+
+.form__forgot-password {
+  padding-right: 60px;
+}
+
+.form__btn {
+  width: 60%;
+  margin: 0 auto;
+  position: relative;
+  left: 46%;
+  transform: translateX(-50%);
+  height: 30px;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  color: white;
+  background: var(--primary-color);
+  margin: 10px 0;
+}
+
+.form__sign-in-up-another-title {
+  font-size: 1.2rem;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.form__sign-in-up-another-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.form__sign-in-up-another-btn i {
+  font-size: 24px;
+  margin: 20px;
+  color: #3f3f3f;
+}
+
+.form__sign-in-up-another-btn i:hover {
+  color: black;
+}
+
+.form__sign-in-up-another-btn i:first {
+  margin-left: 0;
+}
+
+.form__sign-in-up-signin {
+  font-size: 1.2rem;
+  margin: auto;
+}
+
+.form__sign-in-up-signin a {
+  font-size: 1.2rem;
+  padding-left: 3px;
+}
+
+.form__container-right {
+  position: relative;
+  padding: 0 0;
+}
+.form__container-right i {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 3rem;
+  line-height: 30px;
+  cursor: pointer;
+}
