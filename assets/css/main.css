@@ -2,6 +2,7 @@
 }
 
 .container-main {
+  display: flex ;
 }
 
 .sidebar {

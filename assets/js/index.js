@@ -44,3 +44,18 @@ function HandleShowItemChildNavbarHeader() {
 
 HandleShowHideNavbarHeader();
 HandleShowItemChildNavbarHeader();
+
+// function HandleLogin(){
+//   const formLogin = document.querySelector("#form__signin");
+//   if(formLogin){
+//     formLogin.onsubmit = function (event) {
+//       event.preventDefault();
+//       console.log('submit')
+//     }
+//   }
+// }
+
+// HandleShowHideNavbarHeader();
+// HandleShowItemChildNavbarHeader();
+
+// HandleLogin();

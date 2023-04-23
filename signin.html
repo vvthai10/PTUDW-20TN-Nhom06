@@ -34,7 +34,7 @@
         <div class="row" style="margin: 0 0">
           <div class="col-6 form__container-left">
             <span class="form__name">Đăng nhập</span>
-            <form action="#" method="post">
+            <form id="form__signin" >
               <div class="form__input-box">
                 <input
                   type="text"
@@ -63,7 +63,7 @@
                 >
               </div>
 
-              <button type="submit" class="form__btn">Đăng nhập</button>
+              <button type="submit" class="form__btn" id="btn_login">Đăng nhập</button>
             </form>
 
             <span class="form__sign-in-up-another-title"
@@ -85,6 +85,17 @@
               src="./assets/images/background-form.png"
               alt="background-form"
             />
+            <span style="line-height: 20px;
+            font-size: 12px;
+            font-weight: 600;">Lưu ý: các tài khoản demo để vào các chức năng quản lý</span>
+            <ul style="font-size: 12px">
+              <li style="margin-top: 10px;
+              font-weight: 600;
+          ">Tên đăng nhập <span style="    padding-left: 59px;">| Mật khẩu</span></li>
+              <li>Admin: admin@gmail.com <span>| 123456</span></li>
+              <li>Editor: editor@gmail.com <span style="padding-left: 5px;">| 123456</span></li>
+              <li>Writer: writer@gmail.com <span style="padding-left: 5px;">| 123456</span></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -102,5 +113,63 @@
       crossorigin="anonymous"
     ></script>
     <script src="./assets/js/index.js"></script>
+    <script>
+      const listUser = [
+        {
+          userType: "admin",
+          userName: "admin@gmail.com",
+          password: "123456" 
+        },
+        {
+          userType: "editor",
+          userName: "editor@gmail.com",
+          password: "123456" 
+        },
+        {
+          userType: "writer",
+          userName: "writer@gmail.com",
+          password: "123456" 
+        },
+        {
+          userType: "subscriber",
+          userName: "subscriber@gmail.com",
+          password: "123456" 
+        }
+      ]
+      const form = document.querySelector('#form__signin');
+      const submitBtn = document.querySelector('#btn_login');
+
+      form.addEventListener('submit', (event) => {
+        // prevent form submission
+        event.preventDefault();
+        // get all the input elements inside the form
+        const inputs = form.querySelectorAll('input');
+        
+        let name, password;
+        // loop through the inputs and get their values
+        inputs.forEach((input) => {
+          if(input.name === "username"){
+            name = input.value
+          }
+          else if(input.name === "password"){
+            password = input.value
+          }
+        });
+        
+        listUser.forEach(user => {
+          if(user.userName.trim() === name && user.password === password){
+            if(user.userType === "admin"){
+              window.location.href = './admin.html';
+            }
+            else if(user.userType === "editor"){
+              window.location.href = './editor_censor.html';
+            }
+            else if(user.userType === "writer"){
+              window.location.href = './writer.html';
+            }
+          }
+        })
+      });
+    </script>
   </body>
 </html>
