@@ -161,7 +161,7 @@ div.card.card__news__right--extend img {
 }
 
 div.card.card__news__left--extend img {
-  max-width: 300px;
+  width: 100%;
   max-height: 300px;
 }
 
