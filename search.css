@@ -1,0 +1,139 @@
+.home-product__pagination {
+    margin: 48px 0 32px 0;
+}
+
+.time-type {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 100px;
+    flex-grow: 1;
+    margin-bottom: 50px;
+}
+
+.time {
+    margin-right: 100px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+.pagination-item {
+    margin: 0 12px;
+}
+
+.pagination-item--active .pagination-item__link {
+    color: white;
+    background-color: red;
+}
+
+.pagination-item--active .pagination-item__link:hover {
+    color: white;
+    background-color: red;
+}
+
+.pagination-item__link {
+    --height: 30px;
+    display: block;
+    font-weight: 300;
+    text-decoration: none;
+    font-size: 1rem;
+    min-width: 40px;
+    height: var(--height);
+    line-height: var(--height);
+    text-align: center;
+    border-radius: 2px;
+}
+
+.pagination-item__icon {
+
+}
+
+.card-group__product--extend {
+    display: flex;
+    flex-direction: column;
+}
+
+/* card body for search new */
+.card__search--extend {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    border-color: white;
+    border-width: 0px;
+}
+
+.card__search--extend img {
+    width: 200px;
+    height: 200px;
+}
+
+/* list page */
+div.content__paging {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+.content{
+    width: 100%;
+}
+
+.content .container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.content .content__paging{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content .content__paging .number-page{
+    display: flex;
+}
+
+.content .content__paging ul{
+    display: flex;
+    justify-content: center;
+}
+
+.content .content__paging li{
+   width: 30px;
+   height: 30px;
+   border-radius: 3px;
+   border: 1px solid gray;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-right: 15px;
+   cursor: pointer;
+}
+
+.btn-active{
+    color: #c6c9cc;
+    border: solid 1px #c6c9cc !important;
+}
+
+.content .content__paging .active{
+    background: #3399cc;
+    border: 1px solid #3399cc;
+}
+
+.content .content__paging .active a{
+    color: white;
+}
+
+.btn-next {
+    border: solid 1px;
+    cursor: pointer;
+}
+
+.btn-prev {
+    margin-right: 10px;
+    cursor: pointer;
+}

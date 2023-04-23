@@ -1,0 +1,84 @@
+/* main__new */
+.card__main__new {
+    display: flex;
+    flex-direction: row;
+}
+
+div.card.card__main__new img {
+    max-height: 500px;
+    max-width: 500px;
+}
+
+/* list__news */
+.list__news {
+    margin-top: 50px;
+}
+
+
+/* list page */
+
+div.content__paging {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+.content{
+    width: 100%;
+}
+
+.content .container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.content .content__paging{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content .content__paging .number-page{
+    display: flex;
+}
+
+.content .content__paging ul{
+    display: flex;
+    justify-content: center;
+}
+
+.content .content__paging li{
+   width: 30px;
+   height: 30px;
+   border-radius: 3px;
+   border: 1px solid gray;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-right: 15px;
+   cursor: pointer;
+}
+
+.btn-active{
+    color: #c6c9cc;
+    border: solid 1px #c6c9cc !important;
+}
+
+.content .content__paging .active{
+    background: #3399cc;
+    border: 1px solid #3399cc;
+}
+
+.content .content__paging .active a{
+    color: white;
+}
+
+.btn-next {
+    border: solid 1px;
+    cursor: pointer;
+}
+
+.btn-prev {
+    margin-right: 10px;
+    cursor: pointer;
+}

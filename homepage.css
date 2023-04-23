@@ -1,0 +1,200 @@
+.dot {
+  height: 30px;
+  width: 30px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: orange;
+}
+
+.card-title, h3, h4 {
+  font-family: serif;
+  font-weight: bold;
+}
+
+.card-text {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* thanh xu huong */
+
+.trend {
+  display: flex;
+  flex-direction: row;
+}
+
+/* tag */
+
+.tag {
+  display: flex;
+  flex-direction: row;
+}
+
+.tag__item {
+  border-radius: 50px;
+  background-color: #D9D9D9;
+  margin-top: 5px;
+  margin-right: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* location, temperature, weather */
+.local__temp__weather {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+}
+
+.location {
+  margin-right: 10px;
+}
+
+.temperature {
+  margin-right: 10px;
+}
+
+.weather {
+  margin-right: 10px
+}
+
+/* content property */
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-basis: auto;
+  flex-grow: 1;
+  max-height: 600px;
+}
+
+/* set width for card of news__left and news__right */
+.content__news__right, .content__news__left {
+  overflow-y: scroll;
+}
+
+.content__news__right {
+  margin-right: 80px;
+  max-width: 400px;
+}
+
+.content__news__left {
+  margin-left: 80px;
+  padding-right: 0px;
+}
+
+/* customize the scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* card-item property */
+.card__news__left--extend {
+  display: flex;
+  flex-direction: column;
+}
+
+.card__news__right--extend {
+  display: flex;
+  flex-direction: row;
+}
+
+.category-time {
+  display: flex;
+  flex-direction: row;
+}
+
+div.category-time p:nth-child(1) {
+  margin-right: 10px;
+}
+
+/* customize the object in news__left and news__right */
+div.card.card__news__left--extend {
+  margin-bottom: 10px;
+}
+
+div.card.card__news__right--extend {
+  margin-bottom: 10px;
+}
+
+div.card.card__news__right--extend img {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+div.card.card__news__left--extend img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+/* popular__week__news */
+.popular__week__news {
+  margin-top: 50px;
+}
+
+div.card__popular__news--extend img {
+  height: 200px;
+  width: 100%;
+}
+
+div.popular__week__news h4 {
+  font-weight: bold;
+}
+
+/* lastest__news */
+
+.latest__news {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-basis: auto;
+  justify-content: space-around;
+}
+
+.latest__news__algriculture {
+  flex-basis: 400px;
+}
+
+.latest__news__sea {
+  flex-basis: 400px;
+}
+
+/* algriculture and sea*/
+div.card {
+  max-height: 800px;
+  max-width: 800px
+}
+
+div.card.card__latest__main img{
+  max-height: 200px;
+  width: 100%;
+}
+
+.card__latest__item {
+  display: flex;
+  flex-direction: row;
+}
+
+.card__latest__item img{
+  max-height: 200px;
+  max-width: 200px;
+}
+
+.img__latest__news {
+  align-items: center;
+}
