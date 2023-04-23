@@ -1,2 +1,17 @@
+/*Import font*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;800;900&family=Noto+Serif:wght@400;700&display=swap");
+
 /*Import các file css*/
 @import "base.css";
+@import "header.css";
+@import "form.css";
+@import "main.css";
+@import "user_pages.css";
+@import "premium.css";
+@import "homepage.css";
+@import "readcategory.css";
+@import "readtag.css";
+@import "search.css";
+@import "readnew.css";
+@import "readtag.css";
+
