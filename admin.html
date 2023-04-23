@@ -37,10 +37,15 @@
             <div class="row g-0">
                 <div class="col-sm-3 col-md-2 sidenav">
                     <ul>
-                      <li class="sidenav__link is-selected"><a href="#">Quản lý chuyên mục</a></li>
-                      <li class="sidenav__link"><a href="#">Quản lý nhãn</a></li>
-                      <li class="sidenav__link"><a href="#">Quản lý bài viết</a></li>
-                      <li class="sidenav__link"><a href="#">Quản lý người dùng</a></li>
+                      <li class="sidenav__link is-selected" id="category-manage"><a href="#">Quản lý chuyên mục</a></li>
+                        <li class="sidenav__sublink "><a href="#">Chuyên mục cấp 1</a></li>
+                        <li class="sidenav__sublink "><a href="#">Chuyên mục cấp 2</a></li>
+                      <li class="sidenav__link" id="tag-manage"><a href="#">Quản lý nhãn</a></li>
+                      <li class="sidenav__link" id="article-manage"><a href="#">Quản lý bài viết</a></li>
+                      <li class="sidenav__link" id="user-manage"><a href="#">Quản lý người dùng</a></li>
+                        <li class="sidenav__sublink "><a href="#">Phóng viên</a></li>
+                        <li class="sidenav__sublink "><a href="#">Biên tập viên</a></li>
+                        <li class="sidenav__sublink "><a href="#">Người dùng</a></li>
                     </ul>    
                 </div>
 
@@ -67,63 +72,83 @@
                     </div>
 
                     <div class="row">
-                        <div class="col">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                              <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="all-topic-tab" data-bs-toggle="tab" data-bs-target="#all-topic-content" type="button" role="tab" aria-controls="all" aria-selected="true">Tất cả</button>
-                              </li>
-                              <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="agriculture-topic-tab" data-bs-toggle="tab" data-bs-target="#agriculture-topic-content" type="button" role="tab" aria-controls="agriculture" aria-selected="true">Nông sản</button>
-                              </li>
-                              <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="seafood-topic-tab" data-bs-toggle="tab" data-bs-target="#seafood-topic-content" type="button" role="tab" aria-controls="seafood" aria-selected="true">Hải sản</button>
-                              </li>
-                            </ul>
-                            
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                              <div class="tab-pane active" id="world-topic-content" role="tabpanel" aria-labelledby="agriculture"> 
-                                <table table-striped border-success data-toggle="table" data-url="data1.json">
-                                  <thead>
-                                    <tr>
-                                      <th data-field="title">Tiêu đề</th>
-                                      <th data-field="date">Ngày viết</th>
-                                      <th data-field="status">Tình trạng</th>
-                                      <th data-field="reviewer">Người duyệt</th>
-                                      <th data-field="comment">Nhận xét</th>
-                                    </tr>
-                                  </thead>
-                                </table>                              
-                              </div>
-                              <div class="tab-pane" id="economy-topic-content" role="tabpanel" aria-labelledby="seafood"> Economy </div>
-                              <div class="tab-pane" id="sports-topic-content" role="tabpanel" aria-labelledby="sports-topic-tab"> Sports </div>
-                            </div>
-                            <!-- <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                                <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-                                <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-                                <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+                        <div class="col"> 
+                            <!-- Quản lý bài viết -->
+                            <div class="manage-table" id="article-manage-table">
+                              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                  <button class="nav-link active" id="all-topic-tab" data-bs-toggle="tab" data-bs-target="#all-topic-content" type="button" role="tab" aria-controls="all" aria-selected="true">Tất cả</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                  <button class="nav-link" id="agriculture-topic-tab" data-bs-toggle="tab" data-bs-target="#agriculture-topic-content" type="button" role="tab" aria-controls="agriculture" aria-selected="true">Nông sản</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                  <button class="nav-link" id="seafood-topic-tab" data-bs-toggle="tab" data-bs-target="#seafood-topic-content" type="button" role="tab" aria-controls="seafood" aria-selected="true">Hải sản</button>
+                                </li>
                               </ul>
-                            
+                              
                               <div class="tab-content">
-                                <div id="home" class="tab-pane fade in active">
-                                  <h3>HOME</h3>
-                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                <div class="tab-pane active" id="world-topic-content" role="tabpanel" aria-labelledby="agriculture">
+                                  <table table-striped border-success data-toggle="table" data-url="data1.json">
+                                    <thead>
+                                      <tr>
+                                        <th data-field="title">Tiêu đề</th>
+                                        <th data-field="date">Ngày viết</th>
+                                        <th data-field="status">Tình trạng</th>
+                                        <th data-field="reviewer">Người duyệt</th>
+                                        <th data-field="comment">Nhận xét</th>
+                                      </tr>
+                                    </thead>
+                                  </table>
                                 </div>
-                                <div id="menu1" class="tab-pane fade">
-                                  <h3>Menu 1</h3>
-                                  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                </div>
-                                <div id="menu2" class="tab-pane fade">
-                                  <h3>Menu 2</h3>
-                                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                                </div>
-                                <div id="menu3" class="tab-pane fade">
-                                  <h3>Menu 3</h3>
-                                  <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                                </div>
-                              </div> -->
+                                <div class="tab-pane" id="economy-topic-content" role="tabpanel" aria-labelledby="seafood"> Economy </div>
+                                <div class="tab-pane" id="sports-topic-content" role="tabpanel" aria-labelledby="sports-topic-tab"> Sports </div>
+                              </div>
+                            </div> 
+                            <!-- Quản lý chuyên mục -->
+                            <div class="manage-table" id="category-manage-table">
+                              <table table-striped border-success data-toggle="table" data-url="">
+                                <thead>
+                                  <tr>
+                                    <th data-field="ordinalNumber">STT</th>
+                                    <th data-field="category">Chuyên mục</th>
+                                    <th data-field="numOfSubcategory">Số chuyên mục con</th>
+                                    <th data-field="numOfArticle">Tổng số bài viết</th>
+                                    <th data-field="numOfView">Tổng số lượt xem</th>
+                                    <th data-field="numOfComment">Tổng số bình luận</th>
+                                  </tr>
+                                </thead>
+                              </table>
+                            </div>
+                            <!-- Quản lý nhãn -->
+                            <div class="manage-table" id="tag-manage-table">
+                              <table table-striped border-success data-toggle="table" data-url="">
+                                <thead>
+                                  <tr>
+                                    <th data-field="ordinalNumber">STT</th>
+                                    <th data-field="category">Nhãn</th>
+                                    <th data-field="numOfArticle">Tổng số bài viết</th>
+                                    <th data-field="numOfView">Tổng số lượt xem</th>
+                                    <th data-field="numOfComment">Tổng số bình luận</th>
+                                  </tr>
+                                </thead>
+                              </table>
+                            </div>
+                            <!-- Quản lý người dùng -->
+                            <div class="manage-table" id="user-manage-table">
+                              <table table-striped border-success data-toggle="table" data-url="">
+                                <thead>
+                                  <tr>
+                                    <th data-field="id">ID</th>
+                                    <th data-field="name">Họ tên</th>
+                                    <th data-field="dob">Ngày sinh</th>
+                                    <th data-field="email">Email</th>
+                                    <th data-field="category">Chuyên mục phân công</th>
+                                    <th data-field="numOfArticle">Tổng số bài viết</th>
+                                  </tr>
+                                </thead>
+                              </table>
+                            </div>
                         </div>
                     </div>
 
