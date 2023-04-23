@@ -62,3 +62,8 @@
 .card__img__latest__news {
     height: 300px;
 }
+
+/* content */
+p.content {
+    margin-top: 3rem;
+}
