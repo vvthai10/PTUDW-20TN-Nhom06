@@ -1,0 +1,140 @@
+.main {
+}
+
+.container-main {
+}
+
+.sidebar {
+}
+
+.sidebar__wrapper {
+  --width: 96px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  left: 0;
+  padding: 0 8px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px;
+  width: var(--width);
+  z-index: 8;
+}
+
+.sidebar__list {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.sidebar__item {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 16px;
+  color: #404040;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 72px;
+  justify-content: center;
+  margin-top: 4px;
+  width: 72px;
+}
+.sidebar__item:hover {
+  background-color: #c3dced;
+  color: #1a1a1a;
+}
+
+.sidebar__item svg {
+  font-size: 1.8rem;
+  width: 30px;
+  height: 30px;
+}
+
+.sidebar__active {
+  background-color: #c3dced;
+  color: #1a1a1a;
+}
+
+.sidebar__item-have-child {
+  position: relative;
+}
+
+.sidebar__list-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+
+  position: absolute;
+  top: 60px;
+
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.sidebar__list-child i {
+  font-size: 2rem;
+  line-height: 2rem;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+#have-list-child {
+}
+#have-list-child:hover {
+  /* display: block; */
+}
+
+.sidebar__item-have-child:hover .sidebar__list-child,
+.sidebar__item-have-child:hover i {
+  opacity: 1;
+}
+
+.sidebar__item-child {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 16px;
+  color: #404040;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 64px;
+  justify-content: center;
+  margin-top: 4px;
+  width: 64px;
+  font-size: 1rem;
+}
+.sidebar__item-child:hover {
+  background-color: #c3dced;
+  color: #1a1a1a;
+}
+
+.sidebar__item-child svg {
+  font-size: 1.8rem;
+  color: #404040;
+  width: 24px;
+  height: 24px;
+}
+
+.sidebar__active-child {
+  background-color: #c3dced;
+  color: #1a1a1a;
+}
+
+/*Computer*/
+@media (min-width: 992px) {
+}
+
+/*Tablet*/
+@media (min-width: 768px) and (max-width: 991px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+/*Moblie*/
+@media (max-width: 767px) {
+  .sidebar {
+    display: none;
+  }
+}

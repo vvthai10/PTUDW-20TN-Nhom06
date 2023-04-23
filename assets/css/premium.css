@@ -1,0 +1,17 @@
+.box__premium {
+  width: 80%;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+.box__premium-preview {
+  display: flex;
+  flex-direction: column;
+}
+
+.box__premium-register {
+  background-color: rgb(246, 246, 240);
+  border-radius: 10px;
+  width: 600px;
+  position: relative;
+  padding: 5px 20px;
+}

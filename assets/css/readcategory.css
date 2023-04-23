@@ -32,7 +32,6 @@ div.sub-title h4:nth-child(1) {
     overflow-y: scroll;
     flex-grow: 4;
     margin-right: 0px;
-    width: 200px;
 }
 
 .card__list__news--extend {
@@ -49,9 +48,7 @@ div.card.card__list__news--extend img {
 /* main__new */
 .main__new {
     flex-grow: 6;
-    width: 200px;
     margin-left: 0px;
-    width: 200px;
     margin-right: 5rem;
 }
 
