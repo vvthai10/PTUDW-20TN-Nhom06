@@ -69,7 +69,8 @@
   border-radius: 10px;
 
   position: absolute;
-  top: 60px;
+  top: 55px;
+  left: 4px;
 
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
