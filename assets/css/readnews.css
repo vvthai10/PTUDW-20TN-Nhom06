@@ -3,6 +3,10 @@
     font-weight: bold;
 }
 
+.card-title {
+    font-size: 20px;
+}
+
 .card-text {
     font-family: Arial, Helvetica, sans-serif;
 }
