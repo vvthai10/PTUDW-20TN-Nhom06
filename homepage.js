@@ -4,22 +4,22 @@ const local_temp_weather =  [
 
 const hot_news_left = [
     {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_1.png", category: "Đời sống", time: "5:34pm 16-03-23"},
+    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_2.png", category: "Đời sống", time: "5:34pm 16-03-23"},
+    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_3.png", category: "Đời sống", time: "5:34pm 16-03-23"},
+    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_4.png", category: "Đời sống", time: "5:34pm 16-03-23"},
     {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_1.png", category: "Đời sống", time: "5:34pm 16-03-23"},
-    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_1.png", category: "Đời sống", time: "5:34pm 16-03-23"},
-    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_1.png", category: "Đời sống", time: "5:34pm 16-03-23"},
-    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_1.png", category: "Đời sống", time: "5:34pm 16-03-23"},
-    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_1.png", category: "Đời sống", time: "5:34pm 16-03-23"},
-    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_1.png", category: "Đời sống", time: "5:34pm 16-03-23"}
+    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_2.png", category: "Đời sống", time: "5:34pm 16-03-23"},
+    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_3.png", category: "Đời sống", time: "5:34pm 16-03-23"}
 ]
 
 const hot_news_right = [
     {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_1.png", category: "Đời sống", time: "5:34pm 16-03-23"},
+    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_2.png", category: "Đời sống", time: "5:34pm 16-03-23"},
+    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_3.png", category: "Đời sống", time: "5:34pm 16-03-23"},
+    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_4.png", category: "Đời sống", time: "5:34pm 16-03-23"},
     {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_1.png", category: "Đời sống", time: "5:34pm 16-03-23"},
-    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_1.png", category: "Đời sống", time: "5:34pm 16-03-23"},
-    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_1.png", category: "Đời sống", time: "5:34pm 16-03-23"},
-    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_1.png", category: "Đời sống", time: "5:34pm 16-03-23"},
-    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_1.png", category: "Đời sống", time: "5:34pm 16-03-23"},
-    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_1.png", category: "Đời sống", time: "5:34pm 16-03-23"}
+    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_2.png", category: "Đời sống", time: "5:34pm 16-03-23"},
+    {title: "Dân tái định cư sân bay Long Thành mở quán xá rồi ngồi 'nhìn nhau'", image: "assets/news/news_search/new_3.png", category: "Đời sống", time: "5:34pm 16-03-23"}
 ]
 
 

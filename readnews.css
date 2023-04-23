@@ -54,3 +54,7 @@
     margin-right: auto;
     width: 50%;
 }
+
+.card__img__latest__news {
+    height: 300px;
+}
