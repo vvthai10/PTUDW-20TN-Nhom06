@@ -1,16 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Chuyên mục Kinh Doanh</title>
+    <link href="./assets/images/logo.png" rel="shortcut icon" type="image/x-icon" />
+    <title>Hạn hán 2023</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/index.css">
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
+    <script src="https://kit.fontawesome.com/aff46f9455.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css"
+        integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./assets/css/index.css" />
 </head>
 
 <body>
@@ -117,7 +122,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="header__user">
+                            <div class="header__user" style="display: none">
                                 <img src="./assets/images/user-default.jpg" alt="user default"
                                     class="header__user-icon" />
                                 <div class="header__user-box">
@@ -136,13 +141,14 @@
                                                 <a href="./user_page_info.html">Trang cá nhân</a>
                                             </li>
                                             <li class="header__user-item">
-                          <a href="./index.html">Đăng xuất</a></li>
+                                                <a href="./index.html">Đăng xuất</a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="header__login" style="display: none">
+                        <div class="header__login">
                             <a href="./signin.html" class="header__login-btn">Đăng nhập</a>
                         </div>
                     </div>
@@ -366,8 +372,8 @@
     <div class="main">
         <div class="container-main">
             <div class="row">
-                <!--SIDE BAR-->
                 <div class="col-lg-1">
+                    <!--SIDE BAR-->
                     <div class="sidebar">
                         <div class="sidebar__wrapper">
                             <ul class="sidebar__list">
@@ -394,8 +400,9 @@
                                     <ul class="sidebar__list-child">
                                         <i class="bi bi-caret-down-fill"></i>
                                         <li>
-                                            <a aria-current="page" class="sidebar__item-child" href="/"><svg
-                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                                            <a aria-current="page" class="sidebar__item-child"
+                                                href="./category_ns_news.html"><svg xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 640 512">
                                                     <path
                                                         d="M96 64c0-35.3 28.7-64 64-64H266.3c26.2 0 49.7 15.9 59.4 40.2L373.7 160H480V126.2c0-24.8 5.8-49.3 16.9-71.6l2.5-5c7.9-15.8 27.1-22.2 42.9-14.3s22.2 27.1 14.3 42.9l-2.5 5c-6.7 13.3-10.1 28-10.1 42.9V160h56c22.1 0 40 17.9 40 40v45.4c0 16.5-8.5 31.9-22.6 40.7l-43.3 27.1c-14.2-5.9-29.8-9.2-46.1-9.2c-39.3 0-74.1 18.9-96 48H352c0 17.7-14.3 32-32 32h-8.2c-1.7 4.8-3.7 9.5-5.8 14.1l5.8 5.8c12.5 12.5 12.5 32.8 0 45.3l-22.6 22.6c-12.5 12.5-32.8 12.5-45.3 0l-5.8-5.8c-4.6 2.2-9.3 4.1-14.1 5.8V480c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32v-8.2c-4.8-1.7-9.5-3.7-14.1-5.8l-5.8 5.8c-12.5 12.5-32.8 12.5-45.3 0L40.2 449.1c-12.5-12.5-12.5-32.8 0-45.3l5.8-5.8c-2.2-4.6-4.1-9.3-5.8-14.1H32c-17.7 0-32-14.3-32-32V320c0-17.7 14.3-32 32-32h8.2c1.7-4.8 3.7-9.5 5.8-14.1l-5.8-5.8c-12.5-12.5-12.5-32.8 0-45.3l22.6-22.6c9-9 21.9-11.5 33.1-7.6V192 160 64zm170.3 0H160v96h32H304.7L266.3 64zM176 256a80 80 0 1 0 0 160 80 80 0 1 0 0-160zM528 448a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm0 64c-48.6 0-88-39.4-88-88c0-29.8 14.8-56.1 37.4-72c14.3-10.1 31.8-16 50.6-16c2.7 0 5.3 .1 7.9 .3c44.9 4 80.1 41.7 80.1 87.7c0 48.6-39.4 88-88 88z" />
                                                 </svg>
@@ -403,8 +410,9 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a aria-current="page" class="sidebar__item-child" href="/"><svg
-                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                            <a aria-current="page" class="sidebar__item-child"
+                                                href="./category_news _sea.html"><svg xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 576 512">
                                                     <path
                                                         d="M192 32c0-17.7 14.3-32 32-32H352c17.7 0 32 14.3 32 32V64h48c26.5 0 48 21.5 48 48V240l44.4 14.8c23.1 7.7 29.5 37.5 11.5 53.9l-101 92.6c-16.2 9.4-34.7 15.1-50.9 15.1c-19.6 0-40.8-7.7-59.2-20.3c-22.1-15.5-51.6-15.5-73.7 0c-17.1 11.8-38 20.3-59.2 20.3c-16.2 0-34.7-5.7-50.9-15.1l-101-92.6c-18-16.5-11.6-46.2 11.5-53.9L96 240V112c0-26.5 21.5-48 48-48h48V32zM160 218.7l107.8-35.9c13.1-4.4 27.3-4.4 40.5 0L416 218.7V128H160v90.7zM306.5 421.9C329 437.4 356.5 448 384 448c26.9 0 55.4-10.8 77.4-26.1l0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 501.7 417 512 384 512c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4c18.1-4.2 36.2-13.3 50.6-25.2c11.1-9.4 27.3-10.1 39.2-1.7l0 0C136.7 437.2 165.1 448 192 448c27.5 0 55-10.6 77.5-26.1c11.1-7.9 25.9-7.9 37 0z" />
                                                 </svg>
@@ -416,236 +424,310 @@
                             </ul>
                         </div>
                     </div>
+                    <!--SIDE BAR-->
                 </div>
-                <!--SIDE BAR-->
-                <div class="col-lg-11 col-md-12 col-sm-12">
-                    <h3 style="text-align: center; font-size: 40px;">Kinh doanh</h3>
-                    <hr>
-                    <div class="sub-title">
-                        <h4 style="font-size: 20px;">Nông sản</h4>
-                        <h4 style="font-size: 20px;">Hải sản</h4>
-                    </div>
-                    <div class="content">
-                        <div class="main__new">
-                            <div class="card">
-                                <img src="assets/images/news/news_search/new_1.png"
-                                    class="card-img-top card-img-top--extend" alt="...">
-                                <div class="card-body">
-                                    <div class="tag" style="font-family: serif">
-                                        <p class="tag__item">#Ngành nước ngọt thua lỗ</p>
-                                    </div>
-                                    <h4>Kinh doanh</h4>
-                                    <h5 class="card-title">Sự sụt giá ngành nước giải khát kéo theo nhu cầu tăng cao
-                                    </h5>
-                                    <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
-                                    <p style="font-size: 15px;">Với sự lao dốc của ngành nước ngọt, đặc biệt là tập đoàn
-                                        Tân Hoàng Phát, dẫn tới việc tăng tỉ lệ người béo phì ở Việt Nam.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list__news__category">
-                            <div class="card card__list__news--extend">
-                                <img src="assets/images/news/news_search/new_2.png" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <div class="tag" style="font-family: serif">
-                                        <p class="tag__item">#Du lịch phát triển</p>
-                                    </div>
-                                    <h4>Kinh doanh</h4>
-                                    <h5 class="card-title">Hoạt động du lịch phát triển nhộn nhịp trở lại
-                                    </h5>
-                                    <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
-                                    <p style="font-size: 15px;">Sở Công Thương TP.HCM kỳ vọng sự kiện này sẽ là dịp để
-                                        doanh nghiệp, chuyên gia và các cơ quan Nhà nước cùng thảo luận, tìm ra giải
-                                        pháp lâu dài cho xuất khẩu của thành phố.</p>
-                                </div>
-                            </div>
-                            <div class="card card__list__news--extend">
-                                <img src="assets/images/news/news_search/new_3.png" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <div class="tag" style="font-family: serif">
-                                        <p class="tag__item">#Doanh nghiệp xe phát triển</p>
-                                    </div>
-                                    <h4>Kinh doanh</h4>
-                                    <h5 class="card-title">Hội chợ xe cho doanh nghiệp trong nước tổ chức
-                                    </h5>
-                                    <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
-                                    <p style="font-size: 15px;">Với qui mô và tính chuyên nghiệp, hội chợ mong muốn đem
-                                        đến một sân chơi mới cho doanh nghiệp nước nhà.</p>
-                                </div>
-                            </div>
-                            <div class="card card__list__news--extend">
-                                <img src="assets/images/news/news_search/new_4.png" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <div class="tag" style="font-family: serif">
-                                        <p class="tag__item">#Nhiều khu doanh nghiệp bỏ hoang</p>
-                                    </div>
-                                    <h4>Kinh doanh</h4>
-                                    <h5 class="card-title">Các khu doanh nghiệp bỏ hoang ngày càng nhiều
-                                    </h5>
-                                    <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
-                                    <p style="font-size: 15px;">Đây là tin đáng buồn đối với doanh nghiệp trong nước,
-                                        cũng như lãng như diện tích đất đai, nhân lực và tiền của.</p>
-                                </div>
-                            </div>
-                            <div class="card card__list__news--extend">
-                                <img src="assets/images/news/news_search/new_1.png" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <div class="tag" style="font-family: serif">
-                                        <p class="tag__item">#Nhiều khu doanh nghiệp bỏ hoang</p>
-                                    </div>
-                                    <h4>Kinh doanh</h4>
-                                    <h5 class="card-title">Sự sụt giá ngành nước giải khát kéo theo nhu cầu tăng cao
-                                    </h5>
-                                    <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
-                                    <p style="font-size: 15px;">Với sự lao dốc của ngành nước ngọt, đặc biệt là tập đoàn
-                                        Tân Hoàng Phát, dẫn tới việc tăng tỉ lệ người béo phì ở Việt Nam.</p>
-                                </div>
-                            </div>
-                            <div class="card card__list__news--extend">
-                                <img src="assets/images/news/news_search/new_2.png" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <div class="tag" style="font-family: serif">
-                                        <p class="tag__item">#Nhiều khu doanh nghiệp bỏ hoang</p>
-                                    </div>
-                                    <h4>Kinh doanh</h4>
-                                    <h5 class="card-title">Việt Nam đang chiếm tỉ lệ nhà cao tầng cao thứ 9 thế giới?
-                                    </h5>
-                                    <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
-                                    <p style="font-size: 15px;">Với sự phát triển vượt bậc sau chiến tranh, nhiều doanh
-                                        nghiệp xây dựng đã tạo nên thương hiệu và xây dựng nhiều công trình ngang tầm
-                                        thế giới.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="related__news">
-                        <h4>Nổi bật</h4>
-                        <hr>
-                        <div class="container my-3">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="card">
-                                            <img src="assets/images/news/news_search/new_1.png"
-                                                class="card-img-top card__img__latest__news" alt="...">
-                                            <div class="card-body">
-                                                <div class="tag" style="font-family: serif">
-                                                    <p class="tag__item">#Nhiều khu doanh nghiệp bỏ hoang</p>
-                                                </div>
-                                                <h4>Kinh doanh</h4>
-                                                <h5 class="card-title">Sự sụt giá ngành nước giải khát kéo theo nhu cầu
-                                                    tăng cao
-                                                </h5>
-                                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                                                        16-03-23</small></p>
-                                                <p style="font-size: 15px;">Với sự lao dốc của ngành nước ngọt, đặc biệt
-                                                    là tập đoàn Tân Hoàng Phát, dẫn tới việc tăng tỉ lệ người béo phì ở
-                                                    Việt Nam.</p>
-                                            </div>
+                <div class="col-lg-11 col-md-12 col-sm-12" style="padding: 10px 0 20px 10px;">
+                    <h2 style="font-size: 26px;
+          line-height: 26px;
+          margin-bottom: 20px;">Hạn hán</h2>
+                    <ul>
+                        <li>
+                            <a href="readnews.html" style="display: flex; margin: 30px 0; width: 90%;">
+                                <img style="border-radius: 5px; width: 300px;"
+                                    src="https://znews-photo.zingcdn.me/w960/Uploaded/afsiy/2023_04_22/download_8_.jpg"
+                                    alt="">
+                                <div style="    display: flex;
+                flex-direction: column; margin-left: 10px;">
+                                    <span style="font-size: 24px;
+                  font-weight: 500;">Hơn 15.000 người chết ở Châu Âu do liên quan đến sóng nhiêt</span>
+                                    <div style="display: flex;
+                  justify-content: space-between;">
+                                        <span style="    padding: 5px;
+                    width: 70px;
+                    text-align: center;
+                    border-radius: 20px;
+                    background: var(--primary-color);
+                    border: none;
+                    font-size: 13px;
+                    font-weight: 400;
+                    color: white;
+                    line-height: 100%;
+                    margin-left: 10px;">Nông nghiệp</span>
+                                        <div>
+                                            <span style="float: left;
+                      margin-left: 10px;
+                      font-family: Arial;
+                      font-size: 13px;
+                      color: #000;
+                      border-radius: 100px;
+                      background-color: #f0f0f0;
+                      padding: 0 8px 0 12px;
+                      height: 24px;
+                      line-height: 24px;">#Châu Âu</span>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="card">
-                                            <img src="assets/images/news/news_search/new_2.png"
-                                                class="card-img-top card__img__latest__news" alt="...">
-                                            <div class="card-body">
-                                                <div class="tag" style="font-family: serif">
-                                                    <p class="tag__item">#Nhiều khu doanh nghiệp bỏ hoang</p>
-                                                </div>
-                                                <h4>Kinh doanh</h4>
-                                                <h5 class="card-title">Việt Nam đang chiếm tỉ lệ nhà cao tầng cao thứ 9
-                                                    thế giới?
-                                                </h5>
-                                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                                                        16-03-23</small></p>
-                                                <p style="font-size: 15px;">Với sự phát triển vượt bậc sau chiến tranh,
-                                                    nhiều doanh
-                                                    nghiệp xây dựng đã tạo nên thương hiệu và xây dựng nhiều công trình
-                                                    ngang tầm
-                                                    thế giới.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="card">
-                                            <img src="assets/images/news/news_search/new_3.png"
-                                                class="card-img-top card__img__latest__news" alt="...">
-                                            <div class="card-body">
-                                                <div class="tag" style="font-family: serif">
-                                                    <p class="tag__item">#Doanh nghiệp xe phát triển</p>
-                                                </div>
-                                                <h4>Kinh doanh</h4>
-                                                <h5 class="card-title">Hội chợ xe cho doanh nghiệp trong nước tổ chức
-                                                </h5>
-                                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                                                        16-03-23</small></p>
-                                                <p style="font-size: 15px;">Với qui mô và tính chuyên nghiệp, hội chợ
-                                                    mong muốn đem
-                                                    đến một sân chơi mới cho doanh nghiệp nước nhà.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <span style="font-size: 12px;
+                  padding: 5px 0 0 10px;      color: black;">10:15 16/4/2023</span>
+                                    <span style="padding-left: 10px;
+                  font-size: 14px; color: black;">Những chuyến tàu cuối năm mang về thu nhập hàng trăm triệu cho ngư
+                                        dân ở Diễn Châu (Nghệ An). Sau dịp này, bà con gác ngư cụ, vệ sinh tàu thuyền
+                                        sạch sẽ về nhà đón Tết, ra năm lại tiếp tục vươn khơi, bám biển.</span>
                                 </div>
-                                <div class="row" style="margin-top: 100px;">
-                                    <div class="col">
-                                        <div class="card">
-                                            <img src="assets/images/news/news_search/new_4.png"
-                                                class="card-img-top card__img__latest__news" alt="...">
-                                            <div class="card-body">
-                                                <div class="tag" style="font-family: serif">
-                                                    <p class="tag__item">#Doanh nghiệp xe phát triển</p>
-                                                </div>
-                                                <h4>Kinh doanh</h4>
-                                                <h5 class="card-title">Xây dựng nhà máy Nidec
-                                                </h5>
-                                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                                                        16-03-23</small></p>
-                                                <p style="font-size: 15px;">Đây động thái quan trọng trong việc mở rộng qui mô doanh nghiệp, đáp ứng nhu cầu cả nước.</p>
-                                            </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="readnews.html" style="display: flex; margin: 30px 0; width: 90%;">
+                                <img style="border-radius: 5px; width: 300px;"
+                                    src="https://znews-photo.zingcdn.me/w960/Uploaded/ergz/2023_04_20/ezgif_3_17b2249e64.jpg"
+                                    alt="">
+                                <div style="    display: flex;
+                flex-direction: column; margin-left: 10px;">
+                                    <span style="font-size: 24px;
+                  font-weight: 500;">Hạn hạn gia tăng trong những ngày qua, có nguy cơ mất mùa</span>
+                                    <div style="display: flex;
+                  justify-content: space-between;">
+                                        <span style="    padding: 5px;
+                    width: 70px;
+                    text-align: center;
+                    border-radius: 20px;
+                    background: var(--primary-color);
+                    border: none;
+                    font-size: 13px;
+                    font-weight: 400;
+                    color: white;
+                    line-height: 100%;
+                    margin-left: 10px;">Nông nghiệp</span>
+                                        <div>
+                                            <span style="float: left;
+                      margin-left: 10px;
+                      font-family: Arial;
+                      font-size: 13px;
+                      color: #000;
+                      border-radius: 100px;
+                      background-color: #f0f0f0;
+                      padding: 0 8px 0 12px;
+                      height: 24px;
+                      line-height: 24px;">#Việt Nam</span>
+                                            <span style="float: left;
+                      margin-left: 10px;
+                      font-family: Arial;
+                      font-size: 13px;
+                      color: #000;
+                      border-radius: 100px;
+                      background-color: #f0f0f0;
+                      padding: 0 8px 0 12px;
+                      height: 24px;
+                      line-height: 24px;">#Nông dân</span>
+                                            <span style="float: left;
+                      margin-left: 10px;
+                      font-family: Arial;
+                      font-size: 13px;
+                      color: #000;
+                      border-radius: 100px;
+                      background-color: #f0f0f0;
+                      padding: 0 8px 0 12px;
+                      height: 24px;
+                      line-height: 24px;">#Elnino</span>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="card">
-                                            <img src="assets/images/news/news_search/new_1.png"
-                                                class="card-img-top card__img__latest__news" alt="...">
-                                            <div class="card-body">
-                                                <div class="tag" style="font-family: serif">
-                                                    <p class="tag__item">#Doanh nghiệp xe phát triển</p>
-                                                </div>
-                                                <h4>Kinh doanh</h4>
-                                                <h5 class="card-title">Sự béo phì của những 'gã khổng lồ'
-                                                </h5>
-                                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                                                        16-03-23</small></p>
-                                                <p style="font-size: 15px;">Với nhiều chiêu trò tinh vi, nhiều ông lớn đã sử dụng tiền để 'nuốt' chết các doanh nghiệp nhỏ lẻ.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="card">
-                                            <img src="assets/images/news/news_search/new_2.png"
-                                                class="card-img-top card__img__latest__news" alt="...">
-                                            <div class="card-body">
-                                                <div class="tag" style="font-family: serif">
-                                                    <p class="tag__item">#Doanh nghiệp xe phát triển</p>
-                                                </div>
-                                                <h4>Kinh doanh</h4>
-                                                <h5 class="card-title">Trùng tu xây lại nhà thờ ở Hồ Chí Minh
-                                                </h5>
-                                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                                                        16-03-23</small></p>
-                                                <p style="font-size: 15px;">Sau gần 2 năm với chi phí khoảng 12 tỷ, nhà thờ Đức Bà đã được trả lại vẻ đẹp vốn có sau vụ cháy.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <span style="font-size: 12px;
+                  padding: 5px 0 0 10px;      color: black;">10:15 16/4/2023</span>
+                                    <span style="padding-left: 10px;
+                  font-size: 14px; color: black;">Giá tôm thẻ loại 20 con/kg ở miền Tây hiện có giá 225.000-260.000
+                                        đồng, mức cao nhất từ trưóc đến nay. Tuy nhiên, xuất khẩu tôm sẽ chật vật để đạt
+                                        mốc 4,2 tỷ USD.</span>
                                 </div>
-                            </div>
-                        </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="readnews.html" style="display: flex; margin: 30px 0; width: 90%;">
+                                <img style="border-radius: 5px; width: 300px;"
+                                    src="https://znews-photo.zingcdn.me/w960/Uploaded/umzqy/2023_04_20/xlarge.jpeg"
+                                    alt="">
+                                <div style="    display: flex;
+                  flex-direction: column; margin-left: 10px;">
+                                    <span style="font-size: 24px;
+                    font-weight: 500;">Hạn hạn gia tăng trong những ngày qua, có nguy cơ mất mùa</span>
+                                    <div style="display: flex;
+                    justify-content: space-between;">
+                                        <span style="    padding: 5px;
+                      width: 70px;
+                      text-align: center;
+                      border-radius: 20px;
+                      background: var(--primary-color);
+                      border: none;
+                      font-size: 13px;
+                      font-weight: 400;
+                      color: white;
+                      line-height: 100%;
+                      margin-left: 10px;">Nông nghiệp</span>
+                                        <div>
+                                            <span style="float: left;
+                        margin-left: 10px;
+                        font-family: Arial;
+                        font-size: 13px;
+                        color: #000;
+                        border-radius: 100px;
+                        background-color: #f0f0f0;
+                        padding: 0 8px 0 12px;
+                        height: 24px;
+                        line-height: 24px;">#Việt Nam</span>
+                                            <span style="float: left;
+                        margin-left: 10px;
+                        font-family: Arial;
+                        font-size: 13px;
+                        color: #000;
+                        border-radius: 100px;
+                        background-color: #f0f0f0;
+                        padding: 0 8px 0 12px;
+                        height: 24px;
+                        line-height: 24px;">#Nông dân</span>
+                                            <span style="float: left;
+                        margin-left: 10px;
+                        font-family: Arial;
+                        font-size: 13px;
+                        color: #000;
+                        border-radius: 100px;
+                        background-color: #f0f0f0;
+                        padding: 0 8px 0 12px;
+                        height: 24px;
+                        line-height: 24px;">#Elnino</span>
+                                        </div>
+                                    </div>
+                                    <span style="font-size: 12px;
+                    padding: 5px 0 0 10px;      color: black;">10:15 16/4/2023</span>
+                                    <span style="padding-left: 10px;
+                    font-size: 14px; color: black;">Giá tôm thẻ loại 20 con/kg ở miền Tây hiện có giá 225.000-260.000
+                                        đồng, mức cao nhất từ trưóc đến nay. Tuy nhiên, xuất khẩu tôm sẽ chật vật để đạt
+                                        mốc 4,2 tỷ USD.</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="readnews.html" style="display: flex; margin: 30px 0; width: 90%;">
+                                <img style="border-radius: 5px; width: 300px;"
+                                    src="https://znews-photo.zingcdn.me/w960/Uploaded/ergz/2023_04_20/ezgif_3_17b2249e64.jpg"
+                                    alt="">
+                                <div style="    display: flex;
+                flex-direction: column; margin-left: 10px;">
+                                    <span style="font-size: 24px;
+                  font-weight: 500;">Hạn hạn gia tăng trong những ngày qua, có nguy cơ mất mùa</span>
+                                    <div style="display: flex;
+                  justify-content: space-between;">
+                                        <span style="    padding: 5px;
+                    width: 70px;
+                    text-align: center;
+                    border-radius: 20px;
+                    background: var(--primary-color);
+                    border: none;
+                    font-size: 13px;
+                    font-weight: 400;
+                    color: white;
+                    line-height: 100%;
+                    margin-left: 10px;">Nông nghiệp</span>
+                                        <div>
+                                            <span style="float: left;
+                      margin-left: 10px;
+                      font-family: Arial;
+                      font-size: 13px;
+                      color: #000;
+                      border-radius: 100px;
+                      background-color: #f0f0f0;
+                      padding: 0 8px 0 12px;
+                      height: 24px;
+                      line-height: 24px;">#Việt Nam</span>
+                                            <span style="float: left;
+                      margin-left: 10px;
+                      font-family: Arial;
+                      font-size: 13px;
+                      color: #000;
+                      border-radius: 100px;
+                      background-color: #f0f0f0;
+                      padding: 0 8px 0 12px;
+                      height: 24px;
+                      line-height: 24px;">#Nông dân</span>
+                                            <span style="float: left;
+                      margin-left: 10px;
+                      font-family: Arial;
+                      font-size: 13px;
+                      color: #000;
+                      border-radius: 100px;
+                      background-color: #f0f0f0;
+                      padding: 0 8px 0 12px;
+                      height: 24px;
+                      line-height: 24px;">#Elnino</span>
+                                        </div>
+                                    </div>
+                                    <span style="font-size: 12px;
+                  padding: 5px 0 0 10px;      color: black;">10:15 16/4/2023</span>
+                                    <span style="padding-left: 10px;
+                  font-size: 14px; color: black;">Giá tôm thẻ loại 20 con/kg ở miền Tây hiện có giá 225.000-260.000
+                                        đồng, mức cao nhất từ trưóc đến nay. Tuy nhiên, xuất khẩu tôm sẽ chật vật để đạt
+                                        mốc 4,2 tỷ USD.</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="readnews.html" style="display: flex; margin: 30px 0; width: 90%;">
+                                <img style="border-radius: 5px; width: 300px;"
+                                    src="https://znews-photo.zingcdn.me/w960/Uploaded/afsiy/2023_04_22/download_8_.jpg"
+                                    alt="">
+                                <div style="    display: flex;
+                flex-direction: column; margin-left: 10px;">
+                                    <span style="font-size: 24px;
+                  font-weight: 500;">Hơn 15.000 người chết ở Châu Âu do liên quan đến sóng nhiêt</span>
+                                    <div style="display: flex;
+                  justify-content: space-between;">
+                                        <span style="    padding: 5px;
+                    width: 70px;
+                    text-align: center;
+                    border-radius: 20px;
+                    background: var(--primary-color);
+                    border: none;
+                    font-size: 13px;
+                    font-weight: 400;
+                    color: white;
+                    line-height: 100%;
+                    margin-left: 10px;">Nông nghiệp</span>
+                                        <div>
+                                            <span style="float: left;
+                      margin-left: 10px;
+                      font-family: Arial;
+                      font-size: 13px;
+                      color: #000;
+                      border-radius: 100px;
+                      background-color: #f0f0f0;
+                      padding: 0 8px 0 12px;
+                      height: 24px;
+                      line-height: 24px;">#Châu Âu</span>
+                                        </div>
+                                    </div>
+                                    <span style="font-size: 12px;
+                  padding: 5px 0 0 10px;      color: black;">10:15 16/4/2023</span>
+                                    <span style="padding-left: 10px;
+                  font-size: 14px; color: black;">Những chuyến tàu cuối năm mang về thu nhập hàng trăm triệu cho ngư
+                                        dân ở Diễn Châu (Nghệ An). Sau dịp này, bà con gác ngư cụ, vệ sinh tàu thuyền
+                                        sạch sẽ về nhà đón Tết, ra năm lại tiếp tục vươn khơi, bám biển.</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="pagination" style="display: flex;">
+                        <a href="#">&laquo;</a>
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">6</a>
+                        <a href="#">&raquo;</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!--MAIN-->
+
     <!--FOOTER-->
     <footer>
         <div class="container-fluid">
@@ -720,14 +802,17 @@
         </div>
     </footer>
     <!--FOOTER-->
+
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-        </script>
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-        </script>
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
+    <script src="./assets/js/index.js"></script>
+    <script src="./assets/js/homepage.js"></script>
 </body>
 
 </html>
