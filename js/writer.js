@@ -10,7 +10,10 @@ $$("li.sidenav__link").forEach((item)=>{
     })
 });
 
-
-
-    
+$("table").addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("view article");
+    console.log(e.target.parentNode);
+    location.href='writer_edit.html';
+})
 
