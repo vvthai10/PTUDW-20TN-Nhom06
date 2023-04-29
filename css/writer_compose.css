@@ -1,126 +1,219 @@
 html {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .header__logo {
-    width: 20rem;
+  width: 20rem;
 }
 
 .header__note {
-    margin-top: -20px;
-    margin-bottom: -15px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    font-family: 'Inria Serif', serif;
+  margin-top: -20px;
+  margin-bottom: -15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: "Inria Serif", serif;
 }
 
 .header__user__avatar {
-    width: 3rem;
+  width: 3rem;
 }
 
 .header__user__name {
-    font-size: 1rem;
-    text-decoration: none;
-    margin-right:5px;
+  font-size: 1rem;
+  text-decoration: none;
+  margin-right: 5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.header__user__name:hover .header__user-box {
+  display: block;
 }
 
 hr {
-    position: relative;
-    left: -15px;
-    width: calc(100% + 30px);
+  position: relative;
+  left: -15px;
+  width: calc(100% + 30px);
 }
 
 header hr {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 footer hr {
-    margin-top: 0;
-    margin-bottom: 5px;
+  margin-top: 0;
+  margin-bottom: 5px;
 }
 
 h3 {
-    display:inline;
-    margin-left: 10px;
+  display: inline;
+  margin-left: 10px;
 }
 
 .button_back {
-    padding: 0;
-    border: none;
-    background: none;
+  padding: 0;
+  border: none;
+  background: none;
 }
 
 main {
-    padding-left: 10px;
-    padding-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .maincol label {
-    font-size: 1.2rem;
-    font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 #title {
-    width: 100%;
-    padding: 5px;
+  width: 100%;
+  padding: 5px;
 }
 
 #summary {
-    width: 100%;
-    padding: 5px;
+  width: 100%;
+  padding: 5px;
 }
 
 .maincol > input:last-of-type {
-    height: 50px;
+  height: 50px;
 }
 
-.ck-content {   
-    min-height: 330px;
-    height: 100%;
+.ck-content {
+  min-height: 330px;
+  height: 100%;
 }
 
 .sidecol {
-    border-left: 1px solid gray;
-    min-height: calc(100vh - 125px);
+  border-left: 1px solid gray;
+  min-height: calc(100vh - 125px);
 }
 
-.sidecol label:not(#tags)  {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-top: 5px;
+.sidecol label:not(#tags) {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 5px;
 }
 
 #tags {
-    margin: 0;
-    font-size: 1rem;    
+  margin: 0;
+  font-size: 1rem;
 }
 
 select {
-    border: 1px solid lightgray;
-    border-radius: 7px;
-    padding: 9px;
-    width: 100%;
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  padding: 9px;
+  width: 100%;
 }
 
 .submit-buttons {
-    margin: 20px 0 0 5px;
+  margin: 20px 0 0 5px;
 }
 
 .submit-buttons > * {
-    padding: 5px 10px;
-    border-radius: 7px;
-    font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 7px;
+  font-weight: 500;
 }
 
 #post-button {
-    background-color: #3399cc;
-    color: white;
+  background-color: #3399cc;
+  color: white;
 }
 
 #save-button {
-    background-color: transparent;
-    border-color:#ff5c5c;
-    color:#ff5c5c;
-    border-width: 2px;
-    float: right;
+  background-color: transparent;
+  border-color: #ff5c5c;
+  color: #ff5c5c;
+  border-width: 2px;
+  float: right;
 }
+
+/*Box action user*/
+.header__user-box {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.2);
+  color: #1d2129;
+  margin: 0;
+  /* overflow: hidden; */
+  padding-left: 0;
+  transition: all 0.3s ease-in-out;
+  will-change: opacity, transform;
+
+  min-width: 230px;
+  padding: 8px 24px !important;
+
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 5px;
+  z-index: 100;
+}
+.header__user:hover .header__user-box {
+  display: block;
+}
+
+.header__user-box::after {
+  position: absolute;
+  left: 15px;
+  top: -5px;
+  width: 100%;
+  height: 10px;
+  content: "";
+}
+
+.header__user-info {
+}
+.header__user-info header {
+  align-items: center;
+  display: flex;
+}
+
+.header__user-info-icon {
+  border-radius: 50%;
+  height: 40px;
+  object-fit: cover;
+  width: 40px;
+  margin-right: 20px;
+}
+
+.header__user-premium {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+}
+
+.header__user-name {
+  color: #292929;
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.header__user-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.header__user-item a {
+  color: #666;
+  text-decoration: none;
+}
+
+.header__user-item {
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  padding: 10px 0;
+}
+
+.header__user-item a:hover {
+  color: #444343;
+}
+/*Box action user*/
