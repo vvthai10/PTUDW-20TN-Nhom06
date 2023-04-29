@@ -38,14 +38,14 @@
                 <div class="col-sm-3 col-md-2 sidenav">
                     <ul>
                       <li class="sidenav__link is-selected" id="category-manage"><a href="#">Quản lý chuyên mục</a></li>
-                        <li class="sidenav__sublink "><a href="#">Chuyên mục cấp 1</a></li>
-                        <li class="sidenav__sublink "><a href="#">Chuyên mục cấp 2</a></li>
+                        <li class="sidenav__sublink is-selected" id="category-manage-1"><a href="#">Chuyên mục cấp 1</a></li>
+                        <li class="sidenav__sublink " id="category-manage-2"><a href="#">Chuyên mục cấp 2</a></li>
                       <li class="sidenav__link" id="tag-manage"><a href="#">Quản lý nhãn</a></li>
                       <li class="sidenav__link" id="article-manage"><a href="#">Quản lý bài viết</a></li>
                       <li class="sidenav__link" id="user-manage"><a href="#">Quản lý người dùng</a></li>
-                        <li class="sidenav__sublink "><a href="#">Phóng viên</a></li>
-                        <li class="sidenav__sublink "><a href="#">Biên tập viên</a></li>
-                        <li class="sidenav__sublink "><a href="#">Người dùng</a></li>
+                        <li class="sidenav__sublink " id="user-manage-1"><a href="#">Phóng viên</a></li>
+                        <li class="sidenav__sublink " id="user-manage-2"><a href="#">Biên tập viên</a></li>
+                        <li class="sidenav__sublink " id="user-manage-3"><a href="#">Người dùng</a></li>
                     </ul>    
                 </div>
 
@@ -64,11 +64,90 @@
                           </form>
                         </div>
                         <div class="button-container float-end">
-                          <button class="btn_compose bg-success"><i class="bi bi-plus-circle"></i></i></button>
-                          <button class="btn_compose bg-danger"><i class="bi bi-trash"></i></button>
-                          <button class="btn_compose bg-warning"><i class="bi bi-pencil"></i></button>
+                          <button type="button" class="bg-success"  data-bs-toggle="modal" data-bs-target="#exampleModal0" title="Chức năng Thêm (một dòng dữ liệu)" data-bs-function="Thêm"><i class="bi bi-plus-circle"></i></i></button>
+                          <button type="button" class="bg-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal1" title="Chức năng Xóa (một dòng dữ liệu)" data-bs-function="Xóa"><i class="bi bi-trash"></i></button>
+                          <button type="button" class="bg-warning"  data-bs-toggle="modal" data-bs-target="#exampleModal2" title="Chức năng Sửa (một số thuộc tính trong một dòng dữ liệu)" data-bs-function="Cập nhật"><i class="bi bi-pencil"></i></button>
+                          
+                          <!-- Modal Them -->
+                          <div class="modal fade" id="exampleModal0" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="modal-body__add mb-3">
+                                      <label for="category-add" class="col-form-label">[Tên dữ liệu, e.x: Chuyên mục cấp 1]:</label>
+                                      <input type="text" class="form-control" id="category-add">
+                                    </div>
+                                    <!-- <div class="modal-body__delete mb-3">
+                                      <label for="category-delete" class="col-form-label">Chuyên mục:</label>
+                                      <select class="form-control" name="category-delete" id="category-delete">
+                                        <option value="1">Kinh doanh</option>
+                                      </select>
+                                    </div>
+                                    <div class="modal-body__modify mb-3">
+                                      <label for="message-text" class="col-form-label">Message:</label>
+                                      <textarea class="form-control" id="message-text"></textarea>
+                                    </div> -->
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                  <button type="button" class="btn btn-primary px-3" data-bs-dismiss="modal">Lưu</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Modal Xoa -->
+                          <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  Xác nhận xóa [Tên dữ liệu, e.x: Chuyên mục cấp 1] ABC.
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                  <button type="button" class="btn btn-primary px-3" data-bs-dismiss="modal">Xác nhận</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Modal Cap nhat -->
+                          <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="modal-body__add mb-3">
+                                      <label for="category-add" >[Tác vụ, e.x: Gia hạn tài khoản độc giả]:</label>
+                                      <div class="input-group mb-3">
+                                        <input type="number" class="form-control" placeholder="Nhập số ngày gia hạn" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        <span class="input-group-text" id="basic-addon2">ngày</span>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                  <button type="button" class="btn btn-primary px-3" data-bs-dismiss="modal">Lưu</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                    </div>  
+                    </div>
+                    
                     </div>
 
                     <div class="row">
@@ -92,6 +171,7 @@
                                   <table table-striped border-success data-toggle="table" data-url="data1.json">
                                     <thead>
                                       <tr>
+                                        <th data-radio="true"></th>
                                         <th data-field="title">Tiêu đề</th>
                                         <th data-field="date">Ngày viết</th>
                                         <th data-field="status">Tình trạng</th>
@@ -106,13 +186,29 @@
                               </div>
                             </div> 
                             <!-- Quản lý chuyên mục -->
-                            <div class="manage-table" id="category-manage-table">
+                            <div class="manage-table" id="category-manage-1-table" style="display: block;">
                               <table table-striped border-success data-toggle="table" data-url="">
                                 <thead>
                                   <tr>
+                                    <th data-radio="true"></th>
                                     <th data-field="ordinalNumber">STT</th>
                                     <th data-field="category">Chuyên mục</th>
                                     <th data-field="numOfSubcategory">Số chuyên mục con</th>
+                                    <th data-field="numOfArticle">Tổng số bài viết</th>
+                                    <th data-field="numOfView">Tổng số lượt xem</th>
+                                    <th data-field="numOfComment">Tổng số bình luận</th>
+                                  </tr>
+                                </thead>
+                              </table>
+                            </div>
+                            <div class="manage-table" id="category-manage-2-table">
+                              <table table-striped border-success data-toggle="table" data-url="">
+                                <thead>
+                                  <tr>
+                                    <th data-radio="true"></th>
+                                    <th data-field="ordinalNumber">STT</th>
+                                    <th data-field="category">Chuyên mục</th>
+                                    <th data-field="numOfSubcategory">Chuyên mục cấp 1</th>
                                     <th data-field="numOfArticle">Tổng số bài viết</th>
                                     <th data-field="numOfView">Tổng số lượt xem</th>
                                     <th data-field="numOfComment">Tổng số bình luận</th>
@@ -125,6 +221,7 @@
                               <table table-striped border-success data-toggle="table" data-url="">
                                 <thead>
                                   <tr>
+                                    <th data-radio="true"></th>
                                     <th data-field="ordinalNumber">STT</th>
                                     <th data-field="category">Nhãn</th>
                                     <th data-field="numOfArticle">Tổng số bài viết</th>
@@ -135,16 +232,45 @@
                               </table>
                             </div>
                             <!-- Quản lý người dùng -->
-                            <div class="manage-table" id="user-manage-table">
+                            <div class="manage-table" id="user-manage-1-table">
                               <table table-striped border-success data-toggle="table" data-url="">
                                 <thead>
                                   <tr>
+                                    <th data-radio="true"></th>
                                     <th data-field="id">ID</th>
                                     <th data-field="name">Họ tên</th>
-                                    <th data-field="dob">Ngày sinh</th>
                                     <th data-field="email">Email</th>
                                     <th data-field="category">Chuyên mục phân công</th>
                                     <th data-field="numOfArticle">Tổng số bài viết</th>
+                                  </tr>
+                                </thead>
+                              </table>
+                            </div>
+                            <div class="manage-table" id="user-manage-2-table">
+                              <table table-striped border-success data-toggle="table" data-url="">
+                                <thead>
+                                  <tr>
+                                    <th data-radio="true"></th>
+                                    <th data-field="id">ID</th>
+                                    <th data-field="name">Họ tên</th>
+                                    <th data-field="email">Email</th>
+                                    <th data-field="category">Chuyên mục phân công</th>
+                                    <th data-field="numOfArticle">Tổng số bài viết</th>
+                                  </tr>
+                                </thead>
+                              </table>
+                            </div>
+                            <div class="manage-table" id="user-manage-3-table">
+                              <table table-striped border-success data-toggle="table" data-url="">
+                                <thead>
+                                  <tr>
+                                    <th data-radio="true"></th>
+                                    <th data-field="id">ID</th>
+                                    <th data-field="name">Họ tên</th>
+                                    <th data-field="email">Email</th>                                    
+                                    <th data-field="premiumDays">Số ngày Premium</th>
+                                    <th data-field="numOfLike">Số lượt thích</th>
+                                    <th data-field="numOfComment">Số lượt bình luận</th>
                                   </tr>
                                 </thead>
                               </table>

@@ -72,12 +72,16 @@ li.sidenav__link.is-selected {
   background-color: cornflowerblue;
 }
 
+li.sidenav__sublink.is-selected a {
+  color:dodgerblue;
+}
+
 li.sidenav__sublink {
   background-color: rgb(225, 225, 225);
   padding-left: 15px;
 }
 
-#article-manage-table, #tag-manage-table, #user-manage-table {
+#article-manage-table, #tag-manage-table, #user-manage-1-table, #user-manage-2-table, #user-manage-3-table, #category-manage-2-table {
   display: none;
 } 
 
