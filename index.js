@@ -19,22 +19,7 @@ app.engine(
   })
 );
 
-// create table data
-app.get("/createTables", (req, res) => {
-  let models = require("./models");
-  models.sequelize.sync().then(() => {
-    res.send("Table created!");
-  });
-});
-
-// routes
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-app.get("/:page", (req, res) => {
-  res.render(req.params.page);
-});
+app.use("/", require("./routes/indexRouter"));
 
 // Start server
 app.listen(port, () => {
