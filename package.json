@@ -1,0 +1,27 @@
+{
+  "name": "ptudw-20tn-nhom06",
+  "version": "1.0.0",
+  "description": "Đồ án môn Phát triển ứng dụng Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vvthai10/PTUDW-20TN-Nhom06.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vvthai10/PTUDW-20TN-Nhom06/issues"
+  },
+  "homepage": "https://github.com/vvthai10/PTUDW-20TN-Nhom06#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "pg": "^8.11.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.31.1"
+  }
+}
