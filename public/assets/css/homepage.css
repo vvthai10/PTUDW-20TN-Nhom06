@@ -183,11 +183,11 @@ div.card.card__news__left--extend img {
 
 /* popular__week__news */
 #carousel__popular__week__news {
-  width: 93%;
+  width: 100%;
 }
 
 #carousel__popular2__week__news {
-  width: 93%;
+  width: 100%;
 }
 
 .popular__week__news {
@@ -214,7 +214,7 @@ div.popular__week__news h4 {
   flex-direction: row;
   flex-basis: auto;
   justify-content: space-between;
-  width: 95%;
+  width: 100%;
 }
 
 .latest__news__algriculture {
