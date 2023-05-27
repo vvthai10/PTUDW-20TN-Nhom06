@@ -11,11 +11,18 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasMany(models.Payment, { foreignKey: "userId" });
       User.hasMany(models.ActivityHistory, { foreignKey: "userId" });
+      User.hasMany(models.Article, { foreignKey: "authorId" });
+      User.hasMany(models.Article, { foreignKey: "editorId" });
       User.belongsToMany(models.Article, {
         through: "Reaction",
         foreignKey: "userId",
         otherKey: "articleId",
       });
+      // User.belongsToMany(models.Comment, {
+      //   through: "Reaction",
+      //   foreignKey: "userId",
+      //   otherKey: "commentId",
+      // });
       User.belongsToMany(models.Article, {
         through: "Comment",
         foreignKey: "userId",

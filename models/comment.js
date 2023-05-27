@@ -11,11 +11,21 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Comment.belongsTo(models.Article, { foreignKey: "articleId" });
       Comment.belongsTo(models.User, { foreignKey: "userId" });
+      // Comment.belongsToMany(models.User, {
+      //   through: "Reaction",
+      //   foreignKey: "commentId",
+      //   otherKey: "userId",
+      // });
+      // Comment.belongsToMany(models.Article, {
+      //   through: "Reaction",
+      //   foreignKey: "commentId",
+      //   otherKey: "articleId",
+      // });
     }
   }
   Comment.init(
     {
-      content: DataTypes.STRING,
+      content: DataTypes.TEXT,
     },
     {
       sequelize,

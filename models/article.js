@@ -24,10 +24,31 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "articleId",
         otherKey: "userId",
       });
+      // Article.belongsToMany(models.Comment, {
+      //   through: "Reaction",
+      //   foreignKey: "articleId",
+      //   otherKey: "commentId",
+      // });
       Article.belongsToMany(models.User, {
         through: "Comment",
         foreignKey: "articleId",
         otherKey: "userId",
+      });
+      Article.belongsTo(models.User, {
+        foreignKey: "authorId",
+        constraints: true,
+        as: "author",
+        scope: {
+          role: "writer",
+        },
+      });
+      Article.belongsTo(models.User, {
+        foreignKey: "editorId",
+        constraints: true,
+        as: "editor",
+        scope: {
+          role: "editor",
+        },
       });
     }
   }
@@ -50,15 +71,15 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: "draft",
       },
       imgCover: DataTypes.STRING,
-      description: DataTypes.STRING,
-      content: DataTypes.STRING,
+      description: DataTypes.TEXT,
+      content: DataTypes.TEXT,
       nLike: DataTypes.INTEGER,
       nComment: DataTypes.INTEGER,
       nView: DataTypes.INTEGER,
       nViewWeek: DataTypes.INTEGER,
       nViewMonth: DataTypes.INTEGER,
       approve: DataTypes.DATE,
-      reviewComment: DataTypes.STRING,
+      reviewComment: DataTypes.TEXT,
     },
     {
       sequelize,

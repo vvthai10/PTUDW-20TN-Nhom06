@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       Reaction.hasMany(models.Notification, { foreignKey: "reactionId" });
       Reaction.belongsTo(models.Article, { foreignKey: "articleId" });
       Reaction.belongsTo(models.User, { foreignKey: "userId" });
+      // Reaction.belongsTo(models.Comment, { foreignKey: "commentId" });
     }
   }
   Reaction.init(

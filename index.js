@@ -18,6 +18,7 @@ app.engine(
     defaultLayout: "layout",
   })
 );
+app.set("view engine", "hbs");
 
 app.use("/", require("./routes/indexRouter"));
 
