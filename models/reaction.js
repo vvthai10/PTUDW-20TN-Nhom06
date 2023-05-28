@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       type: {
         type: DataTypes.ENUM("article", "comment"),
         allowNull: false,
+        defaultValue: "article",
       },
     },
     {

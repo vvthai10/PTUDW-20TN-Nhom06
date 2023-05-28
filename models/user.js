@@ -38,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
   User.init(
     {
       name: DataTypes.STRING,
+      slug: DataTypes.STRING,
       email: DataTypes.STRING,
       role: {
         type: DataTypes.ENUM("default", "premium", "writer", "editor", "admin"),

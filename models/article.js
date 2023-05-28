@@ -54,7 +54,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Article.init(
     {
-      name: DataTypes.STRING,
+      name: DataTypes.TEXT,
+      slug: DataTypes.TEXT,
       premium: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
@@ -70,7 +71,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: "draft",
       },
-      imgCover: DataTypes.STRING,
+      imgCover: DataTypes.TEXT,
       description: DataTypes.TEXT,
       content: DataTypes.TEXT,
       nLike: DataTypes.INTEGER,
