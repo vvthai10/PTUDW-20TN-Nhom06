@@ -5,12 +5,12 @@ const router = express.Router();
 const controller = require("../controllers/indexController");
 
 // TODO create table data
-router.get("/createTables", (req, res) => {
-  let models = require("../models");
-  models.sequelize.sync().then(() => {
-    res.send("Table created!");
-  });
-});
+// router.get("/createTables", (req, res) => {
+//   let models = require("../models");
+//   models.sequelize.sync().then(() => {
+//     res.send("Table created!");
+//   });
+// });
 
 // routes
 router.get("/", controller.showHomepage);

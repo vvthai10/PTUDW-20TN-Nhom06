@@ -1,23 +1,35 @@
 {
   "development": {
+    "username": "ptudw20tnnhom06db",
+    "password": "cxA4KfTRoaVw66Yu7yY2X7iT6yNa1V1M",
+    "database": "ptudw20tnnhom06db",
+    "host": "dpg-chsa6ae4dadfn623csrg-a.oregon-postgres.render.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
+  },
+  "test": {
     "username": "postgres",
     "password": "postgres",
     "database": "news",
     "host": "localhost",
     "dialect": "postgres"
   },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "ptudw20tnnhom06db",
+    "password": "cxA4KfTRoaVw66Yu7yY2X7iT6yNa1V1M",
+    "database": "ptudw20tnnhom06db",
+    "host": "dpg-chsa6ae4dadfn623csrg-a.oregon-postgres.render.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   }
 }
