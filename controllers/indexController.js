@@ -7,7 +7,8 @@ controller.showHomepage = (req, res) => {
 };
 
 controller.showPage = (req, res) => {
-  res.render(req.params.page, { layout: "layout_sample.hbs" });
+  // res.render(req.params.page, { layout: "layout_sample.hbs" });
+  res.render(req.params.page);
 };
 
 module.exports = controller;

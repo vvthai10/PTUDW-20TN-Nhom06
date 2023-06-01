@@ -1,11 +1,20 @@
 .main {
+  padding-top: 60px;
 }
 
 .container-main {
-  display: flex ;
+  display: flex;
+}
+
+.sidebar-container {
+  position: relative;
+  max-width: 100px;
 }
 
 .sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
 }
 
 .sidebar__wrapper {
