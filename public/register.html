@@ -429,14 +429,33 @@
                 </div>
                 <div class="col-12" style=" margin-top: 10px; display: flex; justify-content: center;">
                     <div class="form__container">
-                        <span class="form__name">Quên mật khẩu</span>
-                        <form id="form__signin">
+                        <span class="form__name">Đăng ký</span>
+                        <form action="#" method="post">
                             <div class="form__input-box">
                                 <input type="text" class="form__input" placeholder="Số điện thoại/Email" name="username"
                                     required />
                             </div>
-                            <button type="submit" class="form__btn" id="btn_login">Lấy lại mật khẩu</button>
+                            <div class="form__input-box">
+                                <input type="password" class="form__input" placeholder="Mật khẩu" name="password"
+                                    required />
+                            </div>
+                            <div class="form__input-box">
+                                <input type="password" class="form__input" placeholder="Xác nhận mật khẩu"
+                                    name="password_repeat" required />
+                            </div>
+
+                            <button type="submit" class="form__btn">Đăng ký</button>
                         </form>
+
+                        <span class="form__sign-in-up-another-title">Đăng ký bằng các tài khoản
+                            sau</span>
+                        <div class="form__sign-in-up-another-btn">
+                            <i class="bi bi-google google"></i>
+                            <i class="bi bi-facebook facebook"></i>
+                            <i class="bi bi-apple apple"></i>
+                        </div>
+                        <span class="form__sign-in-up-signin">Đã có tài khoản?<a href="./signin.html">Đăng nhập tài
+                                khoản</a></span>
                     </div>
                 </div>
             </div>

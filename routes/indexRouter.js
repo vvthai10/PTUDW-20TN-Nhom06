@@ -12,6 +12,9 @@ const controller = require("../controllers/indexController");
 //   });
 // });
 
+// Get Category
+router.use(controller.getCategories);
+
 // routes
 router.get("/", controller.showHomepage);
 

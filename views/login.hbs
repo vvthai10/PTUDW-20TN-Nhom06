@@ -1,0 +1,49 @@
+<div class="form__container">
+  <span class="form__name">Đăng nhập</span>
+  <form action="/users/login" method="post" id="form__signin">
+    <div class="form__input-box">
+      <input
+        type="text"
+        class="form__input"
+        placeholder="Email"
+        name="email"
+        required
+      />
+    </div>
+    <div class="form__input-box">
+      <input
+        type="password"
+        class="form__input"
+        placeholder="Mật khẩu"
+        name="password"
+        required
+      />
+    </div>
+    <div class="form__action">
+      <div class="form__save-sign-in">
+        <input type="checkbox" name="keepSignedIn" id="keepsignin" />
+        <label for="keepsignin">Duy trì đăng nhập</label>
+      </div>
+      <a href="/forgot" class="form__forgot-password">Quên mật khẩu</a>
+    </div>
+
+    <button type="submit" class="form__btn" id="btn_login">Đăng nhập</button>
+  </form>
+
+  {{#if loginMessage}}
+    <div class="col md-12">
+      <div class="p-3 mt-3 alert alert-warning">{{loginMessage}}</div>
+    </div>
+  {{/if}}
+
+  <span class="form__sign-in-up-another-title">Đăng nhập bằng các phương thức
+    khác</span>
+  <div class="form__sign-in-up-another-btn">
+    <i class="bi bi-google google"></i>
+    <i class="bi bi-facebook facebook"></i>
+    <i class="bi bi-apple apple"></i>
+  </div>
+  <span class="form__sign-in-up-signin">Chưa có tài khoản?<a
+      href="/register"
+    >Đăng kí tài khoản</a></span>
+</div>
