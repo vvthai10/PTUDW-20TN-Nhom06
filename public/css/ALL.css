@@ -160,7 +160,6 @@ h3.body__title {
   min-height: calc(100vh - 125px);
 }
 
-/* The navigation menu links */
 .sidenav a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
@@ -170,7 +169,6 @@ h3.body__title {
   display: block;
 }
 
-/* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
   color: blue;
 }
@@ -195,9 +193,9 @@ li.is-selected {
   padding: 5px 10px;
 }
 
-.main {
+/* .main {
   padding: 5px 5px 0 10px;
-}
+} */
 
 .search-container {
   margin-top: 5px;
@@ -228,14 +226,14 @@ li.is-selected {
   margin-top: 5px;
 }
 
-#form1 select {
+#form1 select, #form1 input {
   border: 1px solid lightgray;
   border-radius: 7px;
   padding: 9px;
   width: 100%;
 }
 
-/* 3 submit buttons for writer edit */
+/* submit buttons for writer edit and editor censor*/
 
 .submit-buttons__container {
   margin: 20px 0 0 5px;
@@ -265,5 +263,47 @@ li.is-selected {
   width: 100%;
 }
 
+.submit-buttons__container #approve-button {
+  background-color: #3399cc;
+  color: white;
+}
+
+.submit-buttons__container #reject-button {
+  background-color: transparent;
+  border-color:#ff5c5c;
+  color:#ff5c5c;
+  border-width: 2px;
+  float: right;
+}
+
+/*  */
+.article {
+  padding: 10px 40px;
+}
+
+.article__category {
+  font-size: 1.1rem;
+  font-weight: 300;
+}
+
+.article__title {
+  margin-top: 10px;
+  font-family: "Roboto Serif", serif;
+  font-weight: 700;
+}
+
+.article__info__author {
+  width: 2rem;
+}
+
+.article__info__time {
+  align-content: end;
+  padding-top: 2px;
+}
+
+.article__summary {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
 
 
