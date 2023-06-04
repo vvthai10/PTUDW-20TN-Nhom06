@@ -1,0 +1,80 @@
+<main class="main_manage">
+  <button class="btn_compose"><a href="writer_compose.html" style="text-decoration: none; color: white;">SOẠN THẢO <i
+        class="bi bi-pen"></i></a></button>
+  <div class="container-fluid">
+    <div class="row g-0">
+      <div class="col-sm-3 col-md-2 sidenav">
+        <ul class="sidenav__list">
+          <li class="sidenav__link is-selected"><a href="#">Tất cả bài viết</a></li>
+          <li class="sidenav__link"><a href="#">Đã duyệt & chờ xuất bản</a></li>
+          <li class="sidenav__link"><a href="#">Chờ duyệt</a></li>
+          <li class="sidenav__link"><a href="#">Bị từ chối</a></li>
+          <li class="sidenav__link"><a href="#">Bản thảo</a></li>
+        </ul>
+      </div>
+
+      <div class="col main">
+        <div class="row">
+          <div class="col">
+            <h3>Tất cả bài viết</h3>
+          </div>
+          <div class="col d-flex justify-content-end">
+            <div class="search-container">
+              <form action="">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="bi bi-search"></i></button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="all-topic-tab" data-bs-toggle="tab"
+                  data-bs-target="#all-topic-content" type="button" role="tab" aria-controls="all"
+                  aria-selected="true">Tất cả</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="agriculture-topic-tab" data-bs-toggle="tab"
+                  data-bs-target="#agriculture-topic-content" type="button" role="tab" aria-controls="agriculture"
+                  aria-selected="true">Nông sản</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="seafood-topic-tab" data-bs-toggle="tab"
+                  data-bs-target="#seafood-topic-content" type="button" role="tab" aria-controls="seafood"
+                  aria-selected="true">Hải sản</button>
+              </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="world-topic-content" role="tabpanel" aria-labelledby="agriculture">
+                <table table-striped border-success data-toggle="table" data-url="data1.json">
+                  <thead>
+                    <tr>
+                      <th data-field="title">Tiêu đề</th>
+                      <th data-field="date">Ngày viết</th>
+                      <th data-field="status">Tình trạng</th>
+                      <th data-field="reviewer">Người duyệt</th>
+                      <th data-field="comment">Nhận xét</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+              <div class="tab-pane" id="economy-topic-content" role="tabpanel" aria-labelledby="seafood"> Economy
+              </div>
+              <div class="tab-pane" id="sports-topic-content" role="tabpanel" aria-labelledby="sports-topic-tab">
+                Sports </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/js/writer.js"></script>

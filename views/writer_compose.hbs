@@ -1,0 +1,64 @@
+<main class="main_function">
+    <div class="container-fluid main">
+        <div class="row">
+            <div class="col-9 maincol">
+                <button class="button_back" onclick="history.back()"><i class="bi bi-arrow-left"
+                        style="font-size: 25px;"></i></button>
+                <h3 class="body__title"> Soạn thảo bài viết</h3><br />
+
+                <label for="input_title">Tiêu đề</label><br />
+                <input type="text" id="input_title" style="padding: 5px;width: 100%;"><br />
+
+                <label for="input_summary">Tóm tắt</label><br />
+                <textarea id="input_summary" cols="150" rows="3" style="padding: 5px;width: 100%;"></textarea><br />
+
+                <label for="editor">Nội dung</label>
+                <div id="editor"></div>
+
+            </div>
+
+            <div class="col-3 sidecol">
+                <form id="form1">
+                    <label for="input_post_avatar">Ảnh đại diện bài viết</label>
+                    <input id="input_post_avatar" type="file" accept="image/*" />
+                    <!-- <img id="blah" src="#" alt="your image" /> -->
+
+                    <label for="input_cat1">Chuyên mục cấp 1</label><br />
+                    <select class="category_l1" id="input_cat1">
+                        <option value="">Kinh doanh </option>
+                    </select><br />
+
+                    <label for="input_cat2">Chuyên mục cấp 2</label><br />
+                    <select class="category_l2" id="input_cat2">
+                        <option value="">Nông sản </option>
+                        <option value="">Hải sản </option>
+                    </select><br />
+
+                    <label for="input_tags">Danh sách nhãn</label>
+
+                    <label id="input_tags" style="font-size: 1rem; margin: 0;">
+                        <input mbsc-input id="demo-multiple-select-input" placeholder="Please select..."
+                            data-dropdown="true" data-input-style="outline" data-label-style="stacked"
+                            data-tags="true" />
+                    </label>
+                    <select id="demo-multiple-select" multiple>
+                        <option value="1">Hạn hán 2023</option>
+                        <option value="2">Nhiễm mặn đất trồng</option>
+                        <option value="3">Ô nhiễm nguồn nước</option>
+                        <option value="4">Vụ lúa hè-thu</option>
+                        <option value="5">Xuất khẩu nông sản</option>
+                        <option value="6">Xuất khẩu hải sản</option>
+                    </select>
+                </form>
+
+                <div class="submit-buttons__container">
+                    <button id="save-button">Đăng bài viết</button>
+                    <button id="cancel-button">Lưu bản thảo</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="/js/writer_compose.js"></script>
