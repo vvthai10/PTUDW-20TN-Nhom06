@@ -122,8 +122,8 @@
   box-shadow: 1px 1px 2px 1px #3399cc;
 
   padding: 5px;
-  width: 200px;
-  font-size: 1rem;
+  width: 230px;
+  font-size: 1.2rem;
   display: none;
   z-index: 100;
 }
@@ -138,7 +138,7 @@
 }
 
 .header__premium-preview a {
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: #e27c17;
 }
 

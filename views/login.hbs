@@ -1,12 +1,12 @@
 <div class="form__container">
   <span class="form__name">Đăng nhập</span>
-  <form id="form__signin">
+  <form action="/users/login" method="post" id="form__signin">
     <div class="form__input-box">
       <input
         type="text"
         class="form__input"
-        placeholder="Số điện thoại/Email"
-        name="username"
+        placeholder="Email"
+        name="email"
         required
       />
     </div>
@@ -21,14 +21,20 @@
     </div>
     <div class="form__action">
       <div class="form__save-sign-in">
-        <input type="checkbox" name="remember" />
-        <span>Duy trì đăng nhập</span>
+        <input type="checkbox" name="keepSignedIn" id="keepsignin" />
+        <label for="keepsignin">Duy trì đăng nhập</label>
       </div>
       <a href="/forgot" class="form__forgot-password">Quên mật khẩu</a>
     </div>
 
     <button type="submit" class="form__btn" id="btn_login">Đăng nhập</button>
   </form>
+
+  {{#if loginMessage}}
+    <div class="col md-12">
+      <div class="p-3 mt-3 alert alert-warning">{{loginMessage}}</div>
+    </div>
+  {{/if}}
 
   <span class="form__sign-in-up-another-title">Đăng nhập bằng các phương thức
     khác</span>
