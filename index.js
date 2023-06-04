@@ -20,6 +20,7 @@ app.engine(
 );
 app.set("view engine", "hbs");
 
+app.use("/writer", require("./routes/writerRouter"));
 app.use("/", require("./routes/indexRouter"));
 
 app.use((req, res, next) => {

@@ -1,0 +1,269 @@
+html {
+  font-size: 15px;
+}
+
+/* Header */
+
+.header__logo {
+  width: 20rem;
+}
+
+.header__note {
+  margin-top: -20px;
+  margin-bottom: -15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: "Inria Serif", serif;
+}
+
+.header__user__avatar {
+  width: 3rem;
+}
+
+.header__user__name {
+  font-size: 1rem;
+  text-decoration: none;
+  margin-right: 5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.header__user__name:hover .header__user-box {
+  display: block;
+}
+
+/*Box action user*/
+.header__user-box {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.2);
+  color: #1d2129;
+  margin: 0;
+  /* overflow: hidden; */
+  padding-left: 0;
+  transition: all 0.3s ease-in-out;
+  will-change: opacity, transform;
+
+  min-width: 230px;
+  padding: 8px 24px !important;
+
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 5px;
+  z-index: 100;
+}
+.header__user:hover .header__user-box {
+  display: block;
+}
+
+.header__user-box::after {
+  position: absolute;
+  left: 15px;
+  top: -5px;
+  width: 100%;
+  height: 10px;
+  content: "";
+}
+
+.header__user-info header {
+  align-items: center;
+  display: flex;
+}
+
+.header__user-info-icon {
+  border-radius: 50%;
+  height: 40px;
+  object-fit: cover;
+  width: 40px;
+  margin-right: 20px;
+}
+
+.header__user-premium {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+}
+
+.header__user-name {
+  color: #292929;
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.header__user-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.header__user-item a {
+  color: #666;
+  text-decoration: none;
+}
+
+.header__user-item {
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  padding: 10px 0;
+}
+
+.header__user-item a:hover {
+  color: #444343;
+}
+
+hr {
+  position: relative;
+  left: -15px;
+  width: calc(100% + 30px);
+}
+
+header hr {
+  margin-bottom: 0;
+}
+
+footer hr {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+main.main_manage {
+  /* margin-top: -15px; */
+  min-height: calc(100vh - 125px);
+  height: 100%;
+}
+
+main.main_function {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h3.body__title {
+  display:inline;
+  margin-left: 10px;
+}
+
+.button_back {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.sidenav {
+  margin-left: -10px;
+  width: 225px;
+  background-color: lightgray;
+  min-height: calc(100vh - 125px);
+}
+
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: black;
+  display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: blue;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+li.is-selected {
+  background-color: cornflowerblue;
+}
+
+.btn_compose {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: cornflowerblue;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  padding: 5px 10px;
+}
+
+.main {
+  padding: 5px 5px 0 10px;
+}
+
+.search-container {
+  margin-top: 5px;
+}
+
+.maincol label {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.maincol > input:last-of-type {
+  height: 50px;
+}
+
+.ck-content {   
+  min-height: 330px;
+  height: 100%;
+}
+
+.sidecol {
+  border-left: 1px solid gray;
+  min-height: calc(100vh - 125px);
+}
+
+.sidecol label:not(#input_tags)  {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+#form1 select {
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  padding: 9px;
+  width: 100%;
+}
+
+/* 3 submit buttons for writer edit */
+
+.submit-buttons__container {
+  margin: 20px 0 0 5px;
+}
+
+.submit-buttons__container > * {
+  padding: 5px 10px;
+  border-radius: 7px;
+  font-weight: 500;
+}
+
+.submit-buttons__container #save-button {
+  background-color: #3399cc;
+  color: white;
+}
+
+.submit-buttons__container #cancel-button {
+  background-color: transparent;
+  border-color:#ff5c5c;
+  color:#ff5c5c;
+  border-width: 2px;
+  float: right;
+}
+
+.submit-buttons__container #post-button {
+  margin-top: 10px;
+  width: 100%;
+}
+
+
+
