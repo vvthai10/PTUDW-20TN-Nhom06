@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <link href="./assets/images/logo.png" rel="shortcut icon" type="image/x-icon" />
+  <link href="/assets/images/logo.png" rel="shortcut icon" type="image/x-icon" />
   <title>News & World | Business</title>
   <!-- Required meta tags -->
   <meta charset="utf-8" />
@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css"
     integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@650&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./assets/css/index.css" />
+  <link rel="stylesheet" href="/assets/css/index.css" />
 </head>
 
 <body>
@@ -36,7 +36,7 @@
           <!--Logo-->
           <div class="header__logo col-lg-2">
             <a href="/" class="logo-link">
-              <img src="./assets/images/logo.png" alt="logo" class="header__logo-img" />
+              <img src="/assets/images/logo.png" alt="logo" class="header__logo-img" />
             </a>
           </div>
           <!--Search-->
@@ -49,7 +49,7 @@
           <!--Action-->
           <div class="header__action col-lg-4">
             <div class="header__premium">
-              <img src="./assets/images/premium.png" alt="premium icon" class="header__premium-icon" />
+              <img src="/assets/images/premium.png" alt="premium icon" class="header__premium-icon" />
               <div class="header__premium-preview">
                 <span>Đây là chế độ người dùng chuyên biệt, cho phép người dùng
                   có những trải nghiệm tốt hơn cùng với những thông tin chuyên
@@ -75,7 +75,7 @@
                     <ul class="header__action-notify-list">
                       <li>
                         <a href="#" class="header__action-notify-item">
-                          <img src="./assets/images/user-default.jpg" alt="notify icon"
+                          <img src="/assets/images/user-default.jpg" alt="notify icon"
                             class="header__action-notify-item-icon" />
                           <div class="header__action-notify-item-box">
                             <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -86,7 +86,7 @@
                       </li>
                       <li>
                         <a href="#" class="header__action-notify-item">
-                          <img src="./assets/images/user-default.jpg" alt="notify icon"
+                          <img src="/assets/images/user-default.jpg" alt="notify icon"
                             class="header__action-notify-item-icon" />
                           <div class="header__action-notify-item-box">
                             <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -97,7 +97,7 @@
                       </li>
                       <li>
                         <a href="#" class="header__action-notify-item">
-                          <img src="./assets/images/user-default.jpg" alt="notify icon"
+                          <img src="/assets/images/user-default.jpg" alt="notify icon"
                             class="header__action-notify-item-icon" />
                           <div class="header__action-notify-item-box">
                             <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -108,7 +108,7 @@
                       </li>
                       <li>
                         <a href="#" class="header__action-notify-item">
-                          <img src="./assets/images/user-default.jpg" alt="notify icon"
+                          <img src="/assets/images/user-default.jpg" alt="notify icon"
                             class="header__action-notify-item-icon" />
                           <div class="header__action-notify-item-box">
                             <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -120,32 +120,39 @@
                     </ul>
                   </div>
                 </div>
-                <div class="header__user" style="display: none">
-                  <img src="./assets/images/user-default.jpg" alt="user default" class="header__user-icon" />
+                {{#with userInfo}}
+                <div class="header__user">
+                  <img src="/assets/images/user-default.jpg" alt="user default" class="header__user-icon" />
                   <div class="header__user-box">
                     <div class="header__user-info">
                       <header>
                         <div style="position: relative">
-                          <img src="./assets/images/user-default.jpg" alt="user default" class="header__user-info-icon" />
-                          <img src="./assets/images/user_premium.png" alt="logo" class="header__user-premium" />
+                          <img src="/assets/images/user-default.jpg" alt="user default" class="header__user-info-icon" />
+                          <img src="/assets/images/user_premium.png" alt="logo" class="header__user-premium" />
                         </div>
-                        <div class="header__user-name">Vũ Văn Thái</div>
+                        <div class="header__user-name">{{email}}</div>
                       </header>
                       <ul class="header__user-list">
+                        {{#ifEquals role "admin"}}
+                        <li class="header__user-item">
+                          <a href="./user_page_info.html">Trang quản lý</a>
+                        </li>
+                        {{/ifEquals}}
                         <li class="header__user-item">
                           <a href="./user_page_info.html">Trang cá nhân</a>
                         </li>
                         <li class="header__user-item">
-                          <a href="./index.html">Đăng xuất</a>
+                          <a href="/users/logout">Đăng xuất</a>
                         </li>
                       </ul>
                     </div>
                   </div>
                 </div>
+                {{/with}}
               </div>
             {{else}}
               <div class="header__login">
-                <a href="/login" class="header__login-btn">Đăng nhập</a>
+                <a href="/users/login" class="header__login-btn">Đăng nhập</a>
               </div>
             {{/if}}
           </div>
@@ -194,8 +201,8 @@
               <div class="header__navbar-user" style="display: none">
                 <div class="header__navbar-user-info">
                   <div style="position: inherit">
-                    <img src="./assets/images/user-default.jpg" alt="avatar user" class="header__navbar-user-img" />
-                    <img src="./assets/images/user_premium.png" alt="logo" class="header__navbar__user-premium" />
+                    <img src="/assets/images/user-default.jpg" alt="avatar user" class="header__navbar-user-img" />
+                    <img src="/assets/images/user_premium.png" alt="logo" class="header__navbar__user-premium" />
                   </div>
                   <span class="header__navbar-user-name">Vũ Văn Thái</span>
                 </div>
@@ -215,7 +222,7 @@
                 </ul>
               </div>
               <div class="header__navbar-premium">
-                <a href="./register_premium.html"><img src="./assets/images/premium.png" alt="premium icon"
+                <a href="./register_premium.html"><img src="/assets/images/premium.png" alt="premium icon"
                     class="header__navbar-premium-icon" /></a>
               </div>
               <ul class="header__navbar-list" id="action-find">
@@ -296,7 +303,7 @@
                 <ul class="header__action-notify-list">
                   <li>
                     <a href="#" class="header__action-notify-item">
-                      <img src="./assets/images/user-default.jpg" alt="notify icon"
+                      <img src="/assets/images/user-default.jpg" alt="notify icon"
                         class="header__action-notify-item-icon" />
                       <div class="header__action-notify-item-box">
                         <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -308,7 +315,7 @@
                   </li>
                   <li>
                     <a href="#" class="header__action-notify-item">
-                      <img src="./assets/images/user-default.jpg" alt="notify icon"
+                      <img src="/assets/images/user-default.jpg" alt="notify icon"
                         class="header__action-notify-item-icon" />
                       <div class="header__action-notify-item-box">
                         <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -320,7 +327,7 @@
                   </li>
                   <li>
                     <a href="#" class="header__action-notify-item">
-                      <img src="./assets/images/user-default.jpg" alt="notify icon"
+                      <img src="/assets/images/user-default.jpg" alt="notify icon"
                         class="header__action-notify-item-icon" />
                       <div class="header__action-notify-item-box">
                         <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -332,7 +339,7 @@
                   </li>
                   <li>
                     <a href="#" class="header__action-notify-item">
-                      <img src="./assets/images/user-default.jpg" alt="notify icon"
+                      <img src="/assets/images/user-default.jpg" alt="notify icon"
                         class="header__action-notify-item-icon" />
                       <div class="header__action-notify-item-box">
                         <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -411,7 +418,7 @@
       <div class="container-fluid"
         style="padding-bottom: 100px; max-width: 1100px; padding-top: 20px; margin-top: 20px;">
         <div class="row">
-          <div class="col"><img class="footer__logo" src="./assets/images/logo.png" alt="Logo"
+          <div class="col"><img class="footer__logo" src="/assets/images/logo.png" alt="Logo"
               style="width: 230px;margin-top: -10px;"></div>
           <div class="col d-flex justify-content-end">
             <h5 style="display: inline; padding: 5px 5px 0 0; font-size: 15px;">Theo dõi báo trên </h5>
@@ -487,8 +494,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
       integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
       crossorigin="anonymous"></script>
-    <script src="./assets/js/index.js"></script>
-    <script src="./assets/js/homepage.js"></script>
+    <script src="/assets/js/index.js"></script>
+    <script src="/assets/js/homepage.js"></script>
 </body>
 
 </html>
