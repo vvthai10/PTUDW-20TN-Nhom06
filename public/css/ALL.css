@@ -182,6 +182,23 @@ li.is-selected {
   background-color: cornflowerblue;
 }
 
+li.sidenav__link.is-selected {
+  background-color: cornflowerblue;
+}
+
+li.sidenav__sublink.is-selected a {
+  color:dodgerblue;
+}
+
+li.sidenav__sublink {
+  background-color: rgb(225, 225, 225);
+  padding-left: 15px;
+}
+
+#article-manage-table, #tag-manage-table, #user-manage-1-table, #user-manage-2-table, #user-manage-3-table, #category-manage-2-table {
+  display: none;
+}
+
 .btn_compose {
   position: fixed;
   bottom: 20px;
@@ -193,9 +210,9 @@ li.is-selected {
   padding: 5px 10px;
 }
 
-/* .main {
+.main {
   padding: 5px 5px 0 10px;
-} */
+}
 
 .search-container {
   margin-top: 5px;
