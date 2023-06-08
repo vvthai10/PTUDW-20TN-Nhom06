@@ -1,4 +1,5 @@
 "use strict";
+require("dotenv").config();
 
 const express = require("express");
 const app = express();
@@ -7,7 +8,7 @@ const session = require("express-session");
 const redisStore = require("connect-redis").default;
 const { createClient } = require("redis");
 const redisClient = createClient({
-  url: "rediss://red-ci0a8b5269v79rkk0omg:s53THOzSQAhhsMt7RTVtsMiDk9unM1NZ@oregon-redis.render.com:6379",
+  url: "rediss://red-chnjea1mbg5577m1q35g:p15ZnlHbFQuJBaCbEcqcZUTjC1WvaQRG@oregon-redis.render.com:6379",
 });
 redisClient.connect().catch(console.error);
 const passport = require("./controllers/passport");
@@ -75,6 +76,7 @@ app.use("/editor", require("./routes/editorRouter"));
 app.use("/writer", require("./routes/writerRouter"));
 app.use("/", require("./routes/indexRouter"));
 app.use("/users", require("./routes/authRouter"));
+app.use("/users", require("./routes/usersRouter"));
 
 app.use((req, res, next) => {
   res.status(404).render("error", { message: "File not Found!" });

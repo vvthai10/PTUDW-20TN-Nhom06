@@ -99,6 +99,7 @@ module.exports = {
     ];
     data.forEach((item) => {
       item.slug = slugify(item.name, { lower: true, strict: true });
+      item.avatar = "default.jpg";
       item.createdAt = Sequelize.literal("NOW()");
       item.updatedAt = Sequelize.literal("NOW()");
     });

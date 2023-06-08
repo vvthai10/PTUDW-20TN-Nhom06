@@ -18,8 +18,8 @@
         placeholder="Mật khẩu"
         name="password"
         required
-        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-        title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+        {{! pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" }}
       />
     </div>
     <div class="form__action">
@@ -27,9 +27,9 @@
         <input type="checkbox" name="keepSignedIn" id="keepsignin" />
         <label for="keepsignin">Duy trì đăng nhập</label>
       </div>
-      <a href="/forgot" class="form__forgot-password">Quên mật khẩu</a>
+      <a href="/users/forgot" class="form__forgot-password">Quên mật khẩu</a>
     </div>
-
+    <input type="hidden" name="reqUrl" value="{{reqUrl}}" />
     <button type="submit" class="form__btn" id="btn_login">Đăng nhập</button>
   </form>
 
@@ -47,6 +47,6 @@
     <i class="bi bi-apple apple"></i>
   </div>
   <span class="form__sign-in-up-signin">Chưa có tài khoản?<a
-      href="/register"
+      href="/users/register"
     >Đăng kí tài khoản</a></span>
 </div>
