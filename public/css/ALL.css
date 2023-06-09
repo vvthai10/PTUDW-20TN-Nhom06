@@ -71,6 +71,13 @@ html {
   display: flex;
 }
 
+.header__user-icon {
+  border-radius: 50%;
+  height: 40px;
+  object-fit: cover;
+  width: 40px;
+}
+
 .header__user-info-icon {
   border-radius: 50%;
   height: 40px;
