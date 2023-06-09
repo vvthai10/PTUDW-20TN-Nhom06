@@ -226,6 +226,10 @@ li.sidenav__sublink {
   margin-top: 5px;
 }
 
+.search-container button {
+  height: 2rem;
+}
+
 .maincol label {
   font-size: 1.2rem;
   font-weight: 600;

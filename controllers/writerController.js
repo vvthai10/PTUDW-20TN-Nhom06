@@ -11,7 +11,7 @@ controller.showHomepage = async (req, res) => {
   res.locals.header_note = "WRITER";
 
   let user = (!req.user) ? -1 : req.user.id;
-  let status = req.query.status;
+  let status = ['posted', 'approved', 'pending', 'rejected', 'draft'].includes(req.query.status) ? req.query.status : null;
   let subcategory = req.query.subcategory;
   let keyword = req.query.keyword || '';
   let options = {
