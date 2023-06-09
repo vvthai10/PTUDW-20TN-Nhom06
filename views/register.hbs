@@ -1,13 +1,23 @@
 <div class="form__container">
   <span class="form__name">Đăng ký</span>
-  <form action="#" method="post">
+  <form action="/users/register" method="post" id="formRegister">
     <div class="form__input-box">
       <input
         type="text"
         class="form__input"
-        placeholder="Số điện thoại/Email"
-        name="username"
+        placeholder="Họ và tên"
+        name="name"
         required
+      />
+    </div>
+    <div class="form__input-box">
+      <input
+        type="text"
+        class="form__input"
+        placeholder="Email"
+        name="email"
+        required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
       />
     </div>
     <div class="form__input-box">
@@ -17,6 +27,9 @@
         placeholder="Mật khẩu"
         name="password"
         required
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+        onchange="checkPasswordConfirm('formRegister')"
       />
     </div>
     <div class="form__input-box">
@@ -24,13 +37,20 @@
         type="password"
         class="form__input"
         placeholder="Xác nhận mật khẩu"
-        name="password_repeat"
+        name="confirmPassword"
         required
+        onkeyup="checkPasswordConfirm('formRegister')"
       />
     </div>
-
+    <input type="hidden" name="reqUrl" value="{{reqUrl}}" />
     <button type="submit" class="form__btn">Đăng ký</button>
   </form>
+
+  {{#if registerMessage}}
+    <div class="col md-12">
+      <div class="p-3 mt-3 alert alert-warning">{{{registerMessage}}}</div>
+    </div>
+  {{/if}}
 
   <span class="form__sign-in-up-another-title">Đăng ký bằng các tài khoản sau</span>
   <div class="form__sign-in-up-another-btn">
@@ -38,6 +58,7 @@
     <i class="bi bi-facebook facebook"></i>
     <i class="bi bi-apple apple"></i>
   </div>
-  <span class="form__sign-in-up-signin">Đã có tài khoản?<a href="/login">Đăng
-      nhập tài khoản</a></span>
+  <span class="form__sign-in-up-signin">Đã có tài khoản?<a
+      href="/users/login"
+    >Đăng nhập tài khoản</a></span>
 </div>

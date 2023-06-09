@@ -65,6 +65,7 @@
                     <path
                       d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
                   </svg>
+                  <!--Thông báo-->
                   <div class="header__action-notify-box">
                     <header>
                       <h6 class="header__action-notify-title">Thông báo</h6>
@@ -119,27 +120,44 @@
                       </li>
                     </ul>
                   </div>
+                  <!--Thông báo-->
                 </div>
                 {{#with userInfo}}
                 <div class="header__user">
-                  <img src="/assets/images/user-default.jpg" alt="user default" class="header__user-icon" />
+                  <img src="/assets/images/{{avatar}}" alt="user default" class="header__user-icon" />
                   <div class="header__user-box">
                     <div class="header__user-info">
                       <header>
                         <div style="position: relative">
-                          <img src="/assets/images/user-default.jpg" alt="user default" class="header__user-info-icon" />
-                          <img src="/assets/images/user_premium.png" alt="logo" class="header__user-premium" />
+                          <img src="/assets/images/{{avatar}}" alt="user default" class="header__user-info-icon" />
+                          {{#ifEquals role "admin"}}
+                            <img src="/assets/images/user_premium.png" alt="logo" class="header__user-premium" />
+                          {{/ifEquals}}
+                          {{#ifEquals role "premium"}}
+                            <img src="/assets/images/user_premium.png" alt="logo" class="header__user-premium" />
+                          {{/ifEquals}}
                         </div>
-                        <div class="header__user-name">{{email}}</div>
+                        <div class="header__user-name">{{name}}</div>
                       </header>
                       <ul class="header__user-list">
                         {{#ifEquals role "admin"}}
                         <li class="header__user-item">
-                          <a href="./user_page_info.html">Trang quản lý</a>
+                          <a href="/admin">Quản trị viên</a>
+                        </li>
+                        {{/ifEquals}}
+                        {{#ifEquals role "editor"}}
+                        <li class="header__user-item">
+                          <a href="/editor">Biên tập viên</a>
+                        </li>
+                        {{/ifEquals}}
+                        {{#ifEquals role "writer"}}
+                        <li class="header__user-item">
+                          <a href="/writer">Phóng viên</a>
                         </li>
                         {{/ifEquals}}
                         <li class="header__user-item">
-                          <a href="./user_page_info.html">Trang cá nhân</a>
+                          {{!-- <a href="/users/{{slug}}">Trang cá nhân</a> --}}
+                          <a href="/users/account">Trang cá nhân</a>
                         </li>
                         <li class="header__user-item">
                           <a href="/users/logout">Đăng xuất</a>
@@ -496,6 +514,7 @@
       crossorigin="anonymous"></script>
     <script src="/assets/js/index.js"></script>
     <script src="/assets/js/homepage.js"></script>
+    <script src="/assets/js/helper.js"></script>
 </body>
 
 </html>
