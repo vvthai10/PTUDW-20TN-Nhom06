@@ -32,8 +32,9 @@
                     <img class="header__logo" src="/assets/images/logo2.png" alt="Logo">
                     <p class="header__note">{{header_note}} INTERFACE</p>
                 </div>
+                {{#with userInfo}}
                 <div class="col-md-4 col-sm-3 col-xs-2 d-flex justify-content-end mt-3">
-                    <div href="#" class="header__user__name">Vũ Văn Thái
+                    <div href="#" class="header__user__name">{{name}}
                         <img class="header__user__avatar" src="/assets/images/avatar.png" alt="avatar">
                         <div class="header__user-box">
                             <div class="header__user-info">
@@ -43,7 +44,7 @@
                                             class="header__user-info-icon" />
                                         <!-- <img src="./assets/images/user_premium.png" alt="logo" class="header__user-premium" /> -->
                                     </div>
-                                    <div class="header__user-name">Vũ Văn Thái</div>
+                                    <div class="header__user-name">{{email}}</div>
                                 </header>
                                 <ul class="header__user-list">
                                     <li class="header__user-item">
@@ -57,6 +58,7 @@
                         </div>
                     </div>
                 </div>
+                {{/with}}
             </div>
             <hr>
         </div>

@@ -202,12 +202,13 @@ li.sidenav__sublink {
 .btn_compose {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  left: 20px;
   background-color: cornflowerblue;
   color: white;
   border-radius: 5px;
   font-size: 1.2rem;
   padding: 5px 10px;
+  z-index: 20;
 }
 
 .main {
