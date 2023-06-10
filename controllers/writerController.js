@@ -36,7 +36,7 @@ controller.showHomepage = async (req, res) => {
     options.where.name = {
       [Op.iLike]: `%${keyword}%`
     }
-}
+  }
 
   let articles = await models.Article.findAll(options);
   res.locals.articles = articles;

@@ -72,6 +72,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/admin", require("./routes/adminRouter"));
 app.use("/editor", require("./routes/editorRouter"));
 app.use("/writer", require("./routes/writerRouter"));
 app.use("/", require("./routes/indexRouter"));

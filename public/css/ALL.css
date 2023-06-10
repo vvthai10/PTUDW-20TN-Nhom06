@@ -335,4 +335,7 @@ li.sidenav__sublink {
   margin-bottom: 10px;
 }
 
+.button-container button {
+  height: 2rem;
+}
 
