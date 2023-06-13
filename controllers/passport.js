@@ -2,9 +2,11 @@
 "use strict";
 
 const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const LocalStrategy = require("passport-local");
 const bcrypt = require("bcrypt");
 const models = require("../models");
+const slugify = require("slugify");
 
 // Hàm được gọi khi xác thực người dùng thành công
 passport.serializeUser((user, done) => {
@@ -44,8 +46,8 @@ passport.use(
           let user = await models.User.findOne({
             where: { email },
           });
-          console.log("Get user");
-          console.log(user);
+          // console.log("Get user");
+          // console.log(user);
           // User không tồn tại
           if (!user) {
             return done(
@@ -104,6 +106,7 @@ passport.use(
           email: email,
           password: bcrypt.hashSync(password, bcrypt.genSaltSync(8)),
           name: req.body.name,
+          slug: slugify(req.body.name, { lower: true, strict: true }),
         });
 
         // Thông báo đk thành công
@@ -118,6 +121,48 @@ passport.use(
       } catch (error) {
         done(error);
       }
+    }
+  )
+);
+
+// Đăng nhập bằng Gmail
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: process.env.GOOGLE_CALLBACK_URL,
+      scope: ["profile", "email"],
+      passReqToCallback: true,
+      prompt: "select_account",
+    },
+    async (request, accessToken, refreshToken, profile, done) => {
+      // console.log(profile);
+      let email = profile.email;
+
+      // Kiểm tra user có gmail chưa
+      let user = await models.User.findOne({
+        where: { email },
+      });
+
+      // Trường hợp chưa có email đk thì tạo user mới luôn --> đăng nhập luôn
+      if (!user) {
+        user = await models.User.create({
+          email: email,
+          name: profile.displayName,
+          slug: slugify(profile.displayName, { lower: true, strict: true }),
+          avatar: profile.picture,
+          googleId: profile.id,
+        });
+      }
+
+      // Trường hợp có user rồi thì lưu thêm google_id
+      if (!user.googleId) {
+        user.googleId = profile.id;
+        await user.save();
+      }
+
+      return done(null, user);
     }
   )
 );

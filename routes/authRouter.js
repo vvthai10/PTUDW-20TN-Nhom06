@@ -4,6 +4,33 @@ const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/authController");
 const { body, getErrorMessage } = require("../controllers/validator");
+const passport = require("../controllers/passport");
+
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+// Auth Callback
+router.get("/google/callback", (req, res, next) => {
+  let reqUrl = req.body.reqUrl ? req.body.reqUrl : "/";
+  passport.authenticate("google", (error, user) => {
+    if (error) {
+      return next(error);
+    }
+    if (!user) {
+      return res.redirect(`/users/login?reqUrl=${reqUrl}`);
+    }
+    req.logIn(user, (error) => {
+      if (error) {
+        return next(error);
+      }
+      // Nếu không có lỗi thì xem thử nó thuộc role nào rổi trả về
+      // req.session.cookie.maxAge = 24 * 60 * 60 * 1000;
+      return res.redirect(reqUrl);
+    });
+  })(req, res, next);
+});
 
 router.get("/login", controller.showLogin);
 router.post(

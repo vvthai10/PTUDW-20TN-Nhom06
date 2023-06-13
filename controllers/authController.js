@@ -103,7 +103,7 @@ controller.forgotPassword = async (req, res) => {
         return res.render("forgot-password", { done: true });
       })
       .catch((error) => {
-        console.log(error.statusCode);
+        // console.log(error.statusCode);
         return res.render("forgot-password", {
           message:
             "An error has occured when sending to your email. Please check your email address!",
@@ -133,6 +133,10 @@ controller.resetPassword = async (req, res) => {
 
   await models.User.update({ password }, { where: { email } });
   res.render("reset-password", { done: true });
+};
+
+controller.loginByGoogle = async (req, res, next) => {
+  passport.authenticate("google");
 };
 
 module.exports = controller;

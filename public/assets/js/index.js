@@ -7,7 +7,6 @@ function HandleShowHideNavbarHeader() {
   const divNavbar = document.querySelector(".header__navbar");
   const divNavbarBox = document.querySelector(".header__navbar-box");
   btnNavbar.addEventListener("click", () => {
-    console.log("click");
     divNavbarBox.classList.remove("slide-out-left");
     divNavbar.classList.remove("transform-out");
     divNavbarBox.classList.add("slide-in-left");

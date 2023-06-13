@@ -113,6 +113,7 @@
   font-size: 24px;
   margin: 5px 30px;
   color: #545454;
+  cursor: pointer;
 }
 
 .form__sign-in-up-another-btn .google:hover {

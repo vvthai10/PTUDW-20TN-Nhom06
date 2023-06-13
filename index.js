@@ -68,7 +68,7 @@ app.use((req, res, next) => {
   if (res.locals.isLoggedIn) {
     res.locals.userInfo = req.user.dataValues;
   }
-  console.log(res.locals.userInfo);
+  // console.log(res.locals.userInfo);
   next();
 });
 
