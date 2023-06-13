@@ -6,12 +6,25 @@
 .box__premium-preview {
   display: flex;
   flex-direction: column;
+  margin: 20px 0;
 }
 
 .box__premium-register {
   background-color: rgb(246, 246, 240);
   border-radius: 10px;
-  width: 600px;
+  width: 950px;
   position: relative;
   padding: 5px 20px;
+  padding-bottom: 30px;
+}
+
+.register_premium_btn {
+  border-color: #ec8c25;
+  color: #ec8c25;
+}
+
+.register_premium_btn:hover {
+  border-color: #fff !important;
+  background: #ec8c25 !important;
+  color: #fff;
 }

@@ -99,8 +99,8 @@
 
 .header__premium {
   position: relative;
-  padding-right: 10px;
-  min-width: 200px;
+  margin-right: 10px;
+  min-width: 150px;
   display: flex;
   flex: 1;
   align-items: center;
