@@ -13,7 +13,7 @@ const redisClient = createClient({
 redisClient.connect().catch(console.error);
 const passport = require("./controllers/passport");
 const flash = require("connect-flash");
-const { ifEquals } = require("./controllers/handlebarsHelper");
+const { ifEquals, formatTime } = require("./controllers/handlebarsHelper");
 const port = process.env.PORT || 5000;
 
 // config public static
@@ -31,7 +31,7 @@ app.engine(
       allowProtoPropertiesByDefault: true,
     },
     helpers: {
-      ifEquals,
+      ifEquals, formatTime,
     },
   })
 );
@@ -72,6 +72,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/admin", require("./routes/adminRouter"));
 app.use("/editor", require("./routes/editorRouter"));
 app.use("/writer", require("./routes/writerRouter"));
 app.use("/", require("./routes/indexRouter"));

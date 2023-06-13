@@ -3,15 +3,17 @@
     <div class="row g-0">
       <div class="col-sm-3 col-md-2 sidenav">
         <ul>
-          <li class="sidenav__link is-selected" id="category-manage"><a href="#">Quản lý chuyên mục</a></li>
-          <li class="sidenav__sublink is-selected" id="category-manage-1"><a href="#">Chuyên mục cấp 1</a></li>
-          <li class="sidenav__sublink " id="category-manage-2"><a href="#">Chuyên mục cấp 2</a></li>
-          <li class="sidenav__link" id="tag-manage"><a href="#">Quản lý nhãn</a></li>
-          <li class="sidenav__link" id="article-manage"><a href="#">Quản lý bài viết</a></li>
-          <li class="sidenav__link" id="user-manage"><a href="#">Quản lý người dùng</a></li>
-          <li class="sidenav__sublink " id="user-manage-1"><a href="#">Phóng viên</a></li>
-          <li class="sidenav__sublink " id="user-manage-2"><a href="#">Biên tập viên</a></li>
-          <li class="sidenav__sublink " id="user-manage-3"><a href="#">Người dùng</a></li>
+          <li class="sidenav__link is-selected" id="category-manage"><a href="/admin">Quản lý chuyên mục</a></li>
+          <li class="sidenav__sublink is-selected" id="category-manage-1"><a href="/admin?type=category-manage-1">Chuyên
+              mục cấp 1</a></li>
+          <li class="sidenav__sublink " id="category-manage-2"><a href="/admin?type=category-manage-2">Chuyên mục cấp
+              2</a></li>
+          <li class="sidenav__link" id="tag-manage"><a href="/admin?type=tag-manage">Quản lý nhãn</a></li>
+          <li class="sidenav__link" id="article-manage"><a href="/admin?type=article-manage">Quản lý bài viết</a></li>
+          <li class="sidenav__link" id="user-manage"><a href="/admin?type=user-manage-1">Quản lý người dùng</a></li>
+          <li class="sidenav__sublink " id="user-manage-1"><a href="/admin?type=user-manage-1">Phóng viên</a></li>
+          <li class="sidenav__sublink " id="user-manage-2"><a href="/admin?type=user-manage-2">Biên tập viên</a></li>
+          <li class="sidenav__sublink " id="user-manage-3"><a href="/admin?type=user-manage-3">Người dùng</a></li>
         </ul>
       </div>
 
@@ -22,10 +24,11 @@
           </div>
         </div>
         <div class="row">
-          <div class="col">
+          <div class="col" style="height: 39px;">
             <div class="search-container float-start" style="margin: 5px 0;">
               <form action="">
-                <input type="text" placeholder="Search.." name="search">
+                <input type="hidden" name="type" value="{{type}}">
+                <input type="text" placeholder="Search.." name="keyword" value="{{keyword}}">
                 <button type="submit"><i class="bi bi-search"></i></button>
               </form>
             </div>
@@ -131,25 +134,28 @@
             <div class="manage-table" id="article-manage-table">
               <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="all-topic-tab" data-bs-toggle="tab"
-                    data-bs-target="#all-topic-content" type="button" role="tab" aria-controls="all"
-                    aria-selected="true">Tất cả</button>
+                  <a href="{{originalUrl}}">
+                    <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all"
+                      type="button" role="tab" aria-controls="all" aria-selected="true">Tất cả</button>
+                  </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="agriculture-topic-tab" data-bs-toggle="tab"
-                    data-bs-target="#agriculture-topic-content" type="button" role="tab" aria-controls="agriculture"
-                    aria-selected="true">Nông sản</button>
+                  <a href="{{originalUrl}}&subcategory=1">
+                    <button class="nav-link" id="tab-1" data-bs-toggle="tab" data-bs-target="#agriculture" type="button"
+                      role="tab" aria-controls="agriculture" aria-selected="true">Nông sản</button>
+                  </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="seafood-topic-tab" data-bs-toggle="tab"
-                    data-bs-target="#seafood-topic-content" type="button" role="tab" aria-controls="seafood"
-                    aria-selected="true">Hải sản</button>
+                  <a href="{{originalUrl}}&subcategory=2">
+                    <button class="nav-link" id="tab-2" data-bs-toggle="tab" data-bs-target="#seafood" type="button"
+                      role="tab" aria-controls="seafood" aria-selected="true">Hải sản</button>
+                  </a>
                 </li>
               </ul>
 
               <div class="tab-content">
                 <div class="tab-pane active" id="world-topic-content" role="tabpanel" aria-labelledby="agriculture">
-                  <table table-striped border-success data-toggle="table" data-url="data1.json">
+                  <table table-striped border-success data-toggle="table">
                     <thead>
                       <tr>
                         <th data-radio="true"></th>
@@ -160,12 +166,20 @@
                         <th data-field="comment">Nhận xét</th>
                       </tr>
                     </thead>
+                    <tbody>
+                      {{#each articles}}
+                      <tr>
+                        <td></td>
+                        <td>{{name}}</td>
+                        <td>{{formatTime updatedAt "DD.MM.YYYY HH:mm"}}</td>
+                        <td>{{status}}</td>
+                        <td>{{editor.name}}</td>
+                        <td>{{reviewComment}}</td>
+                      </tr>
+                      {{/each}}
+                    </tbody>
                   </table>
                 </div>
-                <div class="tab-pane" id="economy-topic-content" role="tabpanel" aria-labelledby="seafood"> Economy
-                </div>
-                <div class="tab-pane" id="sports-topic-content" role="tabpanel" aria-labelledby="sports-topic-tab">
-                  Sports </div>
               </div>
             </div>
             <!-- Quản lý chuyên mục -->
@@ -182,6 +196,19 @@
                     <th data-field="numOfComment">Tổng số bình luận</th>
                   </tr>
                 </thead>
+                <tbody>
+                  {{#each categories}}
+                  <tr>
+                    <td></td>
+                    <td>{{id}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.subcategoryCount}}</td>
+                    <td>{{SubCategories.articleCountBySubCat}}</td>
+                    <td>{{SubCategories.nViewCountBySubCat}}</td>
+                    <td>{{SubCategories.nCommentCountBySubCat}}</td>
+                  </tr>
+                  {{/each}}
+                </tbody>
               </table>
             </div>
             <div class="manage-table" id="category-manage-2-table">
@@ -197,6 +224,19 @@
                     <th data-field="numOfComment">Tổng số bình luận</th>
                   </tr>
                 </thead>
+                <tbody>
+                  {{#each subcategories}}
+                  <tr>
+                    <td></td>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{Category.name}}</td>
+                    <td>{{nArticle}}</td>
+                    <td>{{nViewTotal}}</td>
+                    <td>{{nCommentTotal}}</td>
+                  </tr>
+                  {{/each}}
+                </tbody>
               </table>
             </div>
             <!-- Quản lý nhãn -->
@@ -212,6 +252,18 @@
                     <th data-field="numOfComment">Tổng số bình luận</th>
                   </tr>
                 </thead>
+                <tbody>
+                  {{#each tags}}
+                  <tr>
+                    <td></td>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{nArticle}}</td>
+                    <td>{{nViewTotal}}</td>
+                    <td>{{nCommentTotal}}</td>
+                  </tr>
+                  {{/each}}
+                </tbody>
               </table>
             </div>
             <!-- Quản lý người dùng -->
@@ -268,3 +320,51 @@
 </main>
 
 <script src="/js/admin.js"></script>
+<script>
+  function checkStatus() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const type = urlParams.get('type');
+    const subcat = urlParams.get('subcategory');
+    if (type) {
+      // Xoa cac section mac dinh
+      document.querySelectorAll("li.is-selected").forEach((item) => {
+        item.classList.remove("is-selected");
+      });
+      // Xoa table mac dinh, chon table 
+      document.querySelectorAll(".manage-table").forEach((table) => {
+        table.style.display = "none";
+      })
+      document.querySelector('#' + type + '-table').style.display = "block";
+      // Tim section va chon
+      item = document.querySelector(`li#${type}`);
+      item.classList.add("is-selected");
+      // Neu la section con thi chon them section cha
+      if (type[type.length - 1] >= '0' && type[type.length - 1] <= '9') {
+        item = document.querySelector(`li#${type.slice(0, -2)}`);
+        item.classList.add("is-selected");
+      }
+      // Sua body title
+      document.querySelector(".main h3").innerText = item.firstChild.innerText;
+    }
+    if (subcat && parseInt(subcat) > 0) {
+      document.querySelector(".nav-link.active").classList.remove("active");
+      tab = `.nav-link#tab-${parseInt(subcat)}`;
+      //<!-- Tam thoi, sua sau -->
+      switch (parseInt(subcat)) {
+        case 1:
+          tab = ".nav-link#tab-1";
+          break;
+        case 2:
+          tab = ".nav-link#tab-2";
+          break;
+        default:
+          tab = ".nav-link#all-tab";
+      }
+      document.querySelector(tab).classList.add("active");
+    }
+  }
+  window.addEventListener('hashchange', checkStatus);
+  window.addEventListener('popstate', checkStatus);
+  checkStatus();
+</script>

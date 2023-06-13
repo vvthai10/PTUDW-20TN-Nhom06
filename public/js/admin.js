@@ -28,14 +28,16 @@ $$("li.sidenav__link").forEach((item)=>{
 
 $$("li.sidenav__sublink").forEach((item)=>{
     item.addEventListener("click", ()=> {
-        $$("li.sidenav__sublink.is-selected").forEach((li)=>{
+        // Hiển thị section được chọn
+        $$("li.is-selected").forEach((li)=>{
             li.classList.remove("is-selected");
         })
         item.classList.add("is-selected");
+        $('#'+item.id.slice(0, -2)).classList.add("is-selected"); 
+        // Hiển thị bảng
         $$(".manage-table").forEach((table) => {
             table.style.display = "none";
-        })
-    
+        })    
         $('#'+item.id+'-table').style.display="block";
     })    
 });   

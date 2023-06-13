@@ -71,6 +71,13 @@ html {
   display: flex;
 }
 
+.header__user-icon {
+  border-radius: 50%;
+  height: 40px;
+  object-fit: cover;
+  width: 40px;
+}
+
 .header__user-info-icon {
   border-radius: 50%;
   height: 40px;
@@ -202,12 +209,13 @@ li.sidenav__sublink {
 .btn_compose {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  left: 20px;
   background-color: cornflowerblue;
   color: white;
   border-radius: 5px;
   font-size: 1.2rem;
   padding: 5px 10px;
+  z-index: 20;
 }
 
 .main {
@@ -216,6 +224,10 @@ li.sidenav__sublink {
 
 .search-container {
   margin-top: 5px;
+}
+
+.search-container button {
+  height: 2rem;
 }
 
 .maincol label {
@@ -323,4 +335,7 @@ li.sidenav__sublink {
   margin-bottom: 10px;
 }
 
+.button-container button {
+  height: 2rem;
+}
 

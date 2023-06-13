@@ -1,15 +1,16 @@
 <main class="main_manage">
-  <button class="btn_compose"><a href="writer_compose.html" style="text-decoration: none; color: white;">SOẠN THẢO <i
+  <button class="btn_compose"><a href="/writer/compose" style="text-decoration: none; color: white;">SOẠN THẢO <i
         class="bi bi-pen"></i></a></button>
   <div class="container-fluid">
     <div class="row g-0">
       <div class="col-sm-3 col-md-2 sidenav">
         <ul class="sidenav__list">
-          <li class="sidenav__link is-selected"><a href="#">Tất cả bài viết</a></li>
-          <li class="sidenav__link"><a href="#">Đã duyệt & chờ xuất bản</a></li>
-          <li class="sidenav__link"><a href="#">Chờ duyệt</a></li>
-          <li class="sidenav__link"><a href="#">Bị từ chối</a></li>
-          <li class="sidenav__link"><a href="#">Bản thảo</a></li>
+          <li class="sidenav__link is-selected"><a href="/writer">Tất cả bài viết</a></li>
+          <li class="sidenav__link" id="posted"><a href="/writer?status=posted">Đã đăng</a></li>
+          <li class="sidenav__link" id="approved"><a href="/writer?status=approved">Đã duyệt & chờ đăng</a></li>
+          <li class="sidenav__link" id="pending"><a href="/writer?status=pending">Chờ duyệt</a></li>
+          <li class="sidenav__link" id="rejected"><a href="/writer?status=rejected">Bị từ chối</a></li>
+          <li class="sidenav__link" id="draft"><a href="/writer?status=draft">Bản thảo</a></li>
         </ul>
       </div>
 
@@ -20,8 +21,9 @@
           </div>
           <div class="col d-flex justify-content-end">
             <div class="search-container">
-              <form action="">
-                <input type="text" placeholder="Search.." name="search">
+              <form action="" method="GET">
+                <input type="hidden" name="status" value="{{status}}">
+                <input type="text" placeholder="Search.." name="keyword" value="{{keyword}}">
                 <button type="submit"><i class="bi bi-search"></i></button>
               </form>
             </div>
@@ -33,26 +35,32 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="all-topic-tab" data-bs-toggle="tab"
-                  data-bs-target="#all-topic-content" type="button" role="tab" aria-controls="all"
-                  aria-selected="true">Tất cả</button>
+                <a href="{{originalUrl}}">
+                  <button class="nav-link active" id="all-tab" data-bs-toggle="tab"
+                    data-bs-target="#all" type="button" role="tab" aria-controls="all"
+                    aria-selected="true">Tất cả</button>
+                </a>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="agriculture-topic-tab" data-bs-toggle="tab"
-                  data-bs-target="#agriculture-topic-content" type="button" role="tab" aria-controls="agriculture"
-                  aria-selected="true">Nông sản</button>
+                <a href="{{originalUrl}}&subcategory=1">
+                  <button class="nav-link" id="tab-1" data-bs-toggle="tab"
+                    data-bs-target="#agriculture" type="button" role="tab" aria-controls="agriculture"
+                    aria-selected="true">Nông sản</button>
+                </a>
               </li>
               <li class="nav-item" role="presentation">
-                <button class="nav-link" id="seafood-topic-tab" data-bs-toggle="tab"
-                  data-bs-target="#seafood-topic-content" type="button" role="tab" aria-controls="seafood"
-                  aria-selected="true">Hải sản</button>
+                <a href="{{originalUrl}}&subcategory=2">
+                  <button class="nav-link" id="tab-2" data-bs-toggle="tab"
+                    data-bs-target="#seafood" type="button" role="tab" aria-controls="seafood"
+                    aria-selected="true">Hải sản</button>
+                </a>
               </li>
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content">
-              <div class="tab-pane active" id="world-topic-content" role="tabpanel" aria-labelledby="agriculture">
-                <table table-striped border-success data-toggle="table" data-url="data1.json">
+              <div class="tab-pane active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                <table table-striped border-success data-toggle="table">
                   <thead>
                     <tr>
                       <th data-field="title">Tiêu đề</th>
@@ -62,13 +70,23 @@
                       <th data-field="comment">Nhận xét</th>
                     </tr>
                   </thead>
-                  <tbody></tbody>
+                  <tbody>
+                    {{#each articles}}
+                    <tr>
+                      <td>{{name}}</td>
+                      <td>{{formatTime updatedAt "DD.MM.YYYY HH:mm"}}</td>
+                      <td>{{status}}</td>
+                      <td>{{editor.name}}</td>
+                      <td>{{reviewComment}}</td>
+                    </tr>
+                    {{/each}}
+                  </tbody>
                 </table>
               </div>
-              <div class="tab-pane" id="economy-topic-content" role="tabpanel" aria-labelledby="seafood"> Economy
+              {{!-- <div class="tab-pane" id="agriculture" role="tabpanel" aria-labelledby="agriculture-tab"> Nông nghiệp
               </div>
-              <div class="tab-pane" id="sports-topic-content" role="tabpanel" aria-labelledby="sports-topic-tab">
-                Sports </div>
+              <div class="tab-pane" id="seafood" role="tabpanel" aria-labelledby="seafood-tab"> Ngư nghiệp
+              </div> --}}
             </div>
           </div>
         </div>
@@ -78,3 +96,36 @@
 </main>
 
 <script src="/js/writer.js"></script>
+<script>
+  function checkStatus() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const stat = urlParams.get('status');
+    const subcat = urlParams.get('subcategory');
+    if (stat) {
+        document.querySelector("li.is-selected").classList.remove("is-selected");
+        item =  document.querySelector(`li#${stat}`);
+        item.classList.add("is-selected");
+        document.querySelector(".main h3").innerText = item.firstChild.innerText;
+    }
+    if (subcat && parseInt(subcat) > 0) {
+      document.querySelector(".nav-link.active").classList.remove("active");
+      tab = `.nav-link#tab-${parseInt(subcat)}`;
+      //<!-- Tam thoi, sua sau -->
+      switch (parseInt(subcat)) {
+        case 1:
+          tab = ".nav-link#tab-1";
+          break;
+        case 2:
+          tab = ".nav-link#tab-2";
+          break;
+        default:
+          tab = ".nav-link#all-tab";
+      }
+      document.querySelector(tab).classList.add("active");
+    }
+  }
+  window.addEventListener('hashchange', checkStatus);
+  window.addEventListener('popstate', checkStatus);
+  checkStatus();
+</script>
