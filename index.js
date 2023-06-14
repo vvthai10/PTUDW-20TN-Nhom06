@@ -8,7 +8,7 @@ const session = require("express-session");
 const redisStore = require("connect-redis").default;
 const { createClient } = require("redis");
 const redisClient = createClient({
-  url: "rediss://red-chnjea1mbg5577m1q35g:p15ZnlHbFQuJBaCbEcqcZUTjC1WvaQRG@oregon-redis.render.com:6379",
+  url: "rediss://red-chu6hp5269vccp2pogt0:FYWZoKcd0Dyol1iqAzNqIohic1r9nTpD@oregon-redis.render.com:6379",
 });
 redisClient.connect().catch(console.error);
 const passport = require("./controllers/passport");

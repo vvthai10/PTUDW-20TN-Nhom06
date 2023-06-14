@@ -18,6 +18,10 @@ router.use(controller.getCategories);
 // routes
 router.get("/", controller.showHomepage);
 
+router.get("/search", controller.search);
+
 router.get("/:page", controller.showPage);
+
+router.get("/tag")
 
 module.exports = router;
