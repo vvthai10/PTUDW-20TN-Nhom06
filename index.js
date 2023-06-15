@@ -13,6 +13,7 @@ const redisClient = createClient({
 redisClient.connect().catch(console.error);
 const passport = require("./controllers/passport");
 const flash = require("connect-flash");
+const bodyParser = require("body-parser");
 const { ifEquals, formatTime } = require("./controllers/handlebarsHelper");
 const port = process.env.PORT || 5000;
 
@@ -31,7 +32,8 @@ app.engine(
       allowProtoPropertiesByDefault: true,
     },
     helpers: {
-      ifEquals, formatTime,
+      ifEquals,
+      formatTime,
     },
   })
 );
@@ -40,6 +42,9 @@ app.set("view engine", "hbs");
 // config get data from POST body
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Cấu hình sử dụng session
 app.use(
@@ -72,12 +77,26 @@ app.use((req, res, next) => {
   next();
 });
 
+app.post("/ipn", (req, res) => {
+  // Lấy dữ liệu từ IPN
+  const ipnData = req.body;
+  console.log(ipnData);
+
+  // Xử lý dữ liệu IPN
+  // TODO: Thực hiện xử lý dữ liệu IPN tại đây
+
+  // Phản hồi cho người gửi IPN
+  res.set("Content-Type", "application/json");
+  res.sendStatus(204);
+});
+
 app.use("/admin", require("./routes/adminRouter"));
 app.use("/editor", require("./routes/editorRouter"));
 app.use("/writer", require("./routes/writerRouter"));
 app.use("/", require("./routes/indexRouter"));
 app.use("/users", require("./routes/authRouter"));
 app.use("/users", require("./routes/usersRouter"));
+app.use("/premium", require("./routes/premiumRouter"));
 
 app.use((req, res, next) => {
   res.status(404).render("error", { message: "File not Found!" });
