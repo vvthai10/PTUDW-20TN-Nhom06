@@ -80,7 +80,7 @@ module.exports = (sequelize, DataTypes) => {
       nViewWeek: DataTypes.INTEGER,
       nViewMonth: DataTypes.INTEGER,
       approve: DataTypes.DATE,
-      reviewComment: DataTypes.TEXT,
+      reviewComment: DataTypes.TEXT
     },
     {
       sequelize,

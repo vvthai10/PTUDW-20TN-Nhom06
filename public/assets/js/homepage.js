@@ -155,4 +155,4 @@ function updateLocalHotNews() {
   document.getElementById("content__news__left").innerHTML = html;
 }
 
-updateLocalHotNews();
+// updateLocalHotNews();

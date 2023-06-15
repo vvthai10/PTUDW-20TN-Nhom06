@@ -29,8 +29,8 @@
 
 .header__search-bar {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
 
   border: 2px solid #e8e8e8;
   border-radius: 20px;
@@ -51,7 +51,9 @@
   outline: none;
   padding: 0 4px;
   font-size: 1.4rem;
+  width: 350px;
 }
+
 .header__search-icon {
   background-color: #fff;
   background-image: url(https://fullstack.edu.vn/static/media/search.9bd3926522ea0937310c.svg);
@@ -251,8 +253,8 @@
   flex-direction: column;
 }
 
-.header__action-notify-item-title {
-}
+/* .header__action-notify-item-title {
+} */
 
 .header__action-notify-item-time {
   color: var(--primary-color);
@@ -296,8 +298,9 @@
   content: "";
 }
 
-.header__user-info {
-}
+/* .header__user-info {
+} */
+
 .header__user-info header {
   align-items: center;
   display: flex;
@@ -326,8 +329,8 @@
   margin-right: 5px;
 }
 
-.header__user-list {
-}
+/* .header__user-list {
+} */
 
 .header__user-item {
   color: #666;
@@ -401,8 +404,8 @@
   }
 }
 
-.header__tablet {
-}
+/* .header__tablet {
+} */
 
 .header__navbar {
   background-color: rgba(0, 0, 0, 0.3);
