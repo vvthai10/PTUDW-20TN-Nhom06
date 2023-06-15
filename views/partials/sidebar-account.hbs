@@ -1,0 +1,21 @@
+<div class="user__sidebar">
+  {{#with userInfo}}
+    <img src="/assets/images/{{avatar}}" alt="logo user" class="user-image" />
+    <span class="user-name">{{name}}</span>
+  {{/with}}
+  <ul class="list__item">
+    <li class="item" {{#if info}}id="item__active"{{/if}}>
+      <a href="/users/account?view=info">Thông tin tài khoản</a>
+    </li>
+    <li class="item" {{#if password}}id="item__active"{{/if}}>
+      <a href="/users/account?view=password">Đổi mật khẩu</a>
+    </li>
+    <li class="item" {{#if activities}}id="item__active"{{/if}}>
+      <a href="/users/account?view=activities">Lịch sử hoạt động</a>
+    </li>
+    <li class="item" {{#if payment}}id="item__active"{{/if}}>
+      <a href="/users/account?view=payment">Quản lý chi tiêu</a>
+    </li>
+    <li class="item"><a href="/users/logout">Đăng xuất</a></li>
+  </ul>
+</div>

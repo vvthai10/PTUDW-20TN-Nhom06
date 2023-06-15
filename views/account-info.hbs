@@ -1,0 +1,58 @@
+<!--MAIN-->
+<div
+  style="
+            display: flex;
+            width: 100%;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+          "
+>
+  <div class="box__user_pages">
+    <div class="row">
+      <div class="col-4">
+        {{> sidebar-account}}
+      </div>
+      <div class="col-8">
+        <div class="user__info">
+          <span class="title">Thông tin tài khoản
+            <hr />
+          </span>
+          <form action="#" method="post">
+            <div class="row">
+              {{#with userInfo}}
+                <div class="box__info_left col-6">
+                  <label for="user-name" class="title__input">Tên tài khoản</label>
+                  <input type="text" id="user-name" value="{{name}}" style="width: 100%" />
+                  <label for="user-birth" class="title__input">Ngày sinh</label>
+                  <input type="text" id="user-birth" value="14/7/2002" style="width: 100%" />
+                  <label for="user-email" class="title__input">Email</label>
+                  <input type="email" id="user-email" value="{{email}}" style="width: 100%" />
+                  <label for="user-address" class="title__input">Địa chỉ</label>
+                  <input type="text" id="user-address" value="" style="width: 100%" />
+                </div>
+                <div class="box__info_right col-6">
+                  <div class="box__sex">
+                    <span class="title__input">Giới tính:</span>
+                    <div class="list">
+                      <input type="radio" id="male" name="sex" value="male" />
+                      <label for="male">Nam</label><br />
+                      <input type="radio" id="female" name="sex" value="female" />
+                      <label for="female">Nữ</label><br />
+                      <input type="radio" id="different" name="sex" value="diff" />
+                      <label for="different">Khác</label><br /><br />
+                    </div>
+                  </div>
+                  <label for="user-phone" class="title__input">Số điện thoại</label>
+                  <input type="text" id="user-phone" value="0123456789" style="width: 100%" />
+                  <input type="button" value="Lưu thay đổi" class="button" />
+                </div>
+              {{/with}}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--MAIN-->
