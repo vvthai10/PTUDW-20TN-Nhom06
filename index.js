@@ -8,7 +8,7 @@ const session = require("express-session");
 const redisStore = require("connect-redis").default;
 const { createClient } = require("redis");
 const redisClient = createClient({
-  url: "rediss://red-chu6hp5269vccp2pogt0:FYWZoKcd0Dyol1iqAzNqIohic1r9nTpD@oregon-redis.render.com:6379",
+  url: process.env.REDIS_URL,
 });
 redisClient.connect().catch(console.error);
 const passport = require("./controllers/passport");
@@ -75,19 +75,6 @@ app.use((req, res, next) => {
   }
   // console.log(res.locals.userInfo);
   next();
-});
-
-app.post("/ipn", (req, res) => {
-  // Lấy dữ liệu từ IPN
-  const ipnData = req.body;
-  console.log(ipnData);
-
-  // Xử lý dữ liệu IPN
-  // TODO: Thực hiện xử lý dữ liệu IPN tại đây
-
-  // Phản hồi cho người gửi IPN
-  res.set("Content-Type", "application/json");
-  res.sendStatus(204);
 });
 
 app.use("/admin", require("./routes/adminRouter"));

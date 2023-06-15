@@ -4,6 +4,8 @@ const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const authController = require("../controllers/authController");
+const models = require("../models");
+const { type } = require("os");
 
 router.get("/", (req, res) => {
   res.render("premium");
@@ -32,6 +34,10 @@ router.get("/register", (req, res) => {
 
   amount = "1000";
 
+  const protocol = req.protocol;
+  const host = req.get("host");
+  const baseUrl = `${protocol}://${host}`;
+
   //https://developers.momo.vn/#/docs/en/aiov2/?id=payment-method
   //parameters
   var partnerCode = "MOMO";
@@ -39,8 +45,8 @@ router.get("/register", (req, res) => {
   var secretkey = "K951B6PE1waDMi640xX08PD3vg6EkVlz";
   var requestId = partnerCode + new Date().getTime();
   var orderId = requestId;
-  var redirectUrl = "http://localhost:5000/premium/thanks";
-  var ipnUrl = "http://localhost:5000/ipn";
+  var redirectUrl = `${baseUrl}/premium/thanks`;
+  var ipnUrl = `${baseUrl}/premium/thanks`;
   // var ipnUrl = redirectUrl = "https://webhook.site/454e7b77-f177-4ece-8236-ddf1c26ba7f8";
 
   var requestType = "captureWallet";
@@ -150,29 +156,34 @@ router.get("/register", (req, res) => {
   request.end();
 });
 
-router.get("/thanks", (req, res) => {
-  console.log(req.query);
-
+router.get("/thanks", async (req, res) => {
   if (req.query.message == "Successful.") {
     let data = JSON.parse(
       Buffer.from(req.query.extraData, "base64").toString()
     );
     console.log(data);
+    let date = new Date(data.date);
+
+    let premium = await models.Payment.create({
+      amount: req.query.amount,
+      userId: parseInt(data.id),
+      // type: parseInt(type),
+      // registerDate: `${date}`,
+    });
+
+    console.log(premium);
+
     res.render("thanks");
   }
 });
 
-router.post("/thank", (req, res) => {
-  console.log("Phương thức post nè");
-  console.log(req.body);
-  res.sendStatus(204);
-
+router.post("/thanks", async (req, res) => {
   if (req.query.message == "Successful.") {
-    let data = JSON.parse(
-      Buffer.from(req.query.extraData, "base64").toString()
-    );
-    console.log(data);
-    res.render("thanks");
+    const ipnData = req.body;
+    alert(ipnData);
+    console.log(ipnData);
+    res.set("Content-Type", "application/json");
+    res.sendStatus(204);
   }
 });
 
