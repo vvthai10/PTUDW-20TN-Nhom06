@@ -3,6 +3,7 @@
 const controller = {};
 const models = require('../models');
 const sequelize = require('sequelize');
+const slugify = require("slugify");
 const Op = sequelize.Op;
 
 
@@ -57,11 +58,63 @@ controller.showEditPage = (req, res) => {
   res.render("writer_edit", { layout: "layout_simple.hbs" });
 };
 
-controller.showComposePage = (req, res) => {
+controller.showComposePage = async (req, res) => {
   res.locals.header_title = "Writer";
   res.locals.header_note = "WRITER";
+  let cat1 = await models.Category.findAll({
+    attributes: ['id', 'name'],
+    raw: true,
+    nest: true,
+  });
+  res.locals.cat1 = cat1;
+  let cat2 = await models.SubCategory.findAll({
+    attributes: ['id', 'name', 'categoryId'],
+    raw: true,
+    nest: true,
+  });
+  res.locals.cat2 = cat2;
+  let tags = await models.Tag.findAll({
+    attributes: ['id', 'name'],
+    raw: true,
+    nest: true,
+  });
+  res.locals.tags = tags;
+  console.log(cat1);
+  console.log(cat2);
+  console.log(tags);
   res.render("writer_compose", { layout: "layout_simple.hbs" });
 };
+
+controller.newArticle = async (req, res, next) => {
+  let userId = (!req.user) ? null : req.user.id;
+  try {
+    let article = await models.Article.create({
+      name: req.body.name,
+      slug: slugify(req.body.name, { lower: true, strict: true }),
+      status: req.body.status,
+      imgCover: req.body.imgCover,
+      description: req.body.description,
+      content: req.body.content,
+      authorId: userId,
+      nLike: 0, nComment: 0, nView: 0, nViewWeek: 0, nViewMonth: 0,
+    });
+
+    let subcat = await models.SubCategory.findOne({ where: {id: parseInt(req.body.subcategory)}});
+    if (subcat) {
+      try {await article.addSubCategory(subcat);} 
+      catch(e) {console.log(e);}
+    }
+    let tags = await models.Tag.findAll({ where: {name: { [Op.in]: req.body.tags.split(", ") } }});
+    if (tags) {
+      try {await article.addTags(tags);} 
+      catch(e) {console.log(e);}
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  res.redirect("/writer");
+  // Chưa có message
+}
 
 function removeParam(key, sourceURL) {
   var rtn = sourceURL.split("?")[0],

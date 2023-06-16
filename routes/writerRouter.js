@@ -9,4 +9,6 @@ router.get("/", controller.showHomepage);
 router.get("/compose", controller.showComposePage);
 router.get("/edit", controller.showEditPage);
 
+router.post("/compose", controller.newArticle);
+
 module.exports = router;

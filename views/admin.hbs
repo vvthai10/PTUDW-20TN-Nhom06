@@ -279,6 +279,18 @@
                     <th data-field="numOfArticle">Tổng số bài viết</th>
                   </tr>
                 </thead>
+                <tbody>
+                  {{#each writers}}
+                  <tr>
+                    <td></td>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{email}}</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  {{/each}}
+                </tbody>
               </table>
             </div>
             <div class="manage-table" id="user-manage-2-table">
@@ -293,6 +305,18 @@
                     <th data-field="numOfArticle">Tổng số bài viết</th>
                   </tr>
                 </thead>
+                <tbody>
+                  {{#each editors}}
+                  <tr>
+                    <td></td>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{email}}</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  {{/each}}
+                </tbody>
               </table>
             </div>
             <div class="manage-table" id="user-manage-3-table">
@@ -308,6 +332,19 @@
                     <th data-field="numOfComment">Số lượt bình luận</th>
                   </tr>
                 </thead>
+                <tbody>
+                  {{#each readers}}
+                  <tr>
+                    <td></td>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{email}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  {{/each}}
+                </tbody>
               </table>
             </div>
           </div>

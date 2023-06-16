@@ -37,36 +37,38 @@
             </div>
 
             <div class="col-3 sidecol">
+                <label for="input_post_avatar">Ảnh đại diện bài viết</label>
+                <input id="input_post_avatar" type="file" accept="image/*"  />
+                Ảnh hiện tại: <a href="">imageABC.png</a> <br/>
                 <form id="form1">
-                    <label for="input_post_avatar">Ảnh đại diện bài viết</label>
-                    <input id="input_post_avatar" type="file" accept="image/*" value="imageABC.png" />
+                    <input id="input_post_avatar_link" type="text" hidden/>
                     <!-- <img id="blah" src="#" alt="your image" /> -->
 
                     <label for="input_cat1">Chuyên mục cấp 1</label><br />
                     <select class="category_l1" id="input_cat1">
-                        <option value="">Kinh doanh </option>
+                        {{#each cat1}}
+                        <option value="{{id}}">{{name}}</option>
+                        {{/each}}
                     </select><br />
 
                     <label for="input_cat2">Chuyên mục cấp 2</label><br />
                     <select class="category_l2" id="input_cat2">
-                        <option value="">Nông sản </option>
-                        <option value="">Hải sản </option>
+                        {{#each cat2}}
+                        <option value="{{id}}" category="{{categoryId}}" class="cat2">{{name}}</option>
+                        {{/each}}
                     </select><br />
 
                     <label for="input_tags">Danh sách nhãn</label>
 
                     <label id="input_tags" style="font-size: 1rem; margin: 0;">
-                        <input mbsc-input id="demo-multiple-select-input" placeHolder="Please review and re-select ..."
+                        <input mbsc-input id="demo-multiple-select-input" placeholder="Please select..."
                             data-dropdown="true" data-input-style="outline" data-label-style="stacked"
                             data-tags="true" />
                     </label>
                     <select id="demo-multiple-select" multiple>
-                        <option value="1">Hạn hán 2023</option>
-                        <option value="2">Nhiễm mặn đất trồng</option>
-                        <option value="3">Ô nhiễm nguồn nước</option>
-                        <option value="4" selected>Vụ lúa hè-thu</option>
-                        <option value="5" selected>Xuất khẩu nông sản</option>
-                        <option value="6">Xuất khẩu hải sản</option>
+                        {{#each tags}}
+                        <option value="{{id}}">{{name}}</option>
+                        {{/each}}
                     </select>
                 </form>
 

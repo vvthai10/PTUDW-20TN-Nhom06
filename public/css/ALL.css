@@ -255,12 +255,14 @@ li.sidenav__sublink {
   margin-top: 5px;
 }
 
-#form1 select, #form1 input {
+.sidecol select, .sidecol input, #input_post_avatar {
   border: 1px solid lightgray;
   border-radius: 7px;
   padding: 9px;
   width: 100%;
 }
+
+ 
 
 /* submit buttons for writer edit and editor censor*/
 
