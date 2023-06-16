@@ -9,13 +9,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
   <!-- Bootstrap CSS v5.2.1 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  {{!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" /> --}}
+  
   <script src="https://kit.fontawesome.com/aff46f9455.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/fontawesome.css"
     integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@650&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/assets/css/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="/assets/css/index.css" />
 </head>
 
@@ -76,7 +80,7 @@
                     <ul class="header__action-notify-list">
                       <li>
                         <a href="#" class="header__action-notify-item">
-                          <img src="/assets/images/user-default.jpg" alt="notify icon"
+                          <img src="/assets/images/default.jpg " alt="notify icon"
                             class="header__action-notify-item-icon" />
                           <div class="header__action-notify-item-box">
                             <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -87,7 +91,7 @@
                       </li>
                       <li>
                         <a href="#" class="header__action-notify-item">
-                          <img src="/assets/images/user-default.jpg" alt="notify icon"
+                          <img src="/assets/images/default.jpg " alt="notify icon"
                             class="header__action-notify-item-icon" />
                           <div class="header__action-notify-item-box">
                             <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -98,7 +102,7 @@
                       </li>
                       <li>
                         <a href="#" class="header__action-notify-item">
-                          <img src="/assets/images/user-default.jpg" alt="notify icon"
+                          <img src="/assets/images/default.jpg " alt="notify icon"
                             class="header__action-notify-item-icon" />
                           <div class="header__action-notify-item-box">
                             <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -109,7 +113,7 @@
                       </li>
                       <li>
                         <a href="#" class="header__action-notify-item">
-                          <img src="/assets/images/user-default.jpg" alt="notify icon"
+                          <img src="/assets/images/default.jpg " alt="notify icon"
                             class="header__action-notify-item-icon" />
                           <div class="header__action-notify-item-box">
                             <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -157,7 +161,7 @@
                         {{/ifEquals}}
                         <li class="header__user-item">
                           {{!-- <a href="/users/{{slug}}">Trang cá nhân</a> --}}
-                          <a href="/users/account">Trang cá nhân</a>
+                          <a href="/users/account?view=info">Trang cá nhân</a>
                         </li>
                         <li class="header__user-item">
                           <a href="/users/logout">Đăng xuất</a>
@@ -219,7 +223,7 @@
               <div class="header__navbar-user" style="display: none">
                 <div class="header__navbar-user-info">
                   <div style="position: inherit">
-                    <img src="/assets/images/user-default.jpg" alt="avatar user" class="header__navbar-user-img" />
+                    <img src="/assets/images/default.jpg " alt="avatar user" class="header__navbar-user-img" />
                     <img src="/assets/images/user_premium.png" alt="logo" class="header__navbar__user-premium" />
                   </div>
                   <span class="header__navbar-user-name">Vũ Văn Thái</span>
@@ -321,7 +325,7 @@
                 <ul class="header__action-notify-list">
                   <li>
                     <a href="#" class="header__action-notify-item">
-                      <img src="/assets/images/user-default.jpg" alt="notify icon"
+                      <img src="/assets/images/default.jpg " alt="notify icon"
                         class="header__action-notify-item-icon" />
                       <div class="header__action-notify-item-box">
                         <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -333,7 +337,7 @@
                   </li>
                   <li>
                     <a href="#" class="header__action-notify-item">
-                      <img src="/assets/images/user-default.jpg" alt="notify icon"
+                      <img src="/assets/images/default.jpg " alt="notify icon"
                         class="header__action-notify-item-icon" />
                       <div class="header__action-notify-item-box">
                         <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -345,7 +349,7 @@
                   </li>
                   <li>
                     <a href="#" class="header__action-notify-item">
-                      <img src="/assets/images/user-default.jpg" alt="notify icon"
+                      <img src="/assets/images/default.jpg " alt="notify icon"
                         class="header__action-notify-item-icon" />
                       <div class="header__action-notify-item-box">
                         <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
@@ -357,7 +361,7 @@
                   </li>
                   <li>
                     <a href="#" class="header__action-notify-item">
-                      <img src="/assets/images/user-default.jpg" alt="notify icon"
+                      <img src="/assets/images/default.jpg " alt="notify icon"
                         class="header__action-notify-item-icon" />
                       <div class="header__action-notify-item-box">
                         <span class="header__action-notify-item-title">Bình luận của Nguyễn Văn A trong bài viết mới
