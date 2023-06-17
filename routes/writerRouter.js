@@ -10,5 +10,6 @@ router.get("/compose", controller.showComposePage);
 router.get("/edit", controller.showEditPage);
 
 router.post("/compose", controller.newArticle);
+router.post("/edit", controller.saveEdit);
 
 module.exports = router;

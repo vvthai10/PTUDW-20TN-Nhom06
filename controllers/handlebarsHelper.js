@@ -12,4 +12,8 @@ helper.formatTime = (date, format) => {
   return mmnt.format(format);
 };
 
+helper.select = (a, b, string) => {
+  return a == b ? string : null;
+};
+
 module.exports = helper;

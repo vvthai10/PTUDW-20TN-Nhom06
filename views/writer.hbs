@@ -72,8 +72,8 @@
                   </thead>
                   <tbody>
                     {{#each articles}}
-                    <tr>
-                      <td>{{name}}</td>
+                    <tr class="table-row-clickable" data-status="{{status}}" data-ID="{{id}}">
+                      <td><a href="/writer/edit?id={{id}}" style="text-decoration: none;">{{name}}</a></td>
                       <td>{{formatTime updatedAt "DD.MM.YYYY HH:mm"}}</td>
                       <td>{{status}}</td>
                       <td>{{editor.name}}</td>
@@ -96,36 +96,3 @@
 </main>
 
 <script src="/js/writer.js"></script>
-<script>
-  function checkStatus() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const stat = urlParams.get('status');
-    const subcat = urlParams.get('subcategory');
-    if (stat) {
-        document.querySelector("li.is-selected").classList.remove("is-selected");
-        item =  document.querySelector(`li#${stat}`);
-        item.classList.add("is-selected");
-        document.querySelector(".main h3").innerText = item.firstChild.innerText;
-    }
-    if (subcat && parseInt(subcat) > 0) {
-      document.querySelector(".nav-link.active").classList.remove("active");
-      tab = `.nav-link#tab-${parseInt(subcat)}`;
-      //<!-- Tam thoi, sua sau -->
-      switch (parseInt(subcat)) {
-        case 1:
-          tab = ".nav-link#tab-1";
-          break;
-        case 2:
-          tab = ".nav-link#tab-2";
-          break;
-        default:
-          tab = ".nav-link#all-tab";
-      }
-      document.querySelector(tab).classList.add("active");
-    }
-  }
-  window.addEventListener('hashchange', checkStatus);
-  window.addEventListener('popstate', checkStatus);
-  checkStatus();
-</script>

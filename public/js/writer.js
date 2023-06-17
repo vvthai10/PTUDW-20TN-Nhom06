@@ -9,14 +9,59 @@ $$("li.sidenav__link").forEach((item) => {
     })
 });
 
-$("table").addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log("view article");
-    console.log(e.target.parentNode);
-    location.href = 'writer_edit.html';
-});
+// $("table").addEventListener("click", (e) => {
+//     e.preventDefault();
+//     console.log("view article");
+//     console.log(e.target.parentNode);
+//     location.href = 'writer_edit.html';
+// });
 
+function checkStatus() {
+    // Check UI dựa vào query
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const stat = urlParams.get('status');
+    const subcat = urlParams.get('subcategory');
+    if (stat) {
+        document.querySelector("li.is-selected").classList.remove("is-selected");
+        item =  document.querySelector(`li#${stat}`);
+        item.classList.add("is-selected");
+        document.querySelector(".main h3").innerText = item.firstChild.innerText;
+    }
+    if (subcat && parseInt(subcat) > 0) {
+      document.querySelector(".nav-link.active").classList.remove("active");
+      tab = `.nav-link#tab-${parseInt(subcat)}`;
+      //<!-- Tam thoi, sua sau -->
+      switch (parseInt(subcat)) {
+        case 1:
+          tab = ".nav-link#tab-1";
+          break;
+        case 2:
+          tab = ".nav-link#tab-2";
+          break;
+        default:
+          tab = ".nav-link#all-tab";
+      }
+      document.querySelector(tab).classList.add("active");
+    }
 
+    // Check link table rows
+    document.querySelectorAll("tr").forEach((item) => {
+        if (['posted', 'approved', 'pending',].includes(item.getAttribute("data-status"))) {
+            let link = item.firstElementChild.firstElementChild;
+            link.setAttribute('disabled', true);
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+            });
+            link.style.pointerEvents = 'none';
+            link.style.color = 'black';
+        }
+    });
+
+  }
+  window.addEventListener('hashchange', checkStatus);
+  window.addEventListener('popstate', checkStatus);
+  checkStatus();
 
 
 

@@ -206,6 +206,10 @@ li.sidenav__sublink {
   display: none;
 }
 
+.table-row-clickable {
+  cursor: pointer;
+}
+
 .btn_compose {
   position: fixed;
   bottom: 20px;

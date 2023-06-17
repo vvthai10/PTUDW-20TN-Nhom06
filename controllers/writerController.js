@@ -52,12 +52,6 @@ controller.showHomepage = async (req, res) => {
   res.render("writer", { layout: "layout_simple.hbs" });
 };
 
-controller.showEditPage = (req, res) => {
-  res.locals.header_title = "Writer";
-  res.locals.header_note = "WRITER";
-  res.render("writer_edit", { layout: "layout_simple.hbs" });
-};
-
 controller.showComposePage = async (req, res) => {
   res.locals.header_title = "Writer";
   res.locals.header_note = "WRITER";
@@ -79,9 +73,6 @@ controller.showComposePage = async (req, res) => {
     nest: true,
   });
   res.locals.tags = tags;
-  console.log(cat1);
-  console.log(cat2);
-  console.log(tags);
   res.render("writer_compose", { layout: "layout_simple.hbs" });
 };
 
@@ -106,6 +97,102 @@ controller.newArticle = async (req, res, next) => {
     }
     let tags = await models.Tag.findAll({ where: {name: { [Op.in]: req.body.tags.split(", ") } }});
     if (tags) {
+      try {await article.addTags(tags);} 
+      catch(e) {console.log(e);}
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  res.redirect("/writer");
+  // Chưa có message
+}
+
+controller.showEditPage = async (req, res) => {
+  res.locals.header_title = "Writer";
+  res.locals.header_note = "WRITER";
+
+  // Co user va article id
+  let id = req.query.id;
+  let user = (!req.user) ? null : req.user.id;  
+  if (!user) {
+    return res.redirect("/");
+  }
+  else if (!id) {
+    return res.redirect("/writer");
+  }
+
+  let article = await models.Article.findOne({
+    where: {id}, 
+    include: [{
+      model: models.SubCategory,
+      attributes: ['id', 'name', 'categoryId'],
+      through: { attributes: [] },
+    }, {
+      model: models.Tag,
+      attributes: ['id', 'name'],
+      through: { attributes: [] },
+    }],
+    raw: true,
+    nest: true,
+  });  
+  // console.log(article);
+  // Article phai co id va status hop le
+  if (article.authorId != user || ['posted', 'approved', 'pending'].includes(article.status)) {
+    return res.redirect("/writer");
+  }
+  else { // Show edit page
+    res.locals.article = article;
+    let cat1 = await models.Category.findAll({
+      attributes: ['id', 'name'],
+      raw: true,
+      nest: true,
+    });
+    res.locals.cat1 = cat1;
+    let cat2 = await models.SubCategory.findAll({
+      attributes: ['id', 'name', 'categoryId'],
+      raw: true,
+      nest: true,
+    });
+    res.locals.cat2 = cat2;
+    let tags = await models.Tag.findAll({
+      attributes: ['id', 'name'],
+      raw: true,
+      nest: true,
+    });
+    res.locals.tags = tags;
+    res.render("writer_edit", { layout: "layout_simple.hbs" });
+  }  
+};
+
+controller.saveEdit = async (req, res) => {
+  console.log(req.body);
+  let user = (!req.user) ? null : req.user.id;
+  let article = await models.Article.findOne({ 
+    where: {id: parseInt(req.body.id)},
+  });
+  console.log(article);
+  if (article.authorId != user || ['posted', 'approved', 'pending'].includes(article.status)) {
+    return res.redirect("/writer");
+  }
+  console.log("Pass");
+  try {
+    article.name =  req.body.name;
+    article.slug = slugify(req.body.name, { lower: true, strict: true });
+    article.status = req.body.status;
+    article.imgCover = req.body.imgCover;
+    article.description = req.body.description;
+    article.content = req.body.content;
+    await article.save();
+
+    let subcat = await models.SubCategory.findOne({ where: {id: parseInt(req.body.subcategory)}});
+    if (subcat) {
+      article.setSubCategories(null);
+      try {await article.addSubCategory(subcat);} 
+      catch(e) {console.log(e);}
+    }
+    let tags = await models.Tag.findAll({ where: {name: { [Op.in]: req.body.tags.split(", ") } }});
+    if (tags) {
+      article.setTags(null);
       try {await article.addTags(tags);} 
       catch(e) {console.log(e);}
     }
