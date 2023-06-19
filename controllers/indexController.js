@@ -2,6 +2,9 @@
 const models = require("../models");
 const slugify = require("slugify");
 const controller = {};
+const sequelize = require('sequelize');
+const tagarticle = require("../models/tagarticle");
+const Op = sequelize.Op;
 
 controller.getCategories = async (req, res, next) => {
   const categories = await models.Category.findAll({
@@ -14,9 +17,7 @@ controller.getCategories = async (req, res, next) => {
 };
 
 controller.showHomepage = async (req, res) => {
-  let tags = await models.Tag.findAll({
-    attributes: ['name']
-  });
+  let tags = await models.Tag.findAll();
   // let articles = await models.Article.findAll();
   // let popularArticles = [];
   // for (let index = 0; index < articles.length / 3; index++) {
@@ -50,9 +51,147 @@ controller.showHomepage = async (req, res) => {
 
 controller.showPage = (req, res) => {
   // res.render(req.params.page, { layout: "layout_sample.hbs" });
-  let tag = req.params.page;
+  console.log(req.params.page);
   res.render(req.params.page), { loginMessage: req.flash("loginMessage") };
 };
+
+controller.showCategory = async (req, res) => {
+  let categoryId = req.query.categoryId || 0;
+
+  // get the subCategoryId of categoryId
+  let subCategoryIds = await models.SubCategory.findAll({
+    include: [{
+      model: models.Category,
+      where: {
+        id: categoryId
+      }
+    }]
+  });
+  subCategoryIds = subCategoryIds.map(item => item.id);
+
+  // get the ArticleId of categoryId
+  let categoryArticleIds = await models.Article.findAll({
+    attributes: ['id'],
+    include: [
+      {
+        model: models.SubCategory,
+        where: {
+          id: {
+            [Op.or]: subCategoryIds
+          }
+        }
+      }
+    ]
+  });
+
+  categoryArticleIds = categoryArticleIds.map(item => item.id);
+  
+  // get the list of article with tag
+  let categoryArticles = await models.Article.findAll({
+    where: {
+      id: {
+        [Op.or]: categoryArticleIds
+      }
+    },
+    include: [
+      {
+        model: models.Tag,
+        attributes: ['name']
+      }
+    ]
+  });
+
+  res.locals.categoryArticles = categoryArticles;
+
+  // get the hot news
+  let hotArticles = await models.Article.findAll({
+    where: {
+      id: {
+        [Op.or]: categoryArticleIds
+      }
+    },
+    include: [
+      {
+        model: models.Tag,
+        attributes: ['name']
+      }
+    ],
+    order: [
+      ['nView', 'DESC']
+    ],
+    limit: 3
+  });
+  for (let index = 0; index < hotArticles.length; index++) {
+    const element = hotArticles[index];
+    console.log(element.nView);
+  }
+  res.locals.hotArticles = hotArticles;
+
+  // get the name of category
+  let category = await models.Category.findByPk(categoryId);
+  res.locals.categoryName = category.name;
+
+  // get the name of subCategory
+  let subCategory = await models.SubCategory.findAll({
+    include: [
+      {
+        model: models.Category,
+        where: {
+          id: categoryId
+        }
+      }
+    ]
+  });
+  subCategory = subCategory.map(item => item.name);
+  res.locals.subCategory = subCategory;
+
+  res.render('readCategory');
+}
+
+controller.showTag = async (req, res) => {
+  let tagId = req.query.tagId || 0;
+  let tagArticleIds = await models.TagArticle.findAll({
+    attributes: ['articleId'],
+    where: {tagId: tagId}
+  });
+
+  tagArticleIds = tagArticleIds.map(item => item.articleId);
+  // let tagArticles = await models.Article.findAll({
+  //   where: {
+  //     id : {
+  //       [Op.or]: tagArticleIds
+  //     }
+  //   }
+  // });
+  // let tagId = 1;
+  let tagArticles = await models.TagArticle.findAll({
+    attributes: ['tagId'],
+    where: {articleId: tagArticleIds},
+    include: [
+      {
+        model: models.Article,
+        include: [
+          {
+            model: models.Tag,
+            attributes: ['name']
+          }
+        ]
+      }
+    ]
+  });
+
+  console.log(tagArticles[0].Article.Tags[0].name);
+
+  
+  res.locals.tagArticles = tagArticles;
+  // console.log(tagArticles);
+  let tagName = await models.Tag.findOne({
+    attributes: ['name'],
+    where: {id: tagId}
+  })
+  res.locals.tagName = tagName.name;
+  res.render('tag');
+}
 
 controller.search = async (req, res) => {
   let text_search = req.query.keyword || '';

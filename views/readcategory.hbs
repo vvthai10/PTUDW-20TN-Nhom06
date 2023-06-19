@@ -1,0 +1,181 @@
+<!--SIDE BAR-->
+<div class="col-lg-11 col-md-12 col-sm-12">
+    <h3 style="text-align: center; font-size: 40px;">{{categoryName}}</h3>
+    <hr>
+    <div class="sub-title">
+        {{#each subCategory}}
+        <h4 style="font-size: 20px;">{{this}}</h4>
+        {{/each}}
+        {{!-- <h4 style="font-size: 20px;">Hải sản</h4> --}}
+    </div>
+    <div class="content">
+        <div class="main__new">
+            <div class="card">
+                <img src="assets/images/news/news_search/new_1.png" class="card-img-top card-img-top--extend" alt="...">
+                <div class="card-body">
+                    <div class="tag" style="font-family: serif">
+                        <p class="tag__item">#Ngành nước ngọt thua lỗ</p>
+                    </div>
+                    <h4>Kinh doanh</h4>
+                    <h5 class="card-title">Sự sụt giá ngành nước giải khát kéo theo nhu cầu tăng cao
+                    </h5>
+                    <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
+                    <p style="font-size: 15px;">Với sự lao dốc của ngành nước ngọt, đặc biệt là tập đoàn
+                        Tân Hoàng Phát, dẫn tới việc tăng tỉ lệ người béo phì ở Việt Nam.</p>
+                </div>
+            </div>
+        </div>
+        <div class="list__news__category">
+            {{#each categoryArticles}}
+            <div class="card card__list__news--extend">
+                <img src="{{imgCover}}" class="card-img-top" alt="">
+                <div class="card-body">
+                    {{!-- danh sach tag --}}
+                    {{#each Tags}}
+                    <div class="tag" style="font-family: serif">
+                        <p class="tag__item">#{{name}}</p>
+                    </div>
+                    {{/each}}
+                    {{!-- danh sach category --}}
+                    <h4>Kinh doanh</h4>
+                    <h5 class="card-title">{{name}}
+                    </h5>
+                    <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
+                    <p style="font-size: 15px;">{{description}}</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    <div class="related__news">
+        <h4>Nổi bật</h4>
+        <hr>
+        <div class="container my-3">
+            <div class="card-body">
+                {{!-- <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <img src="assets/images/news/news_search/new_1.png"
+                                class="card-img-top card__img__latest__news" alt="...">
+                            <div class="card-body">
+                                <div class="tag" style="font-family: serif">
+                                    <p class="tag__item">#Nhiều khu doanh nghiệp bỏ hoang</p>
+                                </div>
+                                <h4>Kinh doanh</h4>
+                                <h5 class="card-title">Sự sụt giá ngành nước giải khát kéo theo nhu cầu
+                                    tăng cao
+                                </h5>
+                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
+                                        16-03-23</small></p>
+                                <p style="font-size: 15px;">Với sự lao dốc của ngành nước ngọt, đặc biệt
+                                    là tập đoàn Tân Hoàng Phát, dẫn tới việc tăng tỉ lệ người béo phì ở
+                                    Việt Nam.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="assets/images/news/news_search/new_2.png"
+                                class="card-img-top card__img__latest__news" alt="...">
+                            <div class="card-body">
+                                <div class="tag" style="font-family: serif">
+                                    <p class="tag__item">#Nhiều khu doanh nghiệp bỏ hoang</p>
+                                </div>
+                                <h4>Kinh doanh</h4>
+                                <h5 class="card-title">Việt Nam đang chiếm tỉ lệ nhà cao tầng cao thứ 9
+                                    thế giới?
+                                </h5>
+                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
+                                        16-03-23</small></p>
+                                <p style="font-size: 15px;">Với sự phát triển vượt bậc sau chiến tranh,
+                                    nhiều doanh
+                                    nghiệp xây dựng đã tạo nên thương hiệu và xây dựng nhiều công trình
+                                    ngang tầm
+                                    thế giới.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="assets/images/news/news_search/new_3.png"
+                                class="card-img-top card__img__latest__news" alt="...">
+                            <div class="card-body">
+                                <div class="tag" style="font-family: serif">
+                                    <p class="tag__item">#Doanh nghiệp xe phát triển</p>
+                                </div>
+                                <h4>Kinh doanh</h4>
+                                <h5 class="card-title">Hội chợ xe cho doanh nghiệp trong nước tổ chức
+                                </h5>
+                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
+                                        16-03-23</small></p>
+                                <p style="font-size: 15px;">Với qui mô và tính chuyên nghiệp, hội chợ
+                                    mong muốn đem
+                                    đến một sân chơi mới cho doanh nghiệp nước nhà.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+                <div class="row">
+                {{#each hotArticles}}
+
+                    <div class="col">
+                        <div class="card">
+                            <img src="{{imgCover}}"
+                                class="card-img-top card__img__latest__news" alt="...">
+                            <div class="card-body">
+                                {{#each Tags}}
+                                <div class="tag" style="font-family: serif">
+                                    <p class="tag__item">#{{name}}</p>
+                                </div>
+                                {{/each}}
+                                <h4>Kinh doanh</h4>
+                                <h5 class="card-title">{{name}}</h5>
+                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
+                                        16-03-23</small></p>
+                                <p style="font-size: 15px;">{{description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- <div class="col">
+                        <div class="card">
+                            <img src="assets/images/news/news_search/new_1.png"
+                                class="card-img-top card__img__latest__news" alt="...">
+                            <div class="card-body">
+                                <div class="tag" style="font-family: serif">
+                                    <p class="tag__item">#Doanh nghiệp xe phát triển</p>
+                                </div>
+                                <h4>Kinh doanh</h4>
+                                <h5 class="card-title">Sự béo phì của những 'gã khổng lồ'
+                                </h5>
+                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
+                                        16-03-23</small></p>
+                                <p style="font-size: 15px;">Với nhiều chiêu trò tinh vi, nhiều ông lớn đã sử dụng tiền
+                                    để 'nuốt' chết các doanh nghiệp nhỏ lẻ.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="assets/images/news/news_search/new_2.png"
+                                class="card-img-top card__img__latest__news" alt="...">
+                            <div class="card-body">
+                                <div class="tag" style="font-family: serif">
+                                    <p class="tag__item">#Doanh nghiệp xe phát triển</p>
+                                </div>
+                                <h4>Kinh doanh</h4>
+                                <h5 class="card-title">Trùng tu xây lại nhà thờ ở Hồ Chí Minh
+                                </h5>
+                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
+                                        16-03-23</small></p>
+                                <p style="font-size: 15px;">Sau gần 2 năm với chi phí khoảng 12 tỷ, nhà thờ Đức Bà đã
+                                    được trả lại vẻ đẹp vốn có sau vụ cháy.</p>
+                            </div>
+                        </div>
+                    </div> --}}
+                {{/each}}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

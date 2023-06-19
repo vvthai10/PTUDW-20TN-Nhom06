@@ -20,8 +20,12 @@ router.get("/", controller.showHomepage);
 
 router.get("/search", controller.search);
 
+router.get("/category", controller.showCategory);
+
+router.get("/tag", controller.showTag)
+
 router.get("/:page", controller.showPage);
 
-router.get("/tag")
+// router.get("/tag/:tag", controller.showTag);
 
 module.exports = router;

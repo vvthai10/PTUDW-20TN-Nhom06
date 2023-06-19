@@ -407,7 +407,7 @@
                 </li>
                 {{#each categories}}
                 <li class="sidebar__item-have-child" style="margin: 10px 0">
-                    <a aria-current="page" class="sidebar__item" id="have-list-child" href="articles?category={{this.id}}">
+                    <a aria-current="page" class="sidebar__item" id="have-list-child" href="/category?categoryId={{this.id}}">
                         <img src="/assets/images/icons/{{this.icon}}" alt="{{this.name}}" style="width: 40px; height:40px">
                         <span style="font-size: 12px; font-weight: 500">{{this.name}}</span>
                     </a>
@@ -416,13 +416,13 @@
                         {{#each SubCategories}}
                         <li>
                             <a aria-current="page" class="sidebar__item-child"
-                                href="articles?subCategory={{this.id}}">
+                                href="/subCategory?subCategoryId={{this.id}}">
                                 <span style="font-size: 12px; font-weight: 500">{{name}}</span>
                             </a>
                         </li>
                         {{/each}}
                     </ul>
-                </li>
+                </li> 
                 {{/each}}
               </ul>
             </div>
