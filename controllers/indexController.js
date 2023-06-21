@@ -148,6 +148,13 @@ controller.showCategory = async (req, res) => {
   res.render('readCategory');
 }
 
+controller.showArticle = async (req, res) => {
+  let articleId = parseInt(req.query.articleId);
+  console.log('hello world');
+  console.log(articleId);
+  res.render('readnews');
+}
+
 controller.showTag = async (req, res) => {
   let tagId = req.query.tagId || 0;
   let tagArticleIds = await models.TagArticle.findAll({
@@ -180,7 +187,7 @@ controller.showTag = async (req, res) => {
     ]
   });
 
-  console.log(tagArticles[0].Article.Tags[0].name);
+  // console.log(tagArticles[0].Article.Tags[0].name);
 
   
   res.locals.tagArticles = tagArticles;

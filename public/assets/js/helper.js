@@ -12,3 +12,9 @@ function checkPasswordConfirm(formId) {
     confirmPassword.setCustomValidity("");
   }
 }
+
+function generatePDF(id) {
+  const element = document.getElementById(id);
+  html2pdf().from(element).save();
+  console.log('hello world');
+}
