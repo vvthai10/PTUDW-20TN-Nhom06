@@ -18,7 +18,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (id, done) => {
   try {
     let user = await models.User.findOne({
-      attributes: ["id", "name", "email", "role", "slug", "avatar"],
+      attributes: ["id", "name", "email", "role", "sex", "avatar", "birth"],
       where: { id },
     });
     done(null, user);

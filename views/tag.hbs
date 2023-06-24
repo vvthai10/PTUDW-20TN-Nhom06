@@ -1,21 +1,36 @@
-<div class="col-lg-11 col-md-12 col-sm-12" style="padding: 10px 0 20px 10px;">
-    <h2 style="font-size: 26px;line-height: 26px;margin-bottom: 20px;">{{tagName}}</h2>
-    <ul>
-        {{#each tagArticles}}
-        {{!-- {{#each Article}} --}}
-        <li>
-            {{#with Article}}
-            <a href="readnews.html" style="display: flex; margin: 30px 0; width: 90%;">
-                <img style="border-radius: 5px; width: 300px;"
-                    src="{{imgCover}}" alt="">
-                <div style="    display: flex;
-flex-direction: column; margin-left: 10px;">
-                    <span style="font-size: 24px;
-    font-weight: 500;">{{name}}</span>
-                    <div style="display: flex;
-    justify-content: space-between;">
-                        <!--Category-->
-                        <span style="    padding: 5px;
+<div style="max-width: 1100px;" style="padding: 10px 0 20px 10px;">
+  <h2
+    style="font-size: 26px;line-height: 26px;margin-bottom: 20px;"
+  >{{tagName}}</h2>
+  <ul>
+    {{#each tagArticles}}
+      {{!-- {{#each Article}} --}}
+      <li>
+        {{#with Article}}
+          <a
+            href="readnews.html"
+            style="display: flex; margin: 30px 0; width: 90%;"
+          >
+            <img
+              style="border-radius: 5px; width: 300px;"
+              src="{{imgCover}}"
+              alt=""
+            />
+            <div
+              style="    display: flex;
+flex-direction: column; margin-left: 10px;"
+            >
+              <span
+                style="font-size: 24px;
+    font-weight: 500;"
+              >{{name}}</span>
+              <div
+                style="display: flex;
+    justify-content: space-between;"
+              >
+                <!--Category-->
+                <span
+                  style="    padding: 5px;
     width: 70px;
     text-align: center;
     border-radius: 20px;
@@ -25,11 +40,13 @@ flex-direction: column; margin-left: 10px;">
     font-weight: 400;
     color: white;
     line-height: 100%;
-    margin-left: 10px;">Nông nghiệp</span>
-                        <div>
-                            <!--Related Tags-->
-                            {{#each Tags}}
-                            <span style="float: left;
+    margin-left: 10px;"
+                >Nông nghiệp</span>
+                <div>
+                  <!--Related Tags-->
+                  {{#each Tags}}
+                    <span
+                      style="float: left;
         margin-left: 10px;
         font-family: Arial;
         font-size: 13px;
@@ -38,28 +55,33 @@ flex-direction: column; margin-left: 10px;">
         background-color: #f0f0f0;
         padding: 0 8px 0 12px;
         height: 24px;
-        line-height: 24px;">{{name}}</span>
-                            {{/each}}
-                        </div>
-                    </div>
-                    <span style="font-size: 12px;
-    padding: 5px 0 0 10px;      color: black;">{{createdAt}}</span>
-                    <span style="padding-left: 10px;
-    font-size: 14px; color: black;">{{description}}</span>
+        line-height: 24px;"
+                    >{{name}}</span>
+                  {{/each}}
                 </div>
-            </a>
-            {{/with}}
-        </li>
-        {{/each}}
-    </ul>
-    <div class="pagination" style="display: flex;">
-        <a href="#">&laquo;</a>
-        <a href="#" class="active">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">&raquo;</a>
-    </div>
+              </div>
+              <span
+                style="font-size: 12px;
+    padding: 5px 0 0 10px;      color: black;"
+              >{{createdAt}}</span>
+              <span
+                style="padding-left: 10px;
+    font-size: 14px; color: black;"
+              >{{description}}</span>
+            </div>
+          </a>
+        {{/with}}
+      </li>
+    {{/each}}
+  </ul>
+  <div class="pagination" style="display: flex;">
+    <a href="#">&laquo;</a>
+    <a href="#" class="active">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">&raquo;</a>
+  </div>
 </div>

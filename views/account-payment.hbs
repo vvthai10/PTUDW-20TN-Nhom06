@@ -2,47 +2,38 @@
 <div
   style="
             display: flex;
-            width: 100%;
+            min-width: 1100px;
             align-items: center;
             flex-direction: column;
             justify-content: center;
           "
 >
   <div class="box__user_pages">
-    <div class="row">
-      <div class="col-5">
+    <div class="row" style="min-width: 100%;">
+      <div class="col-4">
         {{> sidebar-account}}
       </div>
-      <div class="col-7">
+      <div class="col-8">
         <div class="user__info">
           <span class="title">Quản lý chi tiêu
             <hr />
           </span>
-          <span>Bạn chưa đăng kí dịch vụ Premium</span>
-          <a
-            href="./register_premium.html"
-            style="font-size: 1.2rem; color: #ea5114"
-          >Trải nghiệp ngay</a>
-          <ul>
-            <li>
-              <a href="#">
-                <span>8h 14/3/2023</span>
-                <span>Bạn vừa mua tài khoản premium</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span>10h 14/1/2023</span>
-                <span>Bạn vừa mua tài khoản premium</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span>14h 14/12/2022</span>
-                <span>Bạn vừa mua tài khoản premium</span>
-              </a>
-            </li>
-          </ul>
+          {{#if expremiums.length}}
+            <ul>
+              {{#each expremiums}}
+                <li style="font-size: 14px; line-height: 26px; border-bottom: 2px solid #3399cc; margin-bottom: 10px;">
+                    <span>{{createdAt}}</span>
+                    <span>Bạn vừa đăng kí premium gói {{#ifEquals type "1"}}trải nghiệm{{/ifEquals}} {{#ifEquals type "2"}}cơ bản{{/ifEquals}} {{#ifEquals type "3"}}cao cấp{{/ifEquals}}</span>
+                </li>
+              {{/each}}
+            </ul>
+          {{else}}
+            <span>Bạn chưa đăng kí dịch vụ Premium</span>
+            <a
+              href="/premium"
+              style="font-size: 1.2rem; color: #ea5114"
+            >Trải nghiệp ngay</a> 
+          {{/if}}
         </div>
       </div>
     </div>

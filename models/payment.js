@@ -15,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
   Payment.init(
     {
       amount: DataTypes.FLOAT,
+      type: {
+        type: DataTypes.ENUM("1", "2", "3"),
+        allowNull: false,
+      },
+      expiredAt: DataTypes.DATE,
     },
     {
       sequelize,

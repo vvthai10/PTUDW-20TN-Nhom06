@@ -60,7 +60,7 @@
                 <span>Đây là chế độ người dùng chuyên biệt, cho phép người dùng
                   có những trải nghiệm tốt hơn cùng với những thông tin chuyên
                   nghiệp hơn.</span>
-                <a href="./premium" class="header__premium-link">Tìm hiểu thêm</a>
+                <a href="/premium" class="header__premium-link">Tìm hiểu thêm</a>
               </div>
             </div>
             {{#if isLoggedIn}}
@@ -80,6 +80,15 @@
                       </p>
                     </header>
                     <ul class="header__action-notify-list">
+                      {{#if notePremium}}
+                      <li>
+                        <a href="#" class="header__action-notify-item note-premium" style="padding-right: 5px; background: rgba(224, 140, 66, 0.8); color: black" >
+                          <div class="header__action-notify-item-box">
+                            <span class="header__action-notify-item-title">Tài khoản bạn còn {{days}} ngày là tài khoản premium. Bạn cần đăng kí để gia hạn tài khoản premium</span>
+                          </div>
+                        </a>
+                      </li>
+                      {{/if}}
                       <li>
                         <a href="#" class="header__action-notify-item">
                           <img src="/assets/images/default.jpg " alt="notify icon"
@@ -438,7 +447,7 @@
 
   <!--FOOTER-->
   <div style="background: #90c5df6b; margin-top: 20px;">
-    <div class="row" style="width: 100%;">
+    <div class="row" style="width: 100%; ">
       <div class="container-fluid"
         style="padding-bottom: 100px; max-width: 1100px; padding-top: 20px; margin-top: 20px;">
         <div class="row">

@@ -4,6 +4,9 @@
     <span class="user-name">{{name}}</span>
   {{/with}}
   <ul class="list__item">
+    {{#if days}}
+      <span style="font-size: 14px; font-weight: 500; color: #dfb242;">Bạn còn {{days}} ngày premium</span>
+    {{/if}}
     <li class="item" {{#if info}}id="item__active"{{/if}}>
       <a href="/users/account?view=info">Thông tin tài khoản</a>
     </li>
