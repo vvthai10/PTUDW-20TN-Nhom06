@@ -135,7 +135,21 @@ controller.showEditPage = async (req, res) => {
     raw: true,
     nest: true,
   });  
-  // console.log(article);
+  //console.log(article);
+  let selectedTags = await models.Tag.findAll({
+    attributes: ['id', 'name'],
+    include: [{
+      model: models.Article,
+      attributes: [],
+      where: {id},
+      through: { attributes: [] },
+    }],
+    raw: true,
+    nest: true,
+  });
+  res.locals.selectedTags = selectedTags;
+  //console.log(selectedTags);
+
   // Article phai co id va status hop le
   if (article.authorId != user || ['posted', 'approved', 'pending'].includes(article.status)) {
     return res.redirect("/writer");
@@ -165,16 +179,15 @@ controller.showEditPage = async (req, res) => {
 };
 
 controller.saveEdit = async (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   let user = (!req.user) ? null : req.user.id;
   let article = await models.Article.findOne({ 
     where: {id: parseInt(req.body.id)},
   });
-  console.log(article);
+  //console.log(article);
   if (article.authorId != user || ['posted', 'approved', 'pending'].includes(article.status)) {
     return res.redirect("/writer");
   }
-  console.log("Pass");
   try {
     article.name =  req.body.name;
     article.slug = slugify(req.body.name, { lower: true, strict: true });
@@ -185,15 +198,17 @@ controller.saveEdit = async (req, res) => {
     await article.save();
 
     let subcat = await models.SubCategory.findOne({ where: {id: parseInt(req.body.subcategory)}});
+    //console.log(subcat);
     if (subcat) {
-      article.setSubCategories(null);
-      try {await article.addSubCategory(subcat);} 
+      try {
+        await article.setSubCategories([subcat]);} 
       catch(e) {console.log(e);}
     }
     let tags = await models.Tag.findAll({ where: {name: { [Op.in]: req.body.tags.split(", ") } }});
+    //console.log(tags);
     if (tags) {
-      article.setTags(null);
-      try {await article.addTags(tags);} 
+      try {
+        article.setTags(tags);}
       catch(e) {console.log(e);}
     }
   } catch (error) {

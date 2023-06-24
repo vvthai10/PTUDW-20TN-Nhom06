@@ -57,7 +57,7 @@
                 </label>
                 <select id="demo-multiple-select" multiple>
                     {{#each ../tags}}
-                    <option value="{{id}}" {{select id ../Tags.id "selected"}}>{{name}}</option>
+                    <option value="{{id}}" {{selectIn id ../../selectedTags "selected"}}>{{name}}</option>
                     {{/each}}
                 </select>
                 {{/with}}

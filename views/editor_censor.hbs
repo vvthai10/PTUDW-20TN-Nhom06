@@ -1,156 +1,71 @@
     <main >
         <div class="container-fluid main">
             <div class="row">
-                <div class="col-9 maincol">
+                {{#with article}}
+                <div class="col-9 maincol">                    
                     <button class="button_back" onclick="history.back()"><i class="bi bi-arrow-left"
                             style="font-size: 25px;"></i></button>
                     <h3 class="body__title">Duyệt bài viết</h3><br />
 
                     <div class="article">
-                        <div class="article__category">KINH DOANH > NÔNG SẢN</div>
-                        <h2 class="article__title" >Thủ tướng đề nghị Mỹ mở cửa hơn nữa cho nông sản Việt Nam</h2>
+                        <div class="article__category">{{SubCategories.Category.name}} > {{SubCategories.name}}</div>
+                        <h2 class="article__title" >{{name}}</h2>
                         <div class="row article__info">
                             <div class="col">
-                                <h6><img class="article__info__author" src="/assets/images/avatar.png" alt="avatar">
-                                    HOÀI THU</h6>
+                                <h6><img class="article__info__author" src="/assets/images/{{author.avatar}}" alt="avatar">
+                                    {{author.name}}</h6>
                             </div>
                             <div class="col d-flex justify-content-end">
-                                <text class="article__info__time">Thứ tư, 15/03/2023 14:30 (GMT+7)</text>
+                                <text class="article__info__time">{{formatTime updatedAt "DD.MM.YYYY HH:mm"}}</text>
                             </div>
                         </div>
-                        <div class="article__summary">
-                            Gặp Bộ trưởng Nông nghiệp Mỹ, Thủ tướng Phạm Minh Chính đề nghị Mỹ mở cửa thị trường hơn nữa
-                            cho các sản phẩm nông sản của Việt Nam, hỗ trợ Việt Nam trong chuyển đổi xanh, thích ứng
-                            biến đổi khí hậu.
-                        </div>
-                        <div class="article__content">
-                            <p>Chiều 19/4, Thủ tướng Phạm Minh Chính tiếp Bộ trưởng Nông nghiệp Mỹ Thomas Vilsack đang
-                                có chuyến thăm và làm việc tại Việt Nam.</p>
-                            <p>Trong tổng thể chính sách đối ngoại, Thủ tướng Phạm Minh Chính khẳng định Việt Nam luôn
-                                coi Mỹ là một trong những đối tác quan trọng hàng đầu; đồng thời mong muốn thúc đẩy quan
-                                hệ Đối tác toàn diện với Mỹ và ủng hộ việc tăng cường quan hệ hữu nghị, hợp tác trong
-                                các lĩnh vực.</p>
-                            <figure class="image align-center" contenteditable="false">
-                                <img style="width: 80%;"
-                                    title="Thủ tướng đề nghị Mỹ mở cửa hơn nữa với nông sản Việt Nam - 1"
-                                    src="https://icdn.dantri.com.vn/thumb_w/680/2023/04/19/thu-tuong-1681912396056.jpeg"
-                                    alt="Thủ tướng đề nghị Mỹ mở cửa hơn nữa với nông sản Việt Nam - 1"
-                                    data-width="2000" data-height="1500"
-                                    data-original="https://icdn.dantri.com.vn/2023/04/19/thu-tuong-1681912396056.jpeg"
-                                    data-photo-id="2431107" data-track-content=""
-                                    data-content-name="article-content-image"
-                                    data-content-piece="article-content-image_2431107"
-                                    data-content-target="/xa-hoi/thu-tuong-de-nghi-my-mo-cua-hon-nua-voi-nong-san-viet-nam-20230419205733008.htm"
-                                    data-src="https://icdn.dantri.com.vn/thumb_w/680/2023/04/19/thu-tuong-1681912396056.jpeg"
-                                    data-srcset="https://icdn.dantri.com.vn/thumb_w/680/2023/04/19/thu-tuong-1681912396056.jpeg 1x, https://icdn.dantri.com.vn/thumb_w/1020/2023/04/19/thu-tuong-1681912396056.jpeg 1.5x, https://icdn.dantri.com.vn/thumb_w/1360/2023/04/19/thu-tuong-1681912396056.jpeg 2x"
-                                    data-ll-status="loaded" class="entered loaded"
-                                    srcset="https://icdn.dantri.com.vn/thumb_w/680/2023/04/19/thu-tuong-1681912396056.jpeg 1x, https://icdn.dantri.com.vn/thumb_w/1020/2023/04/19/thu-tuong-1681912396056.jpeg 1.5x, https://icdn.dantri.com.vn/thumb_w/1360/2023/04/19/thu-tuong-1681912396056.jpeg 2x">
-                                <figcaption>
-                                    <p>Thủ tướng Phạm Minh Chính tiếp Bộ trưởng Nông nghiệp Hoa Kỳ Thomas Vilsack (Ảnh:
-                                        VGP/Nhật Bắc).</p>
-                                </figcaption>
-                            </figure>
-                            <p>Năm 2022, kim ngạch xuất nhập khẩu sản phẩm nông nghiệp hai nước đạt 15,36 tỷ USD, trong
-                                đó Việt Nam xuất khẩu sang Mỹ 13 tỷ USD, Mỹ xuất khẩu sang Việt Nam 2,36 tỷ USD.</p>
-                            <p>Nhấn mạnh nông nghiệp là một trong những lĩnh vực hợp tác quan trọng giữa hai nước, Thủ
-                                tướng Phạm Minh Chính đề nghị phía Mỹ hỗ trợ trong quá trình Việt Nam thúc đẩy ngành
-                                nông nghiệp phát triển nhanh, bền vững, xây dựng nông nghiệp sinh thái, nông thôn hiện
-                                đại, nông dân văn minh.</p>
-                            <p>Bộ Nông nghiệp hai nước tăng cường hợp tác để đa dạng hóa sản phẩm và chuỗi cung ứng, Mỹ
-                                mở cửa thị trường hơn nữa cho các sản phẩm nông sản của Việt Nam và hoàn tất thủ tục mở
-                                cửa thị trường cho nông sản của Việt Nam như dừa, chanh leo… là những đề nghị thiết thực
-                                được người đứng đầu Chính phủ Việt Nam đề cập trong cuộc gặp.</p>
-                            <p>Thủ tướng cũng mong muốn Mỹ hỗ trợ thiết lập cơ sở chiếu xạ ở miền Bắc của Việt Nam để
-                                tạo điều kiện xuất khẩu quả vải, xoài, bưởi và thanh long; hạn chế sử dụng công cụ, hàng
-                                rào kỹ thuật không cần thiết trong thương mại nông sản với Việt Nam.</p>
-                            <p>Đồng thời, hỗ trợ Việt Nam quy hoạch, xây dựng vùng nguyên liệu và đáp ứng các tiêu chuẩn
-                                của Mỹ về an toàn, vệ sinh nông sản; khuyến khích, thúc đẩy doanh nghiệp Mỹ đầu tư mạnh
-                                mẽ, đa dạng hơn nữa vào ngành nông nghiệp tại Việt Nam.</p>
-                            <figure class="image align-center" contenteditable="false">
-                                <img style="width: 80%;"
-                                    title="Thủ tướng đề nghị Mỹ mở cửa hơn nữa với nông sản Việt Nam - 2"
-                                    src="https://icdn.dantri.com.vn/thumb_w/1020/2023/04/19/img8324-16819057031771196709141-1681912444965.jpeg"
-                                    alt="Thủ tướng đề nghị Mỹ mở cửa hơn nữa với nông sản Việt Nam - 2"
-                                    data-width="2000" data-height="1334"
-                                    data-original="https://icdn.dantri.com.vn/2023/04/19/img8324-16819057031771196709141-1681912444965.jpeg"
-                                    data-photo-id="2431111" data-track-content=""
-                                    data-content-name="article-content-image"
-                                    data-content-piece="article-content-image_2431111"
-                                    data-content-target="/xa-hoi/thu-tuong-de-nghi-my-mo-cua-hon-nua-voi-nong-san-viet-nam-20230419205733008.htm"
-                                    data-src="https://icdn.dantri.com.vn/thumb_w/680/2023/04/19/img8324-16819057031771196709141-1681912444965.jpeg"
-                                    data-srcset="https://icdn.dantri.com.vn/thumb_w/680/2023/04/19/img8324-16819057031771196709141-1681912444965.jpeg 1x, https://icdn.dantri.com.vn/thumb_w/1020/2023/04/19/img8324-16819057031771196709141-1681912444965.jpeg 1.5x, https://icdn.dantri.com.vn/thumb_w/1360/2023/04/19/img8324-16819057031771196709141-1681912444965.jpeg 2x">
-                                <figcaption>
-                                    <p>Thủ tướng khẳng định Việt Nam sẵn sàng mở cửa thị trường, tăng cường nhập khẩu
-                                        một số nông sản của Mỹ (Ảnh: VGP/Nhật Bắc).</p>
-                                </figcaption>
-                            </figure>
-                            <p>Về phần mình, Thủ tướng khẳng định Việt Nam sẵn sàng mở cửa thị trường, tăng cường nhập
-                                khẩu một số nông sản của Mỹ.</p>
-                            <p>Thủ tướng cũng đề nghị Bộ Nông nghiệp Mỹ tăng cường hợp tác, hỗ trợ Việt Nam trong chuyển
-                                đổi xanh, thích ứng biến đổi khí hậu, chuyển giao công nghệ và chuyển đổi số nông
-                                nghiệp…</p>
-                            <p>Theo lãnh đạo Chính phủ Việt Nam, việc thúc đẩy hợp tác nông nghiệp hai nước sẽ góp phần
-                                giúp tiêu thụ nông sản, tạo việc làm, sinh kế cho người nông dân, nhất là ở các vùng
-                                sâu, vùng xa, vùng chịu ảnh hưởng nặng nề của hậu quả chiến tranh, và chịu tác động mạnh
-                                của biến đổi khí hậu, đặc biệt là khu vực ĐBSCL. &nbsp;</p>
-                            <p>Qua 3 lần đến Việt Nam, Bộ trưởng Nông nghiệp Mỹ chia sẻ ông đều chứng kiến sự phát triển
-                                mạnh mẽ của Việt Nam cũng như quan hệ hai nước.&nbsp;</p>
-                            <p>Ông Thomas Vilsack khẳng định Mỹ mong muốn tăng cường quan hệ song phương với Việt Nam,
-                                nhất là quan hệ thương mại hai nước. Theo ông, hai bên có thể tiếp tục hợp tác, tham
-                                khảo kinh nghiệm lẫn nhau trong phát triển nông nghiệp, nhất là nông nghiệp thông minh,
-                                ứng phó biến đổi khí hậu.</p>
-                            <p>Bộ trưởng Nông nghiệp Mỹ cho biết sẽ trao đổi, làm việc với cơ quan chức năng hai bên để
-                                thúc đẩy những lĩnh vực, nội dung hợp tác như Thủ tướng Phạm Minh Chính cho ý kiến,
-                                trong đó có việc thiết lập cơ sở chiếu xạ ở miền Bắc của Việt Nam. Theo ông, việc này sẽ
-                                góp phần hỗ trợ nông sản Việt Nam đáp ứng tốt nhất nhu cầu của thị trường Mỹ và các thị
-                                trường khác, mở rộng thị trường cho nông sản hai bên.</p>
-                        </div>
+                        <div class="article__summary">{{description}}</div>
+                        <div class="article__content">{{content}}</div>
                     </div>
-
+                    
                 </div>
 
                 <div class="col-3 sidecol">
-                    <form id="form1">
+                    <form id="form1" action="/editor/censor" method="post" style="margin: 0;">
+                        <input type="hidden" id="input_id" name="id" form="form1">
+
                         <label for="input_comment">Nhận xét</label>
-                        <textarea id="input_comment" cols="30" rows="6" style="width: 100%; padding: 5px 10px;"></textarea>
+                        <textarea id="input_comment" cols="30" rows="6" style="width: 100%; padding: 5px 10px;" name="reviewComment" form="form1"></textarea>
+
+                        <label >Ảnh đại diện bài viết</label><br/>
+                        <input form="form1" id="input_post_avatar_link" type="text" hidden value="{{imgCover}}"
+                            name="imgCover" disabled/>
+                        <a href="{{imgCover}}"><img id="blah" src="{{imgCover}}" alt="your image" style="width: 100%;"/></a><br />
 
 
                         <label for="input_cat1">Chuyên mục cấp 1</label><br />
-                        <select class="category_l1" id="input_cat1">
-                            <option value="">Kinh doanh </option>
+                        <select class="category_l1" id="input_cat1" form="form1" name="category" disabled>
+                            <option value="{{SubCategories.Category.id}}">{{SubCategories.Category.name}}</option>
                         </select><br />
 
                         <label for="input_cat2">Chuyên mục cấp 2</label><br />
-                        <select class="category_l2" id="input_cat2">
-                            <option value="">Nông sản </option>
-                            <option value="">Hải sản </option>
+                        <select class="category_l2" id="input_cat2" form="form1" name="subcategory" disabled>
+                            <option value="{{Subcategories.id}}">{{SubCategories.name}} </option>
                         </select><br />
 
-                        <label for="input_tags">Danh sách nhãn</label>
-                        <label id="input_tags" style="font-size: 1rem; margin: 0;">
-                            <input mbsc-input id="demo-multiple-select-input" placeholder="Please select..."
-                                data-dropdown="true" data-input-style="outline" data-label-style="stacked"
-                                data-tags="true" />
-                        </label>
-                        <select id="demo-multiple-select" multiple>
-                            <option value="1">Hạn hán 2023</option>
-                            <option value="2">Nhiễm mặn đất trồng</option>
-                            <option value="3">Ô nhiễm nguồn nước</option>
-                            <option value="4">Vụ lúa hè-thu</option>
-                            <option value="5">Xuất khẩu nông sản</option>
-                            <option value="6">Xuất khẩu hải sản</option>
-                        </select>
+                        <label>Danh sách nhãn</label>
+                        <ul style="list-style-type: circle; margin-bottom: 2px;">
+                            {{#each ../selectedTags}}
+                            <li style="margin-left: 20px;">{{name}}</li>
+                            {{/each}}
+                        </ul>
 
                         <label for="time">Thời điểm xuất bản</label><br />
-                        <input type="datetime-local" id="time">
+                        <input type="datetime-local" id="time" name="approveTime">
                     </form>
 
                     <div class="submit-buttons__container">
-                        <button id="approve-button">Phê duyệt</button>
-                        <button id="reject-button">Từ chối</button>
+                        <button form="form1" type="submit" id="approve-button" name="status" value="approved">Phê duyệt</button>
+                        <button form="form1" type="submit" id="reject-button" name="status" value="rejected">Từ chối</button>
                     </div>
 
                 </div>
+                {{/with}}
             </div>
         </div>
     </main>

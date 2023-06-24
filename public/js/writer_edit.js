@@ -28,3 +28,19 @@ function getArticleId() {
 window.addEventListener('hashchange', getArticleId);
 window.addEventListener('popstate', getArticleId);
 getArticleId();
+
+// Auto match subcat  
+function checkSubcat() {
+    document.querySelectorAll("option.cat2").forEach(item => {
+        if (item.getAttribute('category') != document.getElementById('input_cat1').value) {
+            item.hidden = true;
+        }
+        else {
+            item.hidden = false;
+            document.querySelector('#input_cat2').value = item.value;
+        }
+    })
+}
+document.querySelector('#input_cat1').addEventListener("change", checkSubcat);
+document.querySelector('#input_cat1').addEventListener("load", checkSubcat);
+checkSubcat();

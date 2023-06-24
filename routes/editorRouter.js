@@ -8,5 +8,7 @@ const controller = require("../controllers/editorController");
 router.get("/", controller.showHomepage);
 router.get("/censor", controller.showCensorPage);
 
+router.post("/censor", controller.censorArticle);
+
 
 module.exports = router;

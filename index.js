@@ -14,7 +14,7 @@ redisClient.connect().catch(console.error);
 const passport = require("./controllers/passport");
 const flash = require("connect-flash");
 const bodyParser = require("body-parser");
-const { ifEquals, formatTime, select } = require("./controllers/handlebarsHelper");
+const { ifEquals, formatTime, select, selectIn } = require("./controllers/handlebarsHelper");
 const port = process.env.PORT || 5000;
 
 // config public static
@@ -35,6 +35,7 @@ app.engine(
       ifEquals,
       formatTime,
       select,
+      selectIn,
     },
   })
 );
