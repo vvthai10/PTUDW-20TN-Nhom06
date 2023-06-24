@@ -1,6 +1,6 @@
 .box__user_pages {
   flex: 1 1;
-  padding: 10px 30px;
+  padding: 10px 0;
   width: 900px;
 
   display: flex;
@@ -93,11 +93,11 @@
   font-size: 1.2rem;
   line-height: 2rem;
   margin-bottom: 5px;
-  border-bottom: 1px solid #fff;
+  border-bottom: 3px solid #fff;
 }
 
-.user__info input:focus-within {
-  border-bottom: 1px solid var(--primary-color);
+.user__info input:not([readonly]):focus-within {
+  border-bottom: 3px solid var(--primary-color);
 }
 
 .box__info_right {
@@ -106,6 +106,7 @@
 
 .box__sex {
   display: flex;
+  align-items: center;
 }
 
 .list {
@@ -113,8 +114,9 @@
 }
 
 .list label {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
+  font-size: 12px;
+  line-height: 16px;
+  margin: 0 10px 0 2px;
   transform: translateY(-2px);
 }
 

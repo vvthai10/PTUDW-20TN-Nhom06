@@ -38,12 +38,19 @@ module.exports = (sequelize, DataTypes) => {
   User.init(
     {
       name: DataTypes.STRING,
-      slug: DataTypes.STRING,
       email: DataTypes.STRING,
+      birth: DataTypes.STRING,
+      avatar: {
+        type: DataTypes.STRING,
+        defaultValue: "default.jpg",
+      },
       role: {
         type: DataTypes.ENUM("default", "premium", "writer", "editor", "admin"),
         allowNull: false,
         defaultValue: "default",
+      },
+      sex: {
+        type: DataTypes.ENUM("male", "female", "diff"),
       },
       password: DataTypes.STRING,
       passwordChangeAt: DataTypes.DATE,

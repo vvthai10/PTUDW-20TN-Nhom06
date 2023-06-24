@@ -232,6 +232,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border-radius: 10px;
 }
 
 .header__action-notify-item-icon {
@@ -604,4 +606,9 @@ CSS MOBILE
   .header__search {
     display: none;
   }
+}
+
+.note-premium:hover {
+  background-color: #d17d15;
+  color: white;
 }
