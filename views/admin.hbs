@@ -33,15 +33,15 @@
               </form>
             </div>
             <div class="button-container float-end">
-              <button type="button" class="bg-success" data-bs-toggle="modal" data-bs-target="#exampleModal0"
+              <button id="add-button" type="button" class="bg-success" data-bs-toggle="modal" data-bs-target="#exampleModal0"
                 title="Chức năng Thêm (một dòng dữ liệu)" data-bs-function="Thêm"><i
                   class="bi bi-plus-circle"></i></i></button>
-              <button type="button" class="bg-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+              <button id="remove-button" type="button" class="bg-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1"
                 title="Chức năng Xóa (một dòng dữ liệu)" data-bs-function="Xóa"><i class="bi bi-trash"></i></button>
-              <button type="button" class="bg-warning" data-bs-toggle="modal" data-bs-target="#exampleModal2"
+              <button id="modify-button" type="button" class="bg-warning" data-bs-toggle="modal" data-bs-target="#exampleModal2"
                 title="Chức năng Sửa (một số thuộc tính trong một dòng dữ liệu)" data-bs-function="Cập nhật"><i
                   class="bi bi-pencil"></i></button>
-
+              <input id="input-type" type="hidden" name="type" form="form1">
               <!-- Modal Them -->
               <div class="modal fade" id="exampleModal0" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -52,26 +52,40 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form>
-                        <div class="modal-body__add mb-3">
-                          <label for="category-add" class="col-form-label">[Tên dữ liệu, e.x: Chuyên mục cấp 1]:</label>
-                          <input type="text" class="form-control" id="category-add">
+                      <form id="form1" action="/admin/add" method="post">
+                        <div class="modal-body__add__name mb-3" style="display: none;">
+                          <label for="add__name" class="col-form-label">Nhập tên</label>
+                          <input type="text" class="form-control" id="add__name" name="name">
                         </div>
-                        <!-- <div class="modal-body__delete mb-3">
-                                      <label for="category-delete" class="col-form-label">Chuyên mục:</label>
-                                      <select class="form-control" name="category-delete" id="category-delete">
-                                        <option value="1">Kinh doanh</option>
-                                      </select>
-                                    </div>
-                                    <div class="modal-body__modify mb-3">
-                                      <label for="message-text" class="col-form-label">Message:</label>
-                                      <textarea class="form-control" id="message-text"></textarea>
-                                    </div> -->
+                        <div class="modal-body__add__email mb-3" style="display: none;">
+                          <label for="add__email" class="col-form-label">Nhập email</label>
+                          <input type="email" class="form-control" id="add__email" name="email">
+                        </div>
+                        <div class="modal-body__add__cat1 mb-3" style="display: none;">
+                          <label for="input_cat1">Chuyên mục cấp 1</label><br />
+                          <select class="category_l1" id="input_cat1" form="form1" name="category">                
+                              {{#each cat1}}                    
+                              <option value="{{id}}">{{name}}</option>
+                              {{/each}}
+                          </select>
+                        </div>
+                        <div class="modal-body__add__cat2 mb-3" style="display: none;">
+                          <label for="input_tags">Danh sách chuyên mục phân công</label>
+                          <label id="input_tags" style="font-size: 1rem; margin: 0;">
+                              <input mbsc-input id="demo-multiple-select-input" placeholder="Please re-select..."
+                                  data-dropdown="true" data-input-style="outline" data-label-style="stacked" data-tags="true" form="form1" name="cat2"/>
+                          </label>
+                          <select id="demo-multiple-select" multiple>
+                              {{#each cat2}}
+                              <option value="{{id}}">{{name}}</option>
+                              {{/each}}
+                          </select>
+                        </div>
                       </form>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                      <button type="button" class="btn btn-primary px-3" data-bs-dismiss="modal">Lưu</button>
+                      <button class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                      <button form="form1" type="submit" class="btn btn-primary px-3" data-bs-dismiss="modal">Lưu</button>
                     </div>
                   </div>
                 </div>
@@ -106,7 +120,7 @@
                     </div>
                     <div class="modal-body">
                       <form>
-                        <div class="modal-body__add mb-3">
+                        <div class="modal-body__modify mb-3">
                           <label for="category-add">[Tác vụ, e.x: Gia hạn tài khoản độc giả]:</label>
                           <div class="input-group mb-3">
                             <input type="number" class="form-control" placeholder="Nhập số ngày gia hạn"
@@ -356,7 +370,7 @@
   </div>
 </main>
 
-<script src="/js/admin.js"></script>
+
 <script>
   function checkStatus() {
     const queryString = window.location.search;
@@ -405,3 +419,4 @@
   window.addEventListener('popstate', checkStatus);
   checkStatus();
 </script>
+<script src="/js/admin.js"></script>

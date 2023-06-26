@@ -259,7 +259,7 @@ li.sidenav__sublink {
   margin-top: 5px;
 }
 
-.sidecol select, .sidecol input, #input_post_avatar {
+.sidecol select, .sidecol input, #input_post_avatar .modal-body input, .modal-body select{
   border: 1px solid lightgray;
   border-radius: 7px;
   padding: 9px;

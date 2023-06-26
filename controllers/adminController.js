@@ -4,6 +4,7 @@ const controller = {};
 const models = require('../models');
 const sequelize = require('sequelize');
 const Op = sequelize.Op;
+const bcrypt = require("bcrypt");
 
 
 controller.showHomepage = async (req, res) => {
@@ -14,6 +15,18 @@ controller.showHomepage = async (req, res) => {
   let keyword = req.query.keyword || '';
   let type = ['category-manage-1', 'category-manage-2', 'tag-manage', 'article-manage', 'user-manage-1', 'user-manage-2', 'user-manage-3'].includes(req.query.type) ? req.query.type : 'category-manage-1';
   res.locals.originalUrl = req.originalUrl;
+  let cat1 = await models.Category.findAll({
+    attributes: ['id', 'name'],
+    raw: true,
+    nest: true,
+  });
+  res.locals.cat1 = cat1;
+  let cat2 = await models.SubCategory.findAll({
+    attributes: ['id', 'name', 'categoryId'],
+    raw: true,
+    nest: true,
+  });
+  res.locals.cat2 = cat2;
 
   if (type  == 'category-manage-1') 
   {
@@ -194,6 +207,74 @@ controller.showHomepage = async (req, res) => {
   // res.locals.originalUrl = req.originalUrl;
   res.render("admin", { layout: "layout_simple.hbs" });
 };
+
+controller.add = async (req, res, next) => {
+  if (!req.user) res.redirect("/admin");
+  console.log(req.body);
+  try {
+    switch (req.body.type) {
+      case "Chuyên mục cấp 1":
+        let newCat1 = await models.Category.create({
+          name: req.body.name,
+          // icon: 'kinh_doanh.png',
+        });
+        break;
+      case "Chuyên mục cấp 2":
+        let newCat2 = await models.SubCategory.create({
+          name: req.body.name,
+          categoryId: parseInt(req.body.category),
+          // icon: '',
+        });
+        break;
+      case "Nhãn":
+        let newTag = await models.Tag.create({
+          name: req.body.name,
+        });
+        break;
+      case "tài khoản Phóng viên":
+        let newWriter = await models.User.create({
+          name: req.body.name,
+          email: req.body.email,
+          avatar: 'default.jpg',
+          role: 'writer',
+          password: bcrypt.hashSync('Demo@123', bcrypt.genSaltSync(8)),
+        });
+        let assigned1 = await models.SubCategory.findAll({ where: {name: { [Op.in]: req.body.cat2.split(", ") } }});
+        console.log(assigned1);
+        if (assigned1) {
+          try {await newWriter.addSubCategories(assigned1);} 
+          catch(e) {console.log(e);}
+        }
+        break;
+      case "tài khoản Biên tập viên":
+        let newEditor = await models.User.create({
+          name: req.body.name,
+          email: req.body.email,
+          avatar: 'default.jpg',
+          role: 'editor',
+          password: bcrypt.hashSync('Demo@123', bcrypt.genSaltSync(8)),
+        });
+        let assigned2 = await models.SubCategory.findAll({ where: {name: { [Op.in]: req.body.cat2.split(", ") } }});
+        if (assigned2) {
+          try {await newEditor.addSubCategories(assigned2);} 
+          catch(e) {console.log(e);}
+        }
+        break;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  res.redirect('/admin');
+  // Chưa có message
+};
+
+controller.delete = async (req, res, next) => {
+  // TODO
+}
+
+controller.modify = async (req, res, next) => {
+  // TODO
+}
 
 function removeParam(key, sourceURL) {
   var rtn = sourceURL.split("?")[0],
