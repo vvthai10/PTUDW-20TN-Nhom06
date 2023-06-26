@@ -22,6 +22,8 @@ router.get("/search", controller.search);
 
 router.get("/category", controller.showCategory);
 
+router.get("/subCategory", controller.showSubCategory);
+
 router.get("/article", controller.showArticle);
 
 router.get("/tag", controller.showTag)

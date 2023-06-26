@@ -22,38 +22,39 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" style="font-size: 20px;">Bình luận</h5>
+                                    <h5 class="modal-title" style="font-size: 20px; text-color: red;">Bình luận</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
+                                    {{#each Comments}}
                                     <div class="card__comment">
                                         <div class="personal__img">
                                             <img
-                                                src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.6435-9/121172259_691283754825145_668356720972128544_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=u5Ic0mYMeycAX-pLYW3&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfCY3Ms31A5LhLTb5h1TbjdKeFtFdkX_PiFrQHPM7JKovA&oe=64740652"></img>
+                                                src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.6435-9/121172259_691283754825145_668356720972128544_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=GR8cdUy4WOcAX-lAVcu&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfD3KneIO4cr-anMmhkAmzkCRxWo3_8TXbpR9z6gMSSdEg&oe=64BE4AD2"></img>
                                         </div>
                                         <div class="card-body--comment"
                                             style="box-sizing: border-box; margin-left: 10px;">
-                                            <p style="font-weight: bold;">Huỳnh Lê An</p>
-                                            <p class="comment__content">Doanh thu xổ số ngày càng cao
+                                            <p style="font-weight: bold;">{{User.name}}</p>
+                                            <p class="comment__content">{{content}}
                                             </p>
                                             <div class="like__comment">
                                                 <div class="like">
-                                                    <button><i
-                                                            class="fa-solid fa-thumbs-up"></i></button>
+                                                    <button><i class="fa-solid fa-thumbs-up"></i></button>
                                                     <p>6</p>
                                                 </div>
-                                                <div class="comment">
+                                                {{!-- <div class="comment">
                                                     <button><i class="fa-solid fa-comment"></i></button>
                                                     <p>10</p>
-                                                </div>
+                                                </div> --}}
                                                 <div class="like__comment--time">
-                                                    <p>29-04-2023</p>
+                                                    <p>{{createdAt}}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card__comment">
+                                    {{/each}}
+                                    {{!-- <div class="card__comment">
                                         <div class="personal__img">
                                             <img
                                                 src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.6435-9/121172259_691283754825145_668356720972128544_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=u5Ic0mYMeycAX-pLYW3&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfCY3Ms31A5LhLTb5h1TbjdKeFtFdkX_PiFrQHPM7JKovA&oe=64740652"></img>
@@ -65,8 +66,7 @@
                                             </p>
                                             <div class="like__comment">
                                                 <div class="like">
-                                                    <button><i
-                                                            class="fa-solid fa-thumbs-up"></i></button>
+                                                    <button><i class="fa-solid fa-thumbs-up"></i></button>
                                                     <p>6</p>
                                                 </div>
                                                 <div class="comment">
@@ -94,8 +94,7 @@
                                                 cao cao cao cao cao cao cao cao</p>
                                             <div class="like__comment">
                                                 <div class="like">
-                                                    <button><i
-                                                            class="fa-solid fa-thumbs-up"></i></button>
+                                                    <button><i class="fa-solid fa-thumbs-up"></i></button>
                                                     <p>6</p>
                                                 </div>
                                                 <div class="comment">
@@ -107,8 +106,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
+                                    </div> --}}
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
@@ -120,7 +118,8 @@
                     </div>
                 </div>
                 <div class="comment">
-                    <button onclick="generatePDF('content')" type="button" data-bs-toggle="modal"><i class="fa-solid fa-print fa-2xl"></i></button>
+                    <button onclick="generatePDF({{userRole}})" type="button" data-bs-toggle="modal"><i
+                            class="fa-solid fa-print fa-2xl"></i></button>
                 </div>
             </div>
         </div>
@@ -264,3 +263,8 @@
         </div>
     </div>
 </div>
+<script>
+    function generatePDF(useRole) {
+        console.log(userRole);
+    }
+</script>

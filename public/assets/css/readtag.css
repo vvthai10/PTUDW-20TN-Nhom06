@@ -82,3 +82,8 @@ div.content__paging {
     margin-right: 10px;
     cursor: pointer;
 }
+
+.pagination-display {
+    display: flex;
+    flex-direction: row;
+}

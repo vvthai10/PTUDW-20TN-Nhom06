@@ -51,7 +51,7 @@ controller.showHomepage = async (req, res) => {
 
 controller.showPage = (req, res) => {
   // res.render(req.params.page, { layout: "layout_sample.hbs" });
-  console.log(req.params.page);
+  // console.log(req.params.page);
   res.render(req.params.page), { loginMessage: req.flash("loginMessage") };
 };
 
@@ -123,7 +123,7 @@ controller.showCategory = async (req, res) => {
   });
   for (let index = 0; index < hotArticles.length; index++) {
     const element = hotArticles[index];
-    console.log(element.nView);
+    // console.log(element.nView);
   }
   res.locals.hotArticles = hotArticles;
 
@@ -142,16 +142,142 @@ controller.showCategory = async (req, res) => {
       }
     ]
   });
-  subCategory = subCategory.map(item => item.name);
+  // subCategory = subCategory.map(item => item.name);
   res.locals.subCategory = subCategory;
 
   res.render('readCategory');
 }
 
+controller.showSubCategory = async (req, res) => {
+  let subCategoryId = req.query.subCategoryId || 0;
+
+  let subCategory = await models.SubCategory.findByPk(subCategoryId);
+  res.locals.subCategory = subCategory;
+
+  let category = await models.Category.findOne({
+    attributes: ['id', 'name'],
+    include: [
+      {
+        model: models.SubCategory,
+        attributes: [],
+        where: {
+          id: subCategoryId
+        }
+      }
+    ]
+  });
+
+  res.locals.category = category;
+
+  let articleIds = await models.CategoryArticle.findAll({
+    attributes: ['articleId'],
+    where: {
+      subCategoryId: subCategoryId
+    }
+  });
+
+  articleIds = articleIds.map(item => item.articleId)
+
+  // get the subCategoryId of categoryId
+  let articles = await models.Article.findAll({
+    where: {
+      id: {
+        [Op.or]: articleIds
+      }
+    },
+    include: [
+      {
+        model: models.Tag,
+        attributes: ['name']
+      }
+    ],
+    order: [['createdAt', 'DESC']]
+  });
+
+  let hotArticles = await models.Article.findAll({
+    where: {
+      id: {
+        [Op.or]: articleIds
+      }
+    },
+    include: [
+      {
+        model: models.Tag,
+        attributes: ['name']
+      }
+    ],
+    order: [['nView', 'DESC']],
+    limit: 3
+  });
+
+  res.locals.articles = articles;
+  res.locals.hotArticles = hotArticles;
+  // res.send("hello world");
+  res.render('readsubcategory');
+}
+
 controller.showArticle = async (req, res) => {
-  let articleId = parseInt(req.query.articleId);
-  console.log('hello world');
-  console.log(articleId);
+  // let articleId = parseInt(req.query.articleId);
+  // console.log('hello world');
+  // // lay comment tuong ung voi articleId
+  // let comments = await models.Comment.findAll({
+  //   attributes: ['content', 'updatedAt'],
+  //   where: {
+  //     articleId: articleId
+  //   },
+  //   include: [
+  //     {
+  //       model: models.User,
+  //       attributes: ['name']
+  //     }
+  //   ],
+  //   order: [['createdAt', 'DESC']]
+  // });
+  // res.locals.Comments = comments;
+
+  // // lay content cho article
+  // let articles = await models.Article.findByPk(articleId, {
+  //   include: [
+  //     {
+  //       model: models.User,
+  //       attributes: ['name']
+  //     },
+  //     {
+  //       model: models.SubCategory,
+  //       attributes: ['name', 'categoryId']
+  //     }
+  //   ]
+  // });
+
+  // // lay tagIds theo articleIds
+  // let tagIds = await models.TagArticle.findAll({
+  //   // attributes: ['tagId'],
+  //   where: {
+  //     articleId: articleId
+  //   }
+  // });
+
+  // tagIds = tagIds.map(item => item.tagId);
+
+  // let articleTags = await models.Tag.findAll({
+  //   attributes: ['name'],
+  //   where: {
+  //     id: tagIds
+  //   }
+  // });
+
+  // // lay category cho article
+  // let category = await models.Category.findOne({
+  //   attributes: ['name'],
+  //   where: {
+  //     id: articles.SubCategories[0].categoryId
+  //   }
+  // });
+  // category = category.name;
+  // // console.log(article.SubCategories[0].Category);
+  // // res.locals.article = article;
+  // res.locals.
+  res.locals.userRole = res.locals.userInfo.role;
   res.render('readnews');
 }
 
@@ -162,16 +288,19 @@ controller.showTag = async (req, res) => {
     where: {tagId: tagId}
   });
 
+  let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
+
   tagArticleIds = tagArticleIds.map(item => item.articleId);
-  // let tagArticles = await models.Article.findAll({
-  //   where: {
-  //     id : {
-  //       [Op.or]: tagArticleIds
-  //     }
-  //   }
-  // });
-  // let tagId = 1;
-  let tagArticles = await models.TagArticle.findAll({
+
+
+  let tagName = await models.Tag.findOne({
+    attributes: ['name'],
+    where: {id: tagId}
+  })
+
+  const limit = 7;
+
+  let {rows, count} = await models.TagArticle.findAndCountAll({
     attributes: ['tagId'],
     where: {articleId: tagArticleIds},
     include: [
@@ -184,18 +313,22 @@ controller.showTag = async (req, res) => {
           }
         ]
       }
-    ]
+    ],
+    distinct: true,
+    limit: limit,
+    offset: limit * (page - 1)
   });
 
-  // console.log(tagArticles[0].Article.Tags[0].name);
+  // console.log(rows.length);
 
-  
-  res.locals.tagArticles = tagArticles;
-  // console.log(tagArticles);
-  let tagName = await models.Tag.findOne({
-    attributes: ['name'],
-    where: {id: tagId}
-  })
+  res.locals.tagArticles = rows;
+  res.locals.pagination = {
+    page: page,
+    limit: limit,
+    totalRows: count,
+    queryParams: req.query
+  }
+
   res.locals.tagName = tagName.name;
   res.render('tag');
 }

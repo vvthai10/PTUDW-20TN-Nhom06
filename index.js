@@ -21,8 +21,6 @@ const {
   selectIn,
 } = require("./controllers/handlebarsHelper");
 const port = process.env.PORT || 5000;
-const models = require("./models");
-const { Op } = require("sequelize");
 
 // config public static
 app.use(express.static(__dirname + "/public"));
@@ -42,7 +40,6 @@ app.engine(
       ifEquals,
       formatTime,
       select,
-      selectIn,
     },
   })
 );

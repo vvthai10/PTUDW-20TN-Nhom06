@@ -1,13 +1,11 @@
 <!--SIDE BAR-->
 <div class="col-lg-11 col-md-12 col-sm-12">
-    <h3 style="text-align: center; font-size: 40px;">{{categoryName}}</h3>
+    <h3 style="text-align: center; font-size: 40px;">{{subCategory.name}}</h3>
     <hr>
     <div class="sub-title">
-        {{#each subCategory}}
-        <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{this.id}}">
-            <h4 style="font-size: 20px;">{{this.name}}</h4>
-        </a>
-        {{/each}}
+        {{!-- {{#each subCategory}} --}}
+        {{!-- <h4 style="font-size: 20px;">{{this}}</h4> --}}
+        {{!-- {{/each}} --}}
         {{!-- <h4 style="font-size: 20px;">Hải sản</h4> --}}
     </div>
     <div class="content">
@@ -28,7 +26,7 @@
             </div>
         </div>
         <div class="list__news__category">
-            {{#each categoryArticles}}
+            {{#each articles}}
             <div class="card card__list__news--extend">
                 <img src="{{imgCover}}" class="card-img-top" alt="">
                 <div class="card-body">
@@ -40,33 +38,22 @@
                     {{/each}}
                     {{!-- danh sach category --}}
                     <h4>Kinh doanh</h4>
-
                     <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
-                        <h5 class="card-title">{{name}}</h5>
+                        <h5 class="card-title">{{name}} </h5>
                     </a>
                     <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
                     <p style="font-size: 15px;">{{description}}</p>
                 </div>
             </div>
             {{/each}}
-            {{! danh sach category }}
-            <h4>Kinh doanh</h4>
-            <h5 class="card-title">{{name}}
-            </h5>
-            <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                16-03-23</small></p>
-            <p style="font-size: 15px;">{{description}}</p>
-          </div>
         </div>
-      {{/each}}
     </div>
-  </div>
-  <div class="related__news">
-    <h4>Nổi bật</h4>
-    <hr />
-    <div class="container my-3">
-      <div class="card-body">
-        {{! <div class="row">
+    <div class="related__news">
+        <h4>Nổi bật</h4>
+        <hr>
+        <div class="container my-3">
+            <div class="card-body">
+                {{!-- <div class="row">
                     <div class="col">
                         <div class="card">
                             <img src="assets/images/news/news_search/new_1.png"
@@ -142,7 +129,7 @@
                                 </div>
                                 {{/each}}
                                 <h4>Kinh doanh</h4>
-
+                                
                                 <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
                                     <h5 class="card-title">{{name}}</h5>
                                 </a>
@@ -152,16 +139,7 @@
                             </div>
                         </div>
                     </div>
-                  {{/each}}
-                  <h4>Kinh doanh</h4>
-                  <h5 class="card-title">{{name}}</h5>
-                  <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                      16-03-23</small></p>
-                  <p style="font-size: 15px;">{{description}}</p>
-                </div>
-              </div>
-            </div>
-            {{! <div class="col">
+                    {{!-- <div class="col">
                         <div class="card">
                             <img src="assets/images/news/news_search/new_1.png"
                                 class="card-img-top card__img__latest__news" alt="...">
@@ -198,8 +176,9 @@
                         </div>
                     </div> --}}
                     {{/each}}
+
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
