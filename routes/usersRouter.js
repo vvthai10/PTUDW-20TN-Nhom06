@@ -15,8 +15,22 @@ router.get("/account", async (req, res) => {
   console.log(res.locals.userInfo);
   if (view == "info") {
     res.locals.info = 1;
+    req.flash("checkMessage", "Check thôi không làm gì cả");
     res.render("account-info");
   } else if (view == "password") {
+    // Kiểm tra tài khoản người dùng có mật khẩu hay chưa khi họ đăng kí bằng Gmail
+    if (res.locals.userInfo.googleId != null) {
+      // Khi người dùng đăng nhập bằng gmail thì sẽ có trường ggid
+      // Tiến hành lấy password của người dùng
+      let user = await models.User.findOne({
+        where: { id: res.locals.userInfo.id },
+      });
+      if (user.password == null) {
+        // Tạo lệnh nhắc nhở đề người dùng tạo mật khẩu
+        res.locals.noteCreatePassword = true;
+      }
+    }
+
     res.locals.password = 1;
     res.render("account-password");
   } else if (view == "activities") {
@@ -78,28 +92,41 @@ router.post("/account/update", async (req, res, next) => {
     res.locals.info = 1;
     res.render("account-info");
   } else if (view == "password") {
-    // Kiểm tra mật khẩu có trùng với mật khẩu không
-    let password = req.body.curPassword;
-
-    let user = await models.User.findOne({
-      where: { id: res.locals.userInfo.id },
-    });
-
-    if (!bcrypt.compareSync(password, user.password)) {
-      req.flash("updateMessage", "Mật khẩu hiện tại không đúng");
-      console.log("Mật khẩu không đúng");
-    } else {
-      // Nếu mật khẩu hiện tại đã đúng, cập nhật mật khẩu mới
+    console.log("Get here");
+    if (req.body.check == 1) {
       let newPassword = bcrypt.hashSync(
         req.body.newPassword,
         bcrypt.genSaltSync(8)
       );
       await models.User.update(
         { password: newPassword },
-        { where: { id: user.id } }
+        { where: { id: res.locals.userInfo.id } }
       ); // $2b$08$ukGBPsgEFHOZquEHu9rFk.PwQ41.ACLu2pcOJoAWmQlqQbzwKrgpe
-      req.flash("updateMessage", "Mật khẩu đã được cập nhật");
-      console.log("Cập nhật thành công");
+      req.flash("checkMessage", "Check thôi không làm gì cả");
+      res.locals.userPasswordMessage = "Cập nhật mật khẩu thành công";
+    } else {
+      // Kiểm tra mật khẩu có trùng với mật khẩu không
+      let password = req.body.curPassword;
+      let user = await models.User.findOne({
+        where: { id: res.locals.userInfo.id },
+      });
+
+      if (!bcrypt.compareSync(password, user.password)) {
+        req.flash("updateMessage", "Mật khẩu hiện tại không đúng");
+        res.locals.userPasswordMessage = "Mật khẩu hiện tại không đúng";
+      } else {
+        // Nếu mật khẩu hiện tại đã đúng, cập nhật mật khẩu mới
+        let newPassword = bcrypt.hashSync(
+          req.body.newPassword,
+          bcrypt.genSaltSync(8)
+        );
+        await models.User.update(
+          { password: newPassword },
+          { where: { id: user.id } }
+        ); // $2b$08$ukGBPsgEFHOZquEHu9rFk.PwQ41.ACLu2pcOJoAWmQlqQbzwKrgpe
+        req.flash("updateMessage", "Mật khẩu đã được cập nhật");
+        res.locals.userPasswordMessage = "Cập nhật mật khẩu thành công";
+      }
     }
 
     res.locals.password = 1;

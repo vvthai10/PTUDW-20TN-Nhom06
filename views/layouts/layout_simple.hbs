@@ -83,7 +83,7 @@
             {{#with userInfo}}
               <div class="header__user">
                 <img
-                  src="/assets/images/{{avatar}}"
+                  src="{{avatar}}"
                   alt="user default"
                   class="header__user-icon"
                 />
@@ -92,24 +92,18 @@
                     <header>
                       <div style="position: relative">
                         <img
-                          src="/assets/images/{{avatar}}"
+                          src="{{avatar}}"
                           alt="user default"
                           class="header__user-info-icon"
                         />
-                        {{#ifEquals role "admin"}}
+                        {{#ifEquals role "default"}}
+                        {{else}}
                           <img
                             src="/assets/images/user_premium.png"
                             alt="logo"
                             class="header__user-premium"
                           />
-                        {{/ifEquals}}
-                        {{#ifEquals role "premium"}}
-                          <img
-                            src="/assets/images/user_premium.png"
-                            alt="logo"
-                            class="header__user-premium"
-                          />
-                        {{/ifEquals}}
+                        {{/if}}
                       </div>
                       <div class="header__user-name">{{name}}</div>
                     </header>

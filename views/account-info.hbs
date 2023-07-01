@@ -20,6 +20,7 @@
           </span>
           <form action="/users/account/update?view=info" method="post">
             <div class="row">
+              <p>{{checkMessage}}</p>
               {{#with userInfo}}
                 <div class="box__info_left col-12">
                   <label for="user-email" class="title__input" style="font-size: 16px;">Email</label>

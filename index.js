@@ -16,13 +16,14 @@ const flash = require("connect-flash");
 const bodyParser = require("body-parser");
 const {
   ifEquals,
+  ifContains,
   formatTime,
   select,
   selectIn,
 } = require("./controllers/handlebarsHelper");
 const port = process.env.PORT || 5000;
-const models = require('./models');
-const sequelize = require('sequelize');
+const models = require("./models");
+const sequelize = require("sequelize");
 const Op = sequelize.Op;
 
 // config public static
@@ -41,6 +42,7 @@ app.engine(
     },
     helpers: {
       ifEquals,
+      ifContains,
       formatTime,
       select,
     },
@@ -78,6 +80,11 @@ app.use(async (req, res, next) => {
   res.locals.isLoggedIn = req.isAuthenticated();
   if (res.locals.isLoggedIn) {
     res.locals.userInfo = req.user.dataValues;
+    res.locals.userInfo.avatar = res.locals.userInfo.avatar.includes("http")
+      ? res.locals.userInfo.avatar
+      : `/assets/images/${res.locals.userInfo.avatar}`;
+
+    console.log(res.locals.userInfo);
 
     // Check điều kiện về thời gian premium
     // Lấy tất cả lần đăng kí mà còn expired >= thời gian hiện tại
