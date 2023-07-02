@@ -1,3 +1,6 @@
+{{#if alertData}}
+  {{> alert}}
+{{/if}}
 <div class="form__container">
   <span class="form__name">Đăng nhập</span>
   <form action="/users/login" method="post" id="form__signin">

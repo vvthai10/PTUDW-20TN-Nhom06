@@ -75,7 +75,12 @@ controller.register = (req, res, next) => {
         return next(error);
       }
       // Đăng kí thành công
-      res.redirect(reqUrl);
+      res.locals.alertData = {
+        type: "success",
+        message: "Đăng kí tài khoản thành công",
+      };
+      // res.redirect(reqUrl);
+      res.redirect(`/users/login?reqUrl=${reqUrl}`);
     });
   })(req, res, next);
 };

@@ -1,3 +1,6 @@
+{{#if alertData}}
+  {{> alert}}
+{{/if}}
 <div class="form__container">
   <span class="form__name">Đăng ký</span>
   <form action="/users/register" method="post" id="formRegister">
@@ -12,6 +15,7 @@
     </div>
     <div class="form__input-box">
       <input
+        id="YOUR_FORM_ID"
         type="text"
         class="form__input"
         placeholder="Email"
@@ -43,7 +47,15 @@
       />
     </div>
     <input type="hidden" name="reqUrl" value="{{reqUrl}}" />
-    <button type="submit" class="form__btn">Đăng ký</button>
+    <div id="recaptchaError"></div>
+    {{! <button type="submit" class="form__btn">Đăng ký</button> }}
+
+    <button
+      type="submit"
+      class="g-recaptcha form__btn"
+      data-sitekey="6LcN8-cmAAAAANYFIEhiHZHOi7qrMCaui3TuwQGE"
+      data-callback="onSubmitRegister"
+    >Đăng ký</button>
   </form>
 
   {{#if registerMessage}}

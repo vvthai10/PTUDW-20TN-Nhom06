@@ -12,7 +12,6 @@ router.use(authController.isLoggedIn);
 
 router.get("/account", async (req, res) => {
   let view = req.query.view;
-  console.log(res.locals.userInfo);
   if (view == "info") {
     res.locals.info = 1;
     req.flash("checkMessage", "Check thôi không làm gì cả");
@@ -90,6 +89,10 @@ router.post("/account/update", async (req, res, next) => {
     user = await models.User.update(dataUpdate, { where: { id: user.id } });
 
     res.locals.info = 1;
+    res.locals.alertData = {
+      type: "success",
+      message: "Cập nhật thông tin thành công",
+    };
     res.render("account-info");
   } else if (view == "password") {
     console.log("Get here");
@@ -102,8 +105,10 @@ router.post("/account/update", async (req, res, next) => {
         { password: newPassword },
         { where: { id: res.locals.userInfo.id } }
       ); // $2b$08$ukGBPsgEFHOZquEHu9rFk.PwQ41.ACLu2pcOJoAWmQlqQbzwKrgpe
-      req.flash("checkMessage", "Check thôi không làm gì cả");
-      res.locals.userPasswordMessage = "Cập nhật mật khẩu thành công";
+      res.locals.alertData = {
+        type: "success",
+        message: "Cập nhật mật khẩu thành công",
+      };
     } else {
       // Kiểm tra mật khẩu có trùng với mật khẩu không
       let password = req.body.curPassword;
@@ -112,8 +117,10 @@ router.post("/account/update", async (req, res, next) => {
       });
 
       if (!bcrypt.compareSync(password, user.password)) {
-        req.flash("updateMessage", "Mật khẩu hiện tại không đúng");
-        res.locals.userPasswordMessage = "Mật khẩu hiện tại không đúng";
+        res.locals.alertData = {
+          type: "error",
+          message: "Mật khẩu hiện tại không đúng",
+        };
       } else {
         // Nếu mật khẩu hiện tại đã đúng, cập nhật mật khẩu mới
         let newPassword = bcrypt.hashSync(
@@ -124,8 +131,10 @@ router.post("/account/update", async (req, res, next) => {
           { password: newPassword },
           { where: { id: user.id } }
         ); // $2b$08$ukGBPsgEFHOZquEHu9rFk.PwQ41.ACLu2pcOJoAWmQlqQbzwKrgpe
-        req.flash("updateMessage", "Mật khẩu đã được cập nhật");
-        res.locals.userPasswordMessage = "Cập nhật mật khẩu thành công";
+        res.locals.alertData = {
+          type: "success",
+          message: "Cập nhật mật khẩu thành công",
+        };
       }
     }
 
