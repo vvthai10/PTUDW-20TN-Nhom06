@@ -154,3 +154,124 @@
   line-height: 30px;
   cursor: pointer;
 }
+
+.alert-toast {
+  position: absolute;
+  top: 60px;
+  right: 30px;
+  border-radius: 12px;
+  background: #fff;
+  padding: 15px 25px 15px 20px;
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transform: translateX(calc(100% + 30px));
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+}
+
+.alert-toast.alert-active {
+  transform: translateX(0%);
+}
+
+.alert-toast .alert-toast-content {
+  display: flex;
+  align-items: center;
+}
+
+.alert-toast-content .alert-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  min-width: 35px;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 50%;
+}
+
+.success {
+  background-color: #4070f4;
+}
+
+.warning {
+  background-color: #f2a600;
+}
+
+.error {
+  background-color: #e41749;
+}
+
+.alert-toast-content .alert-message {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+
+.alert-message .alert-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: #666666;
+}
+
+.alert-message .alert-text.alert-text-1 {
+  font-weight: 600;
+  color: #333;
+}
+
+.alert-toast .alert-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.alert-toast .alert-close:hover {
+  opacity: 1;
+}
+
+.alert-toast .alert-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+}
+
+.alert-toast .alert-progres-success:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #4070f4;
+}
+.alert-toast .alert-progres-warning:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #f2a600;
+}
+.alert-toast .alert-progres-error:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #e41749;
+}
+
+.alert-progress.alert-active:before {
+  animation: alert-progress 5s linear forwards;
+}
+
+@keyframes alert-progress {
+  100% {
+    right: 100%;
+  }
+}

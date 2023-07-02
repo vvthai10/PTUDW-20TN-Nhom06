@@ -1,0 +1,44 @@
+{{#with alertData}}
+  <div class="alert-toast alert-active">
+
+    <div class="alert-toast-content">
+      <i class="fas fa-solid fa-check alert-check 
+      {{#ifEquals type 'success'}}success{{/ifEquals}}
+      {{#ifEquals type 'warning'}}warning{{/ifEquals}}
+      {{#ifEquals type 'error'}}error{{/ifEquals}}
+      ">
+      </i>
+
+      <div class="alert-message">
+        <span class="alert-text alert-text-1">
+          {{#ifEquals type 'success'}}Success{{/ifEquals}}
+          {{#ifEquals type 'warning'}}Warning{{/ifEquals}}
+          {{#ifEquals type 'error'}}Error{{/ifEquals}}
+        </span>
+        
+        <span class="alert-text alert-text-2">{{message}}</span>
+      </div>
+    </div>
+    <i class="fa-solid fa-xmark alert-close"></i>
+
+    <!-- Remove 'active' class, this is just to show in Codepen thumbnail -->
+    <div class="alert-progress alert-active
+    {{#ifEquals type 'success'}}alert-progres-success{{/ifEquals}}
+    {{#ifEquals type 'warning'}}alert-progres-warning{{/ifEquals}}
+    {{#ifEquals type 'error'}}alert-progres-error{{/ifEquals}}
+    "></div>
+  </div>
+{{/with}}
+<script>
+  const toast = document.querySelector(".alert-toast"); const closeIcon =
+  document.querySelector(".alert-close"); const progress =
+  document.querySelector(".alert-progress"); let timer1, timer2;
+  toast.classList.add("alert-active"); progress.classList.add("alert-active");
+  timer1 = setTimeout(() => { toast.classList.remove("alert-active"); }, 5000);
+  timer2 = setTimeout(() => { progress.classList.remove("alert-active"); },
+  5300); closeIcon.addEventListener("click", () => {
+  toast.classList.remove("alert-active"); setTimeout(() => {
+  progress.classList.remove("alert-active"); }, 300); clearTimeout(timer1);
+  clearTimeout(timer2); });
+
+</script>
