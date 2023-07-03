@@ -173,8 +173,9 @@ controller.showHomepage = async (req, res) => {
         "status",
         "editorId",
         "reviewComment",
+        "approve",
       ],
-      where: { status: { [Op.in]: ["posted", "approved"] } },
+      where: { status: { [Op.in]: ["posted", "approved", "pending"] } },
       include: [
         {
           model: models.User,
@@ -344,16 +345,91 @@ controller.add = async (req, res, next) => {
   } catch (error) {
     console.log(error);
   }
-  res.redirect("/admin");
+  res.redirect(req.body.originalUrl);
   // Chưa có message
 };
 
 controller.delete = async (req, res, next) => {
-  // TODO
+  if (!req.user) res.redirect("/admin");
+  console.log(req.body);
+  try {
+    switch (req.body.type) {
+      case "Chuyên mục cấp 1":
+        await models.Category.destroy({
+          where: {name: req.body.name},
+        });
+        break;
+      case "Chuyên mục cấp 2":
+        await models.SubCategory.destroy({
+          where: {name: req.body.name},
+        });
+        break;
+      case "Nhãn":
+        await models.Tag.destroy({
+          where: {name: req.body.name},
+        });
+        break;
+      case "tài khoản Phóng viên":
+        await models.User.destroy({
+          where: {name: req.body.name},
+        });
+        break;
+      case "tài khoản Biên tập viên":
+        await models.User.destroy({
+          where: {name: req.body.name},
+        });
+        break;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  res.redirect(req.body.originalUrl);
+  // Chưa có message
 };
 
 controller.modify = async (req, res, next) => {
-  // TODO
+  if (!req.user) res.redirect("/admin");
+  console.log(req.body);
+  try {
+    switch (req.body.type) {
+      case "Bài viết":
+        if (req.body.id) {
+          let article = await models.Article.findOne({
+            where: {id: parseInt(req.body.id)},
+          });
+          article.status = 'posted';
+          await article.save();
+        }
+        break;
+      case "tài khoản Biên tập viên":
+        if (req.body.id) {
+          let editor = await models.User.findOne({
+            where: {id: parseInt(req.body.id)},
+          });
+          let assigned = await models.SubCategory.findAll({
+            where: { name: { [Op.in]: req.body.cat2.split(", ") } },
+          });
+          if (assigned) {
+            await editor.setSubCategories(null);
+            await editor.addSubCategories(assigned);
+          }
+        }
+        break;
+      case "tài khoản Độc giả":
+        if (req.body.id) {
+          let user = await models.User.findOne({
+            where: {id: parseInt(req.body.id)},
+          });
+          user.role = 'premium';
+          await user.save();
+        }
+        break;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  res.redirect(req.body.originalUrl);
+  // Chưa có message
 };
 
 function removeParam(key, sourceURL) {
