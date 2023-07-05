@@ -205,59 +205,134 @@ controller.showHomepage = async (req, res) => {
       res.locals.originalUrl = res.locals.originalUrl + "?";
     }
   } else if (type == "user-manage-1") {
+    // let options = {
+    //   attributes: ["id", "name", "email"],
+    //   where: { role: "writer" },
+    //   // include: [
+    //   //   {
+    //   //     model: models.SubCategory,
+    //   //     attributes: ["name"],
+    //   //     through: { attributes: [] },
+    //   //   },
+    //   // ],
+    //   raw: true,
+    //   nest: true,
+    //   // group: ["User.id", "User.name", ],
+    //   order: ["id"],
+    // };
+    // if (keyword.trim() != "") {
+    //   options.where.name = { [Op.iLike]: `%${keyword}%` };
+    // }
+    // let writers = await models.User.findAll(options);
+    // res.locals.writers = writers;
+    // console.log(writers);
+
     let options = {
-      attributes: ["id", "name", "email"],
-      where: { role: "writer" },
+      attributes: [[sequelize.fn('COUNT', sequelize.col('Article.id')), 'articleCount']],
       include: [
         {
-          model: models.SubCategory,
-          attributes: ["name"],
-          through: { attributes: [] },
-        },
-      ],
+          model: models.User,
+          as: 'author',
+          attributes: ["id", "name", "email"],
+          where: { role: "writer" },
+          raw: true,
+          nest: true,
+          order: ["id"],          
+      }],      
       raw: true,
       nest: true,
-      group: ["User.id", "User.name", "SubCategories.name"],
-      order: ["id"],
+      group: ["author.id", "author.name"],
+      order: [[{model: models.User, as: 'author'}, 'id', 'ASC']],
     };
     if (keyword.trim() != "") {
-      options.where.name = { [Op.iLike]: `%${keyword}%` };
+      options.include[0].where.name = { [Op.iLike]: `%${keyword}%` };
     }
-    let writers = await models.User.findAll(options);
+    let writers = await models.Article.findAll(options);
     res.locals.writers = writers;
     console.log(writers);
   } else if (type == "user-manage-2") {
+    // let options = {
+    //   attributes: ["id", "name", "email"],
+    //   where: { role: "editor" },
+    //   include: [
+    //     {
+    //       model: models.SubCategory,
+    //       attributes: ["id","name"],
+    //       through: { attributes: [] },
+    //       order: ["id"],
+    //     },
+    //   ],
+    //   raw: true,
+    //   nest: true,
+    //   group: ["User.id", "User.name", "SubCategories.id", "SubCategories.name"],
+    //   order: ["id"],
+    // };
+    // if (keyword.trim() != "") {
+    //   options.where.name = { [Op.iLike]: `%${keyword}%` };
+    // }
+    // let editors = await models.User.findAll(options);
+    // res.locals.editors = processEditorList(editors);
+    // console.log(editors);
+
     let options = {
-      attributes: ["id", "name", "email"],
-      where: { role: "editor" },
+      attributes: [[sequelize.fn('COUNT', sequelize.col('Article.id')), 'articleCount']],
       include: [
         {
-          model: models.SubCategory,
-          attributes: ["name"],
-          through: { attributes: [] },
-        },
+          model: models.User,
+          as: 'editor',
+          attributes: ["id", "name", "email"],
+          where: { role: "editor" },
+          include: [
+            {
+              model: models.SubCategory,
+              attributes: ["id","name"],
+              through: { attributes: [] },
+              order: ["id"],
+              raw: true,
+              nest: true,
+            },
+          ],
+          raw: true,
+          nest: true,
+          group: ["User.id", "User.name", "SubCategories.id", "SubCategories.name"],
+          order: ["id"],
+        }
       ],
       raw: true,
       nest: true,
-      group: ["User.id", "User.name", "SubCategories.name"],
-      order: ["id"],
+      group: ["editor.id", "editor.name", "editor->SubCategories.id"],
+      order: [[{model: models.User, as: 'editor'}, 'id', 'ASC']],
     };
     if (keyword.trim() != "") {
-      options.where.name = { [Op.iLike]: `%${keyword}%` };
+      options.include[0].where.name = { [Op.iLike]: `%${keyword}%` };
     }
-    let editors = await models.User.findAll(options);
-    res.locals.editors = editors;
-    console.log(editors);
+    let editors = await models.Article.findAll(options);
+    res.locals.editors = processEditorList(editors);
+    console.log(res.locals.editors);
   } else if (type == "user-manage-3") {
     let options = {
-      attributes: ["id", "name", "email"],
-      //, [sequelize.fn('COUNT', sequelize.col('Articles.Comment.articleId')), 'commentCount'], [sequelize.fn('COUNT', sequelize.col('Articles.Reaction.userId')), 'likeCount']
+      attributes: ["id", "name", "email", [sequelize.fn('COUNT', sequelize.col('Articles.Comment.articleId')), 'commentCount']], 
       where: { role: { [Op.in]: ["default", "premium"] } },
       include: [
         {
           model: models.Article,
           attributes: [],
-          through: { attributes: [] },
+          through: { model: models.Comment, attributes: [] }, 
+        },
+      ],
+      raw: true,
+      nest: true,
+      group: ["User.id", "User.name"],
+      order: ["id"],
+    };
+    let options2 = {
+      attributes: ["id", "name", "email", [sequelize.fn('COUNT', sequelize.col('Articles.Comment.articleId')), 'likeCount']],
+      where: { role: { [Op.in]: ["default", "premium"] } },
+      include: [
+        {
+          model: models.Article,
+          attributes: [],
+          through: { model: models.Reaction, attributes: [] }, 
         },
       ],
       raw: true,
@@ -267,8 +342,14 @@ controller.showHomepage = async (req, res) => {
     };
     if (keyword.trim() != "") {
       options.where.name = { [Op.iLike]: `%${keyword}%` };
+      options2.where.name = { [Op.iLike]: `%${keyword}%` };
     }
+
     let readers = await models.User.findAll(options);
+    let readers2 = await models.User.findAll(options2);
+    for (let i = 0; i < readers2.length; i++) {
+      readers[i].likeCount = readers2[i].likeCount;
+    }    
     res.locals.readers = readers;
     console.log(readers);
   }
@@ -448,6 +529,22 @@ function removeParam(key, sourceURL) {
     if (params_arr.length) rtn = rtn + "?" + params_arr.join("&");
   }
   return rtn;
+}
+
+function processEditorList(originalList) {
+  let currentId = -1;
+  let list = [];
+  originalList.forEach(item => {
+    if (item.editor.id != currentId) {
+      currentId = item.editor.id;
+      item.editor.assigned = item.editor.SubCategories.name;
+      list.push(item);
+    }
+    else {
+      list.at(-1).editor.assigned = list.at(-1).editor.assigned.concat(", ", item.editor.SubCategories.name); 
+    }
+  });
+  return list;
 }
 
 module.exports = controller;

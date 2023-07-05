@@ -320,7 +320,7 @@
                     <th data-field="id">ID</th>
                     <th data-field="name">Họ tên</th>
                     <th data-field="email">Email</th>
-                    <th data-field="category">Chuyên mục phân công</th>
+                    {{!-- <th data-field="numOfArticleInMonth">Số bài viết trong tháng</th> --}}
                     <th data-field="numOfArticle">Tổng số bài viết</th>
                   </tr>
                 </thead>
@@ -328,11 +328,11 @@
                   {{#each writers}}
                   <tr>
                     <td></td>
-                    <td>{{id}}</td>
-                    <td>{{name}}</td>
-                    <td>{{email}}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{author.id}}</td>
+                    <td>{{author.name}}</td>
+                    <td>{{author.email}}</td>
+                    {{!-- <td></td> --}}
+                    <td>{{articleCount}}</td>
                   </tr>
                   {{/each}}
                 </tbody>
@@ -354,11 +354,11 @@
                   {{#each editors}}
                   <tr>
                     <td></td>
-                    <td>{{id}}</td>
-                    <td>{{name}}</td>
-                    <td>{{email}}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{editor.id}}</td>
+                    <td>{{editor.name}}</td>
+                    <td>{{editor.email}}</td>
+                    <td>{{editor.assigned}}</td>
+                    <td>{{articleCount}}</td>
                   </tr>
                   {{/each}}
                 </tbody>
@@ -385,8 +385,8 @@
                     <td>{{name}}</td>
                     <td>{{email}}</td>
                     <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{likeCount}}</td>
+                    <td>{{commentCount}}</td>
                   </tr>
                   {{/each}}
                 </tbody>

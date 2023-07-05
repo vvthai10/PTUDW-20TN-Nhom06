@@ -49,7 +49,7 @@ controller.showHomepage = async (req, res) => {
     res.locals.originalUrl =  res.locals.originalUrl + '?';
   }
 
-  res.render("writer", { layout: "layout_simple.hbs" });
+  res.render("writer");
 };
 
 controller.showComposePage = async (req, res) => {
@@ -73,7 +73,7 @@ controller.showComposePage = async (req, res) => {
     nest: true,
   });
   res.locals.tags = tags;
-  res.render("writer_compose", { layout: "layout_simple.hbs" });
+  res.render("writer_compose");
 };
 
 controller.newArticle = async (req, res, next) => {
@@ -174,7 +174,7 @@ controller.showEditPage = async (req, res) => {
       nest: true,
     });
     res.locals.tags = tags;
-    res.render("writer_edit", { layout: "layout_simple.hbs" });
+    res.render("writer_edit");
   }  
 };
 
