@@ -540,10 +540,12 @@ controller.modify = async (req, res, next) => {
           user.role = "premium";
 
           // TODO Tăng thời gian premium cho user, hiện tại chưa thể add type 4 nên sử dụng tạm type = 3
-          let registerDate = new Date(data.date);
+          let registerDate = new Date();
           let expiredDate = new Date(registerDate);
 
-          expiredDate.setDate(expiredDate.getDate() + req.body.numOfPremDay);
+          expiredDate.setDate(
+            expiredDate.getDate() + parseInt(req.body.numOfPremDay)
+          );
           // TODO Cập nhật trong bảng payment
           let premium = await models.Payment.create({
             userId: req.body.id,
@@ -560,14 +562,9 @@ controller.modify = async (req, res, next) => {
           } else {
             let originTime = new Date(userExpiredAt);
             addTime = new Date(originTime);
-
-            if (data.type == 1) {
-              addTime.setDate(addTime.getDate() + 7);
-            } else if (data.type == 2) {
-              addTime.setDate(addTime.getDate() + 30);
-            } else if (date.type == 3) {
-              addTime.setDate(addTime.getDate() + 60);
-            }
+            addTime.setDate(
+              addTime.getDate() + parseInt(req.body.numOfPremDay)
+            );
           }
           // await models.User.update(
           //   { expiredAt: addTime, role: "premium" },
