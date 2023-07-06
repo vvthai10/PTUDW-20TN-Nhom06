@@ -190,6 +190,10 @@ h3.body__title {
   display: block;
 }
 
+.main a {
+  font-size: 1rem;
+}
+
 .sidenav a:hover {
   color: blue;
 }

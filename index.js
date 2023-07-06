@@ -45,6 +45,7 @@ app.engine(
       ifContains,
       formatTime,
       select,
+      selectIn,
     },
   })
 );

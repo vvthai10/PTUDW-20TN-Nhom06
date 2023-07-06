@@ -64,7 +64,7 @@ controller.showHomepage = async (req, res) => {
     res.locals.originalUrl =  res.locals.originalUrl + '?';
   }
 
-  res.render("editor", { layout: "layout_simple.hbs" });
+  res.render("editor");
 };
 
 controller.showCensorPage = async (req, res) => {
@@ -131,7 +131,7 @@ controller.showCensorPage = async (req, res) => {
   }
   else { // Show censor page
     res.locals.article = article;
-    res.render("editor_censor", { layout: "layout_simple.hbs" });
+    res.render("editor_censor");
   }
 };
 

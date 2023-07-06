@@ -42,6 +42,7 @@
                 title="Chức năng Sửa (một số thuộc tính trong một dòng dữ liệu)" data-bs-function="Cập nhật"><i
                   class="bi bi-pencil"></i></button>
               <input id="input-type" type="hidden" name="type" form="form1">
+              <input class="input-url" type="hidden" name="originalUrl" form="form1">
               <!-- Modal Them -->
               <div class="modal fade" id="exampleModal0" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -72,10 +73,10 @@
                         <div class="modal-body__add__cat2 mb-3" style="display: none;">
                           <label for="input_tags">Danh sách chuyên mục phân công</label>
                           <label id="input_tags" style="font-size: 1rem; margin: 0;">
-                              <input mbsc-input id="demo-multiple-select-input" placeholder="Please re-select..."
+                              <input mbsc-input id="demo-multiple-select-input1" placeholder="Please re-select..."
                                   data-dropdown="true" data-input-style="outline" data-label-style="stacked" data-tags="true" form="form1" name="cat2"/>
                           </label>
-                          <select id="demo-multiple-select" multiple>
+                          <select id="demo-multiple-select1" multiple>
                               {{#each cat2}}
                               <option value="{{id}}">{{name}}</option>
                               {{/each}}
@@ -100,11 +101,17 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      Xác nhận xóa [Tên dữ liệu, e.x: Chuyên mục cấp 1] ABC.
+                     Bạn chưa chọn dòng dữ liệu cần xóa.
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                      <button type="button" class="btn btn-primary px-3" data-bs-dismiss="modal">Xác nhận</button>
+                      
+                      <input id="input-type2" type="hidden" name="type" form="form2">
+                      <input class="input-url" type="hidden" name="originalUrl" form="form2">
+                      <input id="input-name" type="hidden" name="name" form="form2">
+                      <button type="submit" class="btn btn-primary px-3" data-bs-dismiss="modal" form="form2">Xác nhận</button>
+                      <form id="form2" action="/admin/delete" method="post"></form>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -119,20 +126,40 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <form>
-                        <div class="modal-body__modify mb-3">
-                          <label for="category-add">[Tác vụ, e.x: Gia hạn tài khoản độc giả]:</label>
+                      <form id="form3" action="/admin/modify" method="post">
+                        <div class="modal-body__modify__premium mb-3" style="display: none;">
+                          Bạn chưa chọn dòng dữ liệu cần cập nhật.
+                          <label for="category-add"></label>
                           <div class="input-group mb-3">
                             <input type="number" class="form-control" placeholder="Nhập số ngày gia hạn"
-                              aria-label="Recipient's username" aria-describedby="basic-addon2">
+                              aria-label="Recipient's username" aria-describedby="basic-addon2" name="numOfPremDay" form="form3">
                             <span class="input-group-text" id="basic-addon2">ngày</span>
                           </div>
                         </div>
+                        <div class="modal-body__modify__cat2 mb-3" style="display: none;">
+                          Bạn chưa chọn dòng dữ liệu cần cập nhật.
+                          <label for="input_tags"></label>
+                          <label id="input_tags" style="font-size: 1rem; margin: 0;">
+                              <input mbsc-input id="demo-multiple-select-input" placeholder="Please re-select..."
+                                  data-dropdown="true" data-input-style="outline" data-label-style="stacked" data-tags="true" form="form3" name="cat2"/>
+                          </label>
+                          <select id="demo-multiple-select" multiple>
+                              {{#each cat2}}
+                              <option value="{{id}}">{{name}}</option>
+                              {{/each}}
+                          </select>
+                        </div>
+                        <div class="modal-body__modify__article mb-3" style="display: none;">
+                          Bạn chưa chọn dòng dữ liệu cần cập nhật.
+                        </div>
+                        <input id="input-type3" type="hidden" name="type" form="form3">
+                        <input class="input-url" type="hidden" name="originalUrl" form="form3">
+                        <input id="input-id" type="hidden" name="id" form="form3">
                       </form>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                      <button type="button" class="btn btn-primary px-3" data-bs-dismiss="modal">Lưu</button>
+                      <button form="form3" type="submit" class="btn btn-primary px-3" data-bs-dismiss="modal">Lưu</button>
                     </div>
                   </div>
                 </div>
@@ -173,8 +200,10 @@
                     <thead>
                       <tr>
                         <th data-radio="true"></th>
+                        <th data-field="id">ID</th>
                         <th data-field="title">Tiêu đề</th>
-                        <th data-field="date">Ngày viết</th>
+                        {{!-- <th data-field="date">Ngày viết</th> --}}
+                        <th data-field="date">Thời điểm xuất bản</th>
                         <th data-field="status">Tình trạng</th>
                         <th data-field="reviewer">Người duyệt</th>
                         <th data-field="comment">Nhận xét</th>
@@ -184,8 +213,10 @@
                       {{#each articles}}
                       <tr>
                         <td></td>
+                        <td>{{id}}</td>
                         <td>{{name}}</td>
-                        <td>{{formatTime updatedAt "DD.MM.YYYY HH:mm"}}</td>
+                        {{!-- <td>{{formatTime updatedAt "DD.MM.YYYY"}}</td> --}}
+                        <td>{{formatTime approve "DD.MM.YYYY HH:mm:ss"}}</td>
                         <td>{{status}}</td>
                         <td>{{editor.name}}</td>
                         <td>{{reviewComment}}</td>
@@ -289,7 +320,7 @@
                     <th data-field="id">ID</th>
                     <th data-field="name">Họ tên</th>
                     <th data-field="email">Email</th>
-                    <th data-field="category">Chuyên mục phân công</th>
+                    {{!-- <th data-field="numOfArticleInMonth">Số bài viết trong tháng</th> --}}
                     <th data-field="numOfArticle">Tổng số bài viết</th>
                   </tr>
                 </thead>
@@ -297,11 +328,11 @@
                   {{#each writers}}
                   <tr>
                     <td></td>
-                    <td>{{id}}</td>
-                    <td>{{name}}</td>
-                    <td>{{email}}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{author.id}}</td>
+                    <td>{{author.name}}</td>
+                    <td>{{author.email}}</td>
+                    {{!-- <td></td> --}}
+                    <td>{{articleCount}}</td>
                   </tr>
                   {{/each}}
                 </tbody>
@@ -323,11 +354,11 @@
                   {{#each editors}}
                   <tr>
                     <td></td>
-                    <td>{{id}}</td>
-                    <td>{{name}}</td>
-                    <td>{{email}}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{editor.id}}</td>
+                    <td>{{editor.name}}</td>
+                    <td>{{editor.email}}</td>
+                    <td>{{editor.assigned}}</td>
+                    <td>{{articleCount}}</td>
                   </tr>
                   {{/each}}
                 </tbody>
@@ -354,8 +385,8 @@
                     <td>{{name}}</td>
                     <td>{{email}}</td>
                     <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{likeCount}}</td>
+                    <td>{{commentCount}}</td>
                   </tr>
                   {{/each}}
                 </tbody>

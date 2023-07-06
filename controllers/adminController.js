@@ -173,8 +173,9 @@ controller.showHomepage = async (req, res) => {
         "status",
         "editorId",
         "reviewComment",
+        "approve",
       ],
-      where: { status: { [Op.in]: ["posted", "approved"] } },
+      where: { status: { [Op.in]: ["posted", "approved", "pending"] } },
       include: [
         {
           model: models.User,
@@ -204,59 +205,140 @@ controller.showHomepage = async (req, res) => {
       res.locals.originalUrl = res.locals.originalUrl + "?";
     }
   } else if (type == "user-manage-1") {
+    // let options = {
+    //   attributes: ["id", "name", "email"],
+    //   where: { role: "writer" },
+    //   // include: [
+    //   //   {
+    //   //     model: models.SubCategory,
+    //   //     attributes: ["name"],
+    //   //     through: { attributes: [] },
+    //   //   },
+    //   // ],
+    //   raw: true,
+    //   nest: true,
+    //   // group: ["User.id", "User.name", ],
+    //   order: ["id"],
+    // };
+    // if (keyword.trim() != "") {
+    //   options.where.name = { [Op.iLike]: `%${keyword}%` };
+    // }
+    // let writers = await models.User.findAll(options);
+    // res.locals.writers = writers;
+    // console.log(writers);
+
     let options = {
-      attributes: ["id", "name", "email"],
-      where: { role: "writer" },
+      attributes: [[sequelize.fn('COUNT', sequelize.col('Article.id')), 'articleCount']],
       include: [
         {
-          model: models.SubCategory,
-          attributes: ["name"],
-          through: { attributes: [] },
-        },
-      ],
+          model: models.User,
+          as: 'author',
+          required: false,
+          right: true,
+          attributes: ["id", "name", "email"],
+          where: { role: "writer" },  // không áp dụng được, phải filter lại
+          raw: true,
+          nest: true,
+          order: ["id"],          
+      }],      
       raw: true,
       nest: true,
-      group: ["User.id", "User.name", "SubCategories.name"],
-      order: ["id"],
+      group: ["author.id", "author.name"],
+      order: [[{model: models.User, as: 'author'}, 'id', 'ASC']],
     };
     if (keyword.trim() != "") {
-      options.where.name = { [Op.iLike]: `%${keyword}%` };
+      options.include[0].where.name = { [Op.iLike]: `%${keyword}%` };
     }
-    let writers = await models.User.findAll(options);
+    let writers = await models.Article.findAll(options);
+    writers = writers.filter((writer) => writer.author && writer.author.role === 'writer'); // filter lại role
     res.locals.writers = writers;
     console.log(writers);
   } else if (type == "user-manage-2") {
+    // let options = {
+    //   attributes: ["id", "name", "email"],
+    //   where: { role: "editor" },
+    //   include: [
+    //     {
+    //       model: models.SubCategory,
+    //       attributes: ["id","name"],
+    //       through: { attributes: [] },
+    //       order: ["id"],
+    //     },
+    //   ],
+    //   raw: true,
+    //   nest: true,
+    //   group: ["User.id", "User.name", "SubCategories.id", "SubCategories.name"],
+    //   order: ["id"],
+    // };
+    // if (keyword.trim() != "") {
+    //   options.where.name = { [Op.iLike]: `%${keyword}%` };
+    // }
+    // let editors = await models.User.findAll(options);
+    // res.locals.editors = processEditorList(editors);
+    // console.log(editors);
+
     let options = {
-      attributes: ["id", "name", "email"],
-      where: { role: "editor" },
+      attributes: [[sequelize.fn('COUNT', sequelize.col('Article.id')), 'articleCount']],
       include: [
         {
-          model: models.SubCategory,
-          attributes: ["name"],
-          through: { attributes: [] },
-        },
+          model: models.User,          
+          as: 'editor',          
+          attributes: ["id", "name", "email", "role"],
+          where: { role: "editor" },  // không áp dụng được, phải filter lại
+          required: false,
+          right: true,
+          include: [
+            {
+              model: models.SubCategory,
+              attributes: ["id","name"],
+              through: { attributes: [] },
+              order: ["id"],
+              raw: true,
+              nest: true,
+            },
+          ],
+          raw: true,
+          nest: true,
+          group: ["User.id", "User.name", "SubCategories.id", "SubCategories.name"],
+          order: ["id"],
+        }
       ],
       raw: true,
       nest: true,
-      group: ["User.id", "User.name", "SubCategories.name"],
-      order: ["id"],
+      group: ["editor.id", "editor.name", "editor->SubCategories.id"],
+      order: [[{model: models.User, as: 'editor'}, 'id', 'ASC']],
     };
     if (keyword.trim() != "") {
-      options.where.name = { [Op.iLike]: `%${keyword}%` };
+      options.include[0].where.name = { [Op.iLike]: `%${keyword}%` };
     }
-    let editors = await models.User.findAll(options);
-    res.locals.editors = editors;
-    console.log(editors);
+    let editors = await models.Article.findAll(options);
+    editors = editors.filter((editor) => editor.editor && editor.editor.role === 'editor'); // filter lại role
+    res.locals.editors = processEditorList(editors);
+    console.log(res.locals.editors);
   } else if (type == "user-manage-3") {
     let options = {
-      attributes: ["id", "name", "email"],
-      //, [sequelize.fn('COUNT', sequelize.col('Articles.Comment.articleId')), 'commentCount'], [sequelize.fn('COUNT', sequelize.col('Articles.Reaction.userId')), 'likeCount']
+      attributes: ["id", "name", "email", [sequelize.fn('COUNT', sequelize.col('Articles.Comment.articleId')), 'commentCount']], 
       where: { role: { [Op.in]: ["default", "premium"] } },
       include: [
         {
           model: models.Article,
           attributes: [],
-          through: { attributes: [] },
+          through: { model: models.Comment, attributes: [] }, 
+        },
+      ],
+      raw: true,
+      nest: true,
+      group: ["User.id", "User.name"],
+      order: ["id"],
+    };
+    let options2 = {
+      attributes: ["id", "name", "email", [sequelize.fn('COUNT', sequelize.col('Articles.Comment.articleId')), 'likeCount']],
+      where: { role: { [Op.in]: ["default", "premium"] } },
+      include: [
+        {
+          model: models.Article,
+          attributes: [],
+          through: { model: models.Reaction, attributes: [] }, 
         },
       ],
       raw: true,
@@ -266,8 +348,14 @@ controller.showHomepage = async (req, res) => {
     };
     if (keyword.trim() != "") {
       options.where.name = { [Op.iLike]: `%${keyword}%` };
+      options2.where.name = { [Op.iLike]: `%${keyword}%` };
     }
+
     let readers = await models.User.findAll(options);
+    let readers2 = await models.User.findAll(options2);
+    for (let i = 0; i < readers2.length; i++) {
+      readers[i].likeCount = readers2[i].likeCount;
+    }    
     res.locals.readers = readers;
     console.log(readers);
   }
@@ -344,16 +432,91 @@ controller.add = async (req, res, next) => {
   } catch (error) {
     console.log(error);
   }
-  res.redirect("/admin");
+  res.redirect(req.body.originalUrl);
   // Chưa có message
 };
 
 controller.delete = async (req, res, next) => {
-  // TODO
+  if (!req.user) res.redirect("/admin");
+  console.log(req.body);
+  try {
+    switch (req.body.type) {
+      case "Chuyên mục cấp 1":
+        await models.Category.destroy({
+          where: {name: req.body.name},
+        });
+        break;
+      case "Chuyên mục cấp 2":
+        await models.SubCategory.destroy({
+          where: {name: req.body.name},
+        });
+        break;
+      case "Nhãn":
+        await models.Tag.destroy({
+          where: {name: req.body.name},
+        });
+        break;
+      case "tài khoản Phóng viên":
+        await models.User.destroy({
+          where: {name: req.body.name},
+        });
+        break;
+      case "tài khoản Biên tập viên":
+        await models.User.destroy({
+          where: {name: req.body.name},
+        });
+        break;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  res.redirect(req.body.originalUrl);
+  // Chưa có message
 };
 
 controller.modify = async (req, res, next) => {
-  // TODO
+  if (!req.user) res.redirect("/admin");
+  console.log(req.body);
+  try {
+    switch (req.body.type) {
+      case "Bài viết":
+        if (req.body.id) {
+          let article = await models.Article.findOne({
+            where: {id: parseInt(req.body.id)},
+          });
+          article.status = 'posted';
+          await article.save();
+        }
+        break;
+      case "tài khoản Biên tập viên":
+        if (req.body.id) {
+          let editor = await models.User.findOne({
+            where: {id: parseInt(req.body.id)},
+          });
+          let assigned = await models.SubCategory.findAll({
+            where: { name: { [Op.in]: req.body.cat2.split(", ") } },
+          });
+          if (assigned) {
+            await editor.setSubCategories(null);
+            await editor.addSubCategories(assigned);
+          }
+        }
+        break;
+      case "tài khoản Độc giả":
+        if (req.body.id) {
+          let user = await models.User.findOne({
+            where: {id: parseInt(req.body.id)},
+          });
+          user.role = 'premium';
+          await user.save();
+        }
+        break;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  res.redirect(req.body.originalUrl);
+  // Chưa có message
 };
 
 function removeParam(key, sourceURL) {
@@ -372,6 +535,22 @@ function removeParam(key, sourceURL) {
     if (params_arr.length) rtn = rtn + "?" + params_arr.join("&");
   }
   return rtn;
+}
+
+function processEditorList(originalList) {
+  let currentId = -1;
+  let list = [];
+  originalList.forEach(item => {
+    if (item.editor.id != currentId) {
+      currentId = item.editor.id;
+      item.editor.assigned = item.editor.SubCategories.name;
+      list.push(item);
+    }
+    else {
+      list.at(-1).editor.assigned = list.at(-1).editor.assigned.concat(", ", item.editor.SubCategories.name); 
+    }
+  });
+  return list;
 }
 
 module.exports = controller;
