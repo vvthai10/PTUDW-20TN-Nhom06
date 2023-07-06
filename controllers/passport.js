@@ -122,10 +122,10 @@ passport.use(
         done(
           null,
           false,
-          req.flash(
-            "registerMessage",
-            "You have registered successfully. Please login!"
-          )
+          req.flash("hasalert", "1"),
+          req.flash("typealert", "success"),
+          req.flash("messagealert", "Đăng kí thành công"),
+          req.flash("loginMessage", "Đăng kí thành công")
         );
       } catch (error) {
         done(error);

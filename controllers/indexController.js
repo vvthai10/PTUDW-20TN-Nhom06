@@ -2,7 +2,7 @@
 const models = require("../models");
 const slugify = require("slugify");
 const controller = {};
-const sequelize = require('sequelize');
+const sequelize = require("sequelize");
 const tagarticle = require("../models/tagarticle");
 const Op = sequelize.Op;
 
@@ -31,15 +31,30 @@ controller.showHomepage = async (req, res) => {
   let temp = [];
   for (let index = 0; index < articles.length / 3; index++) {
     if (index == 0) {
-      rightArticles.push({_main_item: [{_item: [articles[index * 3], articles[index * 3 + 1], articles[index * 3 + 2]]}]});
+      rightArticles.push({
+        _main_item: [
+          {
+            _item: [
+              articles[index * 3],
+              articles[index * 3 + 1],
+              articles[index * 3 + 2],
+            ],
+          },
+        ],
+      });
       // rightArticles.push({_item: []})
-    }
-    else {
-      temp.push({_item: [articles[index * 3], articles[index * 3 + 1], articles[index * 3 + 2]]});
+    } else {
+      temp.push({
+        _item: [
+          articles[index * 3],
+          articles[index * 3 + 1],
+          articles[index * 3 + 2],
+        ],
+      });
       // rightArticles[2].push([articles[index * 3], articles[index * 3 + 1], articles[index * 3 + 2]]);
     }
   }
-  rightArticles.push({_items: temp});
+  rightArticles.push({ _items: temp });
   // console.log(rightArticles[1]._items)
   // console.log(rightArticles[0]._item.length)
   res.locals.latestArticles = rightArticles;
@@ -60,45 +75,47 @@ controller.showCategory = async (req, res) => {
 
   // get the subCategoryId of categoryId
   let subCategoryIds = await models.SubCategory.findAll({
-    include: [{
-      model: models.Category,
-      where: {
-        id: categoryId
-      }
-    }]
+    include: [
+      {
+        model: models.Category,
+        where: {
+          id: categoryId,
+        },
+      },
+    ],
   });
-  subCategoryIds = subCategoryIds.map(item => item.id);
+  subCategoryIds = subCategoryIds.map((item) => item.id);
 
   // get the ArticleId of categoryId
   let categoryArticleIds = await models.Article.findAll({
-    attributes: ['id'],
+    attributes: ["id"],
     include: [
       {
         model: models.SubCategory,
         where: {
           id: {
-            [Op.or]: subCategoryIds
-          }
-        }
-      }
-    ]
+            [Op.or]: subCategoryIds,
+          },
+        },
+      },
+    ],
   });
 
-  categoryArticleIds = categoryArticleIds.map(item => item.id);
-  
+  categoryArticleIds = categoryArticleIds.map((item) => item.id);
+
   // get the list of article with tag
   let categoryArticles = await models.Article.findAll({
     where: {
       id: {
-        [Op.or]: categoryArticleIds
-      }
+        [Op.or]: categoryArticleIds,
+      },
     },
     include: [
       {
         model: models.Tag,
-        attributes: ['name']
-      }
-    ]
+        attributes: ["name"],
+      },
+    ],
   });
 
   res.locals.categoryArticles = categoryArticles;
@@ -107,19 +124,17 @@ controller.showCategory = async (req, res) => {
   let hotArticles = await models.Article.findAll({
     where: {
       id: {
-        [Op.or]: categoryArticleIds
-      }
+        [Op.or]: categoryArticleIds,
+      },
     },
     include: [
       {
         model: models.Tag,
-        attributes: ['name']
-      }
+        attributes: ["name"],
+      },
     ],
-    order: [
-      ['nView', 'DESC']
-    ],
-    limit: 3
+    order: [["nView", "DESC"]],
+    limit: 3,
   });
   for (let index = 0; index < hotArticles.length; index++) {
     const element = hotArticles[index];
@@ -137,16 +152,16 @@ controller.showCategory = async (req, res) => {
       {
         model: models.Category,
         where: {
-          id: categoryId
-        }
-      }
-    ]
+          id: categoryId,
+        },
+      },
+    ],
   });
   // subCategory = subCategory.map(item => item.name);
   res.locals.subCategory = subCategory;
 
-  res.render('readCategory');
-}
+  res.render("readCategory");
+};
 
 controller.showSubCategory = async (req, res) => {
   let subCategoryId = req.query.subCategoryId || 0;
@@ -155,66 +170,66 @@ controller.showSubCategory = async (req, res) => {
   res.locals.subCategory = subCategory;
 
   let category = await models.Category.findOne({
-    attributes: ['id', 'name'],
+    attributes: ["id", "name"],
     include: [
       {
         model: models.SubCategory,
         attributes: [],
         where: {
-          id: subCategoryId
-        }
-      }
-    ]
+          id: subCategoryId,
+        },
+      },
+    ],
   });
 
   res.locals.category = category;
 
   let articleIds = await models.CategoryArticle.findAll({
-    attributes: ['articleId'],
+    attributes: ["articleId"],
     where: {
-      subCategoryId: subCategoryId
-    }
+      subCategoryId: subCategoryId,
+    },
   });
 
-  articleIds = articleIds.map(item => item.articleId)
+  articleIds = articleIds.map((item) => item.articleId);
 
   // get the subCategoryId of categoryId
   let articles = await models.Article.findAll({
     where: {
       id: {
-        [Op.or]: articleIds
-      }
+        [Op.or]: articleIds,
+      },
     },
     include: [
       {
         model: models.Tag,
-        attributes: ['name']
-      }
+        attributes: ["name"],
+      },
     ],
-    order: [['createdAt', 'DESC']]
+    order: [["createdAt", "DESC"]],
   });
 
   let hotArticles = await models.Article.findAll({
     where: {
       id: {
-        [Op.or]: articleIds
-      }
+        [Op.or]: articleIds,
+      },
     },
     include: [
       {
         model: models.Tag,
-        attributes: ['name']
-      }
+        attributes: ["name"],
+      },
     ],
-    order: [['nView', 'DESC']],
-    limit: 3
+    order: [["nView", "DESC"]],
+    limit: 3,
   });
 
   res.locals.articles = articles;
   res.locals.hotArticles = hotArticles;
   // res.send("hello world");
-  res.render('readsubcategory');
-}
+  res.render("readsubcategory");
+};
 
 controller.showArticle = async (req, res) => {
   // let articleId = parseInt(req.query.articleId);
@@ -277,46 +292,45 @@ controller.showArticle = async (req, res) => {
   // // console.log(article.SubCategories[0].Category);
   // // res.locals.article = article;
   // res.locals.
-  res.locals.userRole = res.locals.userInfo.role;
-  res.render('readnews');
-}
+  res.locals.userRole = res.locals.userInfo.role || "default";
+  res.render("readnews");
+};
 
 controller.showTag = async (req, res) => {
   let tagId = req.query.tagId || 0;
   let tagArticleIds = await models.TagArticle.findAll({
-    attributes: ['articleId'],
-    where: {tagId: tagId}
+    attributes: ["articleId"],
+    where: { tagId: tagId },
   });
 
   let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
 
-  tagArticleIds = tagArticleIds.map(item => item.articleId);
-
+  tagArticleIds = tagArticleIds.map((item) => item.articleId);
 
   let tagName = await models.Tag.findOne({
-    attributes: ['name'],
-    where: {id: tagId}
-  })
+    attributes: ["name"],
+    where: { id: tagId },
+  });
 
   const limit = 7;
 
-  let {rows, count} = await models.TagArticle.findAndCountAll({
-    attributes: ['tagId'],
-    where: {articleId: tagArticleIds},
+  let { rows, count } = await models.TagArticle.findAndCountAll({
+    attributes: ["tagId"],
+    where: { articleId: tagArticleIds },
     include: [
       {
         model: models.Article,
         include: [
           {
             model: models.Tag,
-            attributes: ['name']
-          }
-        ]
-      }
+            attributes: ["name"],
+          },
+        ],
+      },
     ],
     distinct: true,
     limit: limit,
-    offset: limit * (page - 1)
+    offset: limit * (page - 1),
   });
 
   // console.log(rows.length);
@@ -326,16 +340,16 @@ controller.showTag = async (req, res) => {
     page: page,
     limit: limit,
     totalRows: count,
-    queryParams: req.query
-  }
+    queryParams: req.query,
+  };
 
   res.locals.tagName = tagName.name;
-  res.render('tag');
-}
+  res.render("tag");
+};
 
 controller.search = async (req, res) => {
-  let text_search = req.query.keyword || '';
-  const si = require('search-index');
+  let text_search = req.query.keyword || "";
+  const si = require("search-index");
   const articles = await models.Article.findAll();
   // const ids = articles.map(item => item['id']);
   // const slugs = articles.map(item => item['slug']);
@@ -344,11 +358,11 @@ controller.search = async (req, res) => {
   //   array.push({_id: ids[index], _slug: slugs[index]});
   // }
   // console.log(array);
-  const db = await si({ name: 'SEARCH' });
+  const db = await si({ name: "SEARCH" });
   await db.PUT(articles);
 
-  let result = await db.QUERY({AND: [text_search]})
-  console.log(result)
-}
+  let result = await db.QUERY({ AND: [text_search] });
+  console.log(result);
+};
 
 module.exports = controller;

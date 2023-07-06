@@ -89,10 +89,9 @@ router.post("/account/update", async (req, res, next) => {
     user = await models.User.update(dataUpdate, { where: { id: user.id } });
 
     res.locals.info = 1;
-    res.locals.alertData = {
-      type: "success",
-      message: "Cập nhật thông tin thành công",
-    };
+    res.locals.hasalert = true;
+    res.locals.typealert = "success";
+    res.locals.messagealert = "Cập nhật thông tin thành công";
     res.render("account-info");
   } else if (view == "password") {
     console.log("Get here");
@@ -105,10 +104,9 @@ router.post("/account/update", async (req, res, next) => {
         { password: newPassword },
         { where: { id: res.locals.userInfo.id } }
       ); // $2b$08$ukGBPsgEFHOZquEHu9rFk.PwQ41.ACLu2pcOJoAWmQlqQbzwKrgpe
-      res.locals.alertData = {
-        type: "success",
-        message: "Cập nhật mật khẩu thành công",
-      };
+      res.locals.hasalert = true;
+      res.locals.typealert = "success";
+      res.locals.messagealert = "Cập nhật mật khẩu thành công";
     } else {
       // Kiểm tra mật khẩu có trùng với mật khẩu không
       let password = req.body.curPassword;
@@ -117,10 +115,9 @@ router.post("/account/update", async (req, res, next) => {
       });
 
       if (!bcrypt.compareSync(password, user.password)) {
-        res.locals.alertData = {
-          type: "error",
-          message: "Mật khẩu hiện tại không đúng",
-        };
+        res.locals.hasalert = true;
+        res.locals.typealert = "error";
+        res.locals.messagealert = "Mật khẩu hiện tại không đúng";
       } else {
         // Nếu mật khẩu hiện tại đã đúng, cập nhật mật khẩu mới
         let newPassword = bcrypt.hashSync(
@@ -131,10 +128,9 @@ router.post("/account/update", async (req, res, next) => {
           { password: newPassword },
           { where: { id: user.id } }
         ); // $2b$08$ukGBPsgEFHOZquEHu9rFk.PwQ41.ACLu2pcOJoAWmQlqQbzwKrgpe
-        res.locals.alertData = {
-          type: "success",
-          message: "Cập nhật mật khẩu thành công",
-        };
+        res.locals.hasalert = true;
+        res.locals.typealert = "success";
+        res.locals.messagealert = "Cập nhật mật khẩu thành công";
       }
     }
 

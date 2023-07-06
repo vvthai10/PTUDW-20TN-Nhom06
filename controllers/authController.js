@@ -68,7 +68,12 @@ controller.register = (req, res, next) => {
       return next(error);
     }
     if (!user) {
-      return res.redirect(`/users/register?reqUrl=${reqUrl}`);
+      res.locals.alertData = {
+        type: "success",
+        message: "Đăng kí tài khoản thành công",
+      };
+      // return res.redirect(`/users/register?reqUrl=${reqUrl}`);
+      res.redirect(`/users/login?reqUrl=${reqUrl}`);
     }
     req.logIn(user, (error) => {
       if (error) {

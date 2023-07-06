@@ -1,34 +1,32 @@
-{{#with alertData}}
-  <div class="alert-toast alert-active">
+<div class="alert-toast alert-active">
 
-    <div class="alert-toast-content">
-      <i class="fas fa-solid fa-check alert-check 
-      {{#ifEquals type 'success'}}success{{/ifEquals}}
-      {{#ifEquals type 'warning'}}warning{{/ifEquals}}
-      {{#ifEquals type 'error'}}error{{/ifEquals}}
-      ">
-      </i>
+  <div class="alert-toast-content">
+    <i class="fas fa-solid fa-check alert-check 
+    {{#ifEquals typealert 'success'}}success{{/ifEquals}}
+    {{#ifEquals typealert 'warning'}}warning{{/ifEquals}}
+    {{#ifEquals typealert 'error'}}error{{/ifEquals}}
+    ">
+    </i>
 
-      <div class="alert-message">
-        <span class="alert-text alert-text-1">
-          {{#ifEquals type 'success'}}Success{{/ifEquals}}
-          {{#ifEquals type 'warning'}}Warning{{/ifEquals}}
-          {{#ifEquals type 'error'}}Error{{/ifEquals}}
-        </span>
-        
-        <span class="alert-text alert-text-2">{{message}}</span>
-      </div>
+    <div class="alert-message">
+      <span class="alert-text alert-text-1">
+        {{#ifEquals typealert 'success'}}Success{{/ifEquals}}
+        {{#ifEquals typealert 'warning'}}Warning{{/ifEquals}}
+        {{#ifEquals typealert 'error'}}Error{{/ifEquals}}
+      </span>
+      
+      <span class="alert-text alert-text-2">{{messagealert}}</span>
     </div>
-    <i class="fa-solid fa-xmark alert-close"></i>
-
-    <!-- Remove 'active' class, this is just to show in Codepen thumbnail -->
-    <div class="alert-progress alert-active
-    {{#ifEquals type 'success'}}alert-progres-success{{/ifEquals}}
-    {{#ifEquals type 'warning'}}alert-progres-warning{{/ifEquals}}
-    {{#ifEquals type 'error'}}alert-progres-error{{/ifEquals}}
-    "></div>
   </div>
-{{/with}}
+  <i class="fa-solid fa-xmark alert-close"></i>
+
+  <!-- Remove 'active' class, this is just to show in Codepen thumbnail -->
+  <div class="alert-progress alert-active
+  {{#ifEquals typealert 'success'}}alert-progres-success{{/ifEquals}}
+  {{#ifEquals typealert 'warning'}}alert-progres-warning{{/ifEquals}}
+  {{#ifEquals typealert 'error'}}alert-progres-error{{/ifEquals}}
+  "></div>
+</div>
 <script>
   const toast = document.querySelector(".alert-toast"); const closeIcon =
   document.querySelector(".alert-close"); const progress =

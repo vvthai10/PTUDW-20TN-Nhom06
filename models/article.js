@@ -36,7 +36,6 @@ module.exports = (sequelize, DataTypes) => {
       });
       Article.belongsTo(models.User, {
         foreignKey: "authorId",
-        constraints: true,
         as: "author",
         scope: {
           role: "writer",
@@ -44,7 +43,6 @@ module.exports = (sequelize, DataTypes) => {
       });
       Article.belongsTo(models.User, {
         foreignKey: "editorId",
-        constraints: true,
         as: "editor",
         scope: {
           role: "editor",
@@ -80,7 +78,7 @@ module.exports = (sequelize, DataTypes) => {
       nViewWeek: DataTypes.INTEGER,
       nViewMonth: DataTypes.INTEGER,
       approve: DataTypes.DATE,
-      reviewComment: DataTypes.TEXT
+      reviewComment: DataTypes.TEXT,
     },
     {
       sequelize,
