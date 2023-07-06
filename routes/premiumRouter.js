@@ -29,7 +29,7 @@ router.get("/register", (req, res) => {
   // Gói cao cấp
   else if (type == 3) {
     orderInfo = "Đăng kí premium: Gói cao cấp";
-    amount = "200000";
+    amount = "180000";
   }
 
   amount = "1000";
@@ -53,7 +53,7 @@ router.get("/register", (req, res) => {
 
   // TODO: Cần thêm thông tin user để có thể trả về khi thanh toán xong thì xét đk cho user
   var user = req.user.dataValues;
-  console.log(user);
+  // console.log(user);
   var jsonData = {
     id: user.id,
     name: user.name,
@@ -156,22 +156,123 @@ router.get("/register", (req, res) => {
   request.end();
 });
 
+router.get("/test-register", async (req, res) => {
+  var user = req.user.dataValues;
+  var userExpiredAt = user.expiredAt;
+
+  let data = {
+    id: user.id,
+    name: user.name,
+    type: 1,
+    amount: 7000,
+    date: new Date(),
+  };
+
+  let registerDate = new Date(data.date);
+  let expiredDate = new Date(registerDate);
+
+  if (data.type == 1) {
+    expiredDate.setDate(expiredDate.getDate() + 7);
+  } else if (data.type == 2) {
+    expiredDate.setDate(expiredDate.getDate() + 30);
+  } else if (date.type == 3) {
+    expiredDate.setDate(expiredDate.getDate() + 60);
+  }
+
+  // Cập nhật expiredAt tất cả trong user
+  let addTime = null;
+  if (userExpiredAt == null) {
+    addTime = expiredDate;
+  } else {
+    let originTime = new Date(userExpiredAt);
+    addTime = new Date(originTime);
+
+    if (data.type == 1) {
+      addTime.setDate(addTime.getDate() + 7);
+    } else if (data.type == 2) {
+      addTime.setDate(addTime.getDate() + 30);
+    } else if (date.type == 3) {
+      addTime.setDate(addTime.getDate() + 60);
+    }
+  }
+
+  // - Tạo 1 dòng mới trong bảng Payment
+  let premium = await models.Payment.create({
+    userId: parseInt(data.id),
+    amount: data.amount,
+    type: parseInt(data.type),
+    registeredAt: registerDate,
+    expiredAt: expiredDate,
+  });
+
+  // Sau đó cập nhật expiredAt trong bảng User, bảng này tổng hợp all thông tin về các expiredAt
+  let newUser = await models.User.update(
+    { expiredAt: addTime },
+    { where: { id: data.id } }
+  );
+
+  res.render("thanks");
+});
+
 router.get("/thanks", async (req, res) => {
   if (req.query.message == "Successful.") {
+    var user = req.user.dataValues;
+    var userExpiredAt = user.expiredAt;
+
     let data = JSON.parse(
       Buffer.from(req.query.extraData, "base64").toString()
     );
     console.log(data);
-    let date = new Date(data.date);
+    // let data = {
+    //   id: user.id,
+    //   name: user.name,
+    //   type: 1,
+    //   amount: 7000,
+    //   date: new Date(),
+    // };
 
+    let registerDate = new Date(data.date);
+    let expiredDate = new Date(registerDate);
+
+    if (data.type == 1) {
+      expiredDate.setDate(expiredDate.getDate() + 7);
+    } else if (data.type == 2) {
+      expiredDate.setDate(expiredDate.getDate() + 30);
+    } else if (date.type == 3) {
+      expiredDate.setDate(expiredDate.getDate() + 60);
+    }
+
+    // Cập nhật expiredAt tất cả trong user
+    let addTime = null;
+    if (userExpiredAt == null) {
+      addTime = expiredDate;
+    } else {
+      let originTime = new Date(userExpiredAt);
+      addTime = new Date(originTime);
+
+      if (data.type == 1) {
+        addTime.setDate(addTime.getDate() + 7);
+      } else if (data.type == 2) {
+        addTime.setDate(addTime.getDate() + 30);
+      } else if (date.type == 3) {
+        addTime.setDate(addTime.getDate() + 60);
+      }
+    }
+
+    // - Tạo 1 dòng mới trong bảng Payment
     let premium = await models.Payment.create({
-      amount: req.query.amount,
       userId: parseInt(data.id),
-      // type: parseInt(type),
-      // registerDate: `${date}`,
+      amount: data.amount,
+      type: parseInt(data.type),
+      registeredAt: registerDate,
+      expiredAt: expiredDate,
     });
 
-    console.log(premium);
+    // Sau đó cập nhật expiredAt trong bảng User, bảng này tổng hợp all thông tin về các expiredAt
+    let newUser = await models.User.update(
+      { expiredAt: addTime, role: "premium" },
+      { where: { id: data.id } }
+    );
 
     res.render("thanks");
   }

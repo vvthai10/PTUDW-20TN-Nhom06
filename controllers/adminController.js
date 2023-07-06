@@ -228,29 +228,34 @@ controller.showHomepage = async (req, res) => {
     // console.log(writers);
 
     let options = {
-      attributes: [[sequelize.fn('COUNT', sequelize.col('Article.id')), 'articleCount']],
+      attributes: [
+        [sequelize.fn("COUNT", sequelize.col("Article.id")), "articleCount"],
+      ],
       include: [
         {
           model: models.User,
-          as: 'author',
+          as: "author",
           required: false,
           right: true,
           attributes: ["id", "name", "email"],
-          where: { role: "writer" },  // không áp dụng được, phải filter lại
+          where: { role: "writer" }, // không áp dụng được, phải filter lại
           raw: true,
           nest: true,
-          order: ["id"],          
-      }],      
+          order: ["id"],
+        },
+      ],
       raw: true,
       nest: true,
       group: ["author.id", "author.name"],
-      order: [[{model: models.User, as: 'author'}, 'id', 'ASC']],
+      order: [[{ model: models.User, as: "author" }, "id", "ASC"]],
     };
     if (keyword.trim() != "") {
       options.include[0].where.name = { [Op.iLike]: `%${keyword}%` };
     }
     let writers = await models.Article.findAll(options);
-    writers = writers.filter((writer) => writer.author && writer.author.role === 'writer'); // filter lại role
+    writers = writers.filter(
+      (writer) => writer.author && writer.author.role === "writer"
+    ); // filter lại role
     res.locals.writers = writers;
     console.log(writers);
   } else if (type == "user-manage-2") {
@@ -278,19 +283,21 @@ controller.showHomepage = async (req, res) => {
     // console.log(editors);
 
     let options = {
-      attributes: [[sequelize.fn('COUNT', sequelize.col('Article.id')), 'articleCount']],
+      attributes: [
+        [sequelize.fn("COUNT", sequelize.col("Article.id")), "articleCount"],
+      ],
       include: [
         {
-          model: models.User,          
-          as: 'editor',          
+          model: models.User,
+          as: "editor",
           attributes: ["id", "name", "email", "role"],
-          where: { role: "editor" },  // không áp dụng được, phải filter lại
+          where: { role: "editor" }, // không áp dụng được, phải filter lại
           required: false,
           right: true,
           include: [
             {
               model: models.SubCategory,
-              attributes: ["id","name"],
+              attributes: ["id", "name"],
               through: { attributes: [] },
               order: ["id"],
               raw: true,
@@ -299,31 +306,46 @@ controller.showHomepage = async (req, res) => {
           ],
           raw: true,
           nest: true,
-          group: ["User.id", "User.name", "SubCategories.id", "SubCategories.name"],
+          group: [
+            "User.id",
+            "User.name",
+            "SubCategories.id",
+            "SubCategories.name",
+          ],
           order: ["id"],
-        }
+        },
       ],
       raw: true,
       nest: true,
       group: ["editor.id", "editor.name", "editor->SubCategories.id"],
-      order: [[{model: models.User, as: 'editor'}, 'id', 'ASC']],
+      order: [[{ model: models.User, as: "editor" }, "id", "ASC"]],
     };
     if (keyword.trim() != "") {
       options.include[0].where.name = { [Op.iLike]: `%${keyword}%` };
     }
     let editors = await models.Article.findAll(options);
-    editors = editors.filter((editor) => editor.editor && editor.editor.role === 'editor'); // filter lại role
+    editors = editors.filter(
+      (editor) => editor.editor && editor.editor.role === "editor"
+    ); // filter lại role
     res.locals.editors = processEditorList(editors);
     console.log(res.locals.editors);
   } else if (type == "user-manage-3") {
     let options = {
-      attributes: ["id", "name", "email", [sequelize.fn('COUNT', sequelize.col('Articles.Comment.articleId')), 'commentCount']], 
+      attributes: [
+        "id",
+        "name",
+        "email",
+        [
+          sequelize.fn("COUNT", sequelize.col("Articles.Comment.articleId")),
+          "commentCount",
+        ],
+      ],
       where: { role: { [Op.in]: ["default", "premium"] } },
       include: [
         {
           model: models.Article,
           attributes: [],
-          through: { model: models.Comment, attributes: [] }, 
+          through: { model: models.Comment, attributes: [] },
         },
       ],
       raw: true,
@@ -332,13 +354,21 @@ controller.showHomepage = async (req, res) => {
       order: ["id"],
     };
     let options2 = {
-      attributes: ["id", "name", "email", [sequelize.fn('COUNT', sequelize.col('Articles.Comment.articleId')), 'likeCount']],
+      attributes: [
+        "id",
+        "name",
+        "email",
+        [
+          sequelize.fn("COUNT", sequelize.col("Articles.Comment.articleId")),
+          "likeCount",
+        ],
+      ],
       where: { role: { [Op.in]: ["default", "premium"] } },
       include: [
         {
           model: models.Article,
           attributes: [],
-          through: { model: models.Reaction, attributes: [] }, 
+          through: { model: models.Reaction, attributes: [] },
         },
       ],
       raw: true,
@@ -355,7 +385,7 @@ controller.showHomepage = async (req, res) => {
     let readers2 = await models.User.findAll(options2);
     for (let i = 0; i < readers2.length; i++) {
       readers[i].likeCount = readers2[i].likeCount;
-    }    
+    }
     res.locals.readers = readers;
     console.log(readers);
   }
@@ -443,27 +473,27 @@ controller.delete = async (req, res, next) => {
     switch (req.body.type) {
       case "Chuyên mục cấp 1":
         await models.Category.destroy({
-          where: {name: req.body.name},
+          where: { name: req.body.name },
         });
         break;
       case "Chuyên mục cấp 2":
         await models.SubCategory.destroy({
-          where: {name: req.body.name},
+          where: { name: req.body.name },
         });
         break;
       case "Nhãn":
         await models.Tag.destroy({
-          where: {name: req.body.name},
+          where: { name: req.body.name },
         });
         break;
       case "tài khoản Phóng viên":
         await models.User.destroy({
-          where: {name: req.body.name},
+          where: { name: req.body.name },
         });
         break;
       case "tài khoản Biên tập viên":
         await models.User.destroy({
-          where: {name: req.body.name},
+          where: { name: req.body.name },
         });
         break;
     }
@@ -482,16 +512,16 @@ controller.modify = async (req, res, next) => {
       case "Bài viết":
         if (req.body.id) {
           let article = await models.Article.findOne({
-            where: {id: parseInt(req.body.id)},
+            where: { id: parseInt(req.body.id) },
           });
-          article.status = 'posted';
+          article.status = "posted";
           await article.save();
         }
         break;
       case "tài khoản Biên tập viên":
         if (req.body.id) {
           let editor = await models.User.findOne({
-            where: {id: parseInt(req.body.id)},
+            where: { id: parseInt(req.body.id) },
           });
           let assigned = await models.SubCategory.findAll({
             where: { name: { [Op.in]: req.body.cat2.split(", ") } },
@@ -505,9 +535,45 @@ controller.modify = async (req, res, next) => {
       case "tài khoản Độc giả":
         if (req.body.id) {
           let user = await models.User.findOne({
-            where: {id: parseInt(req.body.id)},
+            where: { id: parseInt(req.body.id) },
           });
-          user.role = 'premium';
+          user.role = "premium";
+
+          // TODO Tăng thời gian premium cho user, hiện tại chưa thể add type 4 nên sử dụng tạm type = 3
+          let registerDate = new Date(data.date);
+          let expiredDate = new Date(registerDate);
+
+          expiredDate.setDate(expiredDate.getDate() + req.body.numOfPremDay);
+          // TODO Cập nhật trong bảng payment
+          let premium = await models.Payment.create({
+            userId: req.body.id,
+            amount: 0,
+            type: 3,
+            registeredAt: registerDate,
+            expiredAt: expiredDate,
+          });
+          // TODO Cập nhật trong bảng user
+          var userExpiredAt = user.expiredAt;
+          let addTime = null;
+          if (userExpiredAt == null) {
+            addTime = expiredDate;
+          } else {
+            let originTime = new Date(userExpiredAt);
+            addTime = new Date(originTime);
+
+            if (data.type == 1) {
+              addTime.setDate(addTime.getDate() + 7);
+            } else if (data.type == 2) {
+              addTime.setDate(addTime.getDate() + 30);
+            } else if (date.type == 3) {
+              addTime.setDate(addTime.getDate() + 60);
+            }
+          }
+          // await models.User.update(
+          //   { expiredAt: addTime, role: "premium" },
+          //   { where: { id: data.id } }
+          // );
+          user.expiredAt = addTime;
           await user.save();
         }
         break;
@@ -540,14 +606,15 @@ function removeParam(key, sourceURL) {
 function processEditorList(originalList) {
   let currentId = -1;
   let list = [];
-  originalList.forEach(item => {
+  originalList.forEach((item) => {
     if (item.editor.id != currentId) {
       currentId = item.editor.id;
       item.editor.assigned = item.editor.SubCategories.name;
       list.push(item);
-    }
-    else {
-      list.at(-1).editor.assigned = list.at(-1).editor.assigned.concat(", ", item.editor.SubCategories.name); 
+    } else {
+      list.at(-1).editor.assigned = list
+        .at(-1)
+        .editor.assigned.concat(", ", item.editor.SubCategories.name);
     }
   });
   return list;

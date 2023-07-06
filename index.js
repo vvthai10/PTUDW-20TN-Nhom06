@@ -77,78 +77,103 @@ app.use(passport.session());
 app.use(flash());
 
 // Lấy các thông tin cần khởi tạo/lấy ban đầu
-// app.use(async (req, res, next) => {
-//   res.locals.isLoggedIn = req.isAuthenticated();
-//   if (res.locals.isLoggedIn) {
-//     res.locals.userInfo = req.user.dataValues;
-//     res.locals.userInfo.avatar = res.locals.userInfo.avatar.includes("http")
-//       ? res.locals.userInfo.avatar
-//       : `/assets/images/${res.locals.userInfo.avatar}`;
+app.use(async (req, res, next) => {
+  res.locals.isLoggedIn = req.isAuthenticated();
+  if (res.locals.isLoggedIn) {
+    res.locals.userInfo = req.user.dataValues;
+    res.locals.userInfo.avatar = res.locals.userInfo.avatar.includes("http")
+      ? res.locals.userInfo.avatar
+      : `/assets/images/${res.locals.userInfo.avatar}`;
 
-//     console.log(res.locals.userInfo);
+    console.log(res.locals.userInfo);
 
-//     // Check điều kiện về thời gian premium
-//     // Lấy tất cả lần đăng kí mà còn expired >= thời gian hiện tại
-//     let expremiumData = await models.Payment.findAll({
-//       attributes: ["id", "type", "createdAt", "expiredAt"],
-//       where: {
-//         userId: res.locals.userInfo.id,
-//         expiredAt: {
-//           [Op.gte]: new Date(), // Thời gian hiện tại
-//         },
-//       },
-//     });
-//     let expremiums = expremiumData.map((category) => category.toJSON());
-//     if (Object.keys(expremiums).length != 0) {
-//       // Nếu lỡ như nó chưa cập nhật thành premium thì cập nhật lại
-//       if (res.locals.userInfo.role == "default") {
-//         res.locals.userInfo.role = "premium";
+    // Kiểm tra thời hạn expiredAt premium của user
+    const currentTime = new Date();
+    let expiredAt = res.locals.userInfo.expiredAt;
+    if (
+      expiredAt != null &&
+      res.locals.userInfo.role != "admin" &&
+      res.locals.userInfo.role != "writer" &&
+      res.locals.userInfo.role != "editor"
+    ) {
+      const remainingTime = expiredAt - currentTime;
 
-//         // cập nhật trong db
-//         await models.User.update(
-//           {
-//             role: "premium",
-//           },
-//           { where: { id: res.locals.userInfo.id } }
-//         );
-//       }
-//       // Lấy thời gian hiện tại
-//       const currentTime = new Date();
-//       let totalRemainingTime = 0;
-//       expremiums.forEach((item) => {
-//         const expiredAt = new Date(item.expiredAt);
-//         const remainingTime = expiredAt - currentTime;
-//         totalRemainingTime += remainingTime;
-//       });
+      if (remainingTime < 0) {
+        res.locals.userInfo.role = "default";
+        await models.User.update(
+          {
+            role: "default",
+            expiredAt: null,
+          },
+          { where: { id: res.locals.userInfo.id } }
+        );
+      } else {
+        const totalDaysRemaining = Math.ceil(
+          remainingTime / (1000 * 60 * 60 * 24)
+        );
+        const days = Math.floor(totalDaysRemaining);
+        res.locals.days = days;
+        if (days < 7) {
+          res.locals.notePremium = true;
+          console.log("Xử lý thông báo cho user thời hạn premium sắp hết");
+        }
+        if (res.locals.userInfo.role == "default") {
+          res.locals.userInfo.role = "premium";
+          await models.User.update(
+            {
+              role: "premium",
+            },
+            { where: { id: res.locals.userInfo.id } }
+          );
+        }
+      }
+    }
 
-//       const totalDaysRemaining = Math.ceil(
-//         totalRemainingTime / (1000 * 60 * 60 * 24)
-//       );
+    // Check điều kiện về thời gian premium
+    // Lấy tất cả lần đăng kí mà còn expired >= thời gian hiện tại
+    // Nếu lỡ như nó chưa cập nhật thành premium thì cập nhật lại
+    // if (
+    //   res.locals.userInfo.role == "default" &&
+    //   res.locals.userInfo.expiredAt != null
+    // ) {
+    //   res.locals.userInfo.role = "premium";
 
-//       const days = Math.floor(totalDaysRemaining) + 1;
-//       res.locals.days = days;
-//       if (days < 7) {
-//         res.locals.notePremium = true;
-//         console.log("Xử lý thông báo cho user thời hạn premium sắp hết");
-//       }
-//     }
-//     // Nếu user đã hết premium  và role vẫn là premium thì cập nhật lại cho nó thành default
-//     else if (res.locals.userInfo.role == "premium") {
-//       res.locals.userInfo.role = "default";
+    //   // cập nhật trong db
+    //   await models.User.update(
+    //     {
+    //       role: "premium",
+    //     },
+    //     { where: { id: res.locals.userInfo.id } }
+    //   );
+    // }
 
-//       // cập nhật trong db
-//       await models.User.update(
-//         {
-//           role: "default",
-//         },
-//         { where: { id: res.locals.userInfo.id } }
-//       );
-//     }
-//   }
+    // const totalDaysRemaining = Math.ceil(
+    //   totalRemainingTime / (1000 * 60 * 60 * 24)
+    // );
 
-//   // console.log(res.locals.userInfo);
-//   next();
-// });
+    // const days = Math.floor(totalDaysRemaining) + 1;
+    // res.locals.days = days;
+    // if (days < 7) {
+    //   res.locals.notePremium = true;
+    //   console.log("Xử lý thông báo cho user thời hạn premium sắp hết");
+    // }
+    // // Nếu user đã hết premium  và role vẫn là premium thì cập nhật lại cho nó thành default
+    // else if (res.locals.userInfo.role == "premium") {
+    //   res.locals.userInfo.role = "default";
+
+    //   // cập nhật trong db
+    //   await models.User.update(
+    //     {
+    //       role: "default",
+    //     },
+    //     { where: { id: res.locals.userInfo.id } }
+    //   );
+    // }
+  }
+
+  // console.log(res.locals.userInfo);
+  next();
+});
 
 app.get("/createTables", (req, res) => {
   let models = require("./models");

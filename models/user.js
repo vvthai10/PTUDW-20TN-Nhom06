@@ -60,6 +60,7 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: true,
       },
       googleId: DataTypes.STRING,
+      expiredAt: DataTypes.DATE,
     },
     {
       sequelize,

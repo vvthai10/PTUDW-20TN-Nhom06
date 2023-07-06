@@ -27,6 +27,7 @@ passport.deserializeUser(async (id, done) => {
         "avatar",
         "birth",
         "googleId",
+        "expiredAt",
       ],
       where: { id },
     });

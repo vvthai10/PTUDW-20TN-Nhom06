@@ -56,9 +56,9 @@ router.get("/account", async (req, res) => {
       const seconds = dateObj.getSeconds();
 
       const dateString = `${day}/${month}/${year}`;
-      const timeString = `${hours}:${minutes}:${seconds}`;
+      const timeString = `${hours}:${minutes}`;
 
-      item.createdAt = `${timeString} | ${dateString}`;
+      item.createdAt = `${timeString}, ${dateString}`;
     });
 
     res.locals.expremiums = expremiums;
