@@ -237,7 +237,7 @@ controller.showHomepage = async (req, res) => {
           as: "author",
           required: false,
           right: true,
-          attributes: ["id", "name", "email"],
+          attributes: ["id", "name", "email", "role"],
           where: { role: "writer" }, // không áp dụng được, phải filter lại
           raw: true,
           nest: true,
@@ -335,6 +335,7 @@ controller.showHomepage = async (req, res) => {
         "id",
         "name",
         "email",
+        "expiredAt",
         [
           sequelize.fn("COUNT", sequelize.col("Articles.Comment.articleId")),
           "commentCount",
@@ -383,11 +384,13 @@ controller.showHomepage = async (req, res) => {
 
     let readers = await models.User.findAll(options);
     let readers2 = await models.User.findAll(options2);
-    for (let i = 0; i < readers2.length; i++) {
-      readers[i].likeCount = readers2[i].likeCount;
+    for (let i = 0; i < readers.length; i++) {
+      readers[i].likeCount = readers2[i].likeCount;      
+      readers[i].numOfPremDay = calculateNumOfDay(readers[i].expiredAt);
     }
     res.locals.readers = readers;
     console.log(readers);
+    console.log(typeof(readers[1].expiredAt));
   }
   res.locals.type = type;
   res.locals.keyword = keyword;
@@ -615,6 +618,23 @@ function processEditorList(originalList) {
     }
   });
   return list;
+}
+
+function calculateNumOfDay(expiredAt) {
+  let expired = new Date(expiredAt); 
+  let now = new Date();
+  const milliseconds = expired - now;
+  // Convert milliseconds to seconds, minutes, hours, and days
+  const seconds = Math.floor(milliseconds / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  // Calculate the remaining hours and minutes
+  const remainingHours = hours % 24;
+  const remainingMinutes = minutes % 60;
+
+  return  (expired - now) > 0 ? `${days} ngày, ${remainingHours} giờ, ${remainingMinutes} phút` : null;
 }
 
 module.exports = controller;
