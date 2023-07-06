@@ -233,8 +233,10 @@ controller.showHomepage = async (req, res) => {
         {
           model: models.User,
           as: 'author',
+          required: false,
+          right: true,
           attributes: ["id", "name", "email"],
-          where: { role: "writer" },
+          where: { role: "writer" },  // không áp dụng được, phải filter lại
           raw: true,
           nest: true,
           order: ["id"],          
@@ -248,6 +250,7 @@ controller.showHomepage = async (req, res) => {
       options.include[0].where.name = { [Op.iLike]: `%${keyword}%` };
     }
     let writers = await models.Article.findAll(options);
+    writers = writers.filter((writer) => writer.author && writer.author.role === 'writer'); // filter lại role
     res.locals.writers = writers;
     console.log(writers);
   } else if (type == "user-manage-2") {
@@ -278,10 +281,12 @@ controller.showHomepage = async (req, res) => {
       attributes: [[sequelize.fn('COUNT', sequelize.col('Article.id')), 'articleCount']],
       include: [
         {
-          model: models.User,
-          as: 'editor',
-          attributes: ["id", "name", "email"],
-          where: { role: "editor" },
+          model: models.User,          
+          as: 'editor',          
+          attributes: ["id", "name", "email", "role"],
+          where: { role: "editor" },  // không áp dụng được, phải filter lại
+          required: false,
+          right: true,
           include: [
             {
               model: models.SubCategory,
@@ -307,6 +312,7 @@ controller.showHomepage = async (req, res) => {
       options.include[0].where.name = { [Op.iLike]: `%${keyword}%` };
     }
     let editors = await models.Article.findAll(options);
+    editors = editors.filter((editor) => editor.editor && editor.editor.role === 'editor'); // filter lại role
     res.locals.editors = processEditorList(editors);
     console.log(res.locals.editors);
   } else if (type == "user-manage-3") {
