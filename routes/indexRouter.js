@@ -26,6 +26,10 @@ router.get("/subCategory", controller.showSubCategory);
 
 router.get("/article", controller.showArticle);
 
+router.post("/comment", controller.makeComment);
+
+router.delete("/comment", controller.deleteComment);
+
 router.get("/tag", controller.showTag)
 
 router.get("/:page", controller.showPage);

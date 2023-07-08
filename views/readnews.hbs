@@ -18,15 +18,15 @@
                             class="fa-solid fa-comment"></i></button>
                     <p>10</p>
 
-                    <div class="modal modal-xl" id="myModal" tabindex="-1">
-                        <div class="modal-dialog">
+                    <div class="modal" id="myModal" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" style="font-size: 20px; text-color: red;">Bình luận</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body modal--content" id="comment">
                                     {{#each Comments}}
                                     <div class="card__comment">
                                         <div class="personal__img">
@@ -35,18 +35,21 @@
                                         </div>
                                         <div class="card-body--comment"
                                             style="box-sizing: border-box; margin-left: 10px;">
-                                            <p style="font-weight: bold;">{{User.name}}</p>
-                                            <p class="comment__content">{{content}}
+                                            <p style="font-weight: bold; font-size: 15px;">{{User.name}}</p>
+                                            <p class="comment__content" style="font-size: 15px;">{{content}}
                                             </p>
                                             <div class="like__comment">
                                                 <div class="like">
                                                     <button><i class="fa-solid fa-thumbs-up"></i></button>
                                                     <p>6</p>
                                                 </div>
-                                                {{!-- <div class="comment">
-                                                    <button><i class="fa-solid fa-comment"></i></button>
-                                                    <p>10</p>
-                                                </div> --}}
+                                                {{#if User.matched}}
+                                                <div class="comment">
+                                                    <button onclick="deleteComment({{User.id}}, {{articleId}})"><i
+                                                            class="fa-solid fa-wrench"></i></button>
+                                                    <p>Xóa {{userInfo.id}}</p>
+                                                </div>
+                                                {{/if}}
                                                 <div class="like__comment--time">
                                                     <p>{{createdAt}}</p>
                                                 </div>
@@ -54,72 +57,27 @@
                                         </div>
                                     </div>
                                     {{/each}}
-                                    {{!-- <div class="card__comment">
-                                        <div class="personal__img">
-                                            <img
-                                                src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.6435-9/121172259_691283754825145_668356720972128544_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=u5Ic0mYMeycAX-pLYW3&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfCY3Ms31A5LhLTb5h1TbjdKeFtFdkX_PiFrQHPM7JKovA&oe=64740652"></img>
-                                        </div>
-                                        <div class="card-body--comment"
-                                            style="box-sizing: border-box; margin-left: 10px;">
-                                            <p style="font-weight: bold;">Huỳnh Lê An</p>
-                                            <p class="comment__content">Doanh thu xổ số ngày càng cao
-                                            </p>
-                                            <div class="like__comment">
-                                                <div class="like">
-                                                    <button><i class="fa-solid fa-thumbs-up"></i></button>
-                                                    <p>6</p>
-                                                </div>
-                                                <div class="comment">
-                                                    <button><i class="fa-solid fa-comment"></i></button>
-                                                    <p>10</p>
-                                                </div>
-                                                <div class="like__comment--time">
-                                                    <p>29-04-2023</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card__comment">
-                                        <div class="personal__img">
-                                            <img
-                                                src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.6435-9/121172259_691283754825145_668356720972128544_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=u5Ic0mYMeycAX-pLYW3&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfCY3Ms31A5LhLTb5h1TbjdKeFtFdkX_PiFrQHPM7JKovA&oe=64740652"></img>
-                                        </div>
-                                        <div class="card-body--comment"
-                                            style="box-sizing: border-box; margin-left: 10px;">
-                                            <p style="font-weight: bold;">Huỳnh Lê An</p>
-                                            <p class="comment__content">Doanh thu xổ số ngày càng cao
-                                                cao cao cao cao cao cao cao cao cao cao cao cao cao cao
-                                                cao cao cao cao cao cao cao cao cao cao cao cao cao cao
-                                                cao cao cao cao cao cao cao cao cao cao cao cao cao cao
-                                                cao cao cao cao cao cao cao cao</p>
-                                            <div class="like__comment">
-                                                <div class="like">
-                                                    <button><i class="fa-solid fa-thumbs-up"></i></button>
-                                                    <p>6</p>
-                                                </div>
-                                                <div class="comment">
-                                                    <button><i class="fa-solid fa-comment"></i></button>
-                                                    <p>10</p>
-                                                </div>
-                                                <div class="like__comment--time">
-                                                    <p>29-04-2023</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                <div style="display: flex;">
+                                    {{#with commentInfo}}
+                                    <div class="header__search-bar">
+                                        <input id="post" type="search" class="header__search-input"
+                                            placeholder="Viết bình luận..."/>
+                                    </div>
+                                    <button
+                                        onclick="makeComment({{this.userInfo.id}}, document.getElementById('post').value, {{this.articleId}})"
+                                        style="font-size: 20px; background-color: red;">Summit</button>
+                                    {{/with}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="comment">
-                    <button onclick="generatePDF({{userRole}})" type="button" data-bs-toggle="modal"><i
+                    {{#with userInfo}}
+                    <button onclick="generatePDF('{{role}}')" type="button" data-bs-toggle="modal"><i
                             class="fa-solid fa-print fa-2xl"></i></button>
+                    {{/with}}
                 </div>
             </div>
         </div>
@@ -264,7 +222,99 @@
     </div>
 </div>
 <script>
-    function generatePDF(useRole) {
-        console.log(userRole);
+    function generatePDF(userRole) {
+        if (userRole == 'premium') {
+            const element = document.getElementById('content');
+            html2pdf().from(element).save();
+        }
+        else {
+            alert("Your acount is not premium! Please purchase to use this advance feature.")
+        }
+    }
+
+    async function makeComment(userId, comment, articleId) {
+        let res = await fetch('/comment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ userId, comment, articleId })
+        });
+
+        let json = await res.json();
+
+        if (json.message == 'success') {
+        document.getElementById('post').value="";
+        document.getElementById('comment').innerHTML += 
+            `<div class="card__comment">
+                <div class="personal__img">
+                    <img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.6435-9/121172259_691283754825145_668356720972128544_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=GR8cdUy4WOcAX-lAVcu&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfD3KneIO4cr-anMmhkAmzkCRxWo3_8TXbpR9z6gMSSdEg&oe=64BE4AD2"></img>
+                </div>
+                <div class="card-body--comment" style="box-sizing: border-box; margin-left: 10px;"> 
+                    <p style="font-weight: bold; font-size: 15px;"> ${json.userName} </p>
+                    <p class="comment__content" style="font-size: 15px;"> ${json.data.content} 
+                    </p>
+                    <div class="like__comment">
+                        <div class="like">
+                            <button><i class="fa-solid fa-thumbs-up"></i></button>
+                            <p>6</p>
+                        </div>
+                        <div class="comment">
+                            <button onclick="deleteComment(${json.data.userId},${json.data.articleId})"><i class="fa-solid fa-wrench"></i></button>
+                            <p>chỉnh sửa</p>
+                        </div>
+                        <div class="like__comment--time">
+                            <p>${json.data.createdAt}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>`;     
+        }
+    }
+
+    async function deleteComment(userId, articleId) {
+        let res = await fetch('/comment', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ userId, articleId })
+        });
+
+        let json = await res.json();
+
+        if (json.message == 'deleted') {
+            let comment = document.getElementById('comment');
+            comment.innerHTML = "";
+            for (let index = 0; index < json.data.length; index++) {
+                const item = json.data[index];
+                comment.innerHTML +=  
+                `<div class="card__comment">
+                    <div class="personal__img">
+                        <img src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.6435-9/121172259_691283754825145_668356720972128544_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=GR8cdUy4WOcAX-lAVcu&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfD3KneIO4cr-anMmhkAmzkCRxWo3_8TXbpR9z6gMSSdEg&oe=64BE4AD2"></img>
+                    </div>
+                    <div class="card-body--comment" style="box-sizing: border-box; margin-left: 10px;"> 
+                        <p style="font-weight: bold; font-size: 15px;"> ${item.User.name} </p>
+                        <p class="comment__content" style="font-size: 15px;"> ${item.content} 
+                        </p>
+                        <div class="like__comment">
+                            <div class="like">
+                                <button><i class="fa-solid fa-thumbs-up"></i></button>
+                                <p>6</p>
+                            </div>
+                            <div class="comment">
+                                <button onclick="deleteComment(${item.User.id},${item.articleId})"><i class="fa-solid fa-wrench"></i></button>
+                                <p>chỉnh sửa</p>
+                            </div>
+                            <div class="like__comment--time">
+                                <p>${item.createdAt}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;     
+            }
+        }
     }
 </script>

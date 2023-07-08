@@ -5,6 +5,7 @@ const controller = {};
 const sequelize = require("sequelize");
 const tagarticle = require("../models/tagarticle");
 const Op = sequelize.Op;
+const db = require('../models/index');
 
 controller.getCategories = async (req, res, next) => {
   const categories = await models.Category.findAll({
@@ -43,14 +44,9 @@ controller.showHomepage = async (req, res) => {
         ],
       });
       // rightArticles.push({_item: []})
-    } else {
-      temp.push({
-        _item: [
-          articles[index * 3],
-          articles[index * 3 + 1],
-          articles[index * 3 + 2],
-        ],
-      });
+    }
+    else {
+      temp.push({_item: [articles[index * 3], articles[index * 3 + 1], articles[index * 3 + 2]]});
       // rightArticles[2].push([articles[index * 3], articles[index * 3 + 1], articles[index * 3 + 2]]);
     }
   }
@@ -72,6 +68,8 @@ controller.showPage = (req, res) => {
 
 controller.showCategory = async (req, res) => {
   let categoryId = req.query.categoryId || 0;
+
+  let page = isNaN(req.query.page) ? 1: Math.max(1, parseInt(req.query.page));
 
   // get the subCategoryId of categoryId
   let subCategoryIds = await models.SubCategory.findAll({
@@ -101,10 +99,12 @@ controller.showCategory = async (req, res) => {
     ],
   });
 
-  categoryArticleIds = categoryArticleIds.map((item) => item.id);
+  categoryArticleIds = categoryArticleIds.map(item => item.id);
+
+  const limit = 7;
 
   // get the list of article with tag
-  let categoryArticles = await models.Article.findAll({
+  let {rows, count} = await models.Article.findAndCountAll({
     where: {
       id: {
         [Op.or]: categoryArticleIds,
@@ -113,61 +113,41 @@ controller.showCategory = async (req, res) => {
     include: [
       {
         model: models.Tag,
-        attributes: ["name"],
+        attributes: ['name']
       },
-    ],
-  });
-
-  res.locals.categoryArticles = categoryArticles;
-
-  // get the hot news
-  let hotArticles = await models.Article.findAll({
-    where: {
-      id: {
-        [Op.or]: categoryArticleIds,
-      },
-    },
-    include: [
       {
-        model: models.Tag,
-        attributes: ["name"],
-      },
+        model: models.SubCategory,
+        attributes: ['name']
+      }
     ],
-    order: [["nView", "DESC"]],
-    limit: 3,
+    distinct: true,
+    limit: limit,
+    offset: limit * (page - 1)
   });
-  for (let index = 0; index < hotArticles.length; index++) {
-    const element = hotArticles[index];
-    // console.log(element.nView);
+
+  res.locals.categoryArticles = rows;
+
+  res.locals.pagination = {
+    page: page,
+    limit: limit,
+    totalRows: count,
+    queryParams: req.query
   }
-  res.locals.hotArticles = hotArticles;
 
   // get the name of category
   let category = await models.Category.findByPk(categoryId);
   res.locals.categoryName = category.name;
 
-  // get the name of subCategory
-  let subCategory = await models.SubCategory.findAll({
-    include: [
-      {
-        model: models.Category,
-        where: {
-          id: categoryId,
-        },
-      },
-    ],
-  });
-  // subCategory = subCategory.map(item => item.name);
-  res.locals.subCategory = subCategory;
-
-  res.render("readCategory");
-};
+  res.render('readcategory');
+}
 
 controller.showSubCategory = async (req, res) => {
   let subCategoryId = req.query.subCategoryId || 0;
 
+  let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
+
   let subCategory = await models.SubCategory.findByPk(subCategoryId);
-  res.locals.subCategory = subCategory;
+  res.locals.subCategoryName = subCategory.name;
 
   let category = await models.Category.findOne({
     attributes: ["id", "name"],
@@ -182,8 +162,6 @@ controller.showSubCategory = async (req, res) => {
     ],
   });
 
-  res.locals.category = category;
-
   let articleIds = await models.CategoryArticle.findAll({
     attributes: ["articleId"],
     where: {
@@ -191,10 +169,12 @@ controller.showSubCategory = async (req, res) => {
     },
   });
 
-  articleIds = articleIds.map((item) => item.articleId);
+  articleIds = articleIds.map(item => item.articleId)
+
+  let limit = 7;
 
   // get the subCategoryId of categoryId
-  let articles = await models.Article.findAll({
+  let {rows, count} = await models.Article.findAndCountAll({
     where: {
       id: {
         [Op.or]: articleIds,
@@ -206,49 +186,61 @@ controller.showSubCategory = async (req, res) => {
         attributes: ["name"],
       },
     ],
-    order: [["createdAt", "DESC"]],
+    order: [['createdAt', 'DESC']],
+    distinct: true,
+    limit: limit,
+    offset: limit * (page - 1)
   });
 
-  let hotArticles = await models.Article.findAll({
-    where: {
-      id: {
-        [Op.or]: articleIds,
-      },
-    },
-    include: [
-      {
-        model: models.Tag,
-        attributes: ["name"],
-      },
-    ],
-    order: [["nView", "DESC"]],
-    limit: 3,
-  });
+  // create pagination
+  res.locals.pagination = {
+    page: page,
+    limit: limit,
+    totalRows: count,
+    queryParams: req.query
+  }
 
-  res.locals.articles = articles;
-  res.locals.hotArticles = hotArticles;
-  // res.send("hello world");
-  res.render("readsubcategory");
-};
+  // add property 'category' into subCategoryArticles object
+  for (let index = 0; index < rows.length; index++) {
+    rows[index].category = category;
+  }
+
+  res.locals.subCategoryArticles = rows;
+  res.render('readsubcategory');
+}
 
 controller.showArticle = async (req, res) => {
-  // let articleId = parseInt(req.query.articleId);
+  let articleId = parseInt(req.query.articleId);
   // console.log('hello world');
-  // // lay comment tuong ung voi articleId
-  // let comments = await models.Comment.findAll({
-  //   attributes: ['content', 'updatedAt'],
-  //   where: {
-  //     articleId: articleId
-  //   },
-  //   include: [
-  //     {
-  //       model: models.User,
-  //       attributes: ['name']
-  //     }
-  //   ],
-  //   order: [['createdAt', 'DESC']]
-  // });
-  // res.locals.Comments = comments;
+  // lay comment tuong ung voi articleId
+  res.locals.articleId = articleId;
+  res.locals.commentInfo = {
+    'userInfo': res.locals.userInfo,
+    'articleId': articleId
+  }
+
+  let comments = await models.Comment.findAll({
+    attributes: ['content', 'updatedAt', 'articleId'],
+    where: {
+      articleId: articleId
+    },
+    include: [
+      {
+        model: models.User,
+        attributes: ['id', 'name']
+      }
+    ],
+    order: [['createdAt', 'DESC']]
+  });
+  // console.log(typeof(comments[0].User))
+  for (let index = 0; index < comments.length; index++) {
+    if (comments[index].User.id == res.locals.userInfo.id) {
+      comments[index].User.matched = true;
+    }
+    else comments[index].User.matched = false;
+  }
+  // console.log(comments[0].User.matched)
+  res.locals.Comments = comments;
 
   // // lay content cho article
   // let articles = await models.Article.findByPk(articleId, {
@@ -292,15 +284,16 @@ controller.showArticle = async (req, res) => {
   // // console.log(article.SubCategories[0].Category);
   // // res.locals.article = article;
   // res.locals.
-  res.locals.userRole = res.locals.userInfo.role || "default";
-  res.render("readnews");
-};
+  // res.locals.userRole = res.locals.userInfo.role;
+
+  res.render('readnews');
+}
 
 controller.showTag = async (req, res) => {
   let tagId = req.query.tagId || 0;
   let tagArticleIds = await models.TagArticle.findAll({
-    attributes: ["articleId"],
-    where: { tagId: tagId },
+    attributes: ['articleId'],
+    where: { tagId: tagId }
   });
 
   let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
@@ -308,14 +301,16 @@ controller.showTag = async (req, res) => {
   tagArticleIds = tagArticleIds.map((item) => item.articleId);
 
   let tagName = await models.Tag.findOne({
-    attributes: ["name"],
-    where: { id: tagId },
-  });
+    attributes: ['name'],
+    where: { id: tagId }
+  })
+
+  res.locals.tagName = tagName.name;
 
   const limit = 7;
 
   let { rows, count } = await models.TagArticle.findAndCountAll({
-    attributes: ["tagId"],
+    attributes: ['tagId'],
     where: { articleId: tagArticleIds },
     include: [
       {
@@ -343,14 +338,13 @@ controller.showTag = async (req, res) => {
     queryParams: req.query,
   };
 
-  res.locals.tagName = tagName.name;
-  res.render("tag");
-};
+  res.render('tag');
+}
 
 controller.search = async (req, res) => {
-  let text_search = req.query.keyword || "";
-  const si = require("search-index");
-  const articles = await models.Article.findAll();
+  let text_search = req.query.keyword || '';
+  // const si = require('search-index');
+  // const articles = await models.Article.findAll();
   // const ids = articles.map(item => item['id']);
   // const slugs = articles.map(item => item['slug']);
   // const array = [];
@@ -358,11 +352,115 @@ controller.search = async (req, res) => {
   //   array.push({_id: ids[index], _slug: slugs[index]});
   // }
   // console.log(array);
-  const db = await si({ name: "SEARCH" });
-  await db.PUT(articles);
+  // const db = await si({ name: 'SEARCH' });
+  // await db.PUT(articles);
 
-  let result = await db.QUERY({ AND: [text_search] });
+  // let result = await db.QUERY({ AND: [text_search] })
+  // console.log(result)
+
+  // const result = await db.sequelize.query("SELECT name FROM Article", {
+  //   type: sequelize.QueryTypes.SELECT
+  // });
+  // console.log(result);
+  // await db.sequelize.query("SELECT * from Category", {tyep: sequelize.QueryTypes.SELECT}).then((data) => {
+  //   console.log(data);
+  // }) 
+  const result = await models.Article.findAll({
+    where: models.Sequelize.literal(),
+    replacements: {
+      name: 'Alex'
+    }
+  })
   console.log(result);
-};
+  res.send("hello world");
+}
+
+controller.makeComment = async (req, res) => {
+  let userId = req.body.userId;
+  let comment = req.body.comment;
+  let articleId = req.body.articleId;
+
+  let userComment = await models.Comment.findOne({
+    where: {
+      userId: userId,
+      articleId: articleId
+    }
+  });
+
+  if (!userComment) {
+    await models.Comment.create({
+      userId: userId,
+      articleId: articleId,
+      content: comment
+    })
+      .then(async (data) => {
+        let user = await models.User.findByPk(userId);
+        res.send({ message: 'success', data: data, userName: user.name});
+      })
+      .catch((e) => {
+        res.send({message: e});
+      })
+  }
+  else res.send({ message: 'failed' });
+}
+
+controller.changeComment = async (req, res) => {
+  let userId = req.body.userId;
+  let comment = req.body.comment;
+  let articleId = req.body.artileId;
+
+  await models.Comment.create(
+    {
+      content: comment,
+      userId: userId,
+      articleId: articleId
+    }
+  )
+    .then((data) => {
+      res.send({ message: 'updated' });
+    })
+}
+
+controller.deleteComment = async (req, res) => {
+  let userId = req.body.userId;
+  let articleId = req.body.articleId;
+
+  let userComment = await models.Comment.findOne({
+    where: {
+      userId: userId,
+      articleId: articleId
+    }
+  });
+
+  if (userComment) {
+    await models.Comment.destroy({
+      where: {
+        userId: userId,
+        articleId: articleId
+      }
+    })
+      .then(async (data) => {
+        let comments = await models.Comment.findAll({
+          attributes: ['content', 'updatedAt', 'articleId'],
+          where: {
+            articleId: articleId
+          },
+          include: [
+            {
+              model: models.User,
+              attributes: ['id', 'name']
+            }
+          ],
+          order: [['createdAt', 'DESC']]
+        });
+
+        res.send({ message: 'deleted', data: comments });
+      })
+      .catch((e) => {
+        res.send({message: e});
+      })
+  }
+  else res.send({ message: 'failed' });
+}
 
 module.exports = controller;
