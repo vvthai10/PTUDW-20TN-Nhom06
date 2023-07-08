@@ -369,7 +369,59 @@ controller.showTag = async (req, res) => {
 };
 
 controller.search = async (req, res) => {
-  let text_search = req.query.keyword || "";
+  let keyword = req.query.keyword || "";
+  res.locals.keyword = req.query.keyword;
+  if (keyword.trim()) {
+    let options = {
+      attributes: ['id', 'name', 'description', 'premium', 'approve', 'updatedAt', 'imgCover', sequelize.literal(`ts_rank("vectorSearch", plainto_tsquery('english', '${keyword}')) AS "searchScore"`)],
+      where: {status: 'posted', vectorSearch: {[Op.match]: sequelize.fn('plainto_tsquery', keyword)},}, 
+      include: [],
+      order:[sequelize.literal('"searchScore" DESC')],
+      raw: true,
+      nested: true,
+    };
+    const result = await models.Article.findAll(options);
+    console.log(result);
+    let articleIds = result.map((item) => item.id);
+    let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
+    let limit = 7;
+
+    // get the subCategoryId of categoryId
+    let { rows, count } = await models.Article.findAndCountAll({
+      where: {
+        id: {
+          [Op.in]: articleIds,
+        },
+      },
+      include: [
+        {
+          model: models.Tag,
+          attributes: ["name"],
+        },
+        {
+          model: models.SubCategory,
+          attributes: ["name", "categoryId"],
+        }
+      ],
+      distinct: true,
+      limit: limit,
+      offset: limit * (page - 1),
+    });
+    console.log(rows);
+
+    // create pagination
+    res.locals.pagination = {
+      page: page,
+      limit: limit,
+      totalRows: count,
+      queryParams: req.query,
+    };
+
+
+    res.locals.searchResults = rows;
+    res.render("search");
+  }
+  else res.redirect('/');
   // const si = require('search-index');
   // const articles = await models.Article.findAll();
   // const ids = articles.map(item => item['id']);
@@ -392,14 +444,7 @@ controller.search = async (req, res) => {
   // await db.sequelize.query("SELECT * from Category", {tyep: sequelize.QueryTypes.SELECT}).then((data) => {
   //   console.log(data);
   // })
-  const result = await models.Article.findAll({
-    where: models.Sequelize.literal(),
-    replacements: {
-      name: "Alex",
-    },
-  });
-  console.log(result);
-  res.send("hello world");
+  
 };
 
 controller.makeComment = async (req, res) => {

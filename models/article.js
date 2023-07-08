@@ -49,6 +49,24 @@ module.exports = (sequelize, DataTypes) => {
         },
       });
     }
+    static getSearchVectorName() {
+      return "vectorSearch";
+    }
+    static addSearchIndex() {
+      var searchFields = ['name', 'description', 'content'];
+      var vectorName = Article.getSearchVectorName();
+      sequelize
+          .query(`ALTER TABLE "${Article.tableName}" ADD COLUMN "${vectorName}" TSVECTOR`)
+          .then(() => {
+              return sequelize.query(`UPDATE "${Article.tableName}" SET "${vectorName}" = to_tsvector('english', '${searchFields.join('\' || \'')}');`).catch(e => console.log(e));
+          })
+          .then(() => {
+              return sequelize.query(`CREATE INDEX post_search_idx ON "${Article.tableName}" USING gin("${vectorName}");`).catch(e => console.log(e));
+          })
+          .then(() => {
+              return sequelize.query(`CREATE TRIGGER post_vector_update BEFORE INSERT OR UPDATE ON "${Article.tableName}" FOR EACH ROW EXECUTE PROCEDURE tsvector_update_trigger("${vectorName}", 'pg_catalog.english', ${searchFields.join(', ')})`).catch(e => console.log(e));
+          }).catch(e => console.log(e));
+    }
   }
   Article.init(
     {

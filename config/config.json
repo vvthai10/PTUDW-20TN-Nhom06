@@ -1,16 +1,11 @@
 {
   "development": {
-    "username": "ptudw20tnnhom06db",
-    "password": "cxA4KfTRoaVw66Yu7yY2X7iT6yNa1V1M",
-    "database": "ptudw20tnnhom06db",
-    "host": "dpg-chsa6ae4dadfn623csrg-a.oregon-postgres.render.com",
+    "username": "postgres",
+    "password": "postgrespw",
+    "database": "postgres",
+    "host": "127.0.0.1",
     "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }
-    }
+    "port":"32768"
   },
   "test": {
     "username": "postgres",

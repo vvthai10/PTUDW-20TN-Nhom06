@@ -53,6 +53,14 @@ app.engine(
 );
 app.set("view engine", "hbs");
 
+app.get("/createTables", (req, res) => {
+  let models = require("./models");
+  models.sequelize.sync().then(() => {
+    models.Article.addSearchIndex();
+    res.send("Table created!");
+  });
+});
+
 // config get data from POST body
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -177,12 +185,7 @@ app.use(async (req, res, next) => {
   next();
 });
 
-// app.get("/createTables", (req, res) => {
-//   let models = require("./models");
-//   models.sequelize.sync().then(() => {
-//     res.send("Table created!");
-//   });
-// });
+
 
 app.use("/admin", require("./routes/adminRouter"));
 app.use("/editor", require("./routes/editorRouter"));
