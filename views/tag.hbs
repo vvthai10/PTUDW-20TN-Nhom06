@@ -14,7 +14,6 @@ flex-direction: column; margin-left: 10px;">
     justify-content: space-between;">
                         <!--Category-->
                         <span style="    padding: 5px;
->>>>>>> 8abbd18 (phan trang, read subcategory)
     width: 70px;
     text-align: center;
     border-radius: 20px;
@@ -24,13 +23,11 @@ flex-direction: column; margin-left: 10px;">
     font-weight: 400;
     color: white;
     line-height: 100%;
-    margin-left: 10px;"
-                >Nông nghiệp</span>
-                <div>
-                  <!--Related Tags-->
-                  {{#each Tags}}
-                    <span
-                      style="float: left;
+    margin-left: 10px;">Nông nghiệp</span>
+                        <div>
+                            <!--Related Tags-->
+                            {{#each Tags}}
+                            <span style="float: left;
         margin-left: 10px;
         font-family: Arial;
         font-size: 13px;
@@ -39,9 +36,14 @@ flex-direction: column; margin-left: 10px;">
         background-color: #f0f0f0;
         padding: 0 8px 0 12px;
         height: 24px;
-        line-height: 24px;"
-                    >{{name}}</span>
-                  {{/each}}
+        line-height: 24px;">{{name}}</span>
+                            {{/each}}
+                        </div>
+                    </div>
+                    <span style="font-size: 12px;
+                  padding: 5px 0 0 10px;      color: black;">10:15 16/4/2023</span>
+                    <span style="padding-left: 10px;
+                  font-size: 14px; color: black;">{{content}}</span>
                 </div>
             </a>
             {{/with}}
@@ -50,7 +52,8 @@ flex-direction: column; margin-left: 10px;">
     </ul>
 
     <nav aria-label="Page navigation example" id="pagination">
-        {{{ createPagination pagination paginationClass="pagination-display justify-content-center" leftText="Previous" rightText="Next"}}}
+        {{{ createPagination pagination paginationClass="pagination-display justify-content-center" leftText="Previous"
+        rightText="Next"}}}
     </nav>
 </div>
 <script>

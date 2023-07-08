@@ -1,205 +1,68 @@
-<!--SIDE BAR-->
-<div class="col-lg-11 col-md-12 col-sm-12">
-    <h3 style="text-align: center; font-size: 40px;">{{categoryName}}</h3>
-    <hr>
-    <div class="sub-title">
-        {{#each subCategory}}
-        <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{this.id}}">
-            <h4 style="font-size: 20px;">{{this.name}}</h4>
-        </a>
+<div class="col-lg-11 col-md-12 col-sm-12" style="padding: 10px 0 20px 10px;">
+    <h2 style="font-size: 26px;line-height: 26px;margin-bottom: 20px;">{{categoryName}}</h2>
+    <ul>
+        {{#each categoryArticles}}
+        <li>
+            <a href="readnews.html" style="display: flex; margin: 30px 0; width: 90%;">
+                <img style="border-radius: 5px; width: 300px;" src="{{imgCover}}" alt="">
+                <div style="    display: flex;
+flex-direction: column; margin-left: 10px;">
+                    <span style="font-size: 24px;
+    font-weight: 500;">{{name}}</span>
+                    <div style="display: flex;
+    justify-content: space-between;">
+                        <!--Category-->
+                        {{#each SubCategories}}
+                        <span style="    padding: 5px;
+    width: 70px;
+    text-align: center;
+    border-radius: 20px;
+    background: var(--primary-color);
+    border: none;
+    font-size: 13px;
+    font-weight: 400;
+    color: white;
+    line-height: 100%;
+    margin-left: 10px;">{{name}}</span>
+                        {{/each}}
+                        <div>
+                            <!--Related Tags-->
+                            {{#each Tags}}
+                            <span style="float: left;
+        margin-left: 10px;
+        font-family: Arial;
+        font-size: 13px;
+        color: #000;
+        border-radius: 100px;
+        background-color: #f0f0f0;
+        padding: 0 8px 0 12px;
+        height: 24px;
+        line-height: 24px;">{{name}}</span>
+                            {{/each}}
+                        </div>
+                    </div>
+                    <span style="font-size: 12px;
+                  padding: 5px 0 0 10px;      color: black;">10:15 16/4/2023</span>
+                    <span style="padding-left: 10px;
+                  font-size: 14px; color: black;">{{content}}</span>
+                </div>
+            </a>
+        </li>
         {{/each}}
-        {{!-- <h4 style="font-size: 20px;">Hải sản</h4> --}}
-    </div>
-    <div class="content">
-        <div class="main__new">
-            <div class="card">
-                <img src="assets/images/news/news_search/new_1.png" class="card-img-top card-img-top--extend" alt="...">
-                <div class="card-body">
-                    <div class="tag" style="font-family: serif">
-                        <p class="tag__item">#Ngành nước ngọt thua lỗ</p>
-                    </div>
-                    <h4>Kinh doanh</h4>
-                    <h5 class="card-title">Sự sụt giá ngành nước giải khát kéo theo nhu cầu tăng cao
-                    </h5>
-                    <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
-                    <p style="font-size: 15px;">Với sự lao dốc của ngành nước ngọt, đặc biệt là tập đoàn
-                        Tân Hoàng Phát, dẫn tới việc tăng tỉ lệ người béo phì ở Việt Nam.</p>
-                </div>
-            </div>
-        </div>
-        <div class="list__news__category">
-            {{#each categoryArticles}}
-            <div class="card card__list__news--extend">
-                <img src="{{imgCover}}" class="card-img-top" alt="">
-                <div class="card-body">
-                    {{!-- danh sach tag --}}
-                    {{#each Tags}}
-                    <div class="tag" style="font-family: serif">
-                        <p class="tag__item">#{{name}}</p>
-                    </div>
-                    {{/each}}
-                    {{!-- danh sach category --}}
-                    <h4>Kinh doanh</h4>
+    </ul>
 
-                    <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
-                        <h5 class="card-title">{{name}}</h5>
-                    </a>
-                    <p class="card-text"><small class="text-muted">Xã hội 5:34pm 16-03-23</small></p>
-                    <p style="font-size: 15px;">{{description}}</p>
-                </div>
-            </div>
-            {{/each}}
-            {{! danh sach category }}
-            <h4>Kinh doanh</h4>
-            <h5 class="card-title">{{name}}
-            </h5>
-            <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                16-03-23</small></p>
-            <p style="font-size: 15px;">{{description}}</p>
-          </div>
-        </div>
-      {{/each}}
-    </div>
-  </div>
-  <div class="related__news">
-    <h4>Nổi bật</h4>
-    <hr />
-    <div class="container my-3">
-      <div class="card-body">
-        {{! <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <img src="assets/images/news/news_search/new_1.png"
-                                class="card-img-top card__img__latest__news" alt="...">
-                            <div class="card-body">
-                                <div class="tag" style="font-family: serif">
-                                    <p class="tag__item">#Nhiều khu doanh nghiệp bỏ hoang</p>
-                                </div>
-                                <h4>Kinh doanh</h4>
-                                <h5 class="card-title">Sự sụt giá ngành nước giải khát kéo theo nhu cầu
-                                    tăng cao
-                                </h5>
-                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                                        16-03-23</small></p>
-                                <p style="font-size: 15px;">Với sự lao dốc của ngành nước ngọt, đặc biệt
-                                    là tập đoàn Tân Hoàng Phát, dẫn tới việc tăng tỉ lệ người béo phì ở
-                                    Việt Nam.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="assets/images/news/news_search/new_2.png"
-                                class="card-img-top card__img__latest__news" alt="...">
-                            <div class="card-body">
-                                <div class="tag" style="font-family: serif">
-                                    <p class="tag__item">#Nhiều khu doanh nghiệp bỏ hoang</p>
-                                </div>
-                                <h4>Kinh doanh</h4>
-                                <h5 class="card-title">Việt Nam đang chiếm tỉ lệ nhà cao tầng cao thứ 9
-                                    thế giới?
-                                </h5>
-                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                                        16-03-23</small></p>
-                                <p style="font-size: 15px;">Với sự phát triển vượt bậc sau chiến tranh,
-                                    nhiều doanh
-                                    nghiệp xây dựng đã tạo nên thương hiệu và xây dựng nhiều công trình
-                                    ngang tầm
-                                    thế giới.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="assets/images/news/news_search/new_3.png"
-                                class="card-img-top card__img__latest__news" alt="...">
-                            <div class="card-body">
-                                <div class="tag" style="font-family: serif">
-                                    <p class="tag__item">#Doanh nghiệp xe phát triển</p>
-                                </div>
-                                <h4>Kinh doanh</h4>
-                                <h5 class="card-title">Hội chợ xe cho doanh nghiệp trong nước tổ chức
-                                </h5>
-                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                                        16-03-23</small></p>
-                                <p style="font-size: 15px;">Với qui mô và tính chuyên nghiệp, hội chợ
-                                    mong muốn đem
-                                    đến một sân chơi mới cho doanh nghiệp nước nhà.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                <div class="row">
-                    {{#each hotArticles}}
-
-                    <div class="col">
-                        <div class="card">
-                            <img src="{{imgCover}}" class="card-img-top card__img__latest__news" alt="...">
-                            <div class="card-body">
-                                {{#each Tags}}
-                                <div class="tag" style="font-family: serif">
-                                    <p class="tag__item">#{{name}}</p>
-                                </div>
-                                {{/each}}
-                                <h4>Kinh doanh</h4>
-
-                                <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
-                                    <h5 class="card-title">{{name}}</h5>
-                                </a>
-                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                                        16-03-23</small></p>
-                                <p style="font-size: 15px;">{{description}}</p>
-                            </div>
-                        </div>
-                    </div>
-                  {{/each}}
-                  <h4>Kinh doanh</h4>
-                  <h5 class="card-title">{{name}}</h5>
-                  <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                      16-03-23</small></p>
-                  <p style="font-size: 15px;">{{description}}</p>
-                </div>
-              </div>
-            </div>
-            {{! <div class="col">
-                        <div class="card">
-                            <img src="assets/images/news/news_search/new_1.png"
-                                class="card-img-top card__img__latest__news" alt="...">
-                            <div class="card-body">
-                                <div class="tag" style="font-family: serif">
-                                    <p class="tag__item">#Doanh nghiệp xe phát triển</p>
-                                </div>
-                                <h4>Kinh doanh</h4>
-                                <h5 class="card-title">Sự béo phì của những 'gã khổng lồ'
-                                </h5>
-                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                                        16-03-23</small></p>
-                                <p style="font-size: 15px;">Với nhiều chiêu trò tinh vi, nhiều ông lớn đã sử dụng tiền
-                                    để 'nuốt' chết các doanh nghiệp nhỏ lẻ.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="assets/images/news/news_search/new_2.png"
-                                class="card-img-top card__img__latest__news" alt="...">
-                            <div class="card-body">
-                                <div class="tag" style="font-family: serif">
-                                    <p class="tag__item">#Doanh nghiệp xe phát triển</p>
-                                </div>
-                                <h4>Kinh doanh</h4>
-                                <h5 class="card-title">Trùng tu xây lại nhà thờ ở Hồ Chí Minh
-                                </h5>
-                                <p class="card-text"><small class="text-muted">Xã hội 5:34pm
-                                        16-03-23</small></p>
-                                <p style="font-size: 15px;">Sau gần 2 năm với chi phí khoảng 12 tỷ, nhà thờ Đức Bà đã
-                                    được trả lại vẻ đẹp vốn có sau vụ cháy.</p>
-                            </div>
-                        </div>
-                    </div> --}}
-                    {{/each}}
-        </div>
-      </div>
-    </div>
-  </div>
+    <nav aria-label="Page navigation example" id="pagination">
+        {{{ createPagination pagination paginationClass="pagination-display justify-content-center" leftText="Previous"
+        rightText="Next"}}}
+    </nav>
 </div>
+<script>
+
+    document.querySelectorAll("#pagination li").forEach((li, index) => {
+        li.classList.add('page-item')
+    });
+    document.querySelectorAll("#pagination a").forEach((a, index) => {
+        a.classList.add('page-link')
+    });
+
+</script>

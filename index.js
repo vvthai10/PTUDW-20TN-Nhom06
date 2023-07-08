@@ -25,6 +25,7 @@ const port = process.env.PORT || 5000;
 const models = require("./models");
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
+const { createPagination } = require('express-handlebars-paginate');
 
 // config public static
 app.use(express.static(__dirname + "/public"));
@@ -46,6 +47,7 @@ app.engine(
       formatTime,
       select,
       selectIn,
+      createPagination
     },
   })
 );
