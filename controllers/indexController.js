@@ -18,7 +18,7 @@ controller.getCategories = async (req, res, next) => {
       ? category.icon
       : `/assets/images/icons/${category.icon}`;
   });
-  console.log(res.locals.categories);
+  // console.log(res.locals.categories);
   next();
 };
 
@@ -160,8 +160,6 @@ controller.showCategory = async (req, res) => {
   });
   subCategoryIds = subCategoryIds.map((item) => item.id);
 
-  console.log(subCategoryIds);
-
   // get the ArticleId of categoryId
   let categoryArticleIds = await models.Article.findAll({
     attributes: ["id"],
@@ -178,8 +176,6 @@ controller.showCategory = async (req, res) => {
   });
 
   categoryArticleIds = categoryArticleIds.map((item) => item.id);
-  console.log("CHECK HERE");
-  console.log(categoryArticleIds);
 
   const limit = 7;
 
@@ -193,11 +189,11 @@ controller.showCategory = async (req, res) => {
     include: [
       {
         model: models.Tag,
-        attributes: ["name"],
+        attributes: ["id", "name"],
       },
       {
         model: models.SubCategory,
-        attributes: ["name"],
+        attributes: ["id", "name"]
       },
     ],
     distinct: true,
@@ -277,8 +273,8 @@ controller.showSubCategory = async (req, res) => {
     include: [
       {
         model: models.Tag,
-        attributes: ["name"],
-      },
+        attributes: ["id", "name"],
+      }
     ],
     order: [["createdAt", "DESC"]],
     distinct: true,
@@ -386,7 +382,10 @@ controller.showTag = async (req, res) => {
   let tagArticleIds = await models.TagArticle.findAll({
     attributes: ["articleId"],
     where: { tagId: tagId },
+    distinct: true
   });
+
+  // console.log(tagArticleIds)
 
   let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
 
@@ -401,26 +400,26 @@ controller.showTag = async (req, res) => {
 
   const limit = 7;
 
-  let { rows, count } = await models.TagArticle.findAndCountAll({
-    attributes: ["tagId"],
-    where: { articleId: tagArticleIds },
+  let { rows, count } = await models.Article.findAndCountAll({
+    where: { id: {
+      [Op.or]: tagArticleIds
+    }},
     include: [
       {
-        model: models.Article,
-        include: [
-          {
-            model: models.Tag,
-            attributes: ["name"],
-          },
-        ],
+        model: models.Tag,
+        attributes: ["id", "name"],
       },
+      {
+        model: models.SubCategory,
+        attributes: ["id", "name"]
+      }
     ],
     distinct: true,
     limit: limit,
     offset: limit * (page - 1),
   });
 
-  // console.log(rows.length);
+  // console.log(count);
 
   res.locals.tagArticles = rows;
   res.locals.pagination = {

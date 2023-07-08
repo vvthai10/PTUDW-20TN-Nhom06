@@ -5,9 +5,7 @@
   <ul>
     {{#each tagArticles}}
       <li>
-        {{#with Article}}
-          <a
-            href="readnews.html"
+          <div
             style="display: flex; margin: 30px 0; width: 90%;"
           >
             <img
@@ -19,16 +17,17 @@
               style="    display: flex;
 flex-direction: column; margin-left: 10px;"
             >
-              <span
+              <a href="/article?articleId={{id}}"><span
                 style="font-size: 24px;
     font-weight: 500;"
-              >{{name}}</span>
+              >{{name}}</span></a>
               <div
                 style="display: flex;
     justify-content: space-between;"
               >
                 <!--Category-->
-                <span
+                {{#each SubCategories}}
+                <a href="/subCategory?subCategoryId={{id}}"><span
                   style="    padding: 5px;
     width: 70px;
     text-align: center;
@@ -40,11 +39,12 @@ flex-direction: column; margin-left: 10px;"
     color: white;
     line-height: 100%;
     margin-left: 10px;"
-                >Nông nghiệp</span>
+                >{{name}}</span></a>
+                {{/each}}
                 <div>
                   <!--Related Tags-->
                   {{#each Tags}}
-                    <span
+                    <a href="/tag?tagId={{id}}"><span
                       style="float: left;
         margin-left: 10px;
         font-family: Arial;
@@ -55,21 +55,20 @@ flex-direction: column; margin-left: 10px;"
         padding: 0 8px 0 12px;
         height: 24px;
         line-height: 24px;"
-                    >{{name}}</span>
+                    >{{name}}</span></a>
                   {{/each}}
                 </div>
               </div>
               <span
                 style="font-size: 12px;
                   padding: 5px 0 0 10px;      color: black;"
-              >10:15 16/4/2023</span>
+              >{{updatedAt}}</span>
               <span
                 style="padding-left: 10px;
                   font-size: 14px; color: black;"
-              >{{content}}</span>
+              >{{description}}</span>
             </div>
-          </a>
-        {{/with}}
+          </div>
       </li>
     {{/each}}
   </ul>
@@ -86,7 +85,7 @@ flex-direction: column; margin-left: 10px;"
 <script>
 
   document.querySelectorAll("#pagination li").forEach((li, index) => {
-  li.classList.add('page-item') }); document.querySelectorAll("#pagination
-  a").forEach((a, index) => { a.classList.add('page-link') });
+  li.classList.add('page-item') }); 
+  document.querySelectorAll("#pagination a").forEach((a, index) => { a.classList.add('page-link') });
 
 </script>
