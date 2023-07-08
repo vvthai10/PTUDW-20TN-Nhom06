@@ -23,50 +23,116 @@ controller.getCategories = async (req, res, next) => {
 };
 
 controller.showHomepage = async (req, res) => {
-  let tags = await models.Tag.findAll();
-  // let articles = await models.Article.findAll();
-  // let popularArticles = [];
-  // for (let index = 0; index < articles.length / 3; index++) {
-  //   popularArticles.push([articles[index]['dataValues'], articles[index + 1]['dataValues'], articles[index + 2]['dataValues']]);
-  // }
-  // console.log(popularArticles);
-  // console.log(articles[0]['dataValues'])
-  let articles = await models.Article.findAll();
-  let popularArticles = articles;
-  let rightArticles = [];
+  let popularArticles = await models.Article.findAll({
+    include: [
+      {
+        model: models.SubCategory
+      }
+    ],
+    order: [['nViewWeek', 'DESC']],
+    limit: 4
+  });
+  res.locals.popularArticles = popularArticles;
+
+  // bai viet co luot xem cao nhat tat ca chuyen muc
+  let viewArticles = await models.Article.findAll({
+    include: [
+      {
+        model: models.SubCategory
+      }
+    ],
+    order: [['nView', 'DESC']],
+    limit: 10
+  })
+
+  let viewArticle_new = [];
   let temp = [];
-  for (let index = 0; index < articles.length / 3; index++) {
+  for (let index = 0; index < viewArticles.length / 3; index++) {
     if (index == 0) {
-      rightArticles.push({
+      viewArticle_new.push({
         _main_item: [
           {
             _item: [
-              articles[index * 3],
-              articles[index * 3 + 1],
-              articles[index * 3 + 2],
+              viewArticles[(index * 3) % viewArticles.length],
+              viewArticles[(index * 3 + 1) % viewArticles.length],
+              viewArticles[(index * 3 + 2) % viewArticles.length],
             ],
           },
         ],
       });
-      // rightArticles.push({_item: []})
-    } else {
-      temp.push({
-        _item: [
-          articles[index * 3],
-          articles[index * 3 + 1],
-          articles[index * 3 + 2],
-        ],
-      });
-      // rightArticles[2].push([articles[index * 3], articles[index * 3 + 1], articles[index * 3 + 2]]);
+    }
+    else {
+      temp.push({_item: [viewArticles[index * 3 % viewArticles.length], viewArticles[(index * 3 + 1) % viewArticles.length], viewArticles[(index * 3 + 2) % viewArticles.length]]});
     }
   }
-  rightArticles.push({ _items: temp });
-  // console.log(rightArticles[1]._items)
-  // console.log(rightArticles[0]._item.length)
-  res.locals.latestArticles = rightArticles;
-  res.locals.rightArticles = rightArticles;
-  res.locals.popularArticles = popularArticles;
+  viewArticle_new.push({ _items: temp });
+  res.locals.viewArticles = viewArticle_new;
+
+  // res.locals.latestArticles = rightArticles;
+  // res.locals.popularArticles = popularArticles;
+  let tags = await models.Tag.findAll();
   res.locals.tags = tags;
+
+  // cac bai viet moi nhat moi chuyen muc
+  let newArticles = await models.Article.findAll({
+    include: [
+      {
+        model: models.SubCategory
+      }
+    ],
+    order: [['updatedAt', 'DESC']],
+    limit: 10
+  })
+
+  let newArticles_news = [];
+  temp = [];
+  for (let index = 0; index < newArticles.length / 3; index++) {
+    if (index == 0) {
+      newArticles_news.push({
+        _main_item: [
+          {
+            _item: [
+              newArticles[(index * 3) % newArticles.length],
+              newArticles[(index * 3 + 1) % newArticles.length],
+              newArticles[(index * 3 + 2) % newArticles.length],
+            ],
+          },
+        ],
+      });
+    }
+    else {
+      temp.push({_item: [newArticles[index * 3 % newArticles.length], newArticles[(index * 3 + 1) % newArticles.length], newArticles[(index * 3 + 2) % newArticles.length]]});
+    }
+  }
+  newArticles_news.push({ _items: temp });
+  res.locals.newArticles = newArticles_news;
+
+  const mainArticle = await models.Article.findOne({
+    include: [
+      {
+        model: models.SubCategory
+      }
+    ],
+    order: [['createdAt', 'DESC']]
+  })
+  res.locals.mainArticle = mainArticle;
+
+  // top 10 chuyen muc, moi chuyen muc 1 bai moi nhat
+  let newCategoryArticle = await models.SubCategory.findAll({
+    include: [
+      {
+        model: models.Article
+      }
+    ],
+    order: [
+      [models.Article, 'updatedAt', 'DESC']
+    ]
+  });
+  console.log(newCategoryArticle[3].Articles);
+  for (let index = 0; index < newCategoryArticle.length; index++) {
+    newCategoryArticle[index].Article = newCategoryArticle[index].Articles[0]
+  }
+  res.locals.newCategoryArticle = newCategoryArticle;
   res.render("index");
 };
 
@@ -239,7 +305,6 @@ controller.showSubCategory = async (req, res) => {
 
 controller.showArticle = async (req, res) => {
   let articleId = parseInt(req.query.articleId);
-  // console.log('hello world');
   // lay comment tuong ung voi articleId
   res.locals.articleId = articleId;
   res.locals.commentInfo = {
@@ -262,7 +327,7 @@ controller.showArticle = async (req, res) => {
   });
   // console.log(typeof(comments[0].User))
   for (let index = 0; index < comments.length; index++) {
-    if (comments[index].User.id == res.locals.userInfo.id) {
+    if (res.locals.userInfo != null && comments[index].User.id == res.locals.userInfo.id) {
       comments[index].User.matched = true;
     } else comments[index].User.matched = false;
   }
