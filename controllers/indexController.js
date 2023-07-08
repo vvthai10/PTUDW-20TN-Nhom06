@@ -94,6 +94,8 @@ controller.showCategory = async (req, res) => {
   });
   subCategoryIds = subCategoryIds.map((item) => item.id);
 
+  console.log(subCategoryIds);
+
   // get the ArticleId of categoryId
   let categoryArticleIds = await models.Article.findAll({
     attributes: ["id"],
@@ -110,6 +112,8 @@ controller.showCategory = async (req, res) => {
   });
 
   categoryArticleIds = categoryArticleIds.map((item) => item.id);
+  console.log("CHECK HERE");
+  console.log(categoryArticleIds);
 
   const limit = 7;
 
