@@ -115,7 +115,33 @@ var modify_button = $('#modify-button').addEventListener('click', () => {
 
 //var form_delete = $('#exampleModal1 .modal-footer form').onsubmit= async () => {$('#exampleModal1 .modal-footer form').firstChild.value = $('tr.selected').firstChild.nextSibling.nextSibling.innerText;};
 
+// Input image icon
+const inputElement = document.getElementById('input_post_avatar');
+inputElement.addEventListener('change', async (event) => {
+    const file = event.target.files[0]; // Lấy file từ sự kiện change
+    const formData = new FormData(); // Tạo formData để chứa file
 
+    formData.append('image', file); // Đặt tên của field là 'image' (phải giữ nguyên)
+
+    try {
+        const response = await fetch('https://api.imgur.com/3/image', {
+            method: 'POST',
+            headers: {
+                Authorization: 'Client-ID 90819d07ed4839d', // Thay YOUR_CLIENT_ID bằng Client ID của bạn từ Imgur
+            },
+            body: formData,
+        });
+
+        const data = await response.json();
+        const imageUrl = data.data.link; // Lấy đường dẫn ảnh từ phản hồi JSON
+        console.log(data.data.deletehash); // In ra hash để xóa ảnh, nên lưu lại  
+        console.log(imageUrl); // In ra đường dẫn ảnh
+        document.getElementById('input_post_avatar_link').value = imageUrl;
+        document.getElementById('input_post_avatar_deleteHash').value = data.data.deletehash;
+    } catch (error) {
+        console.error('Error uploading image:', error);
+    }
+});
 
 
 

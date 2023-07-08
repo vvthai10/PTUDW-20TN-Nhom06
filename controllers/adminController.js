@@ -407,7 +407,8 @@ controller.add = async (req, res, next) => {
       case "Chuyên mục cấp 1":
         let newCat1 = await models.Category.create({
           name: req.body.name,
-          // icon: 'kinh_doanh.png',
+          icon: req.body.iconLink,
+          iconDeleteHash: req.body.iconDeleteHash,
         });
         break;
       case "Chuyên mục cấp 2":

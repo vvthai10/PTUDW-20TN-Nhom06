@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: DataTypes.STRING,
       icon: DataTypes.STRING,
+      iconDeleteHash: DataTypes.STRING,
     },
     {
       sequelize,
