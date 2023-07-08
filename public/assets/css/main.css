@@ -70,6 +70,14 @@
   position: relative;
   transition: margin-top 0.3s;
 }
+.sidebar__item-have-child::after {
+  position: absolute;
+  right: -7px;
+  top: 5px;
+  width: 15px;
+  height: 87%;
+  content: "";
+}
 
 .sidebar__list-child {
   position: absolute;

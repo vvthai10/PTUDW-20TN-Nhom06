@@ -12,7 +12,12 @@ controller.getCategories = async (req, res, next) => {
   });
   // slugify(item.name, { lower: true, strict: true });
   res.locals.categories = categories.map((category) => category.toJSON());
-
+  res.locals.categories.forEach((category) => {
+    category.icon = category.icon.includes("imgur")
+      ? category.icon
+      : `/assets/images/icons/${category.icon}`;
+  });
+  console.log(res.locals.categories);
   next();
 };
 
@@ -160,7 +165,7 @@ controller.showCategory = async (req, res) => {
   // subCategory = subCategory.map(item => item.name);
   res.locals.subCategory = subCategory;
 
-  res.render("readCategory");
+  res.render("readcategory");
 };
 
 controller.showSubCategory = async (req, res) => {

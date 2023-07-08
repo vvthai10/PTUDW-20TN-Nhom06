@@ -14,7 +14,8 @@ router.get("/account", async (req, res) => {
   let view = req.query.view;
   if (view == "info") {
     res.locals.info = 1;
-    req.flash("checkMessage", "Check thôi không làm gì cả");
+    console.log("TT USER");
+    console.log(res.locals.userInfo);
     res.render("account-info");
   } else if (view == "password") {
     // Kiểm tra tài khoản người dùng có mật khẩu hay chưa khi họ đăng kí bằng Gmail
@@ -87,14 +88,19 @@ router.post("/account/update", async (req, res, next) => {
       dataUpdate.sex = req.body.sex;
     }
     user = await models.User.update(dataUpdate, { where: { id: user.id } });
+    req.user.dataValues = { ...req.user.dataValues, ...dataUpdate };
+    res.locals.userInfo = req.user.dataValues;
+
+    let infoShow = {
+      hasAlert: 1,
+      typeAlert: "success",
+      messageAlert: "Cập nhật thông tin thành công",
+    };
 
     res.locals.info = 1;
-    res.locals.hasalert = true;
-    res.locals.typealert = "success";
-    res.locals.messagealert = "Cập nhật thông tin thành công";
-    res.render("account-info");
+    res.render("account-info", infoShow);
   } else if (view == "password") {
-    console.log("Get here");
+    let infoShow;
     if (req.body.check == 1) {
       let newPassword = bcrypt.hashSync(
         req.body.newPassword,
@@ -104,9 +110,12 @@ router.post("/account/update", async (req, res, next) => {
         { password: newPassword },
         { where: { id: res.locals.userInfo.id } }
       ); // $2b$08$ukGBPsgEFHOZquEHu9rFk.PwQ41.ACLu2pcOJoAWmQlqQbzwKrgpe
-      res.locals.hasalert = true;
-      res.locals.typealert = "success";
-      res.locals.messagealert = "Cập nhật mật khẩu thành công";
+
+      infoShow = {
+        hasAlert: 1,
+        typeAlert: "success",
+        messageAlert: "Cập nhật mật khẩu thành công",
+      };
     } else {
       // Kiểm tra mật khẩu có trùng với mật khẩu không
       let password = req.body.curPassword;
@@ -115,9 +124,11 @@ router.post("/account/update", async (req, res, next) => {
       });
 
       if (!bcrypt.compareSync(password, user.password)) {
-        res.locals.hasalert = true;
-        res.locals.typealert = "error";
-        res.locals.messagealert = "Mật khẩu hiện tại không đúng";
+        infoShow = {
+          hasAlert: 1,
+          typeAlert: "error",
+          messageAlert: "Mật khẩu hiện tại không đúng",
+        };
       } else {
         // Nếu mật khẩu hiện tại đã đúng, cập nhật mật khẩu mới
         let newPassword = bcrypt.hashSync(
@@ -128,14 +139,17 @@ router.post("/account/update", async (req, res, next) => {
           { password: newPassword },
           { where: { id: user.id } }
         ); // $2b$08$ukGBPsgEFHOZquEHu9rFk.PwQ41.ACLu2pcOJoAWmQlqQbzwKrgpe
-        res.locals.hasalert = true;
-        res.locals.typealert = "success";
-        res.locals.messagealert = "Cập nhật mật khẩu thành công";
+
+        infoShow = {
+          hasAlert: 1,
+          typeAlert: "success",
+          messageAlert: "Cập nhật mật khẩu thành công",
+        };
       }
     }
 
     res.locals.password = 1;
-    res.render("account-password");
+    res.render("account-password", infoShow);
   }
 });
 

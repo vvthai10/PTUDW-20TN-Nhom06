@@ -3,10 +3,11 @@ Author: vvthai14
 Desc: Handle show/hide navbar tablet and mobile
 */
 function HandleShowHideNavbarHeader() {
-  const btnNavbar = document.querySelector(".header__navbar-icon");
+  const btnNavbar = document.querySelector(".button-navbar-icon");
   const divNavbar = document.querySelector(".header__navbar");
   const divNavbarBox = document.querySelector(".header__navbar-box");
   btnNavbar.addEventListener("click", () => {
+    console.log("Click button");
     divNavbarBox.classList.remove("slide-out-left");
     divNavbar.classList.remove("transform-out");
     divNavbarBox.classList.add("slide-in-left");
@@ -16,6 +17,7 @@ function HandleShowHideNavbarHeader() {
   });
 
   divNavbar.addEventListener("click", (e) => {
+    console.log("Click space");
     if (e.target.closest(".header__navbar-box")) {
       // Handle
     } else {
@@ -29,17 +31,7 @@ function HandleShowHideNavbarHeader() {
   });
 }
 
-function HandleShowItemChildNavbarHeader() {
-  const parentItem = document.querySelector(".header__navbar-item-have-child");
-  const listChild = document.querySelector(".header__navbar-list-child");
-  parentItem.addEventListener("click", (e) => {
-    if (listChild.style.display == "none") {
-      listChild.style.display = "block";
-    } else {
-      listChild.style.display = "none";
-    }
-  });
-}
+function HandleShowItemChildNavbarHeader() {}
 
 HandleShowHideNavbarHeader();
 HandleShowItemChildNavbarHeader();

@@ -63,6 +63,9 @@ passport.use(
             return done(
               null,
               false,
+              req.flash("hasAlert", 1),
+              req.flash("typeAlert", "warning"),
+              req.flash("messageAlert", "Email chưa được đăng kí"),
               req.flash("loginMessage", "Email does not exist!")
             );
           }
@@ -71,6 +74,9 @@ passport.use(
             return done(
               null,
               false,
+              req.flash("hasAlert", 1),
+              req.flash("typeAlert", "warning"),
+              req.flash("messageAlert", "Mật khẩu không đúng"),
               req.flash("loginMessage", "Invalid Password!")
             );
           }
@@ -108,6 +114,9 @@ passport.use(
           return done(
             null,
             false,
+            req.flash("hasAlert", 1),
+            req.flash("typeAlert", "warning"),
+            req.flash("messageAlert", "Email đã được đăng kí"),
             req.flash("registerMessage", "Email is already taken!")
           );
         }
@@ -122,11 +131,10 @@ passport.use(
         // Thông báo đk thành công
         done(
           null,
-          false,
-          req.flash("hasalert", "1"),
-          req.flash("typealert", "success"),
-          req.flash("messagealert", "Đăng kí thành công"),
-          req.flash("loginMessage", "Đăng kí thành công")
+          true,
+          req.flash("hasAlert", 1),
+          req.flash("typeAlert", "success"),
+          req.flash("messageAlert", "Đăng kí tài khoản thành công")
         );
       } catch (error) {
         done(error);

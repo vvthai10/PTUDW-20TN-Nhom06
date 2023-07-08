@@ -1,7 +1,26 @@
-{{#if hasalert}}
-  <p>Có alert mà đúng không</p>
+{{#if hasAlert}}
   {{> alert}}
 {{/if}}
+<div class="alert-toast">
+  <div class="alert-toast-content">
+    <i class="fas fa-solid fa-check alert-check info
+    ">
+    </i>
+
+    <div class="alert-message">
+      <span class="alert-text alert-text-1">
+        Info
+      </span>
+      
+      <span class="alert-text alert-text-2">Tính năng này đang được phát triển</span>
+    </div>
+  </div>
+  <i class="fa-solid fa-xmark alert-close"></i>
+
+  <!-- Remove 'active' class, this is just to show in Codepen thumbnail -->
+  <div class="alert-progress alert-active alert-progres-info
+  "></div>
+</div>
 <div class="form__container">
   <span class="form__name">Đăng nhập</span>
   <form action="/users/login" method="post" id="form__signin">
@@ -37,11 +56,11 @@
     <button type="submit" class="form__btn" id="btn_login">Đăng nhập</button>
   </form>
 
-  {{#if loginMessage}}
+  {{!-- {{#if loginMessage}}
     <div class="col md-12">
       <div class="p-3 mt-3 alert alert-warning">{{{loginMessage}}}</div>
     </div>
-  {{/if}}
+  {{/if}} --}}
 
   <span class="form__sign-in-up-another-title">Đăng nhập bằng các phương thức
     khác</span>
@@ -51,6 +70,36 @@
     <i class="bi bi-apple apple"></i>
   </div>
   <span class="form__sign-in-up-signin">Chưa có tài khoản?<a
-      href="/users/register"
-    >Đăng kí tài khoản</a></span>
+      href="/users/register" style="font-size: 14px; font-weight: 500;"
+    >Đăng kí</a></span>
 </div>
+
+
+<script>
+  const facebookIcon = document.querySelector(".facebook");
+  const appleIcon = document.querySelector(".apple");
+
+  const toast = document.querySelector(".alert-toast"); 
+  const closeIcon = document.querySelector(".alert-close"); 
+  const progress = document.querySelector(".alert-progress"); 
+  
+  let timer1, timer2;
+
+  function showAlert(){
+  toast.classList.add("alert-active"); progress.classList.add("alert-active");
+
+    timer1 = setTimeout(() => { toast.classList.remove("alert-active"); }, 5000);
+    timer2 = setTimeout(() => { progress.classList.remove("alert-active"); },
+    5300);
+  }
+
+  facebookIcon.addEventListener("click", showAlert);
+  appleIcon.addEventListener("click", showAlert);
+
+  closeIcon.addEventListener("click", () => {
+  toast.classList.remove("alert-active"); setTimeout(() => {
+  progress.classList.remove("alert-active"); }, 300); 
+  clearTimeout(timer1);
+  clearTimeout(timer2); });
+
+</script>

@@ -10,6 +10,9 @@ controller.showLogin = (req, res) => {
   }
   res.render("login", {
     loginMessage: req.flash("loginMessage"),
+    hasAlert: req.flash("hasAlert"),
+    typeAlert: req.flash("typeAlert"),
+    messageAlert: req.flash("messageAlert"),
     reqUrl: req.query.reqUrl,
   });
 };
@@ -57,6 +60,9 @@ controller.showRegister = (req, res) => {
   }
   res.render("register", {
     registerMessage: req.flash("registerMessage"),
+    hasAlert: req.flash("hasAlert"),
+    typeAlert: req.flash("typeAlert"),
+    messageAlert: req.flash("messageAlert"),
     reqUrl: req.query.reqUrl,
   });
 };
@@ -68,25 +74,9 @@ controller.register = (req, res, next) => {
       return next(error);
     }
     if (!user) {
-      res.locals.alertData = {
-        type: "success",
-        message: "Đăng kí tài khoản thành công",
-      };
-      // return res.redirect(`/users/register?reqUrl=${reqUrl}`);
-      res.redirect(`/users/login?reqUrl=${reqUrl}`);
+      return res.redirect(`/users/register?reqUrl=${reqUrl}`);
     }
-    req.logIn(user, (error) => {
-      if (error) {
-        return next(error);
-      }
-      // Đăng kí thành công
-      res.locals.alertData = {
-        type: "success",
-        message: "Đăng kí tài khoản thành công",
-      };
-      // res.redirect(reqUrl);
-      res.redirect(`/users/login?reqUrl=${reqUrl}`);
-    });
+    res.redirect(`/users/login?reqUrl=${reqUrl}`);
   })(req, res, next);
 };
 

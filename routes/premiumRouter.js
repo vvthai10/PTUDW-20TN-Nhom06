@@ -32,7 +32,7 @@ router.get("/register", (req, res) => {
     amount = "180000";
   }
 
-  amount = "1000";
+  // amount = "1000";
 
   const protocol = req.protocol;
   const host = req.get("host");
@@ -57,8 +57,9 @@ router.get("/register", (req, res) => {
   var jsonData = {
     id: user.id,
     name: user.name,
+    amount: amount,
     type: type,
-    date: new Date().getTime(),
+    date: new Date(),
   };
   var encode = Buffer.from(JSON.stringify(jsonData)).toString("base64");
   var extraData = encode; //pass empty value if your merchant does not have stores
@@ -211,7 +212,12 @@ router.get("/test-register", async (req, res) => {
     { where: { id: data.id } }
   );
 
-  res.render("thanks");
+  let infoShow = {
+    hasAlert: 1,
+    typeAlert: "success",
+    messageAlert: "Đăng kí premium thành công",
+  };
+  res.render("premium", infoShow);
 });
 
 router.get("/thanks", async (req, res) => {
@@ -222,7 +228,7 @@ router.get("/thanks", async (req, res) => {
     let data = JSON.parse(
       Buffer.from(req.query.extraData, "base64").toString()
     );
-    console.log(data);
+    // console.log(data);
     // let data = {
     //   id: user.id,
     //   name: user.name,
@@ -274,7 +280,12 @@ router.get("/thanks", async (req, res) => {
       { where: { id: data.id } }
     );
 
-    res.render("thanks");
+    let infoShow = {
+      hasAlert: 1,
+      typeAlert: "success",
+      messageAlert: "Đăng kí premium thành công",
+    };
+    res.render("premium", infoShow);
   }
 });
 

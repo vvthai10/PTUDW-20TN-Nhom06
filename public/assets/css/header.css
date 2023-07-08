@@ -420,6 +420,10 @@
   display: none;
 }
 
+.button-navbar-icon {
+  cursor: pointer;
+}
+
 .transform-in {
   animation: transform-in ease-in 0.4s;
   display: block;
@@ -486,7 +490,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 20px 5px 60px 20px;
+  padding: 20px 5px 20px 20px;
 }
 .header__navbar__user-premium {
   width: 30px;

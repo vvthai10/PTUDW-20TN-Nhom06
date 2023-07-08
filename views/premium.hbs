@@ -1,3 +1,6 @@
+{{#if hasAlert}}
+  {{> alert}}
+{{/if}}
 <div class="box__premium">
   <div class="box__premium-preview">
     <span class="title" style="font-size: 16px; font-weight: 600">
@@ -60,7 +63,7 @@
       tập ấn bản báo chí đa dạng của chúng tôi.</span>
 
   </div>
-  {{#if userInfo}}
+  {{#with userInfo}}
     {{#ifEquals role "admin"}}
       <span style="font-size: 16px; color: #ec8c25; font-style: italic; font-weight: 700;">Tài khoản của bạn là một trong những tài khoản được ưu tiên sử dụng mọi chức năng cao cấp của trang web. Bạn nhận được vì những đóng góp cho sự phát triển của trang báo từ trước nay và cả trong tương lai.</span>
     {{/ifEquals}}
@@ -70,14 +73,12 @@
     {{#ifEquals role "writer"}}
       <span style="font-size: 16px; color: #ec8c25; font-style: italic; font-weight: 700;">Tài khoản của bạn là một trong những tài khoản được ưu tiên sử dụng mọi chức năng cao cấp của trang web. Bạn nhận được vì những đóng góp cho sự phát triển của trang báo từ trước nay và cả trong tương lai.</span>
     {{/ifEquals}}
-    {{#ifEquals role "writer"}}
+    {{#ifEquals role "default"}}
       {{> box-premium}}
     {{/ifEquals}}
-    {{#ifEquals role "writer"}}
+    {{#ifEquals role "premium"}}
       {{> box-premium}}
     {{/ifEquals}}
-  {{else}}
-    {{> box-premium}}
-  {{/if}}
+  {{/with}}
 
 </div>

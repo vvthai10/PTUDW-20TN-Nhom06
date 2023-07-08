@@ -77,6 +77,7 @@ app.use(passport.session());
 app.use(flash());
 
 // Lấy các thông tin cần khởi tạo/lấy ban đầu
+// Thông tin user
 app.use(async (req, res, next) => {
   res.locals.isLoggedIn = req.isAuthenticated();
   if (res.locals.isLoggedIn) {
@@ -85,6 +86,7 @@ app.use(async (req, res, next) => {
       ? res.locals.userInfo.avatar
       : `/assets/images/${res.locals.userInfo.avatar}`;
 
+    console.log("SHOW USER FIRST");
     console.log(res.locals.userInfo);
 
     // Kiểm tra thời hạn expiredAt premium của user
@@ -170,17 +172,15 @@ app.use(async (req, res, next) => {
     //   );
     // }
   }
-
-  // console.log(res.locals.userInfo);
   next();
 });
 
-app.get("/createTables", (req, res) => {
-  let models = require("./models");
-  models.sequelize.sync().then(() => {
-    res.send("Table created!");
-  });
-});
+// app.get("/createTables", (req, res) => {
+//   let models = require("./models");
+//   models.sequelize.sync().then(() => {
+//     res.send("Table created!");
+//   });
+// });
 
 app.use("/admin", require("./routes/adminRouter"));
 app.use("/editor", require("./routes/editorRouter"));

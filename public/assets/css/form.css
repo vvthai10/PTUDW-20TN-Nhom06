@@ -156,6 +156,7 @@
 }
 
 .alert-toast {
+  display: none;
   position: absolute;
   top: 60px;
   right: 30px;
@@ -169,6 +170,7 @@
 }
 
 .alert-toast.alert-active {
+  display: block;
   transform: translateX(0%);
 }
 
@@ -190,6 +192,10 @@
 
 .success {
   background-color: #4070f4;
+}
+
+.info {
+  background-color: #d1ecf1;
 }
 
 .warning {
@@ -246,6 +252,15 @@
   height: 100%;
   width: 100%;
   background-color: #4070f4;
+}
+.alert-toast .alert-progres-info:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #d1ecf1;
 }
 .alert-toast .alert-progres-warning:before {
   content: "";

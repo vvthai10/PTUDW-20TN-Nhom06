@@ -15,15 +15,15 @@ module.exports = {
     let data = [
       {
         name: "Kinh doanh",
-        icon: "/assets/icon/kinh_doanh.jpg",
+        icon: "kinh_doanh.png",
       },
       {
         name: "Kinh tế",
-        icon: "/assets/icon/kinh tế.jpg",
+        icon: "kinh_te.png",
       },
       {
         name: "Thể thao",
-        icon: "/assets/icon/the_thao.jpg",
+        icon: "the_thao.png",
       },
     ];
     data.forEach((item) => {

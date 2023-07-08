@@ -1,4 +1,4 @@
-{{#if alertData}}
+{{#if hasAlert}}
   {{> alert}}
 {{/if}}
 <div class="form__container">
@@ -58,19 +58,13 @@
     >Đăng ký</button>
   </form>
 
-  {{#if registerMessage}}
+  {{!-- {{#if registerMessage}}
     <div class="col md-12">
       <div class="p-3 mt-3 alert alert-warning">{{{registerMessage}}}</div>
     </div>
-  {{/if}}
+  {{/if}} --}}
 
-  <span class="form__sign-in-up-another-title">Đăng ký bằng các tài khoản sau</span>
-  <div class="form__sign-in-up-another-btn">
-    <i class="bi bi-google google"></i>
-    <i class="bi bi-facebook facebook"></i>
-    <i class="bi bi-apple apple"></i>
-  </div>
   <span class="form__sign-in-up-signin">Đã có tài khoản?<a
-      href="/users/login"
-    >Đăng nhập tài khoản</a></span>
+      href="/users/login" style="font-size: 14px; font-weight: 500;"
+    >Đăng nhập</a></span>
 </div>
