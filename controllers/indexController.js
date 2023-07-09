@@ -26,11 +26,11 @@ controller.showHomepage = async (req, res) => {
   let popularArticles = await models.Article.findAll({
     include: [
       {
-        model: models.SubCategory
-      }
+        model: models.SubCategory,
+      },
     ],
-    order: [['nViewWeek', 'DESC']],
-    limit: 4
+    order: [["nViewWeek", "DESC"]],
+    limit: 4,
   });
   res.locals.popularArticles = popularArticles;
 
@@ -38,12 +38,12 @@ controller.showHomepage = async (req, res) => {
   let viewArticles = await models.Article.findAll({
     include: [
       {
-        model: models.SubCategory
-      }
+        model: models.SubCategory,
+      },
     ],
-    order: [['nView', 'DESC']],
-    limit: 10
-  })
+    order: [["nView", "DESC"]],
+    limit: 10,
+  });
 
   let viewArticle_new = [];
   let temp = [];
@@ -60,9 +60,14 @@ controller.showHomepage = async (req, res) => {
           },
         ],
       });
-    }
-    else {
-      temp.push({_item: [viewArticles[index * 3 % viewArticles.length], viewArticles[(index * 3 + 1) % viewArticles.length], viewArticles[(index * 3 + 2) % viewArticles.length]]});
+    } else {
+      temp.push({
+        _item: [
+          viewArticles[(index * 3) % viewArticles.length],
+          viewArticles[(index * 3 + 1) % viewArticles.length],
+          viewArticles[(index * 3 + 2) % viewArticles.length],
+        ],
+      });
     }
   }
   viewArticle_new.push({ _items: temp });
@@ -77,12 +82,12 @@ controller.showHomepage = async (req, res) => {
   let newArticles = await models.Article.findAll({
     include: [
       {
-        model: models.SubCategory
-      }
+        model: models.SubCategory,
+      },
     ],
-    order: [['updatedAt', 'DESC']],
-    limit: 10
-  })
+    order: [["updatedAt", "DESC"]],
+    limit: 10,
+  });
 
   let newArticles_news = [];
   temp = [];
@@ -99,9 +104,14 @@ controller.showHomepage = async (req, res) => {
           },
         ],
       });
-    }
-    else {
-      temp.push({_item: [newArticles[index * 3 % newArticles.length], newArticles[(index * 3 + 1) % newArticles.length], newArticles[(index * 3 + 2) % newArticles.length]]});
+    } else {
+      temp.push({
+        _item: [
+          newArticles[(index * 3) % newArticles.length],
+          newArticles[(index * 3 + 1) % newArticles.length],
+          newArticles[(index * 3 + 2) % newArticles.length],
+        ],
+      });
     }
   }
   newArticles_news.push({ _items: temp });
@@ -110,27 +120,25 @@ controller.showHomepage = async (req, res) => {
   const mainArticle = await models.Article.findOne({
     include: [
       {
-        model: models.SubCategory
-      }
+        model: models.SubCategory,
+      },
     ],
-    order: [['createdAt', 'DESC']]
-  })
+    order: [["createdAt", "DESC"]],
+  });
   res.locals.mainArticle = mainArticle;
 
   // top 10 chuyen muc, moi chuyen muc 1 bai moi nhat
   let newCategoryArticle = await models.SubCategory.findAll({
     include: [
       {
-        model: models.Article
-      }
+        model: models.Article,
+      },
     ],
-    order: [
-      [models.Article, 'updatedAt', 'DESC']
-    ]
+    order: [[models.Article, "updatedAt", "DESC"]],
   });
   console.log(newCategoryArticle[3].Articles);
   for (let index = 0; index < newCategoryArticle.length; index++) {
-    newCategoryArticle[index].Article = newCategoryArticle[index].Articles[0]
+    newCategoryArticle[index].Article = newCategoryArticle[index].Articles[0];
   }
   res.locals.newCategoryArticle = newCategoryArticle;
   res.render("index");
@@ -193,7 +201,7 @@ controller.showCategory = async (req, res) => {
       },
       {
         model: models.SubCategory,
-        attributes: ["id", "name"]
+        attributes: ["id", "name"],
       },
     ],
     distinct: true,
@@ -274,7 +282,7 @@ controller.showSubCategory = async (req, res) => {
       {
         model: models.Tag,
         attributes: ["id", "name"],
-      }
+      },
     ],
     order: [["createdAt", "DESC"]],
     distinct: true,
@@ -392,7 +400,7 @@ controller.showArticle = async (req, res) => {
   res.locals.subCategory = subCategory;
   res.locals.article = article;
   res.locals.article.author = author.name;
-  if (res.locals.userInfo.role != "default") {
+  if (res.locals.userInfo != null && res.locals.userInfo.role != "default") {
     res.locals.article.premium = "premium";
   }
 
@@ -411,7 +419,10 @@ controller.showArticle = async (req, res) => {
   });
   // console.log(typeof(comments[0].User))
   for (let index = 0; index < comments.length; index++) {
-    if (res.locals.userInfo != null && comments[index].User.id == res.locals.userInfo.id) {
+    if (
+      res.locals.userInfo != null &&
+      comments[index].User.id == res.locals.userInfo.id
+    ) {
       comments[index].User.matched = true;
     } else comments[index].User.matched = false;
   }
@@ -472,7 +483,7 @@ controller.showTag = async (req, res) => {
   let tagArticleIds = await models.TagArticle.findAll({
     attributes: ["articleId"],
     where: { tagId: tagId },
-    distinct: true
+    distinct: true,
   });
 
   // console.log(tagArticleIds)
@@ -491,9 +502,11 @@ controller.showTag = async (req, res) => {
   const limit = 7;
 
   let { rows, count } = await models.Article.findAndCountAll({
-    where: { id: {
-      [Op.or]: tagArticleIds
-    }},
+    where: {
+      id: {
+        [Op.or]: tagArticleIds,
+      },
+    },
     include: [
       {
         model: models.Tag,
@@ -501,8 +514,8 @@ controller.showTag = async (req, res) => {
       },
       {
         model: models.SubCategory,
-        attributes: ["id", "name"]
-      }
+        attributes: ["id", "name"],
+      },
     ],
     distinct: true,
     limit: limit,
@@ -527,17 +540,33 @@ controller.search = async (req, res) => {
   res.locals.keyword = req.query.keyword;
   if (keyword.trim()) {
     let options = {
-      attributes: ['id', 'name', 'description', 'premium', 'approve', 'updatedAt', 'imgCover', sequelize.literal(`ts_rank("vectorSearch", plainto_tsquery('english', '${keyword}')) AS "searchScore"`)],
-      where: {status: 'posted', vectorSearch: {[Op.match]: sequelize.fn('plainto_tsquery', keyword)},}, 
+      attributes: [
+        "id",
+        "name",
+        "description",
+        "premium",
+        "approve",
+        "updatedAt",
+        "imgCover",
+        sequelize.literal(
+          `ts_rank("vectorSearch", plainto_tsquery('english', '${keyword}')) AS "searchScore"`
+        ),
+      ],
+      where: {
+        status: "posted",
+        vectorSearch: { [Op.match]: sequelize.fn("plainto_tsquery", keyword) },
+      },
       include: [],
-      order:[sequelize.literal('"searchScore" DESC')],
+      order: [sequelize.literal('"searchScore" DESC')],
       raw: true,
       nested: true,
     };
     const result = await models.Article.findAll(options);
     console.log(result);
     let articleIds = result.map((item) => item.id);
-    let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
+    let page = isNaN(req.query.page)
+      ? 1
+      : Math.max(1, parseInt(req.query.page));
     let limit = 7;
 
     // get the subCategoryId of categoryId
@@ -555,7 +584,7 @@ controller.search = async (req, res) => {
         {
           model: models.SubCategory,
           attributes: ["name", "categoryId"],
-        }
+        },
       ],
       distinct: true,
       limit: limit,
@@ -571,11 +600,9 @@ controller.search = async (req, res) => {
       queryParams: req.query,
     };
 
-
     res.locals.searchResults = rows;
     res.render("search");
-  }
-  else res.redirect('/');
+  } else res.redirect("/");
   // const si = require('search-index');
   // const articles = await models.Article.findAll();
   // const ids = articles.map(item => item['id']);
@@ -598,7 +625,6 @@ controller.search = async (req, res) => {
   // await db.sequelize.query("SELECT * from Category", {tyep: sequelize.QueryTypes.SELECT}).then((data) => {
   //   console.log(data);
   // })
-  
 };
 
 controller.makeComment = async (req, res) => {
