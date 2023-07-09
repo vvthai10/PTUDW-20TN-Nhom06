@@ -1,131 +1,128 @@
-<div style="max-width: 1100px;" id="content">
-    <div class="container__new">
-        <h5 style="font-size: 30px;">Kinh doanh</h5>
-        <h4 style="font-size: 30px;">Xổ số kiến thiết TP.HCM muốn thu hơn 2,2 tỷ USD giai đoạn 2021-2025
-        </h4>
-        <div class="author__time">
-            <p class="author">
-                Ngọc Tân
-            </p>
-            <p class="time">Chủ Nhật 12/03/2023 16:12 (GMT+7)</p>
-            <div class="like__comment">
-                <div class="like">
-                    <button><i class="fa-solid fa-thumbs-up"></i></button>
-                    <p>6</p>
-                </div>
-                <div class="comment">
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#myModal"><i
-                            class="fa-solid fa-comment"></i></button>
-                    <p>10</p>
+<div style="max-width: 1100px; " id="abcdefgh">
+    <div style="display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(81, 81, 81, 0.7);
+    margin-bottom: 15px;">
+        {{#with category}}
+            <a href="/category?categoryId={{id}}" style="    
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+            background: transparent;
+            text-decoration: none;
+            color: #888;
+            cursor: pointer;
+            font-size: 16px;">{{name}}</a> 
+        {{/with}}
+        <i class="bi bi-chevron-right" style="font-size: 14px; margin: 0px 5px;"></i>
+        {{#with subCategory}}
+            <a href="/subCategory?subCategoryId={{id}}" style="    
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+            background: transparent;
+            text-decoration: none;
+            color: #888;
+            cursor: pointer;
+            font-size: 16px;">{{name}}</a> 
+        {{/with}}
+    </div>
+    {{#with article}}
+        <div class="container__new">
+            <h4 style="font-size: 30px;">{{name}}
+            </h4>
+            <div class="author__time">
+                <p class="author">{{author}}</p>
+                <p class="time">{{approve}}</p>
+                <div class="like__comment">
+                    <div class="like">
+                        <button><i class="fa-solid fa-thumbs-up"></i></button>
+                        <p>6</p>
+                    </div>
+                    <div class="comment">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#myModal"><i
+                                class="fa-solid fa-comment"></i></button>
+                        <p>10</p>
 
-                    <div class="modal" id="myModal" tabindex="-1">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" style="font-size: 20px; text-color: red;">Bình luận</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body modal--content" id="comment">
-                                    {{#each Comments}}
-                                    <div class="card__comment">
-                                        <div class="personal__img">
-                                            <img
-                                                src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.6435-9/121172259_691283754825145_668356720972128544_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=GR8cdUy4WOcAX-lAVcu&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfD3KneIO4cr-anMmhkAmzkCRxWo3_8TXbpR9z6gMSSdEg&oe=64BE4AD2"></img>
-                                        </div>
-                                        <div class="card-body--comment"
-                                            style="box-sizing: border-box; margin-left: 10px;">
-                                            <p style="font-weight: bold; font-size: 15px;">{{User.name}}</p>
-                                            <p class="comment__content" style="font-size: 15px;">{{content}}
-                                            </p>
-                                            <div class="like__comment">
-                                                <div class="like">
-                                                    <button><i class="fa-solid fa-thumbs-up"></i></button>
-                                                    <p>6</p>
-                                                </div>
-                                                {{#if User.matched}}
-                                                <div class="comment">
-                                                    <button onclick="deleteComment({{User.id}}, {{articleId}})"><i
-                                                            class="fa-solid fa-wrench"></i></button>
-                                                    <p>Xóa {{userInfo.id}}</p>
-                                                </div>
-                                                {{/if}}
-                                                <div class="like__comment--time">
-                                                    <p>{{createdAt}}</p>
+                        <div class="modal" id="myModal" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" style="font-size: 20px; text-color: red;">Bình luận</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body modal--content" id="comment">
+                                        {{#each Comments}}
+                                        <div class="card__comment">
+                                            <div class="personal__img">
+                                                <img
+                                                    src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t1.6435-9/121172259_691283754825145_668356720972128544_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=GR8cdUy4WOcAX-lAVcu&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfD3KneIO4cr-anMmhkAmzkCRxWo3_8TXbpR9z6gMSSdEg&oe=64BE4AD2"></img>
+                                            </div>
+                                            <div class="card-body--comment"
+                                                style="box-sizing: border-box; margin-left: 10px;">
+                                                <p style="font-weight: bold; font-size: 15px;">{{User.name}}</p>
+                                                <p class="comment__content" style="font-size: 15px;">{{content}}
+                                                </p>
+                                                <div class="like__comment">
+                                                    <div class="like">
+                                                        <button><i class="fa-solid fa-thumbs-up"></i></button>
+                                                        <p>6</p>
+                                                    </div>
+                                                    {{#if User.matched}}
+                                                    <div class="comment">
+                                                        <button onclick="deleteComment({{User.id}}, {{articleId}})"><i
+                                                                class="fa-solid fa-wrench"></i></button>
+                                                        <p>Xóa {{userInfo.id}}</p>
+                                                    </div>
+                                                    {{/if}}
+                                                    <div class="like__comment--time">
+                                                        <p>{{createdAt}}</p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        {{/each}}
                                     </div>
-                                    {{/each}}
-                                </div>
-                                <div style="display: flex;">
-                                    {{#with commentInfo}}
-                                    <div class="header__search-bar">
-                                        <input id="post" type="search" class="header__search-input"
-                                            placeholder="Viết bình luận..."/>
+                                    <div style="display: flex;">
+                                        {{#with commentInfo}}
+                                        <div class="header__search-bar">
+                                            <input id="post" type="search" class="header__search-input"
+                                                placeholder="Viết bình luận..."/>
+                                        </div>
+                                        <button
+                                            onclick="makeComment({{this.userInfo.id}}, document.getElementById('post').value, {{this.articleId}})"
+                                            style="font-size: 20px; background-color: red;">Summit</button>
+                                        {{/with}}
                                     </div>
-                                    <button
-                                        onclick="makeComment({{this.userInfo.id}}, document.getElementById('post').value, {{this.articleId}})"
-                                        style="font-size: 20px; background-color: red;">Summit</button>
-                                    {{/with}}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="comment">
-                    {{#with userInfo}}
-                    <button onclick="generatePDF('{{role}}')" type="button" data-bs-toggle="modal"><i
-                            class="fa-solid fa-print fa-2xl"></i></button>
-                    {{/with}}
+                    <div class="comment" style="font-size: 14px; margin: 0 10px;">
+                        {{#with premium}}
+                        <button onclick="generatePDF('{{role}}')" type="button" data-bs-toggle="modal"><i
+                                class="fa-solid fa-print fa-2xl"></i> Tải về</button>
+                        {{/with}}
+                    </div>
                 </div>
             </div>
+            <div class="new" style="font-size: 14px; margin-top: 10px">
+                <div style="display: flex; flex-direction: column; margin: 8px 0">
+                    <img src="{{imgCover}}" alt="background">
+                    <span style=" font-size: 20px; font-weight: 500;">{{description}}</span>
+                </div>
+                {{{content}}}
+            </div>
         </div>
-        <div class="new" style="font-size: 20px;">
-            <p class="abstract">Công ty xổ số kiến thiết TP.HCM đặt mục tiêu doanh thu giai đoạn
-                2021-2025 đạt 53.200 tỷ đồng và lãi trước thuế vượt 7.000 tỷ, tốc độ tăng trưởng bình
-                quân tối thiểu 8%/năm.</p>
-            <p class="content">Theo chiến lược phát triển kinh doanh 5 năm (2021-2025) mới công bố, Công
-                ty TNHH MTV Xổ số kiến thiết TP.HCM đặt mục tiêu tổng doanh thu giai đoạn này đạt 53.200
-                tỷ đồng (tương đương hơn 2,2 tỷ USD quy đổi), lãi trước thuế vượt 7.000 tỷ đồng với tốc
-                độ tăng trưởng bình quân hàng năm tối thiểu 8%. Khoản nộp ngân sách Nhà nước ước tính
-                lên đến 18.400 tỷ đồng.</p>
-            <p class="content">Với riêng năm nay, Xổ số kiến thiết TP.HCM đặt mục tiêu ghi nhận 11.370
-                tỷ đồng doanh thu và lãi trước thuế 1.478 tỷ đồng, tương đương mức doanh thu bình quân
-                mỗi tháng sẽ đạt 947 tỷ đồng và lãi trước thuế 123 tỷ/tháng. Công ty cũng dự kiến phát
-                hành 2,8 triệu vé số.</p>
-            <p class="content">Mục tiêu đến năm 2025, doanh thu của Xổ số kiến thiết TP.HCM sẽ đạt
-                12.172 tỷ đồng và lãi trước thuế đạt 1.575 tỷ đồng, cao nhất trong giai đoạn này.</p>
-            <p class="content">Theo báo cáo tài chính đã kiểm toán từ năm 2017-2021, doanh thu thực hiện
-                lẫn lợi nhuận trước thuế của công ty xổ số truyền thống này liên tục tăng trưởng trước
-                Covid-19. Tuy nhiên, kết quả kinh doanh từ năm 2020 bắt đầu giảm nhẹ, đạt doanh thu
-                7.537 tỷ đồng và lãi trước thuế 1.347 tỷ đồng.</p>
-
-            <img src="assets/images/news/news_search/new_5.png" class="img__new" alt="image">
-
-            <p class="content">Đến năm 2021, ảnh hưởng của Covid-19 khiến thị trường phía Nam điêu đứng,
-                doanh nghiệp gặp nhiều khó khăn khi phát hành vé số. Tình trạng này kéo doanh thu của Xổ
-                số kiến thiết TP.HCM xuống còn 5.931 tỷ đồng và lãi trước thuế 1.090 tỷ đồng.</p>
-            <p class="content">Bước sang năm 2022, cả doanh thu lẫn lợi nhuận của công ty đều bùng nổ.
-                Tại hội nghị tổng kết hoạt động năm 2022, Tổng giám đốc Đỗ Quang Vinh cho biết doanh thu
-                xổ số truyền thống của công ty đã vượt 18% kế hoạch cả năm, nhiều chỉ tiêu khác cũng
-                vượt mục tiêu ban lãnh đạo đề ra.</p>
-            <p class="content">Trong báo cáo chiến lược phát triển kinh doanh 5 năm, Xổ số kiến thiết
-                TP.HCM ước tính thu về 11.132 tỷ đồng và lãi trước thuế 1.692 tỷ đồng trong năm 2022,
-                tăng lần lượt 87% và 55% so với năm 2021. Số nộp ngân sách theo đó cũng tăng lên 4.157
-                tỷ đồng.</p>
-            <p class="content">Công ty TNHH MTV Xổ số kiến thiết TP.HCM tiền thân là Công ty Xổ số kiến
-                thiết TP.HCM được chuyển đổi sang mô hình công ty TNHH một thành viên. Từ thời điểm
-                thành lập năm 1978, công ty đã trải qua nhiều tên gọi khác nhau trước khi đăng ký mô
-                hình hiện tại vào năm 2010.</p>
-            <p class="content">Hoạt động kinh doanh chính của công ty là phát hành xổ số kiến thiết, in
-                ấn, mua bán nguyên vật liệu, máy móc, thiết bị ngành in và xổ số. Ngoài ra, công ty còn
-                kinh doanh bất động sản, đầu tư xây dựng, hạ tầng kỹ thuật khu công nghiệp, dân cư.</p>
-            <p class="content">Tính đến giữa năm 2022, tổng tài sản của doanh nghiệp xổ số này đã vượt
-                2.600 tỷ đồng, vốn chủ sở hữu tính đến hết tháng 6 cùng năm đạt gần 1.700 tỷ đồng. Nợ
-                phải trả của doanh nghiệp khoảng 942 tỷ đồng.</p>
-        </div>
-    </div>
+        <p style="display: none" id="idofarticle">{{id}}</p>
+        <p style="display: none" id="idofarticle">{{id}}</p>
+    {{/with}}
+    {{#with userInfo}}
+        <p style="display: none" id="idofuser">{{id}}</p>
+    {{/with}}
     <div class="related__news">
         <h4 style="font-size: 30px;">Bạn có thể quan tâm</h4>
         <hr>
@@ -317,4 +314,49 @@
             }
         }
     }
+</script>
+
+{{!-- Xử lý cơ chế người dùng đọc bài viết chưa --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var isRead = false;
+
+    $(document).ready(function() {
+        var articleElement = $('#abcdefgh');
+        var articleHeight = articleElement.outerHeight();
+        var windowHeight = $(window).height();
+
+        window.addEventListener('scroll', function() {
+        var scrollTop = $(this).scrollTop();
+        var scrollBottom = scrollTop + windowHeight;
+
+        if (scrollBottom >= articleHeight*0.9 && isRead == false) {
+            isRead = true   
+            var userId = parseInt(document.getElementById("idofuser").innerHTML);
+            var articleId = parseInt(document.getElementById("idofarticle").innerHTML);
+            var currentURL = window.location.origin
+            var api = `${currentURL}/userread`
+
+            // Thực hiện các hành động liên quan đến việc người dùng đã đọc xong bài viết ở đây
+            fetch(api, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json' // Định dạng dữ liệu là JSON
+                },
+                body: JSON.stringify({ // Dữ liệu gửi đi
+                articleId: articleId,
+                userId: userId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Phương thức POST đã được thực hiện thành công.');
+                // Xử lý kết quả trả về
+            })
+            .catch(error => {
+                console.error('Đã xảy ra lỗi trong quá trình thực hiện phương thức POST:', error);
+            });
+        }
+        });
+    });
 </script>

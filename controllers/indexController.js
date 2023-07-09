@@ -247,6 +247,94 @@ controller.showArticle = async (req, res) => {
     articleId: articleId,
   };
 
+  let article = await models.Article.findOne({
+    where: { id: articleId },
+  });
+
+  let subCategoryId = await models.CategoryArticle.findOne({
+    where: { articleId: articleId },
+  });
+
+  let subCategory = await models.SubCategory.findOne({
+    where: { id: subCategoryId.subCategoryId },
+  });
+
+  let category = await models.Category.findOne({
+    where: { id: subCategory.categoryId },
+  });
+
+  let author = await models.User.findOne({
+    where: { id: article.authorId },
+  });
+
+  console.log(article);
+  console.log(subCategory);
+  console.log(category);
+  console.log(author.name);
+
+  // TODO Lấy 5 bài viết cùng chuyên mục, sắp xếp theo tổng lượt view
+  // Lấy các chuyên mục cấp 2 cùng chuyên mục cha với nó
+  let allSubCategories = await models.SubCategory.findAll({
+    where: { categoryId: category.id },
+  });
+  // Lấy các bài viết thuộc chuyên mục đó
+  let subCategoryIds = allSubCategories.map((subCategory) => subCategory.id);
+  let articleInCategories = await models.CategoryArticle.findAll({
+    where: {
+      subCategoryId: subCategoryIds,
+    },
+  });
+  // Lấy các bài viết theo số lượng view, có thể là ưu tiên cùng sub category trước
+  let articleIds = articleInCategories.map((article) => article.articleId);
+  let articleDetailInCategories = await models.Article.findAll({
+    where: {
+      id: articleIds,
+    },
+  });
+  console.log("CHECK HERE");
+  console.log(articleDetailInCategories);
+
+  let dateArticle = article.dataValues.approve;
+  // Tạo đối tượng Date từ chuỗi thời gian
+  const date = new Date(dateArticle);
+
+  // Mảng tên các ngày trong tuần
+  const daysOfWeek = [
+    "Chủ Nhật",
+    "Thứ Hai",
+    "Thứ Ba",
+    "Thứ Tư",
+    "Thứ Năm",
+    "Thứ Sáu",
+    "Thứ Bảy",
+  ];
+
+  // Lấy thông tin về ngày, tháng, năm và thứ
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const dayOfWeek = daysOfWeek[date.getDay()];
+
+  // Lấy thông tin về giờ, phút và thời gian
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+
+  // Tạo chuỗi kết quả
+  const resultString = `${dayOfWeek} ${day}/${
+    month < 10 ? "0" : ""
+  }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
+
+  console.log(resultString);
+  article.dataValues.approve = resultString;
+
+  res.locals.category = category;
+  res.locals.subCategory = subCategory;
+  res.locals.article = article;
+  res.locals.article.author = author.name;
+  if (res.locals.userInfo.role != "default") {
+    res.locals.article.premium = "premium";
+  }
+
   let comments = await models.Comment.findAll({
     attributes: ["content", "updatedAt", "articleId"],
     where: {
@@ -312,6 +400,8 @@ controller.showArticle = async (req, res) => {
   // // res.locals.article = article;
   // res.locals.
   // res.locals.userRole = res.locals.userInfo.role;
+
+  //
 
   res.render("readnews");
 };

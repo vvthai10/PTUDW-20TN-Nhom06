@@ -78,6 +78,7 @@ module.exports = (sequelize, DataTypes) => {
       nViewWeek: DataTypes.INTEGER,
       nViewMonth: DataTypes.INTEGER,
       approve: DataTypes.DATE,
+      weekTime: DataTypes.DATE,
       reviewComment: DataTypes.TEXT,
     },
     {

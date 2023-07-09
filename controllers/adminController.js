@@ -385,18 +385,18 @@ controller.showHomepage = async (req, res) => {
     let readers = await models.User.findAll(options);
     let readers2 = await models.User.findAll(options2);
     for (let i = 0; i < readers.length; i++) {
-      readers[i].likeCount = readers2[i].likeCount;      
+      readers[i].likeCount = readers2[i].likeCount;
       readers[i].numOfPremDay = calculateNumOfDay(readers[i].expiredAt);
     }
     res.locals.readers = readers;
     console.log(readers);
-    console.log(typeof(readers[1].expiredAt));
+    console.log(typeof readers[1].expiredAt);
   }
   res.locals.type = type;
   res.locals.keyword = keyword;
   // res.locals.originalUrl = req.originalUrl;
   // , { layout: "layout_simple.hbs" }
-  res.render("admin");
+  res.render("admin", { layout: "layout_simple.hbs" });
 };
 
 controller.add = async (req, res, next) => {
@@ -622,7 +622,7 @@ function processEditorList(originalList) {
 }
 
 function calculateNumOfDay(expiredAt) {
-  let expired = new Date(expiredAt); 
+  let expired = new Date(expiredAt);
   let now = new Date();
   const milliseconds = expired - now;
   // Convert milliseconds to seconds, minutes, hours, and days
@@ -635,7 +635,9 @@ function calculateNumOfDay(expiredAt) {
   const remainingHours = hours % 24;
   const remainingMinutes = minutes % 60;
 
-  return  (expired - now) > 0 ? `${days} ngày, ${remainingHours} giờ, ${remainingMinutes} phút` : null;
+  return expired - now > 0
+    ? `${days} ngày, ${remainingHours} giờ, ${remainingMinutes} phút`
+    : null;
 }
 
 module.exports = controller;

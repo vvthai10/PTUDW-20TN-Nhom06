@@ -25,7 +25,8 @@ const port = process.env.PORT || 5000;
 const models = require("./models");
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
-const { createPagination } = require('express-handlebars-paginate');
+const { createPagination } = require("express-handlebars-paginate");
+const cronJob = require("./controllers/cronjob");
 
 // config public static
 app.use(express.static(__dirname + "/public"));
@@ -47,7 +48,7 @@ app.engine(
       formatTime,
       select,
       selectIn,
-      createPagination
+      createPagination,
     },
   })
 );
@@ -77,6 +78,9 @@ app.use(passport.session());
 
 // Cấu hình sử dụng connect-flash
 app.use(flash());
+
+// Cấu hình chạy tự động cập nhật
+cronJob.start();
 
 // Lấy các thông tin cần khởi tạo/lấy ban đầu
 // Thông tin user
@@ -183,6 +187,16 @@ app.use(async (req, res, next) => {
 //     res.send("Table created!");
 //   });
 // });
+
+app.post("/userread", async (req, res) => {
+  let article = await models.Article.findOne({
+    where: { id: parseInt(req.body.articleId) },
+  });
+  article.nView += 1;
+  article.nViewWeek += 1;
+  await article.save();
+  res.json({ message: "Yêu cầu POST đã được xử lý thành công!" });
+});
 
 app.use("/admin", require("./routes/adminRouter"));
 app.use("/editor", require("./routes/editorRouter"));

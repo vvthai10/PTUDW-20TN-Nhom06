@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{header_title}} Interface</title>
+    <title>News & World | {{header_title}} Interface</title>
 
     <link
       rel="stylesheet"
@@ -38,117 +38,97 @@
     <link rel="stylesheet" href="/css/ALL.css" />
 
   </head>
-
+{{!-- <p class="header__note">{{header_note}} INTERFACE</p> --}}
   <body>
     {{! Header start }}
-    <header>
-      <div class="container-fluid text-center">
-        <div class="row justify-content-end">
-          <div
-            class="col-md-4 col-sm-5 col-xs-8 no-gutters justify-content-center"
-          >
-            <img
-              class="header__logo"
-              src="/assets/images/logo2.png"
-              alt="Logo"
-            />
-            <p class="header__note">{{header_note}} INTERFACE</p>
+    <div class="header">
+    <div class="container-fluid" style="max-width: 100%; margin: 0 auto">
+      <!-- ===================================
+          Author: vvthai14
+          Header of screen desktop with width >= 992
+          Description: 
+          Logo
+          Search
+          action: notify, avatar
+          =================================== -->
+      <div class="header__default" id="default">
+        <div class="row">
+          <!--Logo-->
+          <div class="header__logo col-lg-2">
+            <a href="/" class="logo-link">
+              <img src="/assets/images/logo.png" alt="logo" class="header__logo-img" />
+            </a>
           </div>
-          <div
-            class="col-md-4 col-sm-3 col-xs-2 d-flex justify-content-end mt-3"
-          >
-            {{! <div href="#" class="header__user__name">Vũ Văn Thái
-                        <img class="header__user__avatar" src="/assets/images/avatar.png" alt="avatar">
-                        <div class="header__user-box">
-                            <div class="header__user-info">
-                                <header>
-                                    <div style="position: relative">
-                                        <img src="/assets/images/default.jpg " alt="user default"
-                                            class="header__user-info-icon" />
-                                        <!-- <img src="./assets/images/user_premium.png" alt="logo" class="header__user-premium" /> -->
-                                    </div>
-                                    <div class="header__user-name">Vũ Văn Thái</div>
-                                </header>
-                                <ul class="header__user-list">
-                                    <li class="header__user-item">
-                                        <a href="./user_page_info.html">Trang cá nhân</a>
-                                    </li>
-                                    <li class="header__user-item">
-                                        <a href="./signin.html">Đăng xuất</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> }}
-            {{#with userInfo}}
-              <div class="header__user">
-                <img
-                  src="{{avatar}}"
-                  alt="user default"
-                  class="header__user-icon"
-                />
-                <div class="header__user-box">
-                  <div class="header__user-info">
-                    <header>
-                      <div style="position: relative">
-                        <img
-                          src="{{avatar}}"
-                          alt="user default"
-                          class="header__user-info-icon"
-                        />
-                        {{#ifEquals role "default"}}
-                        {{else}}
-                          <img
-                            src="/assets/images/user_premium.png"
-                            alt="logo"
-                            class="header__user-premium"
-                          />
-                        {{/if}}
+          <div class="col-lg-6">
+                <p class="header__note">{{header_note}} INTERFACE</p>
+          </div>
+          
+          <!--Action-->
+          <div class="header__action col-lg-4">
+              <div class="header__no-login">
+                {{#with userInfo}}
+                  <div class="header__user">
+                    <img src="{{avatar}}" alt="user default" class="header__user-info-icon" />
+                    <div class="header__user-box">
+                      <div class="header__user-info">
+                        <header>
+                          <div style="position: relative">
+                            <img src="{{avatar}}" alt="user default" class="header__user-info-icon" />
+                            {{#ifEquals role "default"}}
+                            {{else}}
+                              <img src="/assets/images/user_premium.png" alt="logo" class="header__user-premium" />
+                            {{/ifEquals}}
+                          </div>
+                          <div class="header__user-name">{{name}}</div>
+                        </header>
+                        <ul class="header__user-list">
+                          {{#if header_note}}
+                          {{else}}
+                            {{#ifEquals role "admin"}}
+                            <li class="header__user-item">
+                              <a href="/admin">Quản trị viên</a>
+                            </li>
+                            {{/ifEquals}}
+                            {{#ifEquals role "editor"}}
+                            <li class="header__user-item">
+                              <a href="/editor">Biên tập viên</a>
+                            </li>
+                            {{/ifEquals}}
+                            {{#ifEquals role "writer"}}
+                            <li class="header__user-item">
+                              <a href="/writer">Phóng viên</a>
+                            </li>
+                            {{/ifEquals}}
+                          {{/if}}
+                          <li class="header__user-item">
+                            {{!-- <a href="/users/{{slug}}">Trang cá nhân</a> --}}
+                            <a href="/users/account?view=info">Trang cá nhân</a>
+                          </li>
+                          <li class="header__user-item">
+                            <a href="/users/logout">Đăng xuất</a>
+                          </li>
+                        </ul>
                       </div>
-                      <div class="header__user-name">{{name}}</div>
-                    </header>
-                    <ul class="header__user-list">
-                      {{#ifEquals role "admin"}}
-                        <li class="header__user-item">
-                          <a href="/admin">Quản trị viên</a>
-                        </li>
-                      {{/ifEquals}}
-                      {{#ifEquals role "editor"}}
-                        <li class="header__user-item">
-                          <a href="/editor">Biên tập viên</a>
-                        </li>
-                      {{/ifEquals}}
-                      {{#ifEquals role "writer"}}
-                        <li class="header__user-item">
-                          <a href="/writer">Phóng viên</a>
-                        </li>
-                      {{/ifEquals}}
-                      <li class="header__user-item">
-                        <a href="/users/{{slug}}">Trang cá nhân</a>
-                      </li>
-                      <li class="header__user-item">
-                        <a href="/users/logout">Đăng xuất</a>
-                      </li>
-                    </ul>
+                    </div>
                   </div>
-                </div>
+                {{/with}}
               </div>
-            {{/with}}
+            </div>
           </div>
         </div>
-        <hr />
       </div>
-    </header>
+    </div>
+  </div>
     {{! Header end }}
 
     {{{body}}}
 
     {{! Footer start }}
-    {{!-- <footer>
+    {{! <footer>
       <div class="container-fluid text-center footer">
         <hr />Copyright &copy; 2023
       </div>
-    </footer> --}}
+    </footer> }}
 
     {{! <script src="/js/ALL.js"></script> }}
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
