@@ -36,6 +36,9 @@ controller.showHomepage = async (req, res) => {
   ];
 
   let mainArticle = await models.Article.findOne({
+    where: {
+      status: "posted"
+    },
     include: [
       {
         model: models.SubCategory,
@@ -69,6 +72,7 @@ controller.showHomepage = async (req, res) => {
     include: [
       {
         model: models.SubCategory,
+        status: "posted"
       },
     ],
     order: [["nViewWeek", "DESC"]],
@@ -103,6 +107,9 @@ controller.showHomepage = async (req, res) => {
 
   // bai viet co luot xem cao nhat tat ca chuyen muc
   let viewArticles = await models.Article.findAll({
+    where: {
+      status: "posted"
+    },
     include: [
       {
         model: models.SubCategory,
@@ -169,6 +176,9 @@ controller.showHomepage = async (req, res) => {
 
   // cac bai viet moi nhat moi chuyen muc
   let newArticles = await models.Article.findAll({
+    where: {
+      status: "posted"
+    },
     include: [
       {
         model: models.SubCategory,
@@ -228,15 +238,14 @@ controller.showHomepage = async (req, res) => {
   newArticles_news.push({ _items: temp });
   res.locals.newArticles = newArticles_news;
 
-
-
-  
-
   // top 10 chuyen muc, moi chuyen muc 1 bai moi nhat
   let newCategoryArticle = await models.SubCategory.findAll({
     include: [
       {
         model: models.Article,
+        where: {
+          status: 'posted'
+        }
       },
     ],
     order: [[models.Article, "updatedAt", "DESC"]],
@@ -296,6 +305,9 @@ controller.showCategory = async (req, res) => {
 
   // get the ArticleId of categoryId
   let categoryArticleIds = await models.Article.findAll({
+    where: {
+      status: "posted"
+    },
     attributes: ["id"],
     include: [
       {
@@ -307,6 +319,7 @@ controller.showCategory = async (req, res) => {
         },
       },
     ],
+    order: [['premium', 'DESC']]
   });
 
   categoryArticleIds = categoryArticleIds.map((item) => item.id);
@@ -319,6 +332,7 @@ controller.showCategory = async (req, res) => {
       id: {
         [Op.or]: categoryArticleIds,
       },
+      status: "posted"
     },
     include: [
       {
@@ -330,6 +344,7 @@ controller.showCategory = async (req, res) => {
         attributes: ["id", "name"],
       },
     ],
+    order: [['premium', 'DESC']],
     distinct: true,
     limit: limit,
     offset: limit * (page - 1),
@@ -436,6 +451,7 @@ controller.showSubCategory = async (req, res) => {
       id: {
         [Op.or]: articleIds,
       },
+      status: "posted"
     },
     include: [
       {
@@ -443,7 +459,7 @@ controller.showSubCategory = async (req, res) => {
         attributes: ["id", "name"],
       },
     ],
-    order: [["createdAt", "DESC"]],
+    order: [["createdAt", "DESC"], ['premium', 'DESC']],
     distinct: true,
     limit: limit,
     offset: limit * (page - 1),
@@ -498,16 +514,20 @@ controller.showSubCategory = async (req, res) => {
 
 controller.showArticle = async (req, res) => {
   let articleId = parseInt(req.query.articleId);
-  // lay comment tuong ung voi articleId
-  res.locals.articleId = articleId;
-  res.locals.commentInfo = {
-    userInfo: res.locals.userInfo,
-    articleId: articleId,
-  };
 
   let article = await models.Article.findOne({
-    where: { id: articleId },
+    where: { 
+      id: articleId,
+      status: "posted"
+     },
   });
+
+  if (article.premium == true && res.locals.userInfo != null && res.locals.userInfo.role == 'premium' || article.premium == false) {
+    res.locals.isPermitted = true;
+
+    // lay comment tuong ung voi articleId
+  res.locals.articleId = articleId;
+
 
   let subCategoryId = await models.CategoryArticle.findOne({
     where: { articleId: articleId },
@@ -525,10 +545,10 @@ controller.showArticle = async (req, res) => {
     where: { id: article.authorId },
   });
 
-  console.log(article);
-  console.log(subCategory);
-  console.log(category);
-  console.log(author.name);
+  // console.log(article);
+  // console.log(subCategory);
+  // console.log(category);
+  // console.log(author.name);
   // TODO Lấy danh sách tag của bài viết
   let tagOfArticle = await models.TagArticle.findAll({
     where: { articleId: articleId },
@@ -542,8 +562,8 @@ controller.showArticle = async (req, res) => {
   });
   res.locals.detailTags = detailTags;
 
-  console.log("CHECK HERE");
-  console.log(detailTags);
+  // console.log("CHECK HERE");
+  // console.log(detailTags);
 
   // TODO Lấy 5 bài viết cùng chuyên mục, sắp xếp theo tổng lượt view
   // Lấy các chuyên mục cấp 2 cùng chuyên mục cha với nó
@@ -563,10 +583,40 @@ controller.showArticle = async (req, res) => {
     attributes: ["id", "name", "imgCover", "approve"],
     where: {
       id: articleIds,
+      status: "posted"
     },
     order: [["nView", "DESC"]],
     limit: 6,
   });
+
+  for (let index = 0; index < articleDetailInCategories.length; index++) {
+    const temp = articleDetailInCategories[index];
+    let SubCategoriesIds = await models.CategoryArticle.findAll({
+      attributes: ["subCategoryId"],
+      where: {
+        articleId: temp.id
+      }
+    });
+
+    SubCategoriesIds = SubCategoriesIds.map(item => item.subCategoryId);
+
+    // console.log(SubCategoriesIds);
+
+
+    const SubCategories = await models.SubCategory.findAll({
+      attributes: ["id", "name"],
+      where: {
+        id: {
+          [Op.or]: SubCategoriesIds
+        }
+      }
+    })
+
+    // console.log("CHECK HERE");
+    // console.log(SubCategories);
+
+    articleDetailInCategories[index].SubCategories = SubCategories;
+  }
 
   let viewArticle_same = [];
   let temp = [];
@@ -637,88 +687,80 @@ controller.showArticle = async (req, res) => {
     month < 10 ? "0" : ""
   }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
 
-  console.log(resultString);
+  // console.log(resultString);
   article.dataValues.approve = resultString;
 
-  res.locals.category = category;
-  res.locals.subCategory = subCategory;
-  res.locals.article = article;
-  res.locals.article.author = author.name;
-  if (res.locals.userInfo != null && res.locals.userInfo.role != "default") {
-    res.locals.article.premium = "premium";
-  }
-  res.locals.viewArticlesSame = viewArticle_same;
-
-  let comments = await models.Comment.findAll({
-    attributes: ["content", "updatedAt", "articleId"],
+  // truy van comment cua article
+  let {rows, count} = await models.Comment.findAndCountAll({
+    attributes: ["content", "updatedAt", "articleId", "createdAt"],
     where: {
       articleId: articleId,
     },
     include: [
       {
         model: models.User,
-        attributes: ["id", "name"],
+        attributes: ["id", "name", "avatar"],
       },
     ],
     order: [["createdAt", "DESC"]],
   });
+  // console.log(comments);
   // console.log(typeof(comments[0].User))
-  for (let index = 0; index < comments.length; index++) {
-    if (
-      res.locals.userInfo != null &&
-      comments[index].User.id == res.locals.userInfo.id
-    ) {
-      comments[index].User.matched = true;
-    } else comments[index].User.matched = false;
+
+  for (let index = 0; index < rows.length; index++) {
+    let dataArticle = rows[index].createdAt;
+    // Tạo đối tượng Date từ chuỗi thời gian
+    let date = new Date(dataArticle);
+    // Lấy thông tin về ngày, tháng, năm và thứ
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let dayOfWeek = daysOfWeek[date.getDay()];
+
+    // Lấy thông tin về giờ, phút và thời gian
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+
+    // Tạo chuỗi kết quả
+    let resultString = `${dayOfWeek} ${day}/${
+      month < 10 ? "0" : ""
+    }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
+    
+    rows[index].createdAt = resultString;
   }
   // console.log(comments[0].User.matched)
-  res.locals.Comments = comments;
+  // console.log(comments[0]);
+  // res.locals.Comments = comments;
+  article.Comments = rows;
 
-  // // lay content cho article
-  // let articles = await models.Article.findByPk(articleId, {
-  //   include: [
-  //     {
-  //       model: models.User,
-  //       attributes: ['name']
-  //     },
-  //     {
-  //       model: models.SubCategory,
-  //       attributes: ['name', 'categoryId']
-  //     }
-  //   ]
-  // });
+  // console.log(rows[0].User)
 
-  // // lay tagIds theo articleIds
-  // let tagIds = await models.TagArticle.findAll({
-  //   // attributes: ['tagId'],
-  //   where: {
-  //     articleId: articleId
-  //   }
-  // });
+  article.commentInfo = {
+    userInfo: res.locals.userInfo,
+    articleId: articleId
+  }
 
-  // tagIds = tagIds.map(item => item.tagId);
+  article.nComments = parseInt(count);
 
-  // let articleTags = await models.Tag.findAll({
-  //   attributes: ['name'],
-  //   where: {
-  //     id: tagIds
-  //   }
-  // });
+  res.locals.category = category;
+  res.locals.subCategory = subCategory;
 
-  // // lay category cho article
-  // let category = await models.Category.findOne({
-  //   attributes: ['name'],
-  //   where: {
-  //     id: articles.SubCategories[0].categoryId
-  //   }
-  // });
-  // category = category.name;
-  // // console.log(article.SubCategories[0].Category);
-  // // res.locals.article = article;
-  // res.locals.
-  // res.locals.userRole = res.locals.userInfo.role;
+  if (res.locals.userInfo != null && res.locals.userInfo.role == "premium") {
+    article.premium = true;
+  }
+  else article.premium = false;
 
-  //
+  res.locals.article = article;
+  res.locals.article.author = author.name;
+
+  res.locals.viewArticlesSame = viewArticle_same;
+
+
+
+  }
+  else {  
+    res.locals.isPermitted = false;
+  }
 
   res.render("readnews");
 };
@@ -728,7 +770,7 @@ controller.showTag = async (req, res) => {
   let tagArticleIds = await models.TagArticle.findAll({
     attributes: ["articleId"],
     where: { tagId: tagId },
-    distinct: true,
+    distinct: true
   });
 
   // console.log(tagArticleIds)
@@ -751,6 +793,7 @@ controller.showTag = async (req, res) => {
       id: {
         [Op.or]: tagArticleIds,
       },
+      status: "posted"
     },
     include: [
       {
@@ -762,6 +805,7 @@ controller.showTag = async (req, res) => {
         attributes: ["id", "name"],
       },
     ],
+    order: [['premium', 'DESC']],
     distinct: true,
     limit: limit,
     offset: limit * (page - 1),
@@ -892,26 +936,40 @@ controller.makeComment = async (req, res) => {
     })
       .then(async (data) => {
         let user = await models.User.findByPk(userId);
+        const daysOfWeek = [
+          "Chủ Nhật",
+          "Thứ Hai",
+          "Thứ Ba",
+          "Thứ Tư",
+          "Thứ Năm",
+          "Thứ Sáu",
+          "Thứ Bảy",
+        ];
+        let dataArticle = data.dataValues.createdAt;
+        // Tạo đối tượng Date từ chuỗi thời gian
+        const date = new Date(dataArticle);
+          // Lấy thông tin về ngày, tháng, năm và thứ
+        const day = date.getDate();
+        const month = date.getMonth() + 1;
+        const year = date.getFullYear();
+        const dayOfWeek = daysOfWeek[date.getDay()];
+    
+        // Lấy thông tin về giờ, phút và thời gian
+        const hour = date.getHours();
+        const minute = date.getMinutes();
+    
+        // Tạo chuỗi kết quả
+        const resultString = `${dayOfWeek} ${day}/${
+          month < 10 ? "0" : ""
+        }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
+        
+        data.dataValues.createdAt = resultString;
         res.send({ message: "success", data: data, userName: user.name });
       })
       .catch((e) => {
         res.send({ message: e });
       });
   } else res.send({ message: "failed" });
-};
-
-controller.changeComment = async (req, res) => {
-  let userId = req.body.userId;
-  let comment = req.body.comment;
-  let articleId = req.body.artileId;
-
-  await models.Comment.create({
-    content: comment,
-    userId: userId,
-    articleId: articleId,
-  }).then((data) => {
-    res.send({ message: "updated" });
-  });
 };
 
 controller.deleteComment = async (req, res) => {
@@ -933,21 +991,53 @@ controller.deleteComment = async (req, res) => {
       },
     })
       .then(async (data) => {
-        let comments = await models.Comment.findAll({
-          attributes: ["content", "updatedAt", "articleId"],
+        // truy van comment cua article
+        let {rows, count} = await models.Comment.findAndCountAll({
+          attributes: ["content", "updatedAt", "articleId", "createdAt"],
           where: {
             articleId: articleId,
           },
           include: [
             {
               model: models.User,
-              attributes: ["id", "name"],
+              attributes: ["id", "name", "avatar"],
             },
           ],
           order: [["createdAt", "DESC"]],
         });
 
-        res.send({ message: "deleted", data: comments });
+        const daysOfWeek = [
+          "Chủ Nhật",
+          "Thứ Hai",
+          "Thứ Ba",
+          "Thứ Tư",
+          "Thứ Năm",
+          "Thứ Sáu",
+          "Thứ Bảy",
+        ];
+
+        for (let index = 0; index < rows.length; index++) {
+          let dataArticle = rows[index].User.createdAt;
+          // Tạo đối tượng Date từ chuỗi thời gian
+          let date = new Date(dataArticle);
+          // Lấy thông tin về ngày, tháng, năm và thứ
+          let day = date.getDate();
+          let month = date.getMonth() + 1;
+          let year = date.getFullYear();
+          let dayOfWeek = daysOfWeek[date.getDay()];
+      
+          // Lấy thông tin về giờ, phút và thời gian
+          let hour = date.getHours();
+          let minute = date.getMinutes();
+      
+          // Tạo chuỗi kết quả
+          let resultString = `${dayOfWeek} ${day}/${
+            month < 10 ? "0" : ""
+          }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
+          
+          rows[index].User.createdAt = resultString;
+        }
+        res.send({ message: "deleted", data: rows });
       })
       .catch((e) => {
         res.send({ message: e });
