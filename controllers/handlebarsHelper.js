@@ -28,4 +28,28 @@ helper.selectIn = (p, array, string) => {
   return null;
 };
 
+helper.formatDate = (date) => {
+  const daysOfWeek = [
+    "Chủ Nhật",
+    "Thứ Hai",
+    "Thứ Ba",
+    "Thứ Tư",
+    "Thứ Năm",
+    "Thứ Sáu",
+    "Thứ Bảy",
+  ];
+
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const dayOfWeek = daysOfWeek[date.getDay()];
+
+  const hour = date.getHours();
+  const minute = date.getMinutes();
+
+  return `${dayOfWeek} ${day}/${month < 10 ? "0" : ""}${month}/${year} ${
+    hour < 10 ? "0" : ""
+  }${hour}:${minute} (GMT+7)`;
+};
+
 module.exports = helper;

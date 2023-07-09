@@ -11,6 +11,9 @@ html {
   background-color: orange;
 }
 
+.card-title {
+}
+
 .card-title,
 h3,
 h4 {
@@ -20,6 +23,10 @@ h4 {
 
 .card-text {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.card-body {
+  padding: 2px 5px 3px 5px;
 }
 
 .content__new__main .card-body {
@@ -51,12 +58,11 @@ h4 {
   background-color: #f0f0f0;
   padding: 0 8px 0 12px;
   max-height: 120px;
-  max-width: 60px;
   line-height: 24px;
 }
 
-span.tag__item:hover{
-  background-color: #BFBABA;
+span.tag__item:hover {
+  background-color: #bfbaba;
 }
 
 /* location, temperature, weather */
@@ -64,7 +70,7 @@ span.tag__item:hover{
   display: flex;
   flex-direction: row;
   margin-top: 5px;
-  padding: 0px 0px 0px 10px; 
+  padding: 0px 0px 0px 10px;
 }
 
 .location {
@@ -227,10 +233,6 @@ div.popular__week__news h4 {
   width: 100%;
 }
 
-.latest__news__algriculture {
-  flex-basis: 300px;
-}
-
 .latest__news__sea {
   flex-basis: 300px;
 }
@@ -241,8 +243,12 @@ div.card {
   max-width: 800px;
 }
 
+.latest__news__algriculture {
+  display: block;
+}
+
 div.card.card__latest__main img {
-  max-height: 200px;
+  height: 180px;
   width: 100%;
 }
 
@@ -264,4 +270,14 @@ div.card.card__latest__main img {
 
 footer {
   margin-top: 50px;
+}
+
+.limited-lines {
+  max-height: 15em; /* Chiều cao tối đa tương ứng với 3 dòng */
+  min-height: 15em; /* Chiều cao tối thiểu tương ứng với 3 dòng */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Số dòng tối đa */
+  -webkit-box-orient: vertical;
 }

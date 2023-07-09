@@ -340,6 +340,21 @@ controller.showArticle = async (req, res) => {
   console.log(subCategory);
   console.log(category);
   console.log(author.name);
+  // TODO Lấy danh sách tag của bài viết
+  let tagOfArticle = await models.TagArticle.findAll({
+    where: { articleId: articleId },
+  });
+  // Lấy thông tin chi tiết của các tag
+  let tagIds = tagOfArticle.map((tag) => tag.tagId);
+  let detailTags = await models.Tag.findAll({
+    where: {
+      id: tagIds,
+    },
+  });
+  res.locals.detailTags = detailTags;
+
+  console.log("CHECK HERE");
+  console.log(detailTags);
 
   // TODO Lấy 5 bài viết cùng chuyên mục, sắp xếp theo tổng lượt view
   // Lấy các chuyên mục cấp 2 cùng chuyên mục cha với nó
@@ -356,12 +371,52 @@ controller.showArticle = async (req, res) => {
   // Lấy các bài viết theo số lượng view, có thể là ưu tiên cùng sub category trước
   let articleIds = articleInCategories.map((article) => article.articleId);
   let articleDetailInCategories = await models.Article.findAll({
+    attributes: ["id", "name", "imgCover", "approve"],
     where: {
       id: articleIds,
     },
+    order: [["nView", "DESC"]],
+    limit: 6,
   });
-  console.log("CHECK HERE");
-  console.log(articleDetailInCategories);
+
+  let viewArticle_same = [];
+  let temp = [];
+  for (let index = 0; index < articleDetailInCategories.length / 3; index++) {
+    if (index == 0) {
+      viewArticle_same.push({
+        _main_item: [
+          {
+            _item: [
+              articleDetailInCategories[
+                (index * 3) % articleDetailInCategories.length
+              ],
+              articleDetailInCategories[
+                (index * 3 + 1) % articleDetailInCategories.length
+              ],
+              articleDetailInCategories[
+                (index * 3 + 2) % articleDetailInCategories.length
+              ],
+            ],
+          },
+        ],
+      });
+    } else {
+      temp.push({
+        _item: [
+          articleDetailInCategories[
+            (index * 3) % articleDetailInCategories.length
+          ],
+          articleDetailInCategories[
+            (index * 3 + 1) % articleDetailInCategories.length
+          ],
+          articleDetailInCategories[
+            (index * 3 + 2) % articleDetailInCategories.length
+          ],
+        ],
+      });
+    }
+  }
+  viewArticle_same.push({ _items: temp });
 
   let dateArticle = article.dataValues.approve;
   // Tạo đối tượng Date từ chuỗi thời gian
@@ -403,6 +458,7 @@ controller.showArticle = async (req, res) => {
   if (res.locals.userInfo != null && res.locals.userInfo.role != "default") {
     res.locals.article.premium = "premium";
   }
+  res.locals.viewArticlesSame = viewArticle_same;
 
   let comments = await models.Comment.findAll({
     attributes: ["content", "updatedAt", "articleId"],

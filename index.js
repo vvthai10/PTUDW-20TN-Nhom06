@@ -20,6 +20,7 @@ const {
   formatTime,
   select,
   selectIn,
+  formatDate,
 } = require("./controllers/handlebarsHelper");
 const port = process.env.PORT || 5000;
 const models = require("./models");
@@ -49,6 +50,7 @@ app.engine(
       select,
       selectIn,
       createPagination,
+      formatDate,
     },
   })
 );
@@ -188,8 +190,6 @@ app.use(async (req, res, next) => {
   }
   next();
 });
-
-
 
 app.post("/userread", async (req, res) => {
   let article = await models.Article.findOne({
