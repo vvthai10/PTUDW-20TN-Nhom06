@@ -2,13 +2,19 @@
   <!--TODO TAG-->
   <div class="trend">
     <span class="dot" style="max-width: 1100px; margin-right: 20px; ">
-      <i class="fa-solid fa-arrow-trend-up fa-lg icon--trend" style="margin-left: 7px;margin-top: 7px;"></i>
+      <i
+        class="fa-solid fa-arrow-trend-up fa-lg icon--trend"
+        style="margin-left: 7px;margin-top: 7px;"
+      ></i>
     </span>
-    <div class="tag" style="font-family: serif; display: flex; flex-wrap: wrap;">
+    <div
+      class="tag"
+      style="font-family: serif; display: flex; flex-wrap: wrap;"
+    >
       {{#each tags}}
-      <a href="/tag?tagId={{id}}">
-        <span class="tag__item">{{name}}</span>
-      </a>
+        <a href="/tag?tagId={{id}}" style="margin-bottom: 5px;">
+          <span class="tag__item">{{name}}</span>
+        </a>
       {{/each}}
     </div>
 
@@ -19,38 +25,65 @@
       <div class="col-8">
         <div class="content__new__main" style="height: 500px;">
           {{#with mainArticle}}
-          <div class="card">
-            <img style="padding: 10px;" src="{{imgCover}}" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <div style="display: flex;
-    justify-content: space-between;">
-                {{#each SubCategories}}
-                <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
-    width: 70px;
-    text-align: center;
-    border-radius: 20px;
-    background: var(--primary-color);
-    border: none;
-    font-size: 13px;
-    font-weight: 400;
-    color: white;
-    line-height: 100%;">{{name}}</span></a>
-
-                {{/each}}
-
-                {{#if premium}}
-                <img style="height: 25%; width: 25%; margin-bottom: 10px; margin-left: 10px;"
-                  src="https://static.vnncdn.net/v1/logo/logo-premium.svg">
-
-                {{/if}}
-              </div>
-
-              <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted"> {{updatedAt}}</small></p>
-              <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
-                <h5 class="card-title">{{name}}</h5>
+            <div class="card" style="height: 500px; min-height: 500px;">
+              <a
+                href="/article?articleId={{id}}"
+                style="display: block; width: 100%; margin-bottom: 5px;"
+              >
+                <img src="{{imgCover}}" class="card-img-top" alt="..." />
               </a>
+              <div class="card-body">
+                <div style="display: flex; justify-content: space-between;">
+                  {{#each SubCategories}}
+                    <a
+                      style="cursor: pointer; display: block;"
+                      href="/subCategory?subCategoryId={{id}}"
+                    ><span
+                        style="padding: 5px;
+                width: 70px;
+                text-align: center;
+                border-radius: 20px;
+                background: var(--primary-color);
+                border: none;
+                font-size: 13px;
+                font-weight: 400;
+                color: white;
+                line-height: 100%;"
+                      >{{name}}</span></a>
+
+                  {{/each}}
+
+                  {{#if premium}}
+                    <img
+                      style="height: 25%; width: 25%; margin-bottom: 10px; margin-left: 10px;"
+                      src="https://static.vnncdn.net/v1/logo/logo-premium.svg"
+                    />
+                  {{/if}}
+                </div>
+
+                <p style="padding: 10px 0 0 0px;" class="card-text"><small
+                    class="text-muted"
+                  > {{#formatDate approve}}{{/formatDate}}</small></p>
+                <a
+                  style="cursor: pointer; display: block;"
+                  href="/article?articleId={{id}}"
+                >
+                  <h5
+                    class="card-title"
+                    style="font-size: 1.8rem;
+                          font-weight: 400;
+                          color: var(--text-color);
+                          line-height: 2.0rem;
+                          height: 6.0rem;
+                          overflow: hidden;
+                          display: block;
+                          display: -webkit-box;
+                          -webkit-box-orient: vertical;
+                          -webkit-line-clamp: 3;"
+                  >{{name}}</h5>
+                </a>
+              </div>
             </div>
-          </div>
           {{/with}}
         </div>
       </div>
@@ -58,35 +91,59 @@
         {{! <div class="content__news__left" id="content__news__left" style="cursor: pointer;"></div> }}
         <div class="content__news__left">
           {{#each popularArticles}}
-          <div class="card card__news__left--extend" style="display: block; margin-bottom: 5px;">
-            <img src="{{imgCover}}" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <div style="display: flex;
-    justify-content: space-between;">
-                {{#each SubCategories}}
-                <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
-    width: 70px;
-    text-align: center;
-    border-radius: 20px;
-    background: var(--primary-color);
-    border: none;
-    font-size: 13px;
-    font-weight: 400;
-    color: white;
-    line-height: 100%;">{{name}}</span></a>
+            <div
+              class="card card__news__left--extend"
+              style="display: block; margin-bottom: 5px;"
+            >
+              <a
+                href="/article?articleId={{id}}"
+                style="display: block; width: 100%; margin-bottom: 5px;"
+              >
+                <img src="{{imgCover}}" class="card-img-top" alt="..." />
+              </a>
+              <div class="card-body">
+                <div
+                  style="display: flex;
+    justify-content: space-between;"
+                >
+                  {{#each SubCategories}}
+                    <a
+                      style="cursor: pointer; display: block;"
+                      href="/subCategory?subCategoryId={{id}}"
+                    ><span
+                        style="padding: 5px;
+                        width: 70px;
+                        text-align: center;
+                        border-radius: 20px;
+                        background: var(--primary-color);
+                        border: none;
+                        font-size: 13px;
+                        font-weight: 400;
+                        color: white;
+                        line-height: 100%;"
+                      >{{name}}</span></a>
 
-                {{/each}}
+                  {{/each}}
 
-                {{#if premium}}
-                <img style="height: 25%; width: 25%; margin-bottom: 10px; margin-left: 10px;"
-                  src="https://static.vnncdn.net/v1/logo/logo-premium.svg">
+                  {{#if premium}}
+                    <img
+                      style="height: 25%; width: 25%; margin-bottom: 10px; margin-left: 10px;"
+                      src="https://static.vnncdn.net/v1/logo/logo-premium.svg"
+                    />
 
-                {{/if}}
-              </div>
-              <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted"> {{updatedAt}}</small></p>
+                  {{/if}}
+                </div>
+                <p style="padding: 10px 0 0 0px;" class="card-text"><small
+                    class="text-muted"
+                  > {{#formatDate approve}}{{/formatDate}}</small></p>
 
-              <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
-                <h5 class="card-title" style="font-size: 1.4rem;
+                <a
+                  style="cursor: pointer; display: block;"
+                  href="/article?articleId={{id}}"
+                >
+                  <h5
+                    class="card-title"
+                    style="font-size: 1.4rem;
                           font-weight: 400;
                           color: var(--text-color);
                           line-height: 1.8rem;
@@ -95,117 +152,213 @@
                           display: block;
                           display: -webkit-box;
                           -webkit-box-orient: vertical;
-                          -webkit-line-clamp: 3;">{{name}}</h5>
-              </a>
-              {{!-- <div class="category-time">
+                          -webkit-line-clamp: 3;"
+                  >{{name}}</h5></a>
+                </a>
+                {{!-- <div class="category-time">
                 <p class="card-text"><small class="text-muted">{{description}}</small></p>
               </div> --}}
+              </div>
             </div>
-          </div>
           {{/each}}
         </div>
       </div>
     </div>
-    <div class="content__news__right" id="content__news__right" style="cursor: pointer; display: none;"></div>
+    <div
+      class="content__news__right"
+      id="content__news__right"
+      style="cursor: pointer; display: none;"
+    ></div>
 
   </div>
   <!--TODO Bài viết được xem nhiều nhất mọi chuyên mục (10 bài)-->
   <div class="popular__week__news">
     <h4>Các bài viết được xem nhiều nhất</h4>
     <hr />
-    <div id="carousel__popular__week__news" class="carousel carousel-dark slide" data-bs-ride="false">
+    <div
+      id="carousel__popular__week__news"
+      class="carousel carousel-dark slide"
+      data-bs-ride="false"
+    >
       <div class="carousel-inner">
         {{#each viewArticles}}
-        {{#each _main_item}}
-        <div class="carousel-item active">
-          <div class="card-group">
-            {{#each _item}}
-            <div class="card card__popular__news--extend">
-              <img src="{{imgCover}}" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;" />
-              <div class="card-body">
-                <div style="display: flex;
-    justify-content: space-between;">
-                  {{#each SubCategories}}
-                  <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
-    width: 70px;
-    text-align: center;
-    border-radius: 20px;
-    background: var(--primary-color);
-    border: none;
-    font-size: 13px;
-    font-weight: 400;
-    color: white;
-    line-height: 100%;">{{name}}</span></a>
+          {{#each _main_item}}
+            <div class="carousel-item active">
+              <div class="card-group">
+                {{#each _item}}
+                  <div class="card card__popular__news--extend">
+                    <a
+                      href="/article?articleId={{id}}"
+                      style="display: block; width: 100%; height: 250px; min-height: 250px; margin-bottom: 5px;"
+                    >
+                      <img
+                        src="{{imgCover}}"
+                        class="card-img-top"
+                        alt="..."
+                        style="width: 100%; max-height: 250px;"
+                      />
+                    </a>
+                    <div class="card-body">
+                      <div
+                        style="display: flex; justify-content: space-between;"
+                      >
+                        {{#each SubCategories}}
+                          <a
+                            style="cursor: pointer; display: block;"
+                            href="/subCategory?subCategoryId={{id}}"
+                          ><span
+                              style="padding: 5px;
+                              width: 70px;
+                              text-align: center;
+                              border-radius: 20px;
+                              background: var(--primary-color);
+                              border: none;
+                              font-size: 13px;
+                              font-weight: 400;
+                              color: white;
+                              line-height: 100%;"
+                            >{{name}}</span></a>
 
-                  {{/each}}
+                        {{/each}}
 
-                  {{#if premium}}
-                  <img style="height: 25%; width: 25%; margin-bottom: 10px; margin-left: 10px;"
-                    src="https://static.vnncdn.net/v1/logo/logo-premium.svg">
+                        {{#if premium}}
+                          <img
+                            style="height: 25%; width: 25%; margin-bottom: 10px; margin-left: 10px;"
+                            src="https://static.vnncdn.net/v1/logo/logo-premium.svg"
+                          />
 
-                  {{/if}}
-                </div>
-                <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted"> {{updatedAt}}</small></p>
-                <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
-                  <h5 class="card-title">{{name}}</h5>
-                </a>
+                        {{/if}}
+                      </div>
+                      <p style="padding: 10px 0 0 0px;" class="card-text"><small
+                          class="text-muted"
+                        > {{#formatDate approve}}{{/formatDate}}</small></p>
+                      <a
+                        style="cursor: pointer; display: block;"
+                        href="/article?articleId={{id}}"
+                      >
+                        <h5
+                          class="card-title"
+                          style="font-size: 1.8rem;
+                          font-weight: 400;
+                          color: var(--text-color);
+                          line-height: 2.0rem;
+                          height: 6.0rem;
+                          overflow: hidden;
+                          display: block;
+                          display: -webkit-box;
+                          -webkit-box-orient: vertical;
+                          -webkit-line-clamp: 3;"
+                        >{{name}}</h5>
+                      </a>
+                    </div>
+                  </div>
+                {{/each}}
               </div>
             </div>
-            {{/each}}
-          </div>
-        </div>
-        {{/each}}
-        {{#each _items}}
-        <div class="carousel-item">
-          <div class="card-group">
-            {{#each _item}}
-            <div class="card card__popular__news--extend">
-              <img src="{{imgCover}}" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;" />
-              <div class="card-body">
-                <div style="display: flex;
-    justify-content: space-between;">
-                  {{#each SubCategories}}
-                  <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
-    width: 70px;
-    text-align: center;
-    border-radius: 20px;
-    background: var(--primary-color);
-    border: none;
-    font-size: 13px;
-    font-weight: 400;
-    color: white;
-    line-height: 100%;">{{name}}</span></a>
+          {{/each}}
+          {{#each _items}}
+            <div class="carousel-item">
+              <div class="card-group">
+                {{#each _item}}
+                  <div class="card card__popular__news--extend">
+                    <a
+                      href="/article?articleId={{id}}"
+                      style="display: block; width: 100%; height: 250px; min-height: 250px; margin-bottom: 5px;"
+                    >
+                      <img
+                        src="{{imgCover}}"
+                        class="card-img-top"
+                        alt="..."
+                        style="width: 100%; max-height: 250px;"
+                      />
+                    </a>
+                    <div class="card-body">
+                      <div
+                        style="display: flex; justify-content: space-between;"
+                      >
+                        {{#each SubCategories}}
+                          <a
+                            style="cursor: pointer; display: block;"
+                            href="/subCategory?subCategoryId={{id}}"
+                          ><span
+                              style="padding: 5px;
+                              width: 70px;
+                              text-align: center;
+                              border-radius: 20px;
+                              background: var(--primary-color);
+                              border: none;
+                              font-size: 13px;
+                              font-weight: 400;
+                              color: white;
+                              line-height: 100%;"
+                            >{{name}}</span></a>
 
-                  {{/each}}
+                        {{/each}}
 
-                  {{#if premium}}
-                  <img style="height: 25%; width: 25%; margin-bottom: 10px; margin-left: 10px;"
-                    src="https://static.vnncdn.net/v1/logo/logo-premium.svg">
+                        {{#if premium}}
+                          <img
+                            style="height: 25%; width: 25%; margin-bottom: 10px; margin-left: 10px;"
+                            src="https://static.vnncdn.net/v1/logo/logo-premium.svg"
+                          />
 
-                  {{/if}}
-                </div>
-                <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted"> {{updatedAt}}</small></p>
-                <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
-                  <h5 class="card-title">{{name}}</h5>
-                </a>
+                        {{/if}}
+                      </div>
+                      <p style="padding: 10px 0 0 0px;" class="card-text"><small
+                          class="text-muted"
+                        > {{#formatDate approve}}{{/formatDate}}</small></p>
+                      <a
+                        style="cursor: pointer; display: block;"
+                        href="/article?articleId={{id}}"
+                      >
+                        
+                        <h5
+                          class="card-title"
+                          style="font-size: 1.8rem;
+                          font-weight: 400;
+                          color: var(--text-color);
+                          line-height: 2.0rem;
+                          height: 6.0rem;
+                          overflow: hidden;
+                          display: block;
+                          display: -webkit-box;
+                          -webkit-box-orient: vertical;
+                          -webkit-line-clamp: 3;"
+                        >{{name}}</h5>
+                      </a>
+                    </div>
+                  </div>
+                {{/each}}
               </div>
             </div>
-            {{/each}}
-          </div>
-        </div>
-        {{/each}}
+          {{/each}}
         {{/each}}
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carousel__popular__week__news"
-        data-bs-slide="prev" style="width: 30px; height: 30px px; border-radius: 50%;">
-        <span class="carousel-control-prev-icon" aria-hidden="true"
-          style="width: 30px; height: 30px px;  border-radius: 50%;"></span>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carousel__popular__week__news"
+        data-bs-slide="prev"
+        style="width: 30px; height: 30px px; border-radius: 50%;"
+      >
+        <span
+          class="carousel-control-prev-icon"
+          aria-hidden="true"
+          style="width: 30px; height: 30px px;  border-radius: 50%;"
+        ></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carousel__popular__week__news"
-        data-bs-slide="next" style="width: 30px; height: 30px px; border-radius: 50%;">
-        <span class="carousel-control-next-icon" aria-hidden="true"
-          style="width: 30px; height: 30px px;  border-radius: 50%;"></span>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carousel__popular__week__news"
+        data-bs-slide="next"
+        style="width: 30px; height: 30px px; border-radius: 50%;"
+      >
+        <span
+          class="carousel-control-next-icon"
+          aria-hidden="true"
+          style="width: 30px; height: 30px px;  border-radius: 50%;"
+        ></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>
@@ -215,20 +368,113 @@
   <div class="popular__week__news">
     <h4>Các bài viết mới nhất</h4>
     <hr />
-    <div id="carousel__popular2__week__news" class="carousel carousel-dark slide" data-bs-ride="false">
+    <div
+      id="carousel__popular2__week__news"
+      class="carousel carousel-dark slide"
+      data-bs-ride="false"
+    >
       <div class="carousel-inner">
         {{#each newArticles}}
-        {{#each _main_item}}
-        <div class="carousel-item active">
-          <div class="card-group">
-            {{#each _item}}
-            <div class="card card__popular__news--extend">
-              <img src="{{imgCover}}" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;" />
-              <div class="card-body">
-                <div style="display: flex;
-    justify-content: space-between;">
-                  {{#each SubCategories}}
-                  <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
+          {{#each _main_item}}
+            <div class="carousel-item active">
+              <div class="card-group">
+                {{#each _item}}
+                  <div class="card card__popular__news--extend">
+                    <a
+                      href="/article?articleId={{id}}"
+                      style="display: block; width: 100%; height: 250px; min-height: 250px; margin-bottom: 5px;"
+                    >
+                      <img
+                        src="{{imgCover}}"
+                        class="card-img-top"
+                        alt="..."
+                        style="width: 100%; max-height: 250px;"
+                      />
+                    </a>
+                    <div class="card-body">
+                      <div
+                        style="display: flex; justify-content: space-between;"
+                      >
+                        {{#each SubCategories}}
+                          <a
+                            style="cursor: pointer; display: block;"
+                            href="/subCategory?subCategoryId={{id}}"
+                          ><span
+                              style="padding: 5px;
+                              width: 70px;
+                              text-align: center;
+                              border-radius: 20px;
+                              background: var(--primary-color);
+                              border: none;
+                              font-size: 13px;
+                              font-weight: 400;
+                              color: white;
+                              line-height: 100%;"
+                            >{{name}}</span></a>
+
+                        {{/each}}
+
+                        {{#if premium}}
+                          <img
+                            style="height: 25%; width: 25%; margin-bottom: 10px; margin-left: 10px;"
+                            src="https://static.vnncdn.net/v1/logo/logo-premium.svg"
+                          />
+
+                        {{/if}}
+                      </div>
+                      <p style="padding: 10px 0 0 0px;" class="card-text"><small
+                          class="text-muted"
+                        > {{#formatDate approve}}{{/formatDate}}</small></p>
+                      <a
+                        style="cursor: pointer; display: block;"
+                        href="/article?articleId={{id}}"
+                      >
+                        <h5
+                          class="card-title"
+                          style="font-size: 1.8rem;
+                          font-weight: 400;
+                          color: var(--text-color);
+                          line-height: 2.0rem;
+                          height: 6.0rem;
+                          overflow: hidden;
+                          display: block;
+                          display: -webkit-box;
+                          -webkit-box-orient: vertical;
+                          -webkit-line-clamp: 3;"
+                        >{{name}}</h5>
+                      </a>
+                    </div>
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+          {{/each}}
+          {{#each _items}}
+            <div class="carousel-item">
+              <div class="card-group">
+                {{#each _item}}
+                  <div class="card card__popular__news--extend">
+                    <a
+                      href="/article?articleId={{id}}"
+                      style="display: block; width: 100%; height: 250px; min-height: 250px; margin-bottom: 5px;"
+                    >
+                      <img
+                        src="{{imgCover}}"
+                        class="card-img-top"
+                        alt="..."
+                        style="width: 100%; max-height: 250px;"
+                      />
+                    </a>
+                    <div class="card-body">
+                      <div
+                        style="display: flex; justify-content: space-between;"
+                      >
+                        {{#each SubCategories}}
+                          <a
+                            style="cursor: pointer; display: block;"
+                            href="/subCategory?subCategoryId={{id}}"
+                          ><span
+                              style="padding: 5px;
     width: 70px;
     text-align: center;
     border-radius: 20px;
@@ -237,77 +483,74 @@
     font-size: 13px;
     font-weight: 400;
     color: white;
-    line-height: 100%;">{{name}}</span></a>
+    line-height: 100%;"
+                            >{{name}}</span></a>
 
-                  {{/each}}
+                        {{/each}}
 
-                  {{#if premium}}
-                  <img style="height: 25%; width: 25%; margin-bottom: 10px; margin-left: 10px;"
-                    src="https://static.vnncdn.net/v1/logo/logo-premium.svg">
+                        {{#if premium}}
+                          <img
+                            style="height: 25%; width: 25%; margin-bottom: 10px; margin-left: 10px;"
+                            src="https://static.vnncdn.net/v1/logo/logo-premium.svg"
+                          />
 
-                  {{/if}}
-                </div>
-                <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted"> {{updatedAt}}</small></p>
-                <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
-                  <h5 class="card-title">{{name}}</h5>
-                </a>
+                        {{/if}}
+                      </div>
+                      <p style="padding: 10px 0 0 0px;" class="card-text"><small
+                          class="text-muted"
+                        > {{#formatDate approve}}{{/formatDate}}</small></p>
+                      <a
+                        style="cursor: pointer; display: block;"
+                        href="/article?articleId={{id}}"
+                      >
+                        <h5
+                          class="card-title"
+                          style="font-size: 1.8rem;
+                          font-weight: 400;
+                          color: var(--text-color);
+                          line-height: 2.0rem;
+                          height: 6.0rem;
+                          overflow: hidden;
+                          display: block;
+                          display: -webkit-box;
+                          -webkit-box-orient: vertical;
+                          -webkit-line-clamp: 3;"
+                        >{{name}}</h5>
+                      </a>
+                    </div>
+                  </div>
+                {{/each}}
               </div>
             </div>
-            {{/each}}
-          </div>
-        </div>
-        {{/each}}
-        {{#each _items}}
-        <div class="carousel-item">
-          <div class="card-group">
-            {{#each _item}}
-            <div class="card card__popular__news--extend">
-              <img src="{{imgCover}}" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;" />
-              <div class="card-body">
-                <div style="display: flex;
-    justify-content: space-between;">
-                  {{#each SubCategories}}
-                  <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
-    width: 70px;
-    text-align: center;
-    border-radius: 20px;
-    background: var(--primary-color);
-    border: none;
-    font-size: 13px;
-    font-weight: 400;
-    color: white;
-    line-height: 100%;">{{name}}</span></a>
-
-                  {{/each}}
-
-                  {{#if premium}}
-                  <img style="height: 25%; width: 25%; margin-bottom: 10px; margin-left: 10px;"
-                    src="https://static.vnncdn.net/v1/logo/logo-premium.svg">
-
-                  {{/if}}
-                </div>
-                <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted"> {{updatedAt}}</small></p>
-                <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
-                  <h5 class="card-title">{{name}}</h5>
-                </a>
-              </div>
-            </div>
-            {{/each}}
-          </div>
-        </div>
-        {{/each}}
+          {{/each}}
         {{/each}}
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carousel__popular2__week__news"
-        data-bs-slide="prev" style="width: 30px; height: 30px px; border-radius: 50%;">
-        <span class="carousel-control-prev-icon" aria-hidden="true"
-          style="width: 30px; height: 30px px;  border-radius: 50%;"></span>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carousel__popular2__week__news"
+        data-bs-slide="prev"
+        style="width: 30px; height: 30px px; border-radius: 50%;"
+      >
+        <span
+          class="carousel-control-prev-icon"
+          aria-hidden="true"
+          style="width: 30px; height: 30px px;  border-radius: 50%;"
+        ></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carousel__popular2__week__news"
-        data-bs-slide="next" style="width: 30px; height: 30px px; border-radius: 50%;">
-        <span class="carousel-control-next-icon" aria-hidden="true"
-          style="width: 30px; height: 30px px;  border-radius: 50%;"></span>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carousel__popular2__week__news"
+        data-bs-slide="next"
+        style="width: 30px; height: 30px px; border-radius: 50%;"
+      >
+        <span
+          class="carousel-control-next-icon"
+          aria-hidden="true"
+          style="width: 30px; height: 30px px;  border-radius: 50%;"
+        ></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>
@@ -319,15 +562,28 @@
     <div class="latest__news">
       <div class="row">
         {{#each newCategoryArticle}}
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="latest__news__algriculture" style="cursor: pointer;">
-            <h5 style="font-weight: bold;"><i class="fa-solid fa-marker" style="margin-right: 10px;"></i>{{name}}
-            </h5>
-            <div href="./readnews.html" class="card card__latest__main">
-              <img style="margin-bottom: 10px;" src="{{Article.imgCover}}" class="img__latest__news" alt="..." />
-              <div style="display: flex;
-    justify-content: space-between;">
-                <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
+          <div class="col-lg-3 col-md-4 col-sm-6" style="margin: 8px 0px;">
+            <a class="latest__news__algriculture" style="cursor: pointer;" href="/article?articleId={{Article.id}}">
+              <h5 style="font-weight: bold;"><i
+                  class="fa-solid fa-marker"
+                  style="margin-right: 10px;"
+                ></i>{{name}}
+              </h5>
+              <div href="./readnews.html" class="card card__latest__main">
+                <img
+                  style="margin-bottom: 10px;"
+                  src="{{Article.imgCover}}"
+                  class="img__latest__news"
+                  alt="..."
+                />
+                <div
+                  style="display: flex;"
+                >
+                  <a
+                    style="cursor: pointer; display: block;"
+                    href="/subCategory?subCategoryId={{id}}"
+                  ><span
+                      style="padding: 5px;
     width: 70px;
     text-align: center;
     border-radius: 20px;
@@ -336,25 +592,45 @@
     font-size: 13px;
     font-weight: 400;
     color: white; 
-    line-height: 100%;">{{name}}</span></a>
+    line-height: 100%;"
+                    >{{name}}</span></a>
 
-                {{#if premium}}
-                <img style="height: 25%; width: 25%; margin-bottom: 10px; margin-left: 10px;"
-                  src="https://static.vnncdn.net/v1/logo/logo-premium.svg">
+                  {{#if premium}}
+                    <img
+                      style="height: 25%; width: 25%; margin-bottom: 10px; margin-left: 10px;"
+                      src="https://static.vnncdn.net/v1/logo/logo-premium.svg"
+                    />
 
-                {{/if}}
+                  {{/if}}
+                </div>
+
+                <p style="padding: 10px 0 0 0px;" class="card-text"><small
+                    class="text-muted"
+                  >
+                    {{Article.updatedAt}}</small></p>
+                <div class="card-body">
+                  <a
+                    style="cursor: pointer; display: block;"
+                    href="/article?articleId={{Article.id}}"
+                  >
+                    <h5
+                      class="card-title"
+                      style="font-size: 1.4rem;
+                      font-weight: 400;
+                      color: var(--text-color);
+                      line-height: 1.8rem;
+                      height: 5.4rem;
+                      overflow: hidden;
+                      display: block;
+                      display: -webkit-box;
+                      -webkit-box-orient: vertical;
+                      -webkit-line-clamp: 3;"
+                    >{{Article.name}}</h5>
+                  </a>
+                </div>
               </div>
-
-              <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted">
-                  {{Article.updatedAt}}</small></p>
-              <div class="card-body">
-                <a style="cursor: pointer; display: block;" href="/article?articleId={{Article.id}}">
-                  <h5 class="card-title">{{Article.name}}</h5>
-                </a>
-              </div>
-            </div>
+            </a>
           </div>
-        </div>
         {{/each}}
       </div>
     </div>
@@ -364,10 +640,9 @@
 <script>
   var carousel = document.getElementById('carousel__popular__week__news');
   function autoSlide1() {
-    carousel.querySelector('.carousel-control-next').click();
-  }
+  carousel.querySelector('.carousel-control-next').click(); }
   setInterval(autoSlide1, 3000); var carouse2 =
-    document.getElementById('carousel__popular2__week__news'); function
-    autoSlide2() { carouse2.querySelector('.carousel-control-next').click(); }
+  document.getElementById('carousel__popular2__week__news'); function
+  autoSlide2() { carouse2.querySelector('.carousel-control-next').click(); }
   setInterval(autoSlide2, 3000);
 </script>
