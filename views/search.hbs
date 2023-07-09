@@ -2,41 +2,42 @@
   <h2 style="font-size: 26px;line-height: 26px;margin-bottom: 20px;">Từ khóa:
     {{keyword}}</h2>
   <ul>
-    {{#each searchResults}}
-      <li>
-        <a
-          href="readnews.html"
-          style="display: flex; margin: 30px 0; width: 90%;"
-        >
-          <img
-            style="border-radius: 5px; width: 300px; min-height: 200px;"
-            src="{{imgCover}}"
-            alt="{{name}}"
-          />
-          <div
-            style="    display: flex;
-flex-direction: column; margin-left: 10px;"
+    {{#if searchResults.length}}
+      {{#each searchResults}}
+        <li>
+          <a
+            href="readnews.html"
+            style="display: flex; margin: 30px 0; width: 90%;"
           >
-            <span
-              style="font-size: 24px;
-    font-weight: 500;"
-            >{{name}}</span>
+            <img
+              style="border-radius: 5px; width: 300px; min-height: 200px;"
+              src="{{imgCover}}"
+              alt="{{name}}"
+            />
             <div
-              style="display: flex;
-    justify-content: space-between;"
+              style="    display: flex;
+flex-direction: column; margin-left: 10px;"
             >
-              <!--Category-->
-              {{#each SubCategories}}
-                <span
-                  style="padding: 5px; width: 90px; text-align: center; border-radius: 20px; background: var(--primary-color); border: none; font-size: 13px; font-weight: 400; color: white; line-height: 100%;
-    margin-left: 10px;"
-                >{{name}}</span>
-              {{/each}}
-              <div>
-                <!--Related Tags-->
-                {{#each Tags}}
+              <span
+                style="font-size: 24px;
+    font-weight: 500;"
+              >{{name}}</span>
+              <div
+                style="display: flex;
+    justify-content: space-between;"
+              >
+                <!--Category-->
+                {{#each SubCategories}}
                   <span
-                    style="float: left;
+                    style="padding: 5px; width: 90px; text-align: center; border-radius: 20px; background: var(--primary-color); border: none; font-size: 13px; font-weight: 400; color: white; line-height: 100%;
+    margin-left: 10px;"
+                  >{{name}}</span>
+                {{/each}}
+                <div>
+                  <!--Related Tags-->
+                  {{#each Tags}}
+                    <span
+                      style="float: left;
         margin-left: 10px;
         font-family: Arial;
         font-size: 13px;
@@ -46,32 +47,42 @@ flex-direction: column; margin-left: 10px;"
         padding: 0 8px 0 12px;
         height: 24px;
         line-height: 24px;"
-                  >{{name}}</span>
-                {{/each}}
+                    >{{name}}</span>
+                  {{/each}}
+                </div>
               </div>
-            </div>
-            <span
-              style="font-size: 12px;
+              <span
+                style="font-size: 12px;
                   padding: 5px 0 0 10px;      color: black;"
-            >{{#formatDate approve}}{{/formatDate}}</span>
-            <span
-              style="padding-left: 10px;
+              >{{#formatDate approve}}{{/formatDate}}</span>
+              <span
+                style="padding-left: 10px;
                   font-size: 14px; color: black;"
-            >{{description}}</span>
-          </div>
-        </a>
-      </li>
-    {{/each}}
+              >{{description}}</span>
+            </div>
+          </a>
+        </li>
+      {{/each}}
+
+      <nav aria-label="Page navigation example" id="pagination">
+        {{{createPagination
+          pagination
+          paginationClass="pagination-display justify-content-center"
+          leftText="Previous"
+          rightText="Next"
+        }}}
+      </nav>
+    {{else}}
+      <div
+        class="alert alert-warning"
+        role="alert"
+        style="width: 600px; font-size: 14px; text-align:center"
+      >
+        Không có nội dung tìm kiếm
+      </div>
+    {{/if}}
   </ul>
 
-  <nav aria-label="Page navigation example" id="pagination">
-    {{{createPagination
-      pagination
-      paginationClass="pagination-display justify-content-center"
-      leftText="Previous"
-      rightText="Next"
-    }}}
-  </nav>
 </div>
 <script>
 
