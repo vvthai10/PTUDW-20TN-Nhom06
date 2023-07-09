@@ -1,0 +1,28 @@
+{{#each Comments}}
+<div class="card-body p-4"
+    style="margin-bottom: 10px; border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 15px;">
+    <div class="d-flex flex-start">
+        <div>
+            <div
+                style="display: flex; align-item:center; justify-content:space-between; height: 22px; width: 445px">
+                <h6 class="fw-bold mb-1"
+                    style="line-height: 16px; font-size: 14px;">{{User.name}}</h6>
+                <div class="d-flex align-items-center mb-3">
+                    <p class="mb-0">
+                        {{#formatDate createdAt}}{{/formatDate}}
+                    </p>
+                    <a onclick="deleteComment({{User.id}}, {{articleId}}, {{User.userInfo.id}})" class="link-muted"><i
+                            class="fas fa-pencil-alt ms-2"></i></a>
+                    {{! <i class="fa-solid fa-trash"></i> }}
+                    <a href="#!" class="text-success"><i
+                            class="fas fa-redo-alt ms-2"></i></a>
+                    <a href="#!" class="link-danger"><i
+                            class="fas fa-heart ms-2"></i></a>
+                </div>
+            </div>
+            <p class="mb-0">{{content}}
+            </p>
+        </div>
+    </div>
+</div>
+{{/each}}

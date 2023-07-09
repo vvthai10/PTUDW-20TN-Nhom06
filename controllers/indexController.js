@@ -707,30 +707,34 @@ controller.showArticle = async (req, res) => {
   // console.log(comments);
   // console.log(typeof(comments[0].User))
 
-  for (let index = 0; index < rows.length; index++) {
-    let dataArticle = rows[index].createdAt;
-    // Tạo đối tượng Date từ chuỗi thời gian
-    let date = new Date(dataArticle);
-    // Lấy thông tin về ngày, tháng, năm và thứ
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    let dayOfWeek = daysOfWeek[date.getDay()];
+  // for (let index = 0; index < rows.length; index++) {
+  //   let dataArticle = rows[index].createdAt;
+  //   // Tạo đối tượng Date từ chuỗi thời gian
+  //   let date = new Date(dataArticle);
+  //   // Lấy thông tin về ngày, tháng, năm và thứ
+  //   let day = date.getDate();
+  //   let month = date.getMonth() + 1;
+  //   let year = date.getFullYear();
+  //   let dayOfWeek = daysOfWeek[date.getDay()];
 
-    // Lấy thông tin về giờ, phút và thời gian
-    let hour = date.getHours();
-    let minute = date.getMinutes();
+  //   // Lấy thông tin về giờ, phút và thời gian
+  //   let hour = date.getHours();
+  //   let minute = date.getMinutes();
 
-    // Tạo chuỗi kết quả
-    let resultString = `${dayOfWeek} ${day}/${
-      month < 10 ? "0" : ""
-    }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
+  //   // Tạo chuỗi kết quả
+  //   let resultString = `${dayOfWeek} ${day}/${
+  //     month < 10 ? "0" : ""
+  //   }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
     
-    rows[index].createdAt = resultString;
-  }
+  //   rows[index].createdAt = resultString;
+  // }
   // console.log(comments[0].User.matched)
   // console.log(comments[0]);
   // res.locals.Comments = comments;
+  for (let index = 0; index < rows.length; index++) {
+    rows[index].User.userInfo = res.locals.userInfo;
+  }
+
   article.Comments = rows;
 
   // console.log(rows[0].User)
@@ -931,36 +935,52 @@ controller.makeComment = async (req, res) => {
       content: comment,
     })
       .then(async (data) => {
-        let user = await models.User.findByPk(userId);
-        const daysOfWeek = [
-          "Chủ Nhật",
-          "Thứ Hai",
-          "Thứ Ba",
-          "Thứ Tư",
-          "Thứ Năm",
-          "Thứ Sáu",
-          "Thứ Bảy",
-        ];
-        let dataArticle = data.dataValues.createdAt;
-        // Tạo đối tượng Date từ chuỗi thời gian
-        const date = new Date(dataArticle);
-          // Lấy thông tin về ngày, tháng, năm và thứ
-        const day = date.getDate();
-        const month = date.getMonth() + 1;
-        const year = date.getFullYear();
-        const dayOfWeek = daysOfWeek[date.getDay()];
+        // let user = await models.User.findByPk(userId);
+        // const daysOfWeek = [
+        //   "Chủ Nhật",
+        //   "Thứ Hai",
+        //   "Thứ Ba",
+        //   "Thứ Tư",
+        //   "Thứ Năm",
+        //   "Thứ Sáu",
+        //   "Thứ Bảy",
+        // ];
+        // let dataArticle = data.dataValues.createdAt;
+        // // Tạo đối tượng Date từ chuỗi thời gian
+        // const date = new Date(dataArticle);
+        //   // Lấy thông tin về ngày, tháng, năm và thứ
+        // const day = date.getDate();
+        // const month = date.getMonth() + 1;
+        // const year = date.getFullYear();
+        // const dayOfWeek = daysOfWeek[date.getDay()];
     
-        // Lấy thông tin về giờ, phút và thời gian
-        const hour = date.getHours();
-        const minute = date.getMinutes();
+        // // Lấy thông tin về giờ, phút và thời gian
+        // const hour = date.getHours();
+        // const minute = date.getMinutes();
     
-        // Tạo chuỗi kết quả
-        const resultString = `${dayOfWeek} ${day}/${
-          month < 10 ? "0" : ""
-        }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
+        // // Tạo chuỗi kết quả
+        // const resultString = `${dayOfWeek} ${day}/${
+        //   month < 10 ? "0" : ""
+        // }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
         
-        data.dataValues.createdAt = resultString;
-        res.send({ message: "success", data: data, userName: user.name });
+        // data.dataValues.createdAt = resultString;
+        // const comment = await models.Comment.findOne({
+        //   attributes: ["id", "userId", "articleId"],
+        //   where: {
+        //     id: data.id
+        //   },
+        //   include: [
+        //     {
+        //       model: models.User,
+        //       attributes: ["id", "name"]
+        //     }
+        //   ]
+        // });
+
+        // console.log('CHECK HERE');
+        // console.log(comment)
+
+        res.send({ message: "success", data: data});
       })
       .catch((e) => {
         res.send({ message: e });
@@ -1002,37 +1022,6 @@ controller.deleteComment = async (req, res) => {
           order: [["createdAt", "DESC"]],
         });
 
-        const daysOfWeek = [
-          "Chủ Nhật",
-          "Thứ Hai",
-          "Thứ Ba",
-          "Thứ Tư",
-          "Thứ Năm",
-          "Thứ Sáu",
-          "Thứ Bảy",
-        ];
-
-        for (let index = 0; index < rows.length; index++) {
-          let dataArticle = rows[index].User.createdAt;
-          // Tạo đối tượng Date từ chuỗi thời gian
-          let date = new Date(dataArticle);
-          // Lấy thông tin về ngày, tháng, năm và thứ
-          let day = date.getDate();
-          let month = date.getMonth() + 1;
-          let year = date.getFullYear();
-          let dayOfWeek = daysOfWeek[date.getDay()];
-      
-          // Lấy thông tin về giờ, phút và thời gian
-          let hour = date.getHours();
-          let minute = date.getMinutes();
-      
-          // Tạo chuỗi kết quả
-          let resultString = `${dayOfWeek} ${day}/${
-            month < 10 ? "0" : ""
-          }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
-          
-          rows[index].User.createdAt = resultString;
-        }
         res.send({ message: "deleted", data: rows });
       })
       .catch((e) => {
