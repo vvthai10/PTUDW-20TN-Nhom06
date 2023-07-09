@@ -38,7 +38,7 @@
         {{/each}}
     </div>
     {{#with article}}
-    <div class="container__new">
+    <div class="container__new" id="content">
         <h4 style="font-size: 30px;">{{name}}
         </h4>
         <div class="author__time">
@@ -54,7 +54,7 @@
                             class="fa-solid fa-comment fa-xl"></i>   {{nComments}}</button>
 
                     {{#with premium}}
-                    <button onclick="generatePDF('{{role}}')" type="button"><i
+                    <button onclick="generatePDF('{{this}}')" type="button"><i
                             class="fa-solid fa-print fa-xl" style="margin-left: 10px;"></i>   Tải về</button>
                     {{/with}}
 
@@ -272,9 +272,17 @@
 {{/if}}
 <script>
     function generatePDF(userRole) {
-        if (userRole == 'premium') {
-            const element = document.getElementById('content');
-            html2pdf().from(element).save();
+        if (userRole != 'default') {
+            const element = document.getElementById('abcdefgh');
+            var opt = {
+            margin: 0,
+            filename: 'time_sheet_report.pdf',
+            image: { type: 'jpeg', quality: 1 },
+            html2canvas: { scale: 2,useCORS: true },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'p' }
+            }
+
+            html2pdf().set(opt).from(element).save();
         }
         else {
             alert("Your acount is not premium! Please purchase to use this advance feature.")

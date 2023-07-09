@@ -745,18 +745,14 @@ controller.showArticle = async (req, res) => {
   res.locals.category = category;
   res.locals.subCategory = subCategory;
 
-  if (res.locals.userInfo != null && res.locals.userInfo.role == "premium") {
-    article.premium = true;
+  if (res.locals.userInfo != null && res.locals.userInfo.role != "default") {
+    article.premium = "premium";
   }
-  else article.premium = false;
 
   res.locals.article = article;
   res.locals.article.author = author.name;
 
   res.locals.viewArticlesSame = viewArticle_same;
-
-
-
   }
   else {  
     res.locals.isPermitted = false;
