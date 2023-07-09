@@ -68,7 +68,7 @@
 
 </head>
 
-<body>
+<body style="display:  flex; flex-direction: column; min-height: 100vh;">
   <!--HEADER-->
   <div class="header">
     <div class="container-fluid" style="max-width: 100%; margin: 0 auto">
@@ -482,12 +482,12 @@
   <!--HEADER-->
 
   {{#if header_note}}
-    <div style="padding-top: 60px;">
+    <div class="contentofweb" style="padding-top: 60px;">
       {{{body}}}
     </div>
   {{else}}
     <!--MAIN-->
-    <div class="main">
+    <div class="main contentofweb" style="flex: 1;">
       <div class="container-main">
         <div class="row" style="width: 100%;">
           
@@ -541,7 +541,7 @@
   {{/if}}
 
   <!--FOOTER-->
-  <div style="background: #90c5df6b; margin-top: 20px;">
+  <div class="footer_layout" style="background: #90c5df6b; margin-top: 20px; ">
     <div class="row" style="width: 100%; ">
       <div class="container-fluid"
         style="padding-bottom: 100px; max-width: 1100px; padding-top: 20px; margin-top: 20px;">
@@ -613,7 +613,6 @@
       </div>
     </div>
     <!--FOOTER-->
-
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
       integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
