@@ -522,7 +522,7 @@ controller.showArticle = async (req, res) => {
      },
   });
 
-  if (article.premium == true && res.locals.userInfo != null && res.locals.userInfo.role == 'premium' || article.premium == false) {
+  if (article.premium == true && res.locals.userInfo != null && res.locals.userInfo.role != 'default' || article.premium == false) {
     res.locals.isPermitted = true;
 
     // lay comment tuong ung voi articleId
