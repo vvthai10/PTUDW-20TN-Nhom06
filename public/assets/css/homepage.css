@@ -51,12 +51,11 @@ h4 {
   background-color: #f0f0f0;
   padding: 0 8px 0 12px;
   max-height: 120px;
-  max-width: 60px;
   line-height: 24px;
 }
 
-span.tag__item:hover{
-  background-color: #BFBABA;
+span.tag__item:hover {
+  background-color: #bfbaba;
 }
 
 /* location, temperature, weather */
@@ -64,7 +63,7 @@ span.tag__item:hover{
   display: flex;
   flex-direction: row;
   margin-top: 5px;
-  padding: 0px 0px 0px 10px; 
+  padding: 0px 0px 0px 10px;
 }
 
 .location {
