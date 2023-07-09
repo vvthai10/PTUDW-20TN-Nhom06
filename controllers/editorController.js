@@ -166,7 +166,7 @@ controller.showCensorPage = async (req, res) => {
   } else {
     // Show censor page
     res.locals.article = article;
-    res.render("editor_censor");
+    res.render("editor_censor", { layout: "layout_simple.hbs" });
   }
 };
 

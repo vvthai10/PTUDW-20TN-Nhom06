@@ -301,7 +301,7 @@ main.main_manage {
   height: 100%;
 }
 
-main.main_function {
+main.main_function, div.main_function {
   margin-top: 55px;
   padding-left: 10px;
   padding-right: 10px;
