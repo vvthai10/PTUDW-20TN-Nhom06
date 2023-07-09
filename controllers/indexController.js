@@ -750,7 +750,7 @@ controller.showArticle = async (req, res) => {
   res.locals.subCategory = subCategory;
 
   if (res.locals.userInfo != null && res.locals.userInfo.role != "default") {
-    article.premium = "premium";
+    article.premium = {role: res.locals.userInfo.role, articleSlug: article.slug}
   }
 
   res.locals.article = article;

@@ -54,7 +54,7 @@
                             class="fa-solid fa-comment fa-xl"></i> {{nComments}}</button>
 
                     {{#with premium}}
-                    <button onclick="generatePDF('{{this}}')" type="button"><i class="fa-solid fa-print fa-xl"
+                    <button onclick="generatePDF('{{role}}', '{{articleSlug}}')" type="button"><i class="fa-solid fa-print fa-xl"
                             style="margin-left: 10px;"></i>
                         Tải về</button>
                     {{/with}}
@@ -255,13 +255,13 @@
 </div>
 {{/if}}
 <script>
-    function generatePDF(userRole) {
+    function generatePDF(userRole, articleName) {
         if (userRole != 'default') {
             const element = document.getElementById('abcdefgh');
             var opt = {
                 margin: 0,
                 filename:
-                    'time_sheet_report.pdf',
+                    articleName + '.pdf',
                 image: { type: 'jpeg', quality: 1 },
                 html2canvas: {
                     scale: 2, useCORS: true
