@@ -6,9 +6,9 @@
     </span>
     <div class="tag" style="font-family: serif">
       {{#each tags}}
-      <a href="/tag?tagId={{id}}">
-        <p class="tag__item">#{{name}}</p>
-      </a>
+          <a href="/tag?tagId={{id}}">
+            <span class="tag__item">{{name}}</span>
+          </a>
       {{/each}}
     </div>
     <div class="local__temp__weather" id="local__temp__weather">
@@ -273,7 +273,7 @@
             <h5 style="font-weight: bold;"><i class="fa-solid fa-marker" style="margin-right: 10px;"></i>{{name}}
             </h5>
             <div href="./readnews.html" class="card card__latest__main">
-              <img style="margin-bottom: 10px;"src="{{Article.imgCover}}" class="img__latest__news" alt="..." />
+              <img style="margin-bottom: 10px;" src="{{Article.imgCover}}" class="img__latest__news" alt="..." />
               <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
     width: 70px;
     text-align: center;
@@ -287,7 +287,9 @@
               <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted">
                   {{Article.updatedAt}}</small></p>
               <div class="card-body">
-                <a style="cursor: pointer; display: block;" href="/article?articleId={{Article.id}}"><h5 class="card-title">{{Article.name}}</h5></a>
+                <a style="cursor: pointer; display: block;" href="/article?articleId={{Article.id}}">
+                  <h5 class="card-title">{{Article.name}}</h5>
+                </a>
               </div>
             </div>
           </div>
