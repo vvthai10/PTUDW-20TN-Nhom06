@@ -51,12 +51,18 @@ controller.showHomepage = async (req, res) => {
     };
   }
 
+  let subcategories = await models.SubCategory.findAll({
+    order: ["id"],
+  });
+  res.locals.subcategories = subcategories;
+
   let articles = await models.Article.findAll(options);
   res.locals.articles = articles;
 
   res.locals.status = status;
   res.locals.keyword = keyword;
   res.locals.originalUrl = removeParam("subcategory", req.originalUrl);
+  console.log(req.originalUrl);
   if (Object.keys(req.query).length == 0) {
     res.locals.originalUrl = res.locals.originalUrl + "?";
   }

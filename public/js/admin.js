@@ -109,7 +109,8 @@ var modify_button = $('#modify-button').addEventListener('click', () => {
     console.log(option);
     $('.modal-body__modify__premium').firstChild.textContent = 'Gia hạn tài khoản độc giả ' + option.innerText + ":";
     $('.modal-body__modify__cat2').firstChild.textContent = 'Danh sách chuyên mục phân công cho editor ' + option.innerText + ":";
-    $('.modal-body__modify__article').innerHTML = `Xuất bản bài viết <b>"` + option.innerText + `"</b>.`;
+    $('.modal-body__modify__article__message').textContent = `Xuất bản bài viết `;
+    $('.modal-body__modify__article__title').textContent =  option.innerText + `.`;
     $('#input-id').value = $('tr.selected').firstChild.nextSibling.innerText;
 });
 

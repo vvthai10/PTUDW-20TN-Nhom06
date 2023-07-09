@@ -154,7 +154,9 @@
                           </select>
                         </div>
                         <div class="modal-body__modify__article mb-3" style="display: none;">
-                          Bạn chưa chọn dòng dữ liệu cần cập nhật.
+                          <span class="modal-body__modify__article__message">Bạn chưa chọn dòng dữ liệu cần cập nhật.</span><b class="modal-body__modify__article__title"></b><br/>
+                          <input class="form-check-input" type="checkbox" name="premium" form="form3" id="flexCheckDefault">
+                          <label class="form-check-label" for="flexCheckDefault">Bài viết Premium</label>
                         </div>
                         <input id="input-type3" type="hidden" name="type" form="form3">
                         <input class="input-url" type="hidden" name="originalUrl" form="form3">
@@ -184,18 +186,20 @@
                       type="button" role="tab" aria-controls="all" aria-selected="true">Tất cả</button>
                   </a>
                 </li>
+                {{#each cat2}}
                 <li class="nav-item" role="presentation">
-                  <a href="{{originalUrl}}&subcategory=1">
-                    <button class="nav-link" id="tab-1" data-bs-toggle="tab" data-bs-target="#agriculture" type="button"
-                      role="tab" aria-controls="agriculture" aria-selected="true">Nông sản</button>
+                  <a href="{{../originalUrl}}&subcategory={{id}}">
+                    <button class="nav-link" id="tab-{{id}}" data-bs-toggle="tab" data-bs-target="#agriculture" type="button"
+                      role="tab" aria-controls="agriculture" aria-selected="true">{{name}}</button>
                   </a>
                 </li>
-                <li class="nav-item" role="presentation">
+                {{/each}}
+                {{!-- <li class="nav-item" role="presentation">
                   <a href="{{originalUrl}}&subcategory=2">
                     <button class="nav-link" id="tab-2" data-bs-toggle="tab" data-bs-target="#seafood" type="button"
                       role="tab" aria-controls="seafood" aria-selected="true">Hải sản</button>
                   </a>
-                </li>
+                </li> --}}
               </ul>
 
               <div class="tab-content">

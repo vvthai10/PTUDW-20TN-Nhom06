@@ -183,7 +183,7 @@ controller.showHomepage = async (req, res) => {
           attributes: ["name"],
         },
       ],
-      order: ["status"],
+      order: [["status", "ASC"], ["id", "ASC"]],
     };
     if (subcategory) {
       options.include.push({
@@ -515,10 +515,12 @@ controller.modify = async (req, res, next) => {
     switch (req.body.type) {
       case "Bài viết":
         if (req.body.id) {
+          console.log(req.body.premium);
           let article = await models.Article.findOne({
             where: { id: parseInt(req.body.id) },
           });
           article.status = "posted";
+          article.premium = (req.body.premium) ? true : false;
           await article.save();
         }
         break;

@@ -296,12 +296,13 @@ footer hr {
 }
 
 main.main_manage {
-  margin-top: 90px;
+  margin-top: 55px;
   min-height: calc(100vh - 125px);
   height: 100%;
 }
 
 main.main_function {
+  margin-top: 55px;
   padding-left: 10px;
   padding-right: 10px;
 }

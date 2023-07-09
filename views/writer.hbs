@@ -41,20 +41,22 @@
                     aria-selected="true">Tất cả</button>
                 </a>
               </li>
+              {{#each subcategories}}
               <li class="nav-item" role="presentation">
-                <a href="{{originalUrl}}&subcategory=1">
-                  <button class="nav-link" id="tab-1" data-bs-toggle="tab"
+                <a href="{{../originalUrl}}&subcategory={{id}}">
+                  <button class="nav-link" id="tab-{{id}}" data-bs-toggle="tab"
                     data-bs-target="#agriculture" type="button" role="tab" aria-controls="agriculture"
-                    aria-selected="true">Nông sản</button>
+                    aria-selected="true">{{name}}</button>
                 </a>
               </li>
-              <li class="nav-item" role="presentation">
+              {{/each}}
+              {{!-- <li class="nav-item" role="presentation">
                 <a href="{{originalUrl}}&subcategory=2">
                   <button class="nav-link" id="tab-2" data-bs-toggle="tab"
                     data-bs-target="#seafood" type="button" role="tab" aria-controls="seafood"
                     aria-selected="true">Hải sản</button>
                 </a>
-              </li>
+              </li> --}}
             </ul>
 
             <!-- Tab panes -->
