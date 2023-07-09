@@ -363,13 +363,17 @@
   justify-content: flex-end;
 }
 .header__login-btn {
-  background-color: var(--primary-color);
+  background-color: rgba(51, 153, 204, 0.689);
   border-radius: 999px;
   color: #fff;
   cursor: pointer;
   font-size: 1.4rem;
   font-weight: 600;
   padding: 9px 20px;
+}
+.header__login-btn:hover {
+  background-color: var(--primary-color);
+  color: #fff;
 }
 
 @keyframes slide-in-left {

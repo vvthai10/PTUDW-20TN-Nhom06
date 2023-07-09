@@ -102,8 +102,10 @@
           {{else}}
             <div class="header__search col-lg-6">
               <div class="header__search-bar">
-                <div class="header__search-icon"></div>
-                <input type="search" class="header__search-input" placeholder="Search" />
+                <form action="/search" method="GET">
+                <button class="header__search-icon"></button>
+                <input type="search" class="header__search-input" placeholder="Search" name="keyword" required/>
+              </form>
               </div>
             </div>
           {{/if}}

@@ -28,6 +28,10 @@ const sequelize = require("sequelize");
 const Op = sequelize.Op;
 const { createPagination } = require("express-handlebars-paginate");
 const cronJob = require("./controllers/cronjob");
+const multer = require("multer");
+const axios = require("axios");
+
+const upload = multer({ dest: "public/uploads/" });
 
 // config public static
 app.use(express.static(__dirname + "/public"));
@@ -62,6 +66,34 @@ app.get("/createTables", (req, res) => {
     models.Article.addSearchIndex();
     res.send("Table created!");
   });
+});
+
+app.post("/upload", upload.single("image"), async (req, res) => {
+  const imagePath = req.file.path;
+  console.log(imagePath);
+  // try {
+  //   // Đọc dữ liệu hình ảnh
+  //   const image = await fs.promises.readFile(imagePath);
+
+  //   // Gửi yêu cầu tải lên hình ảnh đến Imgur
+  //   const response = await axios.post("https://api.imgur.com/3/upload", image, {
+  //     headers: {
+  //       Authorization: "Client-ID YOUR_CLIENT_ID", // Thay YOUR_CLIENT_ID bằng Client ID của bạn
+  //     },
+  //   });
+
+  //   // Trích xuất đường dẫn hình ảnh đã tải lên từ kết quả
+  //   const imageUrl = response.data.data.link;
+
+  //   // Xóa tệp tạm sau khi tải lên thành công
+  //   await fs.promises.unlink(imagePath);
+
+  //   // Trả về đường dẫn hình ảnh đã tải lên
+  //   res.json({ imageUrl });
+  // } catch (error) {
+  //   console.error(error);
+  //   res.sendStatus(500);
+  // }
 });
 
 // config get data from POST body
