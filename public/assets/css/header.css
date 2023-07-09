@@ -29,6 +29,7 @@
 
 .header__search-bar {
   display: flex;
+  /* flex-direction: row; */
   /* align-items: center; */
   /* justify-content: center; */
 
@@ -44,6 +45,8 @@
 }
 
 .header__search-input {
+  position: relative;
+  top: -7px;
   border: none;
   caret-color: #444;
   flex: 1 1;
@@ -55,6 +58,7 @@
 }
 
 .header__search-icon {
+  border: none;
   background-color: #fff;
   background-image: url(https://fullstack.edu.vn/static/media/search.9bd3926522ea0937310c.svg);
   background-position: 50%;
@@ -72,6 +76,8 @@
 
 .header__action {
   display: flex;
+  position: relative;
+  right: 20px;
   flex: 1;
   align-items: center;
   justify-content: flex-end;

@@ -18,55 +18,121 @@ controller.getCategories = async (req, res, next) => {
       ? category.icon
       : `/assets/images/icons/${category.icon}`;
   });
-  console.log(res.locals.categories);
+  // console.log(res.locals.categories);
   next();
 };
 
 controller.showHomepage = async (req, res) => {
-  let tags = await models.Tag.findAll();
-  // let articles = await models.Article.findAll();
-  // let popularArticles = [];
-  // for (let index = 0; index < articles.length / 3; index++) {
-  //   popularArticles.push([articles[index]['dataValues'], articles[index + 1]['dataValues'], articles[index + 2]['dataValues']]);
-  // }
-  // console.log(popularArticles);
-  // console.log(articles[0]['dataValues'])
-  let articles = await models.Article.findAll();
-  let popularArticles = articles;
-  let rightArticles = [];
+  let popularArticles = await models.Article.findAll({
+    include: [
+      {
+        model: models.SubCategory
+      }
+    ],
+    order: [['nViewWeek', 'DESC']],
+    limit: 4
+  });
+  res.locals.popularArticles = popularArticles;
+
+  // bai viet co luot xem cao nhat tat ca chuyen muc
+  let viewArticles = await models.Article.findAll({
+    include: [
+      {
+        model: models.SubCategory
+      }
+    ],
+    order: [['nView', 'DESC']],
+    limit: 10
+  })
+
+  let viewArticle_new = [];
   let temp = [];
-  for (let index = 0; index < articles.length / 3; index++) {
+  for (let index = 0; index < viewArticles.length / 3; index++) {
     if (index == 0) {
-      rightArticles.push({
+      viewArticle_new.push({
         _main_item: [
           {
             _item: [
-              articles[index * 3],
-              articles[index * 3 + 1],
-              articles[index * 3 + 2],
+              viewArticles[(index * 3) % viewArticles.length],
+              viewArticles[(index * 3 + 1) % viewArticles.length],
+              viewArticles[(index * 3 + 2) % viewArticles.length],
             ],
           },
         ],
       });
-      // rightArticles.push({_item: []})
-    } else {
-      temp.push({
-        _item: [
-          articles[index * 3],
-          articles[index * 3 + 1],
-          articles[index * 3 + 2],
-        ],
-      });
-      // rightArticles[2].push([articles[index * 3], articles[index * 3 + 1], articles[index * 3 + 2]]);
+    }
+    else {
+      temp.push({_item: [viewArticles[index * 3 % viewArticles.length], viewArticles[(index * 3 + 1) % viewArticles.length], viewArticles[(index * 3 + 2) % viewArticles.length]]});
     }
   }
-  rightArticles.push({ _items: temp });
-  // console.log(rightArticles[1]._items)
-  // console.log(rightArticles[0]._item.length)
-  res.locals.latestArticles = rightArticles;
-  res.locals.rightArticles = rightArticles;
-  res.locals.popularArticles = popularArticles;
+  viewArticle_new.push({ _items: temp });
+  res.locals.viewArticles = viewArticle_new;
+
+  // res.locals.latestArticles = rightArticles;
+  // res.locals.popularArticles = popularArticles;
+  let tags = await models.Tag.findAll();
   res.locals.tags = tags;
+
+  // cac bai viet moi nhat moi chuyen muc
+  let newArticles = await models.Article.findAll({
+    include: [
+      {
+        model: models.SubCategory
+      }
+    ],
+    order: [['updatedAt', 'DESC']],
+    limit: 10
+  })
+
+  let newArticles_news = [];
+  temp = [];
+  for (let index = 0; index < newArticles.length / 3; index++) {
+    if (index == 0) {
+      newArticles_news.push({
+        _main_item: [
+          {
+            _item: [
+              newArticles[(index * 3) % newArticles.length],
+              newArticles[(index * 3 + 1) % newArticles.length],
+              newArticles[(index * 3 + 2) % newArticles.length],
+            ],
+          },
+        ],
+      });
+    }
+    else {
+      temp.push({_item: [newArticles[index * 3 % newArticles.length], newArticles[(index * 3 + 1) % newArticles.length], newArticles[(index * 3 + 2) % newArticles.length]]});
+    }
+  }
+  newArticles_news.push({ _items: temp });
+  res.locals.newArticles = newArticles_news;
+
+  const mainArticle = await models.Article.findOne({
+    include: [
+      {
+        model: models.SubCategory
+      }
+    ],
+    order: [['createdAt', 'DESC']]
+  })
+  res.locals.mainArticle = mainArticle;
+
+  // top 10 chuyen muc, moi chuyen muc 1 bai moi nhat
+  let newCategoryArticle = await models.SubCategory.findAll({
+    include: [
+      {
+        model: models.Article
+      }
+    ],
+    order: [
+      [models.Article, 'updatedAt', 'DESC']
+    ]
+  });
+  console.log(newCategoryArticle[3].Articles);
+  for (let index = 0; index < newCategoryArticle.length; index++) {
+    newCategoryArticle[index].Article = newCategoryArticle[index].Articles[0]
+  }
+  res.locals.newCategoryArticle = newCategoryArticle;
   res.render("index");
 };
 
@@ -94,8 +160,6 @@ controller.showCategory = async (req, res) => {
   });
   subCategoryIds = subCategoryIds.map((item) => item.id);
 
-  console.log(subCategoryIds);
-
   // get the ArticleId of categoryId
   let categoryArticleIds = await models.Article.findAll({
     attributes: ["id"],
@@ -112,8 +176,6 @@ controller.showCategory = async (req, res) => {
   });
 
   categoryArticleIds = categoryArticleIds.map((item) => item.id);
-  console.log("CHECK HERE");
-  console.log(categoryArticleIds);
 
   const limit = 7;
 
@@ -127,11 +189,11 @@ controller.showCategory = async (req, res) => {
     include: [
       {
         model: models.Tag,
-        attributes: ["name"],
+        attributes: ["id", "name"],
       },
       {
         model: models.SubCategory,
-        attributes: ["name"],
+        attributes: ["id", "name"]
       },
     ],
     distinct: true,
@@ -211,8 +273,8 @@ controller.showSubCategory = async (req, res) => {
     include: [
       {
         model: models.Tag,
-        attributes: ["name"],
-      },
+        attributes: ["id", "name"],
+      }
     ],
     order: [["createdAt", "DESC"]],
     distinct: true,
@@ -239,7 +301,6 @@ controller.showSubCategory = async (req, res) => {
 
 controller.showArticle = async (req, res) => {
   let articleId = parseInt(req.query.articleId);
-  // console.log('hello world');
   // lay comment tuong ung voi articleId
   res.locals.articleId = articleId;
   res.locals.commentInfo = {
@@ -350,7 +411,7 @@ controller.showArticle = async (req, res) => {
   });
   // console.log(typeof(comments[0].User))
   for (let index = 0; index < comments.length; index++) {
-    if (comments[index].User.id == res.locals.userInfo.id) {
+    if (res.locals.userInfo != null && comments[index].User.id == res.locals.userInfo.id) {
       comments[index].User.matched = true;
     } else comments[index].User.matched = false;
   }
@@ -411,7 +472,10 @@ controller.showTag = async (req, res) => {
   let tagArticleIds = await models.TagArticle.findAll({
     attributes: ["articleId"],
     where: { tagId: tagId },
+    distinct: true
   });
+
+  // console.log(tagArticleIds)
 
   let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
 
@@ -426,26 +490,26 @@ controller.showTag = async (req, res) => {
 
   const limit = 7;
 
-  let { rows, count } = await models.TagArticle.findAndCountAll({
-    attributes: ["tagId"],
-    where: { articleId: tagArticleIds },
+  let { rows, count } = await models.Article.findAndCountAll({
+    where: { id: {
+      [Op.or]: tagArticleIds
+    }},
     include: [
       {
-        model: models.Article,
-        include: [
-          {
-            model: models.Tag,
-            attributes: ["name"],
-          },
-        ],
+        model: models.Tag,
+        attributes: ["id", "name"],
       },
+      {
+        model: models.SubCategory,
+        attributes: ["id", "name"]
+      }
     ],
     distinct: true,
     limit: limit,
     offset: limit * (page - 1),
   });
 
-  // console.log(rows.length);
+  // console.log(count);
 
   res.locals.tagArticles = rows;
   res.locals.pagination = {
@@ -459,7 +523,59 @@ controller.showTag = async (req, res) => {
 };
 
 controller.search = async (req, res) => {
-  let text_search = req.query.keyword || "";
+  let keyword = req.query.keyword || "";
+  res.locals.keyword = req.query.keyword;
+  if (keyword.trim()) {
+    let options = {
+      attributes: ['id', 'name', 'description', 'premium', 'approve', 'updatedAt', 'imgCover', sequelize.literal(`ts_rank("vectorSearch", plainto_tsquery('english', '${keyword}')) AS "searchScore"`)],
+      where: {status: 'posted', vectorSearch: {[Op.match]: sequelize.fn('plainto_tsquery', keyword)},}, 
+      include: [],
+      order:[sequelize.literal('"searchScore" DESC')],
+      raw: true,
+      nested: true,
+    };
+    const result = await models.Article.findAll(options);
+    console.log(result);
+    let articleIds = result.map((item) => item.id);
+    let page = isNaN(req.query.page) ? 1 : Math.max(1, parseInt(req.query.page));
+    let limit = 7;
+
+    // get the subCategoryId of categoryId
+    let { rows, count } = await models.Article.findAndCountAll({
+      where: {
+        id: {
+          [Op.in]: articleIds,
+        },
+      },
+      include: [
+        {
+          model: models.Tag,
+          attributes: ["name"],
+        },
+        {
+          model: models.SubCategory,
+          attributes: ["name", "categoryId"],
+        }
+      ],
+      distinct: true,
+      limit: limit,
+      offset: limit * (page - 1),
+    });
+    console.log(rows);
+
+    // create pagination
+    res.locals.pagination = {
+      page: page,
+      limit: limit,
+      totalRows: count,
+      queryParams: req.query,
+    };
+
+
+    res.locals.searchResults = rows;
+    res.render("search");
+  }
+  else res.redirect('/');
   // const si = require('search-index');
   // const articles = await models.Article.findAll();
   // const ids = articles.map(item => item['id']);
@@ -482,14 +598,7 @@ controller.search = async (req, res) => {
   // await db.sequelize.query("SELECT * from Category", {tyep: sequelize.QueryTypes.SELECT}).then((data) => {
   //   console.log(data);
   // })
-  const result = await models.Article.findAll({
-    where: models.Sequelize.literal(),
-    replacements: {
-      name: "Alex",
-    },
-  });
-  console.log(result);
-  res.send("hello world");
+  
 };
 
 controller.makeComment = async (req, res) => {

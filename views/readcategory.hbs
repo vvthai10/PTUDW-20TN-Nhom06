@@ -5,30 +5,29 @@
   <ul>
     {{#each categoryArticles}}
       <li>
-        <a
-          href="readnews.html"
-          style="display: flex; margin: 30px 0; width: 90%;"
-        >
-          <img
-            style="border-radius: 5px; width: 300px;"
-            src="{{imgCover}}"
-            alt=""
-          />
           <div
-            style="    display: flex;
-flex-direction: column; margin-left: 10px;"
+            style="display: flex; margin: 30px 0; width: 90%;"
           >
-            <span
-              style="font-size: 24px;
-    font-weight: 500;"
-            >{{name}}</span>
+            <img
+              style="border-radius: 5px; width: 300px;"
+              src="{{imgCover}}"
+              alt=""
+            />
             <div
-              style="display: flex;
-    justify-content: space-between;"
+              style="    display: flex;
+flex-direction: column; margin-left: 10px;"
             >
-              <!--Category-->
-              {{#each SubCategories}}
-                <span
+              <a href="/article?articleId={{id}}"><span
+                style="font-size: 24px;
+    font-weight: 500;"
+              >{{name}}</span></a>
+              <div
+                style="display: flex;
+    justify-content: space-between;"
+              >
+                <!--Category-->
+                {{#each SubCategories}}
+                <a href="/subCategory?subCategoryId={{id}}"><span
                   style="    padding: 5px;
     width: 70px;
     text-align: center;
@@ -40,13 +39,13 @@ flex-direction: column; margin-left: 10px;"
     color: white;
     line-height: 100%;
     margin-left: 10px;"
-                >{{name}}</span>
-              {{/each}}
-              <div>
-                <!--Related Tags-->
-                {{#each Tags}}
-                  <span
-                    style="float: left;
+                >{{name}}</span></a>
+                {{/each}}
+                <div>
+                  <!--Related Tags-->
+                  {{#each Tags}}
+                    <a href="/tag?tagId={{id}}"><span
+                      style="float: left;
         margin-left: 10px;
         font-family: Arial;
         font-size: 13px;
@@ -56,20 +55,20 @@ flex-direction: column; margin-left: 10px;"
         padding: 0 8px 0 12px;
         height: 24px;
         line-height: 24px;"
-                  >{{name}}</span>
-                {{/each}}
+                    >{{name}}</span></a>
+                  {{/each}}
+                </div>
               </div>
-            </div>
-            <span
-              style="font-size: 12px;
+              <span
+                style="font-size: 12px;
                   padding: 5px 0 0 10px;      color: black;"
-            >10:15 16/4/2023</span>
-            <span
-              style="padding-left: 10px;
+              >{{updatedAt}}</span>
+              <span
+                style="padding-left: 10px;
                   font-size: 14px; color: black;"
-            >{{description}}</span>
+              >{{description}}</span>
+            </div>
           </div>
-        </a>
       </li>
     {{/each}}
   </ul>
@@ -86,7 +85,7 @@ flex-direction: column; margin-left: 10px;"
 <script>
 
   document.querySelectorAll("#pagination li").forEach((li, index) => {
-  li.classList.add('page-item') }); document.querySelectorAll("#pagination
-  a").forEach((a, index) => { a.classList.add('page-link') });
+  li.classList.add('page-item') }); 
+  document.querySelectorAll("#pagination a").forEach((a, index) => { a.classList.add('page-link') });
 
 </script>

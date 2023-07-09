@@ -42,12 +42,21 @@ h4 {
 }
 
 .tag__item {
-  border-radius: 50px;
-  background-color: #d9d9d9;
-  margin-top: 5px;
-  margin-right: 25px;
-  padding-left: 10px;
-  padding-right: 10px;
+  float: left;
+  margin-left: 20px;
+  font-family: Arial;
+  font-size: 13px;
+  color: #000;
+  border-radius: 20px;
+  background-color: #f0f0f0;
+  padding: 0 8px 0 12px;
+  max-height: 120px;
+  max-width: 60px;
+  line-height: 24px;
+}
+
+span.tag__item:hover{
+  background-color: #BFBABA;
 }
 
 /* location, temperature, weather */
@@ -55,6 +64,7 @@ h4 {
   display: flex;
   flex-direction: row;
   margin-top: 5px;
+  padding: 0px 0px 0px 10px; 
 }
 
 .location {

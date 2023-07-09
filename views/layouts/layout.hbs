@@ -500,14 +500,14 @@
               <div class="sidebar__wrapper">
                 <ul class="sidebar__list">
                   <li style="margin: 10px 0">
-                    <a aria-current="page" class="sidebar__item sidebar__active" href="/">
+                    <a aria-current="page" class="sidebar__item sidebar__active" id="homepage" href="/">
                       <img src="/assets/images/icons/trang_chu.png" alt="trang_chu" style="width: 40px; height:40px">
                       <span style="font-size: 12px; font-weight: 500">Trang chủ</span>
                     </a>
                   </li>
                   {{#each categories}}
                   <li class="sidebar__item-have-child" style="margin: 10px 0">
-                      <a aria-current="page" class="sidebar__item" id="have-list-child" href="/category?categoryId={{this.id}}">
+                      <a aria-current="page" class="sidebar__item" id="category_{{this.id}}" href="/category?categoryId={{this.id}}">
                           <img src="{{this.icon}}" alt="{{this.name}}" style="width: 40px; height:40px">
                           <span style="font-size: 12px; font-weight: 500">{{this.name}}</span>
                       </a>
