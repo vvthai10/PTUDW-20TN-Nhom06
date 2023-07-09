@@ -12,12 +12,9 @@
       style="font-family: serif; display: flex; flex-wrap: wrap;"
     >
       {{#each tags}}
-        <a
-          href="/tag?tagId={{id}}"
-          style="display: block; white-space: nowrap; margin-bottom: 5px"
-        >
-          <span class="tag__item">{{name}}</span>
-        </a>
+          <a href="/tag?tagId={{id}}">
+            <span class="tag__item">{{name}}</span>
+          </a>
       {{/each}}
     </div>
 
@@ -28,55 +25,28 @@
       <div class="col-8">
         <div class="content__new__main" style="height: 500px;">
           {{#with mainArticle}}
-            <div class="card" style="height: 500px; min-height: 500px;">
-              <a
-                href="/article?articleId={{id}}"
-                style="display: block; width: 100%; margin-bottom: 5px;"
-              >
-                <img src="{{imgCover}}" class="card-img-top" alt="..." />
-              </a>
-              <div class="card-body limited-lines">
-                {{#each SubCategories}}
-                  <a
-                    style="cursor: pointer; display: block;"
-                    href="/subCategory?subCategoryId={{id}}"
-                  ><span
-                      style="padding: 5px;
-                      width: 70px;
-                      text-align: center;
-                      border-radius: 20px;
-                      background: var(--primary-color);
-                      border: none;
-                      font-size: 13px;
-                      font-weight: 400;
-                      color: white;
-                      line-height: 100%;"
-                    >{{name}}</span></a>
+          <div class="card">
+            <img src="{{imgCover}}" class="card-img-top" alt="..." />
+            <div class="card-body">
+              {{#each SubCategories}}
+              <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
+    width: 70px;
+    text-align: center;
+    border-radius: 20px;
+    background: var(--primary-color);
+    border: none;
+    font-size: 13px;
+    font-weight: 400;
+    color: white;
+    line-height: 100%;">{{name}}</span></a>
 
-                {{/each}}
-                <p style="padding: 10px 0 0 0px;" class="card-text"><small
-                    class="text-muted"
-                  > {{#formatDate approve}}{{/formatDate}}</small></p>
-                <a
-                  style="cursor: pointer; display: block;"
-                  href="/article?articleId={{id}}"
-                >
-                  <h5
-                    class="card-title"
-                    style="font-size: 1.8rem;
-                          font-weight: 400;
-                          color: var(--text-color);
-                          line-height: 2.0rem;
-                          height: 6.0rem;
-                          overflow: hidden;
-                          display: block;
-                          display: -webkit-box;
-                          -webkit-box-orient: vertical;
-                          -webkit-line-clamp: 3;"
-                  >{{name}}</h5>
-                </a>
-              </div>
+              {{/each}}
+              <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted"> {{updatedAt}}</small></p>
+              <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
+                <h5 class="card-title">{{name}}</h5>
+              </a>
             </div>
+          </div>
           {{/with}}
         </div>
       </div>
@@ -84,38 +54,23 @@
         {{! <div class="content__news__left" id="content__news__left" style="cursor: pointer;"></div> }}
         <div class="content__news__left">
           {{#each popularArticles}}
-            <div
-              class="card card__news__left--extend"
-              style="display: block; margin-bottom: 5px;"
-            >
-              <a
-                href="/article?articleId={{id}}"
-                style="display: block; width: 100%; margin-bottom: 5px;"
-              >
-                <img src="{{imgCover}}" class="card-img-top" alt="..." />
-              </a>
-              <div class="card-body">
-                {{#each SubCategories}}
-                  <a
-                    style="cursor: pointer; display: block;"
-                    href="/subCategory?subCategoryId={{id}}"
-                  ><span
-                      style="padding: 5px;
-                      width: 70px;
-                      text-align: center;
-                      border-radius: 20px;
-                      background: var(--primary-color);
-                      border: none;
-                      font-size: 13px;
-                      font-weight: 400;
-                      color: white;
-                      line-height: 100%;"
-                    >{{name}}</span></a>
+          <div class="card card__news__left--extend" style="display: block; margin-bottom: 5px;">
+            <img src="{{imgCover}}" class="card-img-top" alt="..." />
+            <div class="card-body">
+              {{#each SubCategories}}
+              <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
+    width: 70px;
+    text-align: center;
+    border-radius: 20px;
+    background: var(--primary-color);
+    border: none;
+    font-size: 13px;
+    font-weight: 400;
+    color: white;
+    line-height: 100%;">{{name}}</span></a>
 
-                {{/each}}
-                <p style="padding: 10px 0 0 0px;" class="card-text"><small
-                    class="text-muted"
-                  > {{#formatDate approve}}{{/formatDate}}</small></p>
+              {{/each}}
+              <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted"> {{updatedAt}}</small></p>
 
                 <a
                   style="cursor: pointer; display: block;"
@@ -161,130 +116,66 @@
     >
       <div class="carousel-inner">
         {{#each viewArticles}}
-          {{#each _main_item}}
-            <div class="carousel-item active">
-              <div class="card-group">
-                {{#each _item}}
-                  <div class="card card__popular__news--extend">
-                    <a
-                      href="/article?articleId={{id}}"
-                      style="display: block; width: 100%; height: 250px; min-height: 250px; margin-bottom: 5px;"
-                    >
-                      <img
-                        src="{{imgCover}}"
-                        class="card-img-top"
-                        alt="..."
-                        style="width: 100%; max-height: 250px;"
-                      />
-                    </a>
-                    <div class="card-body">
-                      {{#each SubCategories}}
-                        <a
-                          style="cursor: pointer; display: block;"
-                          href="/subCategory?subCategoryId={{id}}"
-                        ><span
-                            style="padding: 5px;
-                            width: 70px;
-                            text-align: center;
-                            border-radius: 20px;
-                            background: var(--primary-color);
-                            border: none;
-                            font-size: 13px;
-                            font-weight: 400;
-                            color: white;
-                            line-height: 100%;"
-                          >{{name}}</span></a>
+        {{#each _main_item}}
+        <div class="carousel-item active">
+          <div class="card-group">
+            {{#each _item}}
+            <div class="card card__popular__news--extend">
+              <img src="{{imgCover}}" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;" />
+              <div class="card-body">
+                {{#each SubCategories}}
+                <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
+    width: 70px;
+    text-align: center;
+    border-radius: 20px;
+    background: var(--primary-color);
+    border: none;
+    font-size: 13px;
+    font-weight: 400;
+    color: white;
+    line-height: 100%;">{{name}}</span></a>
 
-                      {{/each}}
-                      <p style="padding: 10px 0 0 0px;" class="card-text"><small
-                          class="text-muted"
-                        > {{#formatDate approve}}{{/formatDate}}</small></p>
-                      <a
-                        style="cursor: pointer; display: block;"
-                        href="/article?articleId={{id}}"
-                      >
-                        <h5
-                          class="card-title"
-                          style="font-size: 1.8rem;
-                          font-weight: 400;
-                          color: var(--text-color);
-                          line-height: 2.0rem;
-                          height: 6.0rem;
-                          overflow: hidden;
-                          display: block;
-                          display: -webkit-box;
-                          -webkit-box-orient: vertical;
-                          -webkit-line-clamp: 3;"
-                        >{{name}}</h5>
-                      </a>
-                    </div>
-                  </div>
                 {{/each}}
+                <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted"> {{updatedAt}}</small></p>
+                <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
+                  <h5 class="card-title">{{name}}</h5>
+                </a>
               </div>
             </div>
-          {{/each}}
-          {{#each _items}}
-            <div class="carousel-item">
-              <div class="card-group">
-                {{#each _item}}
-                  <div class="card card__popular__news--extend">
-                    <a
-                      href="/article?articleId={{id}}"
-                      style="display: block; width: 100%; height: 250px; min-height: 250px; margin-bottom: 5px;"
-                    >
-                      <img
-                        src="{{imgCover}}"
-                        class="card-img-top"
-                        alt="..."
-                        style="width: 100%; max-height: 250px;"
-                      />
-                    </a>
-                    <div class="card-body">
-                      {{#each SubCategories}}
-                        <a
-                          style="cursor: pointer; display: block;"
-                          href="/subCategory?subCategoryId={{id}}"
-                        ><span
-                            style="padding: 5px;
-                            width: 70px;
-                            text-align: center;
-                            border-radius: 20px;
-                            background: var(--primary-color);
-                            border: none;
-                            font-size: 13px;
-                            font-weight: 400;
-                            color: white;
-                            line-height: 100%;"
-                          >{{name}}</span></a>
+            {{/each}}
+          </div>
+        </div>
+        {{/each}}
+        {{#each _items}}
+        <div class="carousel-item">
+          <div class="card-group">
+            {{#each _item}}
+            <div class="card card__popular__news--extend">
+              <img src="{{imgCover}}" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;" />
+              <div class="card-body">
+                {{#each SubCategories}}
+                <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
+    width: 70px;
+    text-align: center;
+    border-radius: 20px;
+    background: var(--primary-color);
+    border: none;
+    font-size: 13px;
+    font-weight: 400;
+    color: white;
+    line-height: 100%;">{{name}}</span></a>
 
-                      {{/each}}
-                      <p style="padding: 10px 0 0 0px;" class="card-text"><small
-                          class="text-muted"
-                        > {{#formatDate approve}}{{/formatDate}}</small></p>
-                      <a
-                        style="cursor: pointer; display: block;"
-                        href="/article?articleId={{id}}"
-                      >
-                        <h5
-                          class="card-title"
-                          style="font-size: 1.8rem;
-                          font-weight: 400;
-                          color: var(--text-color);
-                          line-height: 2.0rem;
-                          height: 6.0rem;
-                          overflow: hidden;
-                          display: block;
-                          display: -webkit-box;
-                          -webkit-box-orient: vertical;
-                          -webkit-line-clamp: 3;"
-                        >{{name}}</h5>
-                      </a>
-                    </div>
-                  </div>
                 {{/each}}
+                <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted"> {{updatedAt}}</small></p>
+                <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
+                  <h5 class="card-title">{{name}}</h5>
+                </a>
               </div>
             </div>
-          {{/each}}
+            {{/each}}
+          </div>
+        </div>
+        {{/each}}
         {{/each}}
       </div>
       <button
@@ -348,29 +239,15 @@
     >
       <div class="carousel-inner">
         {{#each newArticles}}
-          {{#each _main_item}}
-            <div class="carousel-item active">
-              <div class="card-group">
-                {{#each _item}}
-                  <div class="card card__popular__news--extend">
-                    <a
-                      href="/article?articleId={{id}}"
-                      style="display: block; width: 100%; height: 250px; min-height: 250px; margin-bottom: 5px;"
-                    >
-                      <img
-                        src="{{imgCover}}"
-                        class="card-img-top"
-                        alt="..."
-                        style="width: 100%; max-height: 250px;"
-                      />
-                    </a>
-                    <div class="card-body">
-                      {{#each SubCategories}}
-                        <a
-                          style="cursor: pointer; display: block;"
-                          href="/subCategory?subCategoryId={{id}}"
-                        ><span
-                            style="padding: 5px;
+        {{#each _main_item}}
+        <div class="carousel-item active">
+          <div class="card-group">
+            {{#each _item}}
+            <div class="card card__popular__news--extend">
+              <img src="{{imgCover}}" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;" />
+              <div class="card-body">
+                {{#each SubCategories}}
+                <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
     width: 70px;
     text-align: center;
     border-radius: 20px;
@@ -382,57 +259,26 @@
     line-height: 100%;"
                           >{{name}}</span></a>
 
-                      {{/each}}
-                      <p style="padding: 10px 0 0 0px;" class="card-text"><small
-                          class="text-muted"
-                        > {{#formatDate approve}}{{/formatDate}}</small></p>
-                      <a
-                        style="cursor: pointer; display: block;"
-                        href="/article?articleId={{id}}"
-                      >
-                        <h5
-                          class="card-title"
-                          style="font-size: 1.8rem;
-                          font-weight: 400;
-                          color: var(--text-color);
-                          line-height: 2.0rem;
-                          height: 6.0rem;
-                          overflow: hidden;
-                          display: block;
-                          display: -webkit-box;
-                          -webkit-box-orient: vertical;
-                          -webkit-line-clamp: 3;"
-                        >{{name}}</h5>
-                      </a>
-                    </div>
-                  </div>
                 {{/each}}
+                <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted"> {{updatedAt}}</small></p>
+                <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
+                  <h5 class="card-title">{{name}}</h5>
+                </a>
               </div>
             </div>
-          {{/each}}
-          {{#each _items}}
-            <div class="carousel-item">
-              <div class="card-group">
-                {{#each _item}}
-                  <div class="card card__popular__news--extend">
-                    <a
-                      href="/article?articleId={{id}}"
-                      style="display: block; width: 100%; height: 250px; min-height: 250px; margin-bottom: 5px;"
-                    >
-                      <img
-                        src="{{imgCover}}"
-                        class="card-img-top"
-                        alt="..."
-                        style="width: 100%; max-height: 250px;"
-                      />
-                    </a>
-                    <div class="card-body">
-                      {{#each SubCategories}}
-                        <a
-                          style="cursor: pointer; display: block;"
-                          href="/subCategory?subCategoryId={{id}}"
-                        ><span
-                            style="padding: 5px;
+            {{/each}}
+          </div>
+        </div>
+        {{/each}}
+        {{#each _items}}
+        <div class="carousel-item">
+          <div class="card-group">
+            {{#each _item}}
+            <div class="card card__popular__news--extend">
+              <img src="{{imgCover}}" class="card-img-top" alt="..." style="width: 100%; max-height: 250px;" />
+              <div class="card-body">
+                {{#each SubCategories}}
+                <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
     width: 70px;
     text-align: center;
     border-radius: 20px;
@@ -444,34 +290,17 @@
     line-height: 100%;"
                           >{{name}}</span></a>
 
-                      {{/each}}
-                      <p style="padding: 10px 0 0 0px;" class="card-text"><small
-                          class="text-muted"
-                        > {{#formatDate approve}}{{/formatDate}}</small></p>
-                      <a
-                        style="cursor: pointer; display: block;"
-                        href="/article?articleId={{id}}"
-                      >
-                        <h5
-                          class="card-title"
-                          style="font-size: 1.8rem;
-                          font-weight: 400;
-                          color: var(--text-color);
-                          line-height: 2.0rem;
-                          height: 6.0rem;
-                          overflow: hidden;
-                          display: block;
-                          display: -webkit-box;
-                          -webkit-box-orient: vertical;
-                          -webkit-line-clamp: 3;"
-                        >{{name}}</h5>
-                      </a>
-                    </div>
-                  </div>
                 {{/each}}
+                <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted"> {{updatedAt}}</small></p>
+                <a style="cursor: pointer; display: block;" href="/article?articleId={{id}}">
+                  <h5 class="card-title">{{name}}</h5>
+                </a>
               </div>
             </div>
-          {{/each}}
+            {{/each}}
+          </div>
+        </div>
+        {{/each}}
         {{/each}}
       </div>
       <button
@@ -511,67 +340,32 @@
     <div class="latest__news">
       <div class="row">
         {{#each newCategoryArticle}}
-          <div class="col-lg-3 col-md-4 col-sm-6" style="margin: 5px 0;">
-            <a
-              class="latest__news__algriculture"
-              style="cursor: pointer;"
-              href="/article?articleId={{Article.id}}"
-            >
-              <h5 style="font-weight: bold;"><i
-                  class="fa-solid fa-marker"
-                  style="margin-right: 10px;"
-                ></i>{{name}}
-              </h5>
-              <div class="card card__latest__main">
-                <img
-                  style="margin-bottom: 10px;"
-                  src="{{Article.imgCover}}"
-                  class="img__latest__news"
-                  alt="..."
-                />
-                <a
-                  style="cursor: pointer; display: block; padding-left: 5px;"
-                  href="/subCategory?subCategoryId={{id}}"
-                ><span
-                    style="padding: 5px;
-                    width: 70px;
-                    text-align: center;
-                    border-radius: 20px;
-                    background: var(--primary-color);
-                    border: none;
-                    font-size: 13px;
-                    font-weight: 400;
-                    color: white; 
-                    line-height: 100%;"
-                  >{{name}}</span></a>
-                <p
-                  style="padding: 10px 0 0 0px; margin-bottom: 5px;"
-                  class="card-text"
-                ><small class="text-muted" style="padding-left: 7px;">
-                    {{#formatDate Article.approve}}{{/formatDate}}</small></p>
-                <div class="card-body">
-                  <a
-                    style="cursor: pointer; display: block;"
-                    href="/article?articleId={{Article.id}}"
-                  >
-                    <h5
-                      class="card-title"
-                      style="font-size: 1.4rem;
-                      font-weight: 400;
-                      color: var(--text-color);
-                      line-height: 1.8rem;
-                      height: 5.4rem;
-                      overflow: hidden;
-                      display: block;
-                      display: -webkit-box;
-                      -webkit-box-orient: vertical;
-                      -webkit-line-clamp: 3;"
-                    >{{Article.name}}</h5>
-                  </a>
-                </div>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="latest__news__algriculture" style="cursor: pointer;">
+            <h5 style="font-weight: bold;"><i class="fa-solid fa-marker" style="margin-right: 10px;"></i>{{name}}
+            </h5>
+            <div href="./readnews.html" class="card card__latest__main">
+              <img style="margin-bottom: 10px;" src="{{Article.imgCover}}" class="img__latest__news" alt="..." />
+              <a style="cursor: pointer; display: block;" href="/subCategory?subCategoryId={{id}}"><span style="padding: 5px;
+    width: 70px;
+    text-align: center;
+    border-radius: 20px;
+    background: var(--primary-color);
+    border: none;
+    font-size: 13px;
+    font-weight: 400;
+    color: white; 
+    line-height: 100%;">{{name}}</span></a>
+              <p style="padding: 10px 0 0 0px;" class="card-text"><small class="text-muted">
+                  {{Article.updatedAt}}</small></p>
+              <div class="card-body">
+                <a style="cursor: pointer; display: block;" href="/article?articleId={{Article.id}}">
+                  <h5 class="card-title">{{Article.name}}</h5>
+                </a>
               </div>
-            </a>
+            </div>
           </div>
+        </div>
         {{/each}}
       </div>
     </div>

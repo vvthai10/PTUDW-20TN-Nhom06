@@ -1,32 +1,20 @@
 <div style="max-width: 1100px;">
-  <h2
-    style="font-size: 26px;line-height: 26px;margin-bottom: 20px;"
-  >{{categoryName}}</h2>
+  <h2 style="font-size: 26px;line-height: 26px;margin-bottom: 20px;">{{categoryName}}</h2>
   <ul>
     {{#each categoryArticles}}
-      <li>
-        <div style="display: flex; margin: 30px 0; width: 90%;">
-          <img
-            style="border-radius: 5px; width: 300px;"
-            src="{{imgCover}}"
-            alt=""
-          />
-          <div
-            style="    display: flex;
-flex-direction: column; margin-left: 10px;"
-          >
-            <a href="/article?articleId={{id}}"><span
-                style="font-size: 24px;
-    font-weight: 500;"
-              >{{name}}</span></a>
-            <div
-              style="display: flex;
-    justify-content: space-between;"
-            >
-              <!--Category-->
-              {{#each SubCategories}}
-                <a href="/subCategory?subCategoryId={{id}}"><span
-                    style="    padding: 5px;
+    <li>
+      <div style="display: flex; margin: 30px 0; width: 90%;">
+        <img style="border-radius: 5px; height: 20rem;
+  width: 20rem;" src="{{imgCover}}" alt="" />
+        <div style="    display: flex;
+flex-direction: column; margin-left: 10px;">
+          <a href="/article?articleId={{id}}" style="margin-left: 10px; margin-bottom: 10px;"><span style="font-size: 24px;
+    font-weight: 500;">{{name}}</span></a>
+          <div style="display: flex;
+    justify-content: space-between;">
+            <!--Category-->
+            {{#each SubCategories}}
+            <a href="/subCategory?subCategoryId={{id}}"><span style="    padding: 5px;
     width: 70px;
     text-align: center;
     border-radius: 20px;
@@ -36,14 +24,12 @@ flex-direction: column; margin-left: 10px;"
     font-weight: 400;
     color: white;
     line-height: 100%;
-    margin-left: 10px;"
-                  >{{name}}</span></a>
-              {{/each}}
-              <div>
-                <!--Related Tags-->
-                {{#each Tags}}
-                  <a href="/tag?tagId={{id}}"><span
-                      style="float: left;
+    margin-left: 10px;">{{name}}</span></a>
+            {{/each}}
+            <div>
+              <!--Related Tags-->
+              {{#each Tags}}
+              <a href="/tag?tagId={{id}}"><span style="float: left;
         margin-left: 10px;
         font-family: Arial;
         font-size: 13px;
@@ -52,38 +38,42 @@ flex-direction: column; margin-left: 10px;"
         background-color: #f0f0f0;
         padding: 0 8px 0 12px;
         height: 24px;
-        line-height: 24px;"
-                    >{{name}}</span></a>
-                {{/each}}
-              </div>
+        line-height: 24px;">{{name}}</span></a>
+              {{/each}}
             </div>
+
+
+          </div>
+          {{#if premium}}
+          <img style="height: 10%; width: 10%; margin-bottom: 10px; margin-left: 10px;"
+            src="https://static.vnncdn.net/v1/logo/logo-premium.svg">
+
+          {{/if}}
             <span
               style="font-size: 12px;
                   padding: 5px 0 0 10px;      color: black;"
             >{{#formatDate approve}}{{/formatDate}}</span>
-            <span
-              style="padding-left: 10px;
-                  font-size: 14px; color: black;"
-            >{{description}}</span>
-          </div>
+          <span style="padding-left: 10px;
+                  font-size: 14px; color: black;">{{description}}</span>
         </div>
-      </li>
+      </div>
+    </li>
     {{/each}}
   </ul>
 
   <nav aria-label="Page navigation example" id="pagination">
     {{{createPagination
-      pagination
-      paginationClass="pagination-display justify-content-center"
-      leftText="Previous"
-      rightText="Next"
+    pagination
+    paginationClass="pagination-display justify-content-center"
+    leftText="Previous"
+    rightText="Next"
     }}}
   </nav>
 </div>
 <script>
 
   document.querySelectorAll("#pagination li").forEach((li, index) => {
-  li.classList.add('page-item') }); document.querySelectorAll("#pagination
-  a").forEach((a, index) => { a.classList.add('page-link') });
+  li.classList.add('page-item') }); document.querySelectorAll("#pagination  a").forEach((a, index) => { a.classList.add('page-link') });
+  document.querySelectorAll("#pagination a").forEach((a, index) => { a.classList.add('page-link') });
 
 </script>

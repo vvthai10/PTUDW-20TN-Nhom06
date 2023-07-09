@@ -6,6 +6,7 @@ const sequelize = require("sequelize");
 const tagarticle = require("../models/tagarticle");
 const Op = sequelize.Op;
 const db = require("../models/index");
+const { publicDecrypt } = require("crypto");
 
 controller.getCategories = async (req, res, next) => {
   const categories = await models.Category.findAll({
@@ -23,6 +24,47 @@ controller.getCategories = async (req, res, next) => {
 };
 
 controller.showHomepage = async (req, res) => {
+  // Mảng tên các ngày trong tuần
+  const daysOfWeek = [
+    "Chủ Nhật",
+    "Thứ Hai",
+    "Thứ Ba",
+    "Thứ Tư",
+    "Thứ Năm",
+    "Thứ Sáu",
+    "Thứ Bảy",
+  ];
+
+  let mainArticle = await models.Article.findOne({
+    include: [
+      {
+        model: models.SubCategory,
+      },
+    ],
+    order: [["createdAt", "DESC"]],
+  });
+
+  let dataArticle = mainArticle.dataValues.updatedAt;
+  // Tạo đối tượng Date từ chuỗi thời gian
+  let date = new Date(dataArticle);
+  // Lấy thông tin về ngày, tháng, năm và thứ
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
+  let dayOfWeek = daysOfWeek[date.getDay()];
+
+  // Lấy thông tin về giờ, phút và thời gian
+  let hour = date.getHours();
+  let minute = date.getMinutes();
+
+  // Tạo chuỗi kết quả
+  let resultString = `${dayOfWeek} ${day}/${
+    month < 10 ? "0" : ""
+  }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
+  
+  mainArticle.dataValues.updatedAt = resultString;
+  res.locals.mainArticle = mainArticle;
+
   let popularArticles = await models.Article.findAll({
     include: [
       {
@@ -32,7 +74,32 @@ controller.showHomepage = async (req, res) => {
     order: [["nViewWeek", "DESC"]],
     limit: 4,
   });
+  
+  for (let index = 0; index < popularArticles.length; index++) {
+    dataArticle = popularArticles[index].dataValues.updatedAt;
+    // Tạo đối tượng Date từ chuỗi thời gian
+    date = new Date(dataArticle);
+    // Lấy thông tin về ngày, tháng, năm và thứ
+    day = date.getDate();
+    month = date.getMonth() + 1;
+    year = date.getFullYear();
+    dayOfWeek = daysOfWeek[date.getDay()];
+
+    // Lấy thông tin về giờ, phút và thời gian
+    hour = date.getHours();
+    minute = date.getMinutes();
+
+    // Tạo chuỗi kết quả
+    resultString = `${dayOfWeek} ${day}/${
+      month < 10 ? "0" : ""
+    }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
+    
+    popularArticles[index].dataValues.updatedAt = resultString;
+  }
+
   res.locals.popularArticles = popularArticles;
+
+
 
   // bai viet co luot xem cao nhat tat ca chuyen muc
   let viewArticles = await models.Article.findAll({
@@ -44,6 +111,28 @@ controller.showHomepage = async (req, res) => {
     order: [["nView", "DESC"]],
     limit: 10,
   });
+
+  for (let index = 0; index < viewArticles.length; index++) {
+    dataArticle = viewArticles[index].dataValues.updatedAt;
+    // Tạo đối tượng Date từ chuỗi thời gian
+    date = new Date(dataArticle);
+    // Lấy thông tin về ngày, tháng, năm và thứ
+    day = date.getDate();
+    month = date.getMonth() + 1;
+    year = date.getFullYear();
+    dayOfWeek = daysOfWeek[date.getDay()];
+
+    // Lấy thông tin về giờ, phút và thời gian
+    hour = date.getHours();
+    minute = date.getMinutes();
+
+    // Tạo chuỗi kết quả
+    resultString = `${dayOfWeek} ${day}/${
+      month < 10 ? "0" : ""
+    }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
+    
+    viewArticles[index].dataValues.updatedAt = resultString;
+  }
 
   let viewArticle_new = [];
   let temp = [];
@@ -89,6 +178,28 @@ controller.showHomepage = async (req, res) => {
     limit: 10,
   });
 
+  for (let index = 0; index < newArticles.length; index++) {
+    dataArticle = newArticles[index].dataValues.updatedAt;
+    // Tạo đối tượng Date từ chuỗi thời gian
+    date = new Date(dataArticle);
+      // Lấy thông tin về ngày, tháng, năm và thứ
+    day = date.getDate();
+    month = date.getMonth() + 1;
+    year = date.getFullYear();
+    dayOfWeek = daysOfWeek[date.getDay()];
+
+    // Lấy thông tin về giờ, phút và thời gian
+   hour = date.getHours();
+   minute = date.getMinutes();
+
+    // Tạo chuỗi kết quả
+   resultString = `${dayOfWeek} ${day}/${
+      month < 10 ? "0" : ""
+    }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
+    
+    newArticles[index].dataValues.updatedAt = resultString;
+  }
+
   let newArticles_news = [];
   temp = [];
   for (let index = 0; index < newArticles.length / 3; index++) {
@@ -117,15 +228,9 @@ controller.showHomepage = async (req, res) => {
   newArticles_news.push({ _items: temp });
   res.locals.newArticles = newArticles_news;
 
-  const mainArticle = await models.Article.findOne({
-    include: [
-      {
-        model: models.SubCategory,
-      },
-    ],
-    order: [["createdAt", "DESC"]],
-  });
-  res.locals.mainArticle = mainArticle;
+
+
+  
 
   // top 10 chuyen muc, moi chuyen muc 1 bai moi nhat
   let newCategoryArticle = await models.SubCategory.findAll({
@@ -136,10 +241,31 @@ controller.showHomepage = async (req, res) => {
     ],
     order: [[models.Article, "updatedAt", "DESC"]],
   });
-  console.log(newCategoryArticle[3].Articles);
+
   for (let index = 0; index < newCategoryArticle.length; index++) {
-    newCategoryArticle[index].Article = newCategoryArticle[index].Articles[0];
+   newCategoryArticle[index].Article = newCategoryArticle[index].Articles[0];
+
+   dataArticle = newCategoryArticle[index].Article.dataValues.updatedAt;
+    // Tạo đối tượng Date từ chuỗi thời gian
+   date = new Date(dataArticle);
+      // Lấy thông tin về ngày, tháng, năm và thứ
+   day = date.getDate();
+   month = date.getMonth() + 1;
+   year = date.getFullYear();
+   dayOfWeek = daysOfWeek[date.getDay()];
+
+    // Lấy thông tin về giờ, phút và thời gian
+   hour = date.getHours();
+   minute = date.getMinutes();
+
+    // Tạo chuỗi kết quả
+   resultString = `${dayOfWeek} ${day}/${
+      month < 10 ? "0" : ""
+    }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
+    
+    newCategoryArticle[index].Article.dataValues.updatedAt = resultString;
   }
+
   res.locals.newCategoryArticle = newCategoryArticle;
   res.render("index");
 };
@@ -208,6 +334,39 @@ controller.showCategory = async (req, res) => {
     limit: limit,
     offset: limit * (page - 1),
   });
+
+  // Mảng tên các ngày trong tuần
+  const daysOfWeek = [
+    "Chủ Nhật",
+    "Thứ Hai",
+    "Thứ Ba",
+    "Thứ Tư",
+    "Thứ Năm",
+    "Thứ Sáu",
+    "Thứ Bảy",
+  ];
+
+  for (let index = 0; index < rows.length; index++) {
+    let dataArticle = rows[index].dataValues.updatedAt;
+    // Tạo đối tượng Date từ chuỗi thời gian
+    const date = new Date(dataArticle);
+      // Lấy thông tin về ngày, tháng, năm và thứ
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const dayOfWeek = daysOfWeek[date.getDay()];
+
+    // Lấy thông tin về giờ, phút và thời gian
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+
+    // Tạo chuỗi kết quả
+    const resultString = `${dayOfWeek} ${day}/${
+      month < 10 ? "0" : ""
+    }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
+
+    rows[index].dataValues.updatedAt = resultString;
+  }
 
   res.locals.categoryArticles = rows;
 
@@ -298,9 +457,39 @@ controller.showSubCategory = async (req, res) => {
     queryParams: req.query,
   };
 
+  const daysOfWeek = [
+    "Chủ Nhật",
+    "Thứ Hai",
+    "Thứ Ba",
+    "Thứ Tư",
+    "Thứ Năm",
+    "Thứ Sáu",
+    "Thứ Bảy",
+  ];
+
   // add property 'category' into subCategoryArticles object
   for (let index = 0; index < rows.length; index++) {
     rows[index].category = category;
+
+    let dataArticle = rows[index].dataValues.updatedAt;
+    // Tạo đối tượng Date từ chuỗi thời gian
+    const date = new Date(dataArticle);
+      // Lấy thông tin về ngày, tháng, năm và thứ
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const dayOfWeek = daysOfWeek[date.getDay()];
+
+    // Lấy thông tin về giờ, phút và thời gian
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+
+    // Tạo chuỗi kết quả
+    const resultString = `${dayOfWeek} ${day}/${
+      month < 10 ? "0" : ""
+    }${month}/${year} ${hour < 10 ? "0" : ""}${hour}:${minute} (GMT+7)`;
+    
+    rows[index].dataValues.updatedAt = resultString;
   }
 
   res.locals.subCategoryArticles = rows;
