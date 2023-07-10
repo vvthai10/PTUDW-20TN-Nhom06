@@ -314,39 +314,47 @@
 </script>
 
 {{! Xử lý cơ chế người dùng đọc bài viết chưa }}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
 <script>
-        var isRead = false; $(document).ready(function () {
-            var articleElement =
-                $('#abcdefgh'); var articleHeight = articleElement.outerHeight(); var
-                    windowHeight = $(window).height(); window.addEventListener('scroll', function
-                        () {
-                        var scrollTop = $(this).scrollTop(); var scrollBottom = scrollTop +
-                            windowHeight; if (scrollBottom >= articleHeight * 0.9 && isRead == false) {
-                                isRead = true var userId =
-                                    parseInt(document.getElementById("idofuser").innerHTML); var articleId =
-                                        parseInt(document.getElementById("idofarticle").innerHTML); var currentURL =
-                                            window.location.origin var api = `${currentURL}/userread` // Thực hiện các
-  hành động liên quan đến việc người dùng đã đọc xong bài viết ở đây fetch(api,
-                                                {
-                                                    method: 'POST', headers: {
-                                                        'Content-Type': 'application/json' // Định dạng
-  dữ liệu là JSON
-                                                    }, body: JSON.stringify({ // Dữ liệu gửi đi articleId:
-                                                        articleId, userId: userId
-                                                    })
-                                                }).then(response => response.json()).then(data
-                                                    => {
-                                                    console.log('Phương thức POST đã được thực hiện thành công.'); // Xử lý
-  kết quả trả về
-                                                }).catch(error => {
-                                                    console.error('Đã xảy ra lỗi trong quá
-  trình thực hiện phương thức POST: ', error); }); } }); });
+    var isRead = false;
+    $(document).ready(function() {
+        var articleElement = $('#abcdefgh');
+        var articleHeight =
+            articleElement.outerHeight();
+        var windowHeight = $(window).height();
+        window.addEventListener('scroll', function() {
+            var scrollTop = $(this).scrollTop();
+            var scrollBottom = scrollTop + windowHeight;
+            if (scrollBottom >= articleHeight *
+                0.9 && isRead == false) {
+                isRead = true
+                var userId = parseInt(document.getElementById("idofuser").innerHTML);
+                var
+                    articleId = parseInt(document.getElementById("idofarticle").innerHTML);
+                var currentURL = window.location.origin
+                var
+                    api = `${currentURL}/userread`
+                fetch(api, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            articleId: articleId,
+                            userId: userId
+                        })
+                    }).then(response => response.json())
+                    .then(data => {
+                        console.log('Phương thức POST đã được thực hiện thành công.');
+                    })
+                    .catch(error => {
+                        console.error('Đã xảy ra lỗi trong quá trình thực hiện phương thức POST:', error);
+                    });
+            }
+        });
+    });
 </script>
 <script>
-  var carousel = document.getElementById('carousel__popular__week__news');
-                                                function autoSlide1() {
-                                                    carousel.querySelector('.carousel-control-next').click();
-                                                }
-                                                setInterval(autoSlide1, 3000);
+    var carousel = document.getElementById('carousel__popular__week__news'); function autoSlide1() {
+    carousel.querySelector('.carousel-control-next').click(); } setInterval(autoSlide1, 3000);
 </script>
