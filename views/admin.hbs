@@ -56,8 +56,10 @@
                       <form id="form1" action="/admin/add" method="post">
                         <div class="modal-body__add__name mb-3" style="display: none;">
                           <label for="add__name" class="col-form-label">Nhập tên</label>
-                          <input type="text" class="form-control" id="add__name" name="name"><br />
-                          <label for="input_post_avatar">Ảnh đại diện bài viết</label><br />
+                          <input type="text" class="form-control" id="add__name" name="name">
+                        </div>
+                        <div class="modal-body__add__image mb-3" style="display: none;">
+                          <label for="input_post_avatar">Ảnh đại diện</label><br />
                           <input id="input_post_avatar" type="file" accept="image/*" />
                           <input form="form1" id="input_post_avatar_link" type="text" hidden value="https://i.imgur.com/CFc1day.jpg" name="iconLink" />
                           <input form="form1" id="input_post_avatar_deleteHash" type="text" hidden name="iconDeleteHash" />

@@ -69,6 +69,7 @@ var exampleModal = $$('.modal').forEach((modal) => {
         switch (pageState()) {
             case "Chuyên mục cấp 1":
                 $(".modal-body__add__name").setAttribute("style", "display: block;");
+                $(".modal-body__add__image").setAttribute("style", "display: block;");
                 break;
             case "Chuyên mục cấp 2":
                 $(".modal-body__add__name").setAttribute("style", "display: block;");
