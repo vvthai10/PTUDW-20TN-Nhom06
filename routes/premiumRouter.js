@@ -246,17 +246,17 @@ router.get("/test-register", async (req, res) => {
   let type = parseInt(req.query.type);
   let orderInfo, amount;
   // Gói trải nghiệm
-  if (type == 1) {
+  if (type === 1) {
     orderInfo = "Đăng kí premium: Gói trải nghiệm";
     amount = "30000";
   }
   // Gói cơ bản
-  else if (type == 2) {
+  else if (type === 2) {
     orderInfo = "Đăng kí premium: Gói cơ bản";
     amount = "100000";
   }
   // Gói cao cấp
-  else if (type == 3) {
+  else if (type === 3) {
     orderInfo = "Đăng kí premium: Gói cao cấp";
     amount = "180000";
   }
